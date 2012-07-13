@@ -228,6 +228,8 @@
 		F03EF74915B042E80085E637 /* textures.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74215B042E80085E637 /* textures.plist */; };
 		F03EF74A15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
 		F03EF74B15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
+		F03EF75E15B059F30085E637 /* UDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDButton.m */; };
+		F03EF75F15B059F30085E637 /* UDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDButton.m */; };
 		F043C4FB14CAF08400BF47DE /* UDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F043C4F814CAF08400BF47DE /* UDMath.m */; };
 		F043C4FC14CAF08400BF47DE /* UDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F043C4F814CAF08400BF47DE /* UDMath.m */; };
 		F0602A4215AFA16600B60FB1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
@@ -515,6 +517,8 @@
 		F03EF74115B042E80085E637 /* textures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textures-hd.png"; sourceTree = "<group>"; };
 		F03EF74215B042E80085E637 /* textures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = textures.plist; sourceTree = "<group>"; };
 		F03EF74315B042E80085E637 /* textures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textures.png; sourceTree = "<group>"; };
+		F03EF75C15B059F30085E637 /* UDButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDButton.h; sourceTree = "<group>"; };
+		F03EF75D15B059F30085E637 /* UDButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDButton.m; sourceTree = "<group>"; };
 		F043C4F214CAF08400BF47DE /* UDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDLog.h; sourceTree = "<group>"; };
 		F043C4F714CAF08400BF47DE /* UDMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMath.h; sourceTree = "<group>"; };
 		F043C4F814CAF08400BF47DE /* UDMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDMath.m; sourceTree = "<group>"; };
@@ -957,9 +961,19 @@
 			path = ../../../../Support/NSMutableArrayAdditions;
 			sourceTree = "<group>";
 		};
+		F03EF75B15B059F30085E637 /* UDSpriteButton */ = {
+			isa = PBXGroup;
+			children = (
+				F03EF75C15B059F30085E637 /* UDButton.h */,
+				F03EF75D15B059F30085E637 /* UDButton.m */,
+			);
+			path = UDSpriteButton;
+			sourceTree = "<group>";
+		};
 		F043C4EF14CAF07300BF47DE /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				F03EF75B15B059F30085E637 /* UDSpriteButton */,
 				F03EF72F15B03E380085E637 /* NSMutableArrayAdditions */,
 				F01CD2C1153023F8000149C4 /* UDActions */,
 				F0EE553F152C536F004B1792 /* BlocksAdditions */,
@@ -1049,11 +1063,11 @@
 			children = (
 				F0CD646B14CA99A500665366 /* iOS */,
 				F0CD646C14CA99A500665366 /* MacOS */,
+				F06585BE14CA7CE30033B4F5 /* Cocos2D */,
 				F06582BF14CA7BE20033B4F5 /* QuartzCore.framework */,
 				F06582C314CA7BE20033B4F5 /* OpenAL.framework */,
 				F06582C514CA7BE20033B4F5 /* AudioToolbox.framework */,
 				F06582CB14CA7BE20033B4F5 /* Foundation.framework */,
-				F06585BE14CA7CE30033B4F5 /* Cocos2D */,
 			);
 			name = "Frameworks & Librarys";
 			path = "UDGame/Frameworks & Librarys";
@@ -1442,6 +1456,7 @@
 				F023314815AF98D100D7EF8F /* CDXPropertyModifierAction.m in Sources */,
 				F03EF72915B036570085E637 /* UDTile.m in Sources */,
 				F03EF73215B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */,
+				F03EF75E15B059F30085E637 /* UDButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1561,6 +1576,7 @@
 				F023314915AF98D100D7EF8F /* CDXPropertyModifierAction.m in Sources */,
 				F03EF72A15B036570085E637 /* UDTile.m in Sources */,
 				F03EF73315B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */,
+				F03EF75F15B059F30085E637 /* UDButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
