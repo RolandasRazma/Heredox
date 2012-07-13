@@ -2,7 +2,7 @@
 //  UDGameAppDelegate.m
 //  UDHeredox
 //
-//  Created by Rolandas Razma on 1/21/12.
+//  Created by Rolandas Razma on 7/13/12.
 //  Copyright UD7 2012. All rights reserved.
 //
 

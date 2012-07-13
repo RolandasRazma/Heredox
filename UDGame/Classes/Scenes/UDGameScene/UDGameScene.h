@@ -2,7 +2,7 @@
 //  UDGameScene.h
 //  UDHeredox
 //
-//  Created by Rolandas Razma on 04/04/12.
+//  Created by Rolandas Razma on 7/13/12.
 //  Copyright UD7 2012. All rights reserved.
 //
 

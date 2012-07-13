@@ -12,6 +12,5 @@
     
     #import "BlocksAdditions.h"
     #import "UDMath.h"
-
-#import "UDGameConfig.h"
+    #import "NSMutableArray+UDAdditions.h"
 #endif
