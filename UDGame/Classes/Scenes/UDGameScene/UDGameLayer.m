@@ -30,12 +30,13 @@
 	if( (self=[super init]) ) {
         [self setUserInteractionEnabled:YES];
 
-        [self resetDeck];
+        [self resetDeckForGameMode:UDGameModeClosed];
+
 
         // Tile size: 76
-        // UDTile *tile = [_deck objectAtIndex:0];
-        // [tile setPosition:CGPointMake(320/2, 480/2)];
-        // [self addChild:tile];
+        UDTile *tile = [_deck objectAtIndex:0];
+        [tile setPosition:CGPointMake(320/2, 480/2)];
+        [self addChild:tile];
     }
 	return self;
 }
@@ -60,7 +61,7 @@
 #pragma mark UDGameLayer
 
 
-- (void)resetDeck {
+- (void)resetDeckForGameMode:(UDGameMode)gameMode {
     [_deck release];
     _deck = [[NSMutableArray alloc] initWithCapacity:16];
     
@@ -91,6 +92,12 @@
     [_deck addObject: [UDTile tileWithEdgeTop:UDTileEdgeWhite left:UDTileEdgeBlack bottom:UDTileEdgeWhite right:UDTileEdgeBlack]];
     
     [_deck shuffleWithSeed:time(NULL)];
+    
+    if( gameMode == UDGameModeClosed ){
+        for( UDTile *tile in _deck ){
+            [tile setBackSideVisible:YES];
+        }
+    }
 }
 
 

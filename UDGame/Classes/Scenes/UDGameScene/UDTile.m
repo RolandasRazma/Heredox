@@ -9,7 +9,9 @@
 #import "UDTile.h"
 
 
-@implementation UDTile
+@implementation UDTile {
+    BOOL _backSideVisible;
+}
 
 
 #pragma mark -
@@ -56,4 +58,21 @@
 }
 
 
+- (void)setBackSideVisible:(BOOL)backSideVisible {
+    if( _backSideVisible == backSideVisible ) return;
+
+    CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:((backSideVisible==YES)?@"UDTileBack.png":@"UDEmptyTile.png")];
+
+    for( CCSprite *child in self.children ){
+        [child setVisible: !backSideVisible];
+    }
+    
+    [self setTexture:spriteFrame.texture];
+    [self setTextureRect:spriteFrame.rect];
+
+    _backSideVisible = backSideVisible;
+}
+
+
+@synthesize backSideVisible=_backSideVisible;
 @end

@@ -58,6 +58,9 @@
 	// Center main window
 	[_window center];
 	
+    // Load Textures
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
+    
 	[_director runWithScene: [UDGameScene node]];
 }
 

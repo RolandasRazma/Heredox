@@ -9,6 +9,12 @@
 #import "UDLayer.h"
 
 
+typedef enum UDGameMode : NSUInteger {
+    UDGameModeClosed    = 0,
+    UDGameModeOpen      = 1,
+} UDGameMode;
+
+
 @interface UDGameLayer : UDLayer
 
 @end

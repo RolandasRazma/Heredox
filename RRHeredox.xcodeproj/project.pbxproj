@@ -216,22 +216,18 @@
 		F023314815AF98D100D7EF8F /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F023314515AF98D100D7EF8F /* CDXPropertyModifierAction.m */; };
 		F023314915AF98D100D7EF8F /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F023314515AF98D100D7EF8F /* CDXPropertyModifierAction.m */; };
 		F0330B41152D78C7001F1915 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0330B3D152D78C7001F1915 /* libTestFlight.a */; };
-		F03EF71115B035A50085E637 /* UDEmptyTile.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF70B15B035A50085E637 /* UDEmptyTile.png */; };
-		F03EF71215B035A50085E637 /* UDEmptyTile.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF70B15B035A50085E637 /* UDEmptyTile.png */; };
-		F03EF71515B035A50085E637 /* UDTileEdgeBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF70D15B035A50085E637 /* UDTileEdgeBlack.png */; };
-		F03EF71615B035A50085E637 /* UDTileEdgeBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF70D15B035A50085E637 /* UDTileEdgeBlack.png */; };
-		F03EF71915B035A50085E637 /* UDTileEdgeWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF70F15B035A50085E637 /* UDTileEdgeWhite.png */; };
-		F03EF71A15B035A50085E637 /* UDTileEdgeWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF70F15B035A50085E637 /* UDTileEdgeWhite.png */; };
-		F03EF72115B036060085E637 /* UDEmptyTile-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF71E15B036060085E637 /* UDEmptyTile-hd.png */; };
-		F03EF72215B036060085E637 /* UDEmptyTile-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF71E15B036060085E637 /* UDEmptyTile-hd.png */; };
-		F03EF72315B036060085E637 /* UDTileEdgeBlack-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF71F15B036060085E637 /* UDTileEdgeBlack-hd.png */; };
-		F03EF72415B036060085E637 /* UDTileEdgeBlack-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF71F15B036060085E637 /* UDTileEdgeBlack-hd.png */; };
-		F03EF72515B036060085E637 /* UDTileEdgeWhite-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF72015B036060085E637 /* UDTileEdgeWhite-hd.png */; };
-		F03EF72615B036060085E637 /* UDTileEdgeWhite-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF72015B036060085E637 /* UDTileEdgeWhite-hd.png */; };
 		F03EF72915B036570085E637 /* UDTile.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF72815B036570085E637 /* UDTile.m */; };
 		F03EF72A15B036570085E637 /* UDTile.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF72815B036570085E637 /* UDTile.m */; };
 		F03EF73215B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */; };
 		F03EF73315B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */; };
+		F03EF74415B042E80085E637 /* textures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74015B042E80085E637 /* textures-hd.plist */; };
+		F03EF74515B042E80085E637 /* textures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74015B042E80085E637 /* textures-hd.plist */; };
+		F03EF74615B042E80085E637 /* textures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74115B042E80085E637 /* textures-hd.png */; };
+		F03EF74715B042E80085E637 /* textures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74115B042E80085E637 /* textures-hd.png */; };
+		F03EF74815B042E80085E637 /* textures.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74215B042E80085E637 /* textures.plist */; };
+		F03EF74915B042E80085E637 /* textures.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74215B042E80085E637 /* textures.plist */; };
+		F03EF74A15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
+		F03EF74B15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
 		F043C4FB14CAF08400BF47DE /* UDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F043C4F814CAF08400BF47DE /* UDMath.m */; };
 		F043C4FC14CAF08400BF47DE /* UDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F043C4F814CAF08400BF47DE /* UDMath.m */; };
 		F0602A4215AFA16600B60FB1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
@@ -511,16 +507,14 @@
 		F0330B3E152D78C7001F1915 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		F0330B3F152D78C7001F1915 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		F0330B40152D78C7001F1915 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		F03EF70B15B035A50085E637 /* UDEmptyTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UDEmptyTile.png; sourceTree = "<group>"; };
-		F03EF70D15B035A50085E637 /* UDTileEdgeBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UDTileEdgeBlack.png; sourceTree = "<group>"; };
-		F03EF70F15B035A50085E637 /* UDTileEdgeWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UDTileEdgeWhite.png; sourceTree = "<group>"; };
-		F03EF71E15B036060085E637 /* UDEmptyTile-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UDEmptyTile-hd.png"; sourceTree = "<group>"; };
-		F03EF71F15B036060085E637 /* UDTileEdgeBlack-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UDTileEdgeBlack-hd.png"; sourceTree = "<group>"; };
-		F03EF72015B036060085E637 /* UDTileEdgeWhite-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UDTileEdgeWhite-hd.png"; sourceTree = "<group>"; };
 		F03EF72715B036570085E637 /* UDTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDTile.h; sourceTree = "<group>"; };
 		F03EF72815B036570085E637 /* UDTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDTile.m; sourceTree = "<group>"; };
 		F03EF73015B03E390085E637 /* NSMutableArray+UDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+UDAdditions.h"; sourceTree = "<group>"; };
 		F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+UDAdditions.m"; sourceTree = "<group>"; };
+		F03EF74015B042E80085E637 /* textures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "textures-hd.plist"; sourceTree = "<group>"; };
+		F03EF74115B042E80085E637 /* textures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textures-hd.png"; sourceTree = "<group>"; };
+		F03EF74215B042E80085E637 /* textures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = textures.plist; sourceTree = "<group>"; };
+		F03EF74315B042E80085E637 /* textures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textures.png; sourceTree = "<group>"; };
 		F043C4F214CAF08400BF47DE /* UDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDLog.h; sourceTree = "<group>"; };
 		F043C4F714CAF08400BF47DE /* UDMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMath.h; sourceTree = "<group>"; };
 		F043C4F814CAF08400BF47DE /* UDMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDMath.m; sourceTree = "<group>"; };
@@ -1041,12 +1035,10 @@
 			children = (
 				F0CD646514CA985100665366 /* iOS */,
 				F0CD646214CA983700665366 /* MacOS */,
-				F03EF70B15B035A50085E637 /* UDEmptyTile.png */,
-				F03EF71E15B036060085E637 /* UDEmptyTile-hd.png */,
-				F03EF70D15B035A50085E637 /* UDTileEdgeBlack.png */,
-				F03EF71F15B036060085E637 /* UDTileEdgeBlack-hd.png */,
-				F03EF70F15B035A50085E637 /* UDTileEdgeWhite.png */,
-				F03EF72015B036060085E637 /* UDTileEdgeWhite-hd.png */,
+				F03EF74015B042E80085E637 /* textures-hd.plist */,
+				F03EF74115B042E80085E637 /* textures-hd.png */,
+				F03EF74215B042E80085E637 /* textures.plist */,
+				F03EF74315B042E80085E637 /* textures.png */,
 			);
 			name = Images;
 			path = Resources/Images;
@@ -1309,12 +1301,10 @@
 				F0602A4715AFA16600B60FB1 /* Icon@2x~ipad.png in Resources */,
 				F0602A4815AFA16600B60FB1 /* Icon~ipad.png in Resources */,
 				F0602A4A15AFA31600B60FB1 /* Default-Portrait~ipad.png in Resources */,
-				F03EF71115B035A50085E637 /* UDEmptyTile.png in Resources */,
-				F03EF71515B035A50085E637 /* UDTileEdgeBlack.png in Resources */,
-				F03EF71915B035A50085E637 /* UDTileEdgeWhite.png in Resources */,
-				F03EF72115B036060085E637 /* UDEmptyTile-hd.png in Resources */,
-				F03EF72315B036060085E637 /* UDTileEdgeBlack-hd.png in Resources */,
-				F03EF72515B036060085E637 /* UDTileEdgeWhite-hd.png in Resources */,
+				F03EF74415B042E80085E637 /* textures-hd.plist in Resources */,
+				F03EF74615B042E80085E637 /* textures-hd.png in Resources */,
+				F03EF74815B042E80085E637 /* textures.plist in Resources */,
+				F03EF74A15B042E80085E637 /* textures.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1326,12 +1316,10 @@
 				F0CD646414CA983700665366 /* icon.icns in Resources */,
 				F023312615AF97DC00D7EF8F /* ChangeLog in Resources */,
 				F023312815AF97DC00D7EF8F /* CMakeLists.txt in Resources */,
-				F03EF71215B035A50085E637 /* UDEmptyTile.png in Resources */,
-				F03EF71615B035A50085E637 /* UDTileEdgeBlack.png in Resources */,
-				F03EF71A15B035A50085E637 /* UDTileEdgeWhite.png in Resources */,
-				F03EF72215B036060085E637 /* UDEmptyTile-hd.png in Resources */,
-				F03EF72415B036060085E637 /* UDTileEdgeBlack-hd.png in Resources */,
-				F03EF72615B036060085E637 /* UDTileEdgeWhite-hd.png in Resources */,
+				F03EF74515B042E80085E637 /* textures-hd.plist in Resources */,
+				F03EF74715B042E80085E637 /* textures-hd.png in Resources */,
+				F03EF74915B042E80085E637 /* textures.plist in Resources */,
+				F03EF74B15B042E80085E637 /* textures.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
