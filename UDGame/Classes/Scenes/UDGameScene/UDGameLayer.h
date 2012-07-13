@@ -17,4 +17,6 @@ typedef enum UDGameMode : NSUInteger {
 
 @interface UDGameLayer : UDLayer
 
+- (id)initWithGameMode:(UDGameMode)gameMode;
+
 @end

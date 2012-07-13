@@ -1035,10 +1035,10 @@
 			children = (
 				F0CD646514CA985100665366 /* iOS */,
 				F0CD646214CA983700665366 /* MacOS */,
-				F03EF74015B042E80085E637 /* textures-hd.plist */,
-				F03EF74115B042E80085E637 /* textures-hd.png */,
 				F03EF74215B042E80085E637 /* textures.plist */,
 				F03EF74315B042E80085E637 /* textures.png */,
+				F03EF74015B042E80085E637 /* textures-hd.plist */,
+				F03EF74115B042E80085E637 /* textures-hd.png */,
 			);
 			name = Images;
 			path = Resources/Images;
