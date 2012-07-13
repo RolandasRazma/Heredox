@@ -1,6 +1,6 @@
 //
 //  UDGameScene.m
-//  UDBloodyFlight
+//  UDHeredox
 //
 //  Created by Rolandas Razma on 04/04/12.
 //  Copyright UD7 2012. All rights reserved.
