@@ -285,6 +285,7 @@
 		F00D63F215B22BF20034DC10 /* UDPickColorScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPickColorScene.m; sourceTree = "<group>"; };
 		F00D63F515B22C300034DC10 /* UDPickColorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPickColorLayer.h; sourceTree = "<group>"; };
 		F00D63F615B22C300034DC10 /* UDPickColorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPickColorLayer.m; sourceTree = "<group>"; };
+		F00D63F915B2329D0034DC10 /* UDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMacros.h; sourceTree = "<group>"; };
 		F01CD2C31530241F000149C4 /* UDActionDestroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionDestroy.h; sourceTree = "<group>"; };
 		F01CD2C41530241F000149C4 /* UDActionDestroy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionDestroy.m; sourceTree = "<group>"; };
 		F0232F8915AF970100D7EF8F /* UDGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDGameLayer.m; sourceTree = "<group>"; };
@@ -1015,6 +1016,7 @@
 			isa = PBXGroup;
 			children = (
 				F043C4F214CAF08400BF47DE /* UDLog.h */,
+				F00D63F915B2329D0034DC10 /* UDMacros.h */,
 			);
 			name = UDMacros;
 			path = ../../../../Support/UDMacros;

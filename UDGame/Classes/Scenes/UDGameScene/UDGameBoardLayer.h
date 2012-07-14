@@ -15,9 +15,6 @@
 
 - (id)initWithGameMode:(UDGameMode)gameMode;
 
-- (CGPoint)snapPoint:(CGPoint)point toGridWithTolerance:(CGFloat)tolerance;
-- (CGPoint)gridLocationFromPosition:(CGPoint)position;
-
 - (void)addTile:(UDTile *)tile animated:(BOOL)animated;
 - (BOOL)haltTilePlaces;
 
