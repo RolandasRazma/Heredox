@@ -55,12 +55,6 @@
 #endif
 
 
-- (void)addTile:(UDTile *)tile {
-    [self addChild:tile];
-    
-}
-
-
 #pragma mark -
 #pragma mark UDGameBoardLayer
 
@@ -103,18 +97,42 @@
     return point;
 }
 
-/*
-- (CGPoint)gridLocationFromPosition:(CGPoint)position {
-    
-}
-
 
 - (BOOL)canPlaceTileAtGridLocation:(CGPoint)gridLocation {
-//    for( UDTile *tile in _board ){
-//        if( CGPointEqualToPoint(tile.gridLocation, gridLocation) ) return NO;
- //   }
+    if( self.children.count < 2 ) return YES;
+    
+    NSInteger minX = NSIntegerMax;
+    NSInteger minY = NSIntegerMax;
+    NSInteger maxX = NSIntegerMin;
+    NSInteger maxY = NSIntegerMin;
+    BOOL foundTouchPoint = NO;
+    
+    for( UDTile *tile in self.children ){
+        CGPoint positionInGrid = tile.positionInGrid;
+        if ( ![tile isEqual:_activeTile] && CGPointEqualToPoint(positionInGrid, gridLocation) ) return NO;
+
+        if( foundTouchPoint == NO ){
+            foundTouchPoint = 
+                    (positionInGrid.x +1 == gridLocation.x && positionInGrid.y == gridLocation.y)
+                ||  (positionInGrid.x -1 == gridLocation.x && positionInGrid.y == gridLocation.y)
+                ||  (positionInGrid.y +1 == gridLocation.y && positionInGrid.x == gridLocation.x)
+                ||  (positionInGrid.y -1 == gridLocation.y && positionInGrid.x == gridLocation.x);
+        }
+        
+        minX = MIN(minX, positionInGrid.x);
+        minY = MIN(minY, positionInGrid.y);
+        
+        maxX = MAX(maxX, positionInGrid.x);
+        maxY = MAX(maxY, positionInGrid.y);
+    }
+    
+    if( foundTouchPoint == NO ) return NO;
+
+    if( (maxX -minX +1) > 4 ) return NO;
+    if( (maxY -minY +1) > 4 ) return NO;
+
     return YES;
-} */
+}
 
 
 - (void)resetBoardForGameMode:(UDGameMode)gameMode {
@@ -127,18 +145,24 @@
 
 - (void)addTile:(UDTile *)tile asActive:(BOOL)asActive {
     if( asActive ){
-        [self haltTilePlaces];
         _activeTile = tile;
     }
     [self addChild:tile];
 }
 
 
-- (void)haltTilePlaces {
+- (BOOL)haltTilePlaces {
     [_activeTile setPosition: [self snapPoint:_activeTile.position toGridWithTolerance: CGFLOAT_MAX]];
-    _activeTile = nil;
     
-    [self centerBoardAnimated:(self.children.count >1)];
+    if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid] ){
+        _activeTile = nil;
+        
+        [self centerBoardAnimated:(self.children.count >1)];        
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 

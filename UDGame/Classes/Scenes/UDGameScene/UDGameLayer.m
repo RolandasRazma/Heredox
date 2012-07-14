@@ -77,11 +77,16 @@
 
 
 - (void)endTurn {
-    if( _deck.count > 1 ){
-        [_gameBoardLayer addTile: [self takeTopTile] 
-                        asActive: YES];
-    }else{
-        [_gameBoardLayer haltTilePlaces];
+    if( [_gameBoardLayer haltTilePlaces] ){
+        
+        if( _deck.count > 0 ){
+            UDTile *newTile = [self takeTopTile];
+            [newTile setPosition:CGPointMake(newTile.position.x -_gameBoardLayer.position.x, newTile.position.y -_gameBoardLayer.position.y)];
+            
+            [_gameBoardLayer addTile: newTile
+                            asActive: YES];
+        }
+        
     }
 }
 

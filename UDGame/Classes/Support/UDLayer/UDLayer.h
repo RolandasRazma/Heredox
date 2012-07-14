@@ -8,7 +8,7 @@
 #import "CCLayer.h"
 
 
-@interface UDLayer : CCLayer{
+@interface UDLayer : CCLayer {
     BOOL _touchActive;
 }
 

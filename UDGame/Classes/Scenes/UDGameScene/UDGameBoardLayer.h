@@ -19,6 +19,6 @@
 - (CGPoint)gridLocationFromPosition:(CGPoint)position;
 
 - (void)addTile:(UDTile *)tile asActive:(BOOL)asActive;
-- (void)haltTilePlaces;
-   
+- (BOOL)haltTilePlaces;
+
 @end
