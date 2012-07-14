@@ -27,6 +27,28 @@
 			<false/>
 		</dict>
 		
+		<key>UDBoardGuide.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {152, 152}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{152, 152}</string>
+			<key>spriteSourceSize</key>
+			<string>{152, 152}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{642, 308}, {152, 152}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 		<key>UDButtonDone.png</key>
 		<dict>
 			<key>aliases</key>
@@ -44,7 +66,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{642, 308}, {110, 110}}</string>
+			<string>{{642, 462}, {110, 110}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{642, 420}, {60, 120}}</string>
+			<string>{{642, 574}, {60, 120}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +154,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{642, 542}, {60, 120}}</string>
+			<string>{{642, 696}, {60, 120}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

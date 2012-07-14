@@ -250,6 +250,10 @@
 		F06582D014CA7BE20033B4F5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582CF14CA7BE20033B4F5 /* GameKit.framework */; };
 		F065844114CA7BE60033B4F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F065844014CA7BE60033B4F5 /* main.m */; };
 		F065870214CA7ED40033B4F5 /* UDGameDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F06586FF14CA7ED40033B4F5 /* UDGameDelegate.m */; };
+		F07476F015B1D9D300B69890 /* UDGameBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476EF15B1D9D300B69890 /* UDGameBoardLayer.m */; };
+		F07476F115B1D9D300B69890 /* UDGameBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476EF15B1D9D300B69890 /* UDGameBoardLayer.m */; };
+		F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
+		F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
 		F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD114CA92F000665366 /* OpenGL.framework */; };
 		F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD714CA92F000665366 /* AppKit.framework */; };
 		F0CD614914CA92F300665366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD614814CA92F300665366 /* main.m */; };
@@ -544,6 +548,10 @@
 		F065844014CA7BE60033B4F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F06586FE14CA7ED40033B4F5 /* UDGameDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDGameDelegate.h; sourceTree = "<group>"; };
 		F06586FF14CA7ED40033B4F5 /* UDGameDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDGameDelegate.m; sourceTree = "<group>"; };
+		F07476EE15B1D9D300B69890 /* UDGameBoardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDGameBoardLayer.h; sourceTree = "<group>"; };
+		F07476EF15B1D9D300B69890 /* UDGameBoardLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDGameBoardLayer.m; sourceTree = "<group>"; };
+		F07476F415B1DEA500B69890 /* RRHeredox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRHeredox.h; sourceTree = "<group>"; };
+		F07476F515B1DEA500B69890 /* RRHeredox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRHeredox.m; sourceTree = "<group>"; };
 		F0CD5FCC14CA92F000665366 /* Heredox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heredox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0CD5FD114CA92F000665366 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		F0CD5FD714CA92F000665366 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1087,6 +1095,7 @@
 			isa = PBXGroup;
 			children = (
 				F043C4EF14CAF07300BF47DE /* Support */,
+				F07476F315B1DE9800B69890 /* Model */,
 				F065871614CA81410033B4F5 /* Scenes */,
 				F06586FE14CA7ED40033B4F5 /* UDGameDelegate.h */,
 				F06586FF14CA7ED40033B4F5 /* UDGameDelegate.m */,
@@ -1102,6 +1111,15 @@
 				F0FDBC9F14CB018000CD1FE6 /* UDGameScene */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F07476F315B1DE9800B69890 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F07476F415B1DEA500B69890 /* RRHeredox.h */,
+				F07476F515B1DEA500B69890 /* RRHeredox.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F0CD5FDB14CA92F000665366 /* UDGameMacOS */ = {
@@ -1223,6 +1241,8 @@
 				F0FDBCA114CB018000CD1FE6 /* UDGameScene.m */,
 				F0CF53CB152DC8930084C6DA /* UDGameLayer.h */,
 				F0232F8915AF970100D7EF8F /* UDGameLayer.m */,
+				F07476EE15B1D9D300B69890 /* UDGameBoardLayer.h */,
+				F07476EF15B1D9D300B69890 /* UDGameBoardLayer.m */,
 			);
 			path = UDGameScene;
 			sourceTree = "<group>";
@@ -1457,6 +1477,8 @@
 				F03EF72915B036570085E637 /* UDTile.m in Sources */,
 				F03EF73215B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */,
 				F03EF75E15B059F30085E637 /* UDButton.m in Sources */,
+				F07476F015B1D9D300B69890 /* UDGameBoardLayer.m in Sources */,
+				F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1577,6 +1599,8 @@
 				F03EF72A15B036570085E637 /* UDTile.m in Sources */,
 				F03EF73315B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */,
 				F03EF75F15B059F30085E637 /* UDButton.m in Sources */,
+				F07476F115B1D9D300B69890 /* UDGameBoardLayer.m in Sources */,
+				F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
