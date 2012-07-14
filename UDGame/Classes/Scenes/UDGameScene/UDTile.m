@@ -10,7 +10,8 @@
 
 
 @implementation UDTile {
-    BOOL _backSideVisible;
+    BOOL    _backSideVisible;
+    CGPoint _gridLocation;
 }
 
 
@@ -25,7 +26,8 @@
 
 - (id)initWithEdgeTop:(UDTileEdge)top left:(UDTileEdge)left bottom:(UDTileEdge)bottom right:(UDTileEdge)right {
     if( (self = [self initWithSpriteFrameName:@"UDEmptyTile.png"]) ){
-
+        _gridLocation = CGPointMake(CGFLOAT_MAX, CGFLOAT_MAX);
+        
         if( top != UDTileEdgeNone ){
             CCSprite *topSprite = [CCSprite spriteWithSpriteFrameName: ((top == UDTileEdgeBlack)?@"UDTileEdgeBlack.png":@"UDTileEdgeWhite.png")];
             [topSprite setRotation: -90];
@@ -74,5 +76,5 @@
 }
 
 
-@synthesize backSideVisible=_backSideVisible;
+@synthesize backSideVisible=_backSideVisible, gridLocation=_gridLocation;
 @end

@@ -14,13 +14,13 @@
 @implementation UDGameLayer {
     UDGameMode      _gameMode;
     NSMutableArray  *_deck;
+    NSMutableArray  *_board;
     
     CGPoint         _activeTileLastPosition;
     
     UDTile          *_activeTile;
     CGPoint         _activeTileTouchOffset;
     BOOL            _activeTileMoved;
-    BOOL            _activeTileFlipped;
 }
 
 
@@ -30,6 +30,7 @@
 
 - (void)dealloc {
     [_deck release];
+    [_board release];
     
     [super dealloc];
 }
@@ -44,6 +45,29 @@
 
 
 #pragma mark -
+#pragma mark CCNode
+
+
+#if DEBUG && __CC_PLATFORM_IOS
+- (void)draw {
+    glPushGroupMarkerEXT(0, "-[UDGameScene draw]");
+    
+	[super draw];
+    
+    for( NSUInteger x=0; x<=10; x++ ){
+        ccDrawLine(CGPointMake(x *76 +7, 0), CGPointMake(x *76 +7, 480));
+    }
+    
+    for( NSUInteger y=0; y<=10; y++ ){
+        ccDrawLine(CGPointMake(0, y *76 +7), CGPointMake(320, y *76 +7));
+    }
+
+	glPopGroupMarkerEXT();
+}
+#endif
+
+
+#pragma mark -
 #pragma mark UDGameLayer
 
 
@@ -54,14 +78,16 @@
         [self setUserInteractionEnabled:YES];
                 
         [self resetDeckForGameMode:gameMode];
+        [self resetBoardForGameMode:gameMode];
 
+        _activeTile = [self takeTopTile];
+        
         CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"UDBackground.png"];
         [backgroundSprite setAnchorPoint:CGPointZero];
-        [self addChild:backgroundSprite];
+        //[self addChild:backgroundSprite];
 
         CGSize tileSize = [(UDTile *)[_deck objectAtIndex:0] textureRect].size;
         
-
         UDButton *buttonDone = [UDButton spriteWithSpriteFrameName:@"UDButtonDone.png"];
         [buttonDone addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonDone setPosition:CGPointMake(tileSize.width /1.5, tileSize.height /1.5)];
@@ -72,7 +98,14 @@
 
 
 - (void)endTurn {
-    _activeTile = nil;
+    if( _board.count == 0 ){
+        [_activeTile setGridLocation:CGPointMake(0, 0)];
+    }else{
+#warning TODO
+    }
+    
+    [_board addObject:_activeTile];
+    _activeTile = [self takeTopTile];
 }
 
 
@@ -109,19 +142,23 @@
     [_deck shuffleWithSeed:time(NULL)];
 
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    //CGFloat rotation = 0.0f;
-    for( UDTile *tile in _deck ){
+    for( UDTile *tile in [_deck reverseObjectEnumerator] ){
         [tile setBackSideVisible: (gameMode == UDGameModeClosed)];
         [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5, tile.textureRect.size.height /1.5)];
-        //[tile setRotation:rotation];
         [self addChild:tile z:1];
-        
-        //rotation += 1.0f;
     }
 }
 
 
+- (void)resetBoardForGameMode:(UDGameMode)gameMode {
+    [_board release];
+    _board = [[NSMutableArray alloc] initWithCapacity:16];
+}
+
+
 - (UDTile *)takeTopTile {
+    if( _deck.count == 0 ) return nil;
+    
     UDTile *tile = [_deck objectAtIndex:0];
     [tile setRotation:0.0f];
     [tile setBackSideVisible:NO];
@@ -131,10 +168,6 @@
 
     return tile;
 }
-
-
-#pragma mark -
-#pragma mark UDLayer
 
 
 - (CGPoint)snapPoint:(CGPoint)point toGridWithTolerance:(CGFloat)tolerance {
@@ -162,15 +195,29 @@
 }
 
 
+- (CGPoint)gridLocationFromPosition:(CGPoint)position {
+    
+}
+
+
+- (BOOL)canPlaceTileAtGridLocation:(CGPoint)gridLocation {
+    for( UDTile *tile in _board ){
+        if( CGPointEqualToPoint(tile.gridLocation, gridLocation) ) return NO;
+    }
+    return YES;
+}
+
+
+#pragma mark -
+#pragma mark UDLayer
+
+
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
     if( _activeTile && !CGRectContainsPoint(_activeTile.boundingBox, location) ) return NO;
     if( [_activeTile numberOfRunningActions] ) return NO;
     
-    _activeTileFlipped = NO;
-    
     if( !_activeTile && CGRectContainsPoint([(UDTile *)[_deck objectAtIndex:0] boundingBox], location) ){
         _activeTile         = [self takeTopTile];
-        _activeTileFlipped  = YES;
     }
     
     if( !_activeTile ) return NO;
@@ -199,7 +246,7 @@
 
 
 - (void)touchEndedAtLocation:(CGPoint)location {
-    if( !_activeTileMoved && !_activeTileFlipped ){
+    if( !_activeTileMoved ){
         [_activeTile runAction:[CCRotateBy actionWithDuration:0.3f angle:90]];
     }else{
         [_activeTile setPosition: [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width]];
