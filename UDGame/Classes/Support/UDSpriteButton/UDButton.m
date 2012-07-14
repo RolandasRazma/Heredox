@@ -127,7 +127,8 @@
 
 
 - (BOOL)containsTouchLocation:(UITouch *)touch {
-    CGRect boundingBox = [self boundingBox];
+    CGRect boundingBox;
+    boundingBox.size   = self.contentSize;
     boundingBox.origin = CGPointZero;
     
 	return CGRectContainsPoint(boundingBox, [self convertTouchToNodeSpace:touch]);

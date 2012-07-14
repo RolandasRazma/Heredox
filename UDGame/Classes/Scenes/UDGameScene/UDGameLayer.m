@@ -46,6 +46,11 @@
 #pragma mark UDGameLayer
 
 
++ (id)layerWithGameMode:(UDGameMode)gameMode firstPlayerColor:(UDPlayerColor)playerColor {
+    return [[[self alloc] initWithGameMode:gameMode firstPlayerColor:playerColor] autorelease];
+}
+
+
 - (id)initWithGameMode:(UDGameMode)gameMode firstPlayerColor:(UDPlayerColor)playerColor {
 	if( (self = [super init]) ) {
         [self setUserInteractionEnabled:YES];

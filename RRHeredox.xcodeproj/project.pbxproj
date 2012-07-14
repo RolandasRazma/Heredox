@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F00D63F315B22BF20034DC10 /* UDPickColorScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D63F215B22BF20034DC10 /* UDPickColorScene.m */; };
+		F00D63F415B22BF20034DC10 /* UDPickColorScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D63F215B22BF20034DC10 /* UDPickColorScene.m */; };
+		F00D63F715B22C300034DC10 /* UDPickColorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D63F615B22C300034DC10 /* UDPickColorLayer.m */; };
+		F00D63F815B22C300034DC10 /* UDPickColorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D63F615B22C300034DC10 /* UDPickColorLayer.m */; };
 		F01CD2C51530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F01CD2C61530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F0232F8A15AF970100D7EF8F /* UDGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0232F8915AF970100D7EF8F /* UDGameLayer.m */; };
@@ -277,6 +281,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F00D63F115B22BF20034DC10 /* UDPickColorScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPickColorScene.h; sourceTree = "<group>"; };
+		F00D63F215B22BF20034DC10 /* UDPickColorScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPickColorScene.m; sourceTree = "<group>"; };
+		F00D63F515B22C300034DC10 /* UDPickColorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPickColorLayer.h; sourceTree = "<group>"; };
+		F00D63F615B22C300034DC10 /* UDPickColorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPickColorLayer.m; sourceTree = "<group>"; };
 		F01CD2C31530241F000149C4 /* UDActionDestroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionDestroy.h; sourceTree = "<group>"; };
 		F01CD2C41530241F000149C4 /* UDActionDestroy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionDestroy.m; sourceTree = "<group>"; };
 		F0232F8915AF970100D7EF8F /* UDGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDGameLayer.m; sourceTree = "<group>"; };
@@ -609,6 +617,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F00D63EF15B22BE10034DC10 /* UDPickColorScene */ = {
+			isa = PBXGroup;
+			children = (
+				F00D63F115B22BF20034DC10 /* UDPickColorScene.h */,
+				F00D63F215B22BF20034DC10 /* UDPickColorScene.m */,
+				F00D63F515B22C300034DC10 /* UDPickColorLayer.h */,
+				F00D63F615B22C300034DC10 /* UDPickColorLayer.m */,
+			);
+			path = UDPickColorScene;
+			sourceTree = "<group>";
+		};
 		F01CD2C1153023F8000149C4 /* UDActions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,6 +1127,7 @@
 			isa = PBXGroup;
 			children = (
 				F0CF53D5152DD4130084C6DA /* UDMenuScene */,
+				F00D63EF15B22BE10034DC10 /* UDPickColorScene */,
 				F0FDBC9F14CB018000CD1FE6 /* UDGameScene */,
 			);
 			path = Scenes;
@@ -1479,6 +1499,8 @@
 				F03EF75E15B059F30085E637 /* UDButton.m in Sources */,
 				F07476F015B1D9D300B69890 /* UDGameBoardLayer.m in Sources */,
 				F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */,
+				F00D63F315B22BF20034DC10 /* UDPickColorScene.m in Sources */,
+				F00D63F715B22C300034DC10 /* UDPickColorLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1601,6 +1623,8 @@
 				F03EF75F15B059F30085E637 /* UDButton.m in Sources */,
 				F07476F115B1D9D300B69890 /* UDGameBoardLayer.m in Sources */,
 				F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */,
+				F00D63F415B22BF20034DC10 /* UDPickColorScene.m in Sources */,
+				F00D63F815B22C300034DC10 /* UDPickColorLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

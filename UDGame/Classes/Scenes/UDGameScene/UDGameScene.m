@@ -14,12 +14,12 @@
 
 
 #pragma mark -
-#pragma mark NSObject
+#pragma mark UDGameScene
 
 
-- (id)init {
-    if( (self = [super init]) ){
-        [self addChild: [UDGameLayer node]];
+- (id)initWithGameMode:(UDGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(UDPlayerColor)playerColor {
+    if( (self = [self init]) ){
+        [self addChild: [UDGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor]];
     }
     return self;
 }

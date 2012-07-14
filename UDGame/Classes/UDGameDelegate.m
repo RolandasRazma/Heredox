@@ -109,7 +109,7 @@
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[_director pushScene: [UDGameScene node]];
+	[_director pushScene: [UDMenuScene node]];
 
 	return YES;
 }

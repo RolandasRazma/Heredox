@@ -11,4 +11,6 @@
 
 @interface UDGameScene : CCScene
 
+- (id)initWithGameMode:(UDGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(UDPlayerColor)playerColor;
+
 @end
