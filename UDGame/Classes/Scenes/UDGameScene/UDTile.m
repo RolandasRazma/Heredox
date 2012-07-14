@@ -15,6 +15,17 @@
 
 
 #pragma mark -
+#pragma mark CCSprite
+
+- (void)setOpacity:(GLubyte)opacity {
+    [super setOpacity:opacity];
+    for( CCSprite *child in self.children ){
+        [child setOpacity: opacity];
+    }
+}
+
+
+#pragma mark -
 #pragma mark UDTile
 
 

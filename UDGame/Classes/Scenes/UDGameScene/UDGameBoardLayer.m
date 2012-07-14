@@ -137,17 +137,17 @@
 
 - (void)resetBoardForGameMode:(UDGameMode)gameMode {
     [self removeAllChildrenWithCleanup:YES];
-    
-    //[_board release];
-    //_board = [[NSMutableArray alloc] initWithCapacity:16];
 }
 
 
-- (void)addTile:(UDTile *)tile asActive:(BOOL)asActive {
-    if( asActive ){
-        _activeTile = tile;
-    }
+- (void)addTile:(UDTile *)tile animated:(BOOL)animated {
+    _activeTile = tile;
     [self addChild:tile];
+    
+    if( animated ){
+        [tile setOpacity:0];
+        [tile runAction:[CCFadeIn actionWithDuration:0.3f]];
+    }
 }
 
 
@@ -198,17 +198,6 @@
         [self setPosition:newPosition];
     }
 }
-
-
-
-/*
- - (void)showGuides {
- CCSprite *guideSprite = [CCSprite spriteWithSpriteFrameName:@"UDBoardGuide.png"];
- [guideSprite setAnchorPoint:CGPointZero];
- [self addChild:guideSprite];  
- } */
-
-
 
 
 #pragma mark -

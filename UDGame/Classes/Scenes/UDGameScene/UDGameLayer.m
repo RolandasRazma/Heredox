@@ -10,12 +10,16 @@
 #import "UDTile.h"
 #import "UDButton.h"
 #import "UDGameBoardLayer.h"
+#import "UDActionDestroy.h"
 
 
 @implementation UDGameLayer {
     UDGameMode          _gameMode;
+    
     NSMutableArray      *_deck;
     UDGameBoardLayer    *_gameBoardLayer;
+    
+    UDPlayerColor       _playerColor;
 }
 
 
@@ -31,7 +35,7 @@
 
 
 - (id)init {
-    if( (self = [self initWithGameMode:UDGameModeClosed]) ){
+    if( (self = [self initWithGameMode:UDGameModeClosed firstPlayerColor:UDPlayerColorWhite]) ){
         
     }
     return self;
@@ -42,16 +46,17 @@
 #pragma mark UDGameLayer
 
 
-- (id)initWithGameMode:(UDGameMode)gameMode {
+- (id)initWithGameMode:(UDGameMode)gameMode firstPlayerColor:(UDPlayerColor)playerColor {
 	if( (self = [super init]) ) {
         [self setUserInteractionEnabled:YES];
         
-        _gameMode = gameMode;
+        _gameMode   = gameMode;
+        _playerColor= playerColor;
 
         // Add background
         CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"UDBackground.png"];
         [backgroundSprite setAnchorPoint:CGPointZero];
-        [self addChild:backgroundSprite];
+        [self addChild:backgroundSprite z:-1];
 
         UDButton *buttonDone = [UDButton spriteWithSpriteFrameName:@"UDButtonDone.png"];
         [buttonDone addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
@@ -60,7 +65,7 @@
         
         // Add board layer
         _gameBoardLayer = [[UDGameBoardLayer alloc] initWithGameMode: _gameMode];
-        [self addChild:_gameBoardLayer z:1];
+        [self addChild:_gameBoardLayer];
         [_gameBoardLayer release];
         
         
@@ -69,7 +74,7 @@
         
         // Make first player move as it makes no sense
         [_gameBoardLayer addTile: [self takeTopTile] 
-                        asActive: YES];
+                        animated: NO];
         [self endTurn];
     }
 	return self;
@@ -80,14 +85,42 @@
     if( [_gameBoardLayer haltTilePlaces] ){
         
         if( _deck.count > 0 ){
-            UDTile *newTile = [self takeTopTile];
-            [newTile setPosition:CGPointMake(newTile.position.x -_gameBoardLayer.position.x, newTile.position.y -_gameBoardLayer.position.y)];
+            CCSprite *playerSprite;
+            if( _playerColor == UDPlayerColorBlack ){
+                _playerColor = UDPlayerColorWhite;
+                playerSprite = [CCSprite spriteWithSpriteFrameName:@"UDTileWhite.png"];
+            }else{
+                _playerColor = UDPlayerColorBlack;
+                playerSprite = [CCSprite spriteWithSpriteFrameName:@"UDTileBlack.png"];                
+            }
             
-            [_gameBoardLayer addTile: newTile
-                            asActive: YES];
+            CGSize winSize = [[CCDirector sharedDirector] winSize];
+            [playerSprite setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
+            [self addChild:playerSprite];
+            
+            [playerSprite runAction: [CCSequence actions:
+                                      [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:NO]; }],
+                                      [CCScaleTo actionWithDuration:0.3f scale:1.2f],
+                                      [CCDelayTime actionWithDuration:1.0f],
+                                      [CCCallFunc actionWithTarget:self selector:@selector(takeNewTile)],
+                                      [CCScaleTo actionWithDuration:0.3f scale:1.0f],
+                                      [CCFadeOut actionWithDuration:0.3f],
+                                      [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
+                                      [UDActionDestroy action], nil]];
         }
         
     }
+}
+
+
+- (void)takeNewTile {
+    
+    UDTile *newTile = [self takeTopTile];
+    [newTile setPosition:CGPointMake(newTile.position.x -_gameBoardLayer.position.x, newTile.position.y -_gameBoardLayer.position.y)];
+    
+    [_gameBoardLayer addTile: newTile
+                    animated: YES];
+    
 }
 
 
@@ -127,7 +160,7 @@
     for( UDTile *tile in [_deck reverseObjectEnumerator] ){
         [tile setBackSideVisible: (gameMode == UDGameModeClosed)];
         [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5, tile.textureRect.size.height /1.5)];
-        [self addChild:tile];
+        [self addChild:tile z:-1];
     }
 }
 

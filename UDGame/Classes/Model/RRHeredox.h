@@ -14,6 +14,12 @@ typedef enum UDGameMode : NSUInteger {
 } UDGameMode;
 
 
+typedef enum UDPlayerColor : NSUInteger {
+    UDPlayerColorBlack = 1,
+    UDPlayerColorWhite = 2,
+} UDPlayerColor;
+
+
 @interface RRHeredox : NSObject
 
 @end

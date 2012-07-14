@@ -11,6 +11,6 @@
 
 @interface UDGameLayer : UDLayer
 
-- (id)initWithGameMode:(UDGameMode)gameMode;
+- (id)initWithGameMode:(UDGameMode)gameMode firstPlayerColor:(UDPlayerColor)playerColor;
 
 @end
