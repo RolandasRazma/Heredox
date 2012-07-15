@@ -42,6 +42,11 @@
 #pragma mark UDTile
 
 
++ (const CGFloat)tileSize {
+    return ((isDeviceIPad())?76.0f *2.0f:76.0f);
+}
+
+
 + (id)tileWithEdgeTop:(UDTileEdge)top left:(UDTileEdge)left bottom:(UDTileEdge)bottom right:(UDTileEdge)right {
     return [[[self alloc] initWithEdgeTop:top left:left bottom:bottom right:right] autorelease];
 }
@@ -104,8 +109,8 @@
 
 
 - (CGPoint)positionInGrid {
-    return CGPointMake(floorf((self.position.x -self.textureRect.size.width  /2) /self.textureRect.size.width),
-                       floorf((self.position.y -self.textureRect.size.height /2) /self.textureRect.size.height));
+    return CGPointMake(roundf((self.position.x -self.textureRect.size.width  /2) /self.textureRect.size.width),
+                       roundf((self.position.y -self.textureRect.size.height /2) /self.textureRect.size.height));
 }
 
 

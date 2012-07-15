@@ -13,6 +13,9 @@
 
 @interface UDGameBoardLayer : UDLayer
 
+@property (nonatomic, readonly) NSUInteger symbolsBlack;
+@property (nonatomic, readonly) NSUInteger symbolsWhite;
+
 - (id)initWithGameMode:(UDGameMode)gameMode;
 
 - (void)addTile:(UDTile *)tile animated:(BOOL)animated;

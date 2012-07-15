@@ -25,6 +25,7 @@ typedef enum UDTileEdge : NSUInteger {
 @property (nonatomic, readonly) UDTileEdge edgeBottom;
 @property (nonatomic, readonly) UDTileEdge edgeRight;
 
++ (const CGFloat)tileSize;
 + (id)tileWithEdgeTop:(UDTileEdge)top left:(UDTileEdge)left bottom:(UDTileEdge)bottom right:(UDTileEdge)right;
 - (id)initWithEdgeTop:(UDTileEdge)top left:(UDTileEdge)left bottom:(UDTileEdge)bottom right:(UDTileEdge)right;
 

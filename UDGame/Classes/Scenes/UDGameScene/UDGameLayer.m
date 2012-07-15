@@ -20,6 +20,9 @@
     UDGameBoardLayer    *_gameBoardLayer;
     
     UDPlayerColor       _playerColor;
+    
+    CCLabelTTF          *_symbolsBlackLabel;
+    CCLabelTTF          *_symbolsWhiteLabel;
 }
 
 
@@ -50,6 +53,22 @@
 }
 
 
+- (void)onEnter {
+    [super onEnter];
+    
+    [_gameBoardLayer addObserver:self forKeyPath:@"symbolsBlack" options:NSKeyValueObservingOptionNew context:NULL];
+    [_gameBoardLayer addObserver:self forKeyPath:@"symbolsWhite" options:NSKeyValueObservingOptionNew context:NULL];
+}
+
+
+- (void)onExit {
+    [_gameBoardLayer removeObserver:self forKeyPath:@"symbolsBlack"];
+    [_gameBoardLayer removeObserver:self forKeyPath:@"symbolsWhite"];
+    
+    [super onExit];
+}
+
+
 #pragma mark -
 #pragma mark UDGameLayer
 
@@ -65,6 +84,8 @@
         
         _gameMode   = gameMode;
         _playerColor= playerColor;
+        
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         // Add background
         CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"UDBackground.png"];
@@ -75,6 +96,20 @@
         [buttonDone addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonDone setPosition:CGPointMake(50, 50)];
         [self addChild:buttonDone];
+        
+        // Add score labels
+        _symbolsBlackLabel = [CCLabelTTF labelWithString:@"symbolsBlack: 0" fontName:@"Thonburi" fontSize:20];
+        [_symbolsBlackLabel setAnchorPoint:CGPointMake(0, 1)];
+        [_symbolsBlackLabel setPosition:CGPointMake(5, winSize.height)];
+        [_symbolsBlackLabel setColor:ccBLACK];
+        [self addChild:_symbolsBlackLabel];
+        
+        _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"symbolsWhite: 0" fontName:@"Thonburi" fontSize:20];
+        [_symbolsWhiteLabel setAnchorPoint:CGPointMake(1, 1)];
+        [_symbolsWhiteLabel setPosition:CGPointMake(winSize.width -5, winSize.height)];
+        [_symbolsWhiteLabel setColor:ccBLACK];
+        [self addChild:_symbolsWhiteLabel];
+        
         
         // Add board layer
         _gameBoardLayer = [[UDGameBoardLayer alloc] initWithGameMode: _gameMode];
@@ -189,6 +224,21 @@
     [self removeChild:tile cleanup:NO];
 
     return [tile autorelease];
+}
+
+
+#pragma mark -
+#pragma mark NSKeyValueObserving
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    
+    if( [keyPath isEqualToString:@"symbolsBlack"] ){
+        [_symbolsBlackLabel setString:[NSString stringWithFormat:@"symbolsBlack: %i", _gameBoardLayer.symbolsBlack]];
+    }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
+        [_symbolsWhiteLabel setString:[NSString stringWithFormat:@"symbolsWhite: %i", _gameBoardLayer.symbolsWhite]];
+    }
+    
 }
 
 
