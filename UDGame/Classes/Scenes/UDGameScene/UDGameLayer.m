@@ -103,13 +103,13 @@
         
 
         // Add score labels
-        _symbolsBlackLabel = [CCLabelTTF labelWithString:@"symbolsBlack: 0" fontName:@"Thonburi" fontSize: (isDeviceIPad()?40:20)];
+        _symbolsBlackLabel = [CCLabelTTF labelWithString:@"Black: 0" fontName:@"Thonburi" fontSize: (isDeviceIPad()?40:20)];
         [_symbolsBlackLabel setAnchorPoint:CGPointMake(0, 1)];
         [_symbolsBlackLabel setPosition:CGPointMake(5, winSize.height)];
         [_symbolsBlackLabel setColor:ccBLACK];
         [self addChild:_symbolsBlackLabel];
         
-        _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"symbolsWhite: 0" fontName:@"Thonburi" fontSize: (isDeviceIPad()?40:20)];
+        _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"White: 0" fontName:@"Thonburi" fontSize: (isDeviceIPad()?40:20)];
         [_symbolsWhiteLabel setAnchorPoint:CGPointMake(1, 1)];
         [_symbolsWhiteLabel setPosition:CGPointMake(winSize.width -5, winSize.height)];
         [_symbolsWhiteLabel setColor:ccBLACK];
@@ -154,7 +154,7 @@
             [playerSprite runAction: [CCSequence actions:
                                       [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:NO]; }],
                                       [CCScaleTo actionWithDuration:0.3f scale:1.2f],
-                                      [CCDelayTime actionWithDuration:0.5f],
+                                      [CCDelayTime actionWithDuration:0.7f],
                                       [CCCallFunc actionWithTarget:self selector:@selector(takeNewTile)],
                                       [CCDelayTime actionWithDuration:0.5f],
                                       [CCScaleTo actionWithDuration:0.3f scale:1.0f],
@@ -240,9 +240,9 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
-        [_symbolsBlackLabel setString:[NSString stringWithFormat:@"symbolsBlack: %i", _gameBoardLayer.symbolsBlack]];
+        [_symbolsBlackLabel setString:[NSString stringWithFormat:@"Black: %i", _gameBoardLayer.symbolsBlack]];
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
-        [_symbolsWhiteLabel setString:[NSString stringWithFormat:@"symbolsWhite: %i", _gameBoardLayer.symbolsWhite]];
+        [_symbolsWhiteLabel setString:[NSString stringWithFormat:@"White: %i", _gameBoardLayer.symbolsWhite]];
     }
     
 }

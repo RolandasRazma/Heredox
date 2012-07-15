@@ -311,7 +311,7 @@
     if( !_activeTileMoved ){
         [_activeTile setScale:1.0f];
         
-        [_activeTile runAction: [CCRotateBy actionWithDuration:0.3f angle:90]];
+        [_activeTile runAction: [CCRotateBy actionWithDuration:0.2f angle:90]];
     }else if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid] ){
         [_activeTile setScale:1.0f];
         
