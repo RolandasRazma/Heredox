@@ -47,6 +47,10 @@
         [buttonColorBlack setPosition:CGPointMake(210, 300)];
         [self addChild:buttonColorBlack];
         
+        if( isDeviceIPad() ){
+            [buttonColorWhite setPosition:CGPointMake(210, 600)];
+            [buttonColorBlack setPosition:CGPointMake(410, 600)];
+        }
     }
     return self;
 }

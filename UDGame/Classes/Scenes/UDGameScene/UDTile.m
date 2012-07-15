@@ -11,6 +11,7 @@
 
 @implementation UDTile {
     BOOL        _backSideVisible;
+    
     UDTileEdge  _edgeTop;
     UDTileEdge  _edgeLeft;
     UDTileEdge  _edgeBottom;

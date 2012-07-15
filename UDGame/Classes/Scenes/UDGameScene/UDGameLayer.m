@@ -94,17 +94,22 @@
 
         UDButton *buttonDone = [UDButton spriteWithSpriteFrameName:@"UDButtonDone.png"];
         [buttonDone addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
-        [buttonDone setPosition:CGPointMake(50, 50)];
+        if( isDeviceIPad() ){
+            [buttonDone setPosition:CGPointMake(100, 100)];
+        }else{
+            [buttonDone setPosition:CGPointMake(50, 50)];
+        }
         [self addChild:buttonDone];
         
+
         // Add score labels
-        _symbolsBlackLabel = [CCLabelTTF labelWithString:@"symbolsBlack: 0" fontName:@"Thonburi" fontSize:20];
+        _symbolsBlackLabel = [CCLabelTTF labelWithString:@"symbolsBlack: 0" fontName:@"Thonburi" fontSize: (isDeviceIPad()?40:20)];
         [_symbolsBlackLabel setAnchorPoint:CGPointMake(0, 1)];
         [_symbolsBlackLabel setPosition:CGPointMake(5, winSize.height)];
         [_symbolsBlackLabel setColor:ccBLACK];
         [self addChild:_symbolsBlackLabel];
         
-        _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"symbolsWhite: 0" fontName:@"Thonburi" fontSize:20];
+        _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"symbolsWhite: 0" fontName:@"Thonburi" fontSize: (isDeviceIPad()?40:20)];
         [_symbolsWhiteLabel setAnchorPoint:CGPointMake(1, 1)];
         [_symbolsWhiteLabel setPosition:CGPointMake(winSize.width -5, winSize.height)];
         [_symbolsWhiteLabel setColor:ccBLACK];

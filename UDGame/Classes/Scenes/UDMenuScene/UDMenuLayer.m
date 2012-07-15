@@ -37,6 +37,12 @@
         [buttonPlayers2 setPosition:CGPointMake(210, 300)];
         [self addChild:buttonPlayers2];
         
+
+        if( isDeviceIPad() ){
+            [buttonPlayers1 setPosition:CGPointMake(210, 600)];
+            [buttonPlayers2 setPosition:CGPointMake(410, 600)];
+        }
+        
     }
     return self;
 }
@@ -47,7 +53,7 @@
 
 
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
-    
+
     UDPickColorScene *pickColorScene = [[UDPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionSplitRows transitionWithDuration:1.0f scene:pickColorScene]];
     [pickColorScene release];

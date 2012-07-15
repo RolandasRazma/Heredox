@@ -276,6 +276,8 @@
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
     if( !_activeTile || [_activeTile numberOfRunningActions] || !CGRectContainsPoint(_activeTile.boundingBox, [self convertToNodeSpace:location])) return NO;
     
+    [_activeTile setScale:1.1f];
+    
     _activeTileMoved        = NO;
     _activeTileTouchOffset  = ccpRotateByAngle([_activeTile convertToNodeSpaceAR:location], CGPointZero, -CC_DEGREES_TO_RADIANS(_activeTile.rotation));
     _activeTileLastPosition = CGPointMake(location.x -_activeTileTouchOffset.x *_activeTile.scaleX, 
@@ -307,10 +309,14 @@
 - (void)touchEndedAtLocation:(CGPoint)location {
     
     if( !_activeTileMoved ){
+        [_activeTile setScale:1.0f];
+        
         [_activeTile runAction: [CCRotateBy actionWithDuration:0.3f angle:90]];
     }else if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid] ){
+        [_activeTile setScale:1.0f];
+        
         CGPoint snapPosition = [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width];
-        [_activeTile setPosition: snapPosition];
+        [_activeTile setPosition: snapPosition];  
     }
     
 }
