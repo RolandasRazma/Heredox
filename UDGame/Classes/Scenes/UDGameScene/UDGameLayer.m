@@ -8,7 +8,7 @@
 
 #import "UDGameLayer.h"
 #import "UDTile.h"
-#import "UDButton.h"
+#import "UDSpriteButton.h"
 #import "UDGameBoardLayer.h"
 #import "UDActionDestroy.h"
 
@@ -23,7 +23,7 @@
     
     CCLabelTTF          *_symbolsBlackLabel;
     CCLabelTTF          *_symbolsWhiteLabel;
-    UDButton            *_buttonEndTurn;
+    UDSpriteButton            *_buttonEndTurn;
 }
 
 
@@ -94,7 +94,7 @@
         [self addChild:backgroundSprite z:-1];
 
         // Add End Turn
-        _buttonEndTurn = [UDButton spriteWithSpriteFrameName:@"UDButtonDone.png"];
+        _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"UDButtonDone.png"];
         [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
         if( isDeviceIPad() ){
             [_buttonEndTurn setPosition:CGPointMake(100, 100)];

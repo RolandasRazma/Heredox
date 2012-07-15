@@ -19,7 +19,7 @@
 - (void)setUserInteractionEnabled:(BOOL)enabled {
     if( [self isUserInteractionEnabled] == enabled ) return;
     
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+#ifdef __CC_PLATFORM_IOS
     [self setIsTouchEnabled: enabled];
     if( isRunning_ ){
         if( enabled ){
@@ -28,16 +28,16 @@
             [[CCDirector sharedDirector].touchDispatcher removeDelegate:self];
         }
     }
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+#elif defined(__CC_PLATFORM_MAC)
     [self setIsMouseEnabled: enabled];
 #endif
 }
 
 
 - (BOOL)isUserInteractionEnabled {
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+#ifdef __CC_PLATFORM_IOS
     return [self isTouchEnabled];
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+#elif defined(__CC_PLATFORM_MAC)
     return [self isMouseEnabled];
 #endif
     return NO;
@@ -109,7 +109,7 @@
 }
 
 
-#elif __CC_PLATFORM_MAC
+#elif defined(__CC_PLATFORM_MAC)
 
 
 #pragma mark -

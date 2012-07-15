@@ -1,9 +1,8 @@
 //
-//  UDButton.h
-//  UDGame
+//  UDSpriteButton.h
 //
-//  Created by Rolandas Razma on 1/26/11.
-//  Copyright 2011 UD7. All rights reserved.
+//  Created by Rolandas Razma on 7/15/12.
+//  Copyright (c) 2012 UD7. All rights reserved.
 //
 
 #import "CCSprite.h"
@@ -22,13 +21,13 @@ enum {
 typedef NSUInteger UDButtonEvents;
 
 
-@interface UDButton : CCSprite <CCTargetedTouchDelegate>
+@interface UDSpriteButton : CCSprite
+
+@property(nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
 
 + (id)buttonWithSpriteFile:(NSString *)fileName;
 - (id)initWithSpriteFile:(NSString *)fileName;
 
 - (void)addBlock:(BasicBlock)block forControlEvents:(UDButtonEvents)controlEvents;
-
-- (void)setTitle:(NSString *)title;
 
 @end

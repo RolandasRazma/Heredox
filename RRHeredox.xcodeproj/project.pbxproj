@@ -220,6 +220,12 @@
 		F023314815AF98D100D7EF8F /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F023314515AF98D100D7EF8F /* CDXPropertyModifierAction.m */; };
 		F023314915AF98D100D7EF8F /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F023314515AF98D100D7EF8F /* CDXPropertyModifierAction.m */; };
 		F0330B41152D78C7001F1915 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0330B3D152D78C7001F1915 /* libTestFlight.a */; };
+		F035877215B2FEE500BBAB82 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F035876F15B2FEE500BBAB82 /* fps_images-hd.png */; };
+		F035877315B2FEE500BBAB82 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F035876F15B2FEE500BBAB82 /* fps_images-hd.png */; };
+		F035877415B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877015B2FEE500BBAB82 /* fps_images-ipadhd.png */; };
+		F035877515B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877015B2FEE500BBAB82 /* fps_images-ipadhd.png */; };
+		F035877615B2FEE500BBAB82 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877115B2FEE500BBAB82 /* fps_images.png */; };
+		F035877715B2FEE500BBAB82 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877115B2FEE500BBAB82 /* fps_images.png */; };
 		F03EF72915B036570085E637 /* UDTile.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF72815B036570085E637 /* UDTile.m */; };
 		F03EF72A15B036570085E637 /* UDTile.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF72815B036570085E637 /* UDTile.m */; };
 		F03EF73215B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */; };
@@ -232,8 +238,8 @@
 		F03EF74915B042E80085E637 /* textures.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74215B042E80085E637 /* textures.plist */; };
 		F03EF74A15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
 		F03EF74B15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
-		F03EF75E15B059F30085E637 /* UDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDButton.m */; };
-		F03EF75F15B059F30085E637 /* UDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDButton.m */; };
+		F03EF75E15B059F30085E637 /* UDSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDSpriteButton.m */; };
+		F03EF75F15B059F30085E637 /* UDSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDSpriteButton.m */; };
 		F043C4FB14CAF08400BF47DE /* UDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F043C4F814CAF08400BF47DE /* UDMath.m */; };
 		F043C4FC14CAF08400BF47DE /* UDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F043C4F814CAF08400BF47DE /* UDMath.m */; };
 		F0602A4215AFA16600B60FB1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
@@ -522,6 +528,9 @@
 		F0330B3E152D78C7001F1915 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		F0330B3F152D78C7001F1915 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		F0330B40152D78C7001F1915 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		F035876F15B2FEE500BBAB82 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
+		F035877015B2FEE500BBAB82 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
+		F035877115B2FEE500BBAB82 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		F03EF72715B036570085E637 /* UDTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDTile.h; sourceTree = "<group>"; };
 		F03EF72815B036570085E637 /* UDTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDTile.m; sourceTree = "<group>"; };
 		F03EF73015B03E390085E637 /* NSMutableArray+UDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+UDAdditions.h"; sourceTree = "<group>"; };
@@ -530,8 +539,8 @@
 		F03EF74115B042E80085E637 /* textures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textures-hd.png"; sourceTree = "<group>"; };
 		F03EF74215B042E80085E637 /* textures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = textures.plist; sourceTree = "<group>"; };
 		F03EF74315B042E80085E637 /* textures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textures.png; sourceTree = "<group>"; };
-		F03EF75C15B059F30085E637 /* UDButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDButton.h; sourceTree = "<group>"; };
-		F03EF75D15B059F30085E637 /* UDButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDButton.m; sourceTree = "<group>"; };
+		F03EF75C15B059F30085E637 /* UDSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; path = UDSpriteButton.h; sourceTree = "<group>"; };
+		F03EF75D15B059F30085E637 /* UDSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDSpriteButton.m; sourceTree = "<group>"; };
 		F043C4F214CAF08400BF47DE /* UDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDLog.h; sourceTree = "<group>"; };
 		F043C4F714CAF08400BF47DE /* UDMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMath.h; sourceTree = "<group>"; };
 		F043C4F814CAF08400BF47DE /* UDMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDMath.m; sourceTree = "<group>"; };
@@ -992,8 +1001,8 @@
 		F03EF75B15B059F30085E637 /* UDSpriteButton */ = {
 			isa = PBXGroup;
 			children = (
-				F03EF75C15B059F30085E637 /* UDButton.h */,
-				F03EF75D15B059F30085E637 /* UDButton.m */,
+				F03EF75C15B059F30085E637 /* UDSpriteButton.h */,
+				F03EF75D15B059F30085E637 /* UDSpriteButton.m */,
 			);
 			path = UDSpriteButton;
 			sourceTree = "<group>";
@@ -1105,6 +1114,9 @@
 		F06585BE14CA7CE30033B4F5 /* Cocos2D */ = {
 			isa = PBXGroup;
 			children = (
+				F035876F15B2FEE500BBAB82 /* fps_images-hd.png */,
+				F035877015B2FEE500BBAB82 /* fps_images-ipadhd.png */,
+				F035877115B2FEE500BBAB82 /* fps_images.png */,
 				F0232F8C15AF97DC00D7EF8F /* cocos2d */,
 				F023304C15AF97DC00D7EF8F /* CocosDenshion */,
 				F023305615AF97DC00D7EF8F /* kazmath */,
@@ -1361,6 +1373,9 @@
 				F03EF74615B042E80085E637 /* textures-hd.png in Resources */,
 				F03EF74815B042E80085E637 /* textures.plist in Resources */,
 				F03EF74A15B042E80085E637 /* textures.png in Resources */,
+				F035877215B2FEE500BBAB82 /* fps_images-hd.png in Resources */,
+				F035877415B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */,
+				F035877615B2FEE500BBAB82 /* fps_images.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1376,6 +1391,9 @@
 				F03EF74715B042E80085E637 /* textures-hd.png in Resources */,
 				F03EF74915B042E80085E637 /* textures.plist in Resources */,
 				F03EF74B15B042E80085E637 /* textures.png in Resources */,
+				F035877315B2FEE500BBAB82 /* fps_images-hd.png in Resources */,
+				F035877515B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */,
+				F035877715B2FEE500BBAB82 /* fps_images.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,7 +1516,7 @@
 				F023314815AF98D100D7EF8F /* CDXPropertyModifierAction.m in Sources */,
 				F03EF72915B036570085E637 /* UDTile.m in Sources */,
 				F03EF73215B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */,
-				F03EF75E15B059F30085E637 /* UDButton.m in Sources */,
+				F03EF75E15B059F30085E637 /* UDSpriteButton.m in Sources */,
 				F07476F015B1D9D300B69890 /* UDGameBoardLayer.m in Sources */,
 				F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */,
 				F00D63F315B22BF20034DC10 /* UDPickColorScene.m in Sources */,
@@ -1622,7 +1640,7 @@
 				F023314915AF98D100D7EF8F /* CDXPropertyModifierAction.m in Sources */,
 				F03EF72A15B036570085E637 /* UDTile.m in Sources */,
 				F03EF73315B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */,
-				F03EF75F15B059F30085E637 /* UDButton.m in Sources */,
+				F03EF75F15B059F30085E637 /* UDSpriteButton.m in Sources */,
 				F07476F115B1D9D300B69890 /* UDGameBoardLayer.m in Sources */,
 				F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */,
 				F00D63F415B22BF20034DC10 /* UDPickColorScene.m in Sources */,

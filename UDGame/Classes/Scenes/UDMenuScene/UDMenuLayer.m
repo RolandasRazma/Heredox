@@ -7,7 +7,7 @@
 //
 
 #import "UDMenuLayer.h"
-#import "UDButton.h"
+#import "UDSpriteButton.h"
 #import "UDPickColorScene.h"
 
 
@@ -27,12 +27,12 @@
         [self addChild:backgroundSprite z:-1];
         
         // Add buttons
-        UDButton *buttonPlayers1 = [UDButton spriteWithSpriteFrameName:@"UDButtonPlayers1.png"];
+        UDSpriteButton *buttonPlayers1 = [UDSpriteButton spriteWithSpriteFrameName:@"UDButtonPlayers1.png"];
         [buttonPlayers1 addBlock: ^{ [self startGameWithNumberOfPlayers:1]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonPlayers1 setPosition:CGPointMake(110, 300)];
         [self addChild:buttonPlayers1];
 
-        UDButton *buttonPlayers2 = [UDButton spriteWithSpriteFrameName:@"UDButtonPlayers2.png"];
+        UDSpriteButton *buttonPlayers2 = [UDSpriteButton spriteWithSpriteFrameName:@"UDButtonPlayers2.png"];
         [buttonPlayers2 addBlock: ^{ [self startGameWithNumberOfPlayers:2]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonPlayers2 setPosition:CGPointMake(210, 300)];
         [self addChild:buttonPlayers2];

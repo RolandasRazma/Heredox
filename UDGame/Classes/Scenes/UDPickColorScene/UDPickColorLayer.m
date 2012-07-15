@@ -7,7 +7,7 @@
 //
 
 #import "UDPickColorLayer.h"
-#import "UDButton.h"
+#import "UDSpriteButton.h"
 #import "UDGameScene.h"
 
 
@@ -35,13 +35,13 @@
         [self addChild:backgroundSprite z:-1];
         
         // Add buttons
-        UDButton *buttonColorWhite = [UDButton spriteWithSpriteFrameName:@"UDTileWhite.png"];
+        UDSpriteButton *buttonColorWhite = [UDSpriteButton spriteWithSpriteFrameName:@"UDTileWhite.png"];
         [buttonColorWhite setScale: 0.5f];
         [buttonColorWhite addBlock: ^{ [self startGameWithFirstPlayerColor:UDPlayerColorWhite]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonColorWhite setPosition:CGPointMake(110, 300)];
         [self addChild:buttonColorWhite];
         
-        UDButton *buttonColorBlack = [UDButton spriteWithSpriteFrameName:@"UDTileBlack.png"];
+        UDSpriteButton *buttonColorBlack = [UDSpriteButton spriteWithSpriteFrameName:@"UDTileBlack.png"];
         [buttonColorBlack setScale: 0.5f];
         [buttonColorBlack addBlock: ^{ [self startGameWithFirstPlayerColor:UDPlayerColorBlack]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonColorBlack setPosition:CGPointMake(210, 300)];

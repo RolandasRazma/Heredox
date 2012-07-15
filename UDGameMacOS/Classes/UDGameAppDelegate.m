@@ -8,7 +8,7 @@
 
 #import "UDGameAppDelegate.h"
 #import "cocos2d.h"
-#import "UDGameScene.h"
+#import "UDMenuScene.h"
 
 
 @implementation UDGameAppDelegate
@@ -61,7 +61,7 @@
     // Load Textures
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
     
-	[_director runWithScene: [UDGameScene node]];
+    [_director runWithScene: [UDMenuScene node]];
 }
 
 
