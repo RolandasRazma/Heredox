@@ -245,8 +245,16 @@
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
         [_symbolsBlackLabel setString:[NSString stringWithFormat:@"Black: %i", _gameBoardLayer.symbolsBlack]];
+        
+        [_symbolsBlackLabel runAction: [CCSequence actions:
+                                        [CCScaleTo actionWithDuration:0.3f scale:1.1f],
+                                        [CCScaleTo actionWithDuration:0.3f scale:1.0f], nil]];
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
         [_symbolsWhiteLabel setString:[NSString stringWithFormat:@"White: %i", _gameBoardLayer.symbolsWhite]];
+        
+        [_symbolsWhiteLabel runAction: [CCSequence actions:
+                                        [CCScaleTo actionWithDuration:0.3f scale:1.1f],
+                                        [CCScaleTo actionWithDuration:0.3f scale:1.0f], nil]];
     }
     
 }
