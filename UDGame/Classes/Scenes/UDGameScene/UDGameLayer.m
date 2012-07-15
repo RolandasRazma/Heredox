@@ -155,7 +155,7 @@
             
             [playerSprite runAction: [CCSequence actions:
                                       [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:NO]; }],
-                                      [CCScaleTo actionWithDuration:0.3f scale:1.2f],
+                                      [CCScaleTo actionWithDuration:0.1f scale:1.2f],
                                       [CCDelayTime actionWithDuration:0.7f],
                                       [CCCallFunc actionWithTarget:self selector:@selector(takeNewTile)],
                                       [CCDelayTime actionWithDuration:0.5f],

@@ -188,28 +188,28 @@
         
         if( positionInGrid.x +1 == gridLocation.x && positionInGrid.y == gridLocation.y ){
             if( _activeTile.edgeLeft == tile.edgeRight && _activeTile.edgeLeft != UDTileEdgeNone ){
-                NSLog(@"| <-");
+                // | <-
                 [self addPointForEdge:_activeTile.edgeLeft];
             }
         }
         
         if( positionInGrid.x -1 == gridLocation.x && positionInGrid.y == gridLocation.y ){
             if( _activeTile.edgeRight == tile.edgeLeft && _activeTile.edgeRight != UDTileEdgeNone ){
-                NSLog(@"-> |");
+                // -> |
                 [self addPointForEdge:_activeTile.edgeRight];
             }
         }
         
         if( positionInGrid.y +1 == gridLocation.y && positionInGrid.x == gridLocation.x ){
             if( _activeTile.edgeBottom == tile.edgeTop && _activeTile.edgeBottom != UDTileEdgeNone ){
-                NSLog(@"__");
+                // __
                 [self addPointForEdge:_activeTile.edgeBottom];
             }                            
         }
         
         if( positionInGrid.y -1 == gridLocation.y && positionInGrid.x == gridLocation.x ){
             if( _activeTile.edgeTop == tile.edgeBottom && _activeTile.edgeTop != UDTileEdgeNone ){
-                NSLog(@"^^");
+                // ^^
                 [self addPointForEdge:_activeTile.edgeTop];
             }
         }
