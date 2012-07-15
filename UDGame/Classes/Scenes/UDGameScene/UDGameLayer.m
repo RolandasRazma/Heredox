@@ -23,6 +23,7 @@
     
     CCLabelTTF          *_symbolsBlackLabel;
     CCLabelTTF          *_symbolsWhiteLabel;
+    UDButton            *_buttonEndTurn;
 }
 
 
@@ -92,14 +93,15 @@
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
 
-        UDButton *buttonDone = [UDButton spriteWithSpriteFrameName:@"UDButtonDone.png"];
-        [buttonDone addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
+        // Add End Turn
+        _buttonEndTurn = [UDButton spriteWithSpriteFrameName:@"UDButtonDone.png"];
+        [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
         if( isDeviceIPad() ){
-            [buttonDone setPosition:CGPointMake(100, 100)];
+            [_buttonEndTurn setPosition:CGPointMake(100, 100)];
         }else{
-            [buttonDone setPosition:CGPointMake(50, 50)];
+            [_buttonEndTurn setPosition:CGPointMake(50, 50)];
         }
-        [self addChild:buttonDone];
+        [self addChild:_buttonEndTurn];
         
 
         // Add score labels
@@ -161,6 +163,8 @@
                                       [CCFadeOut actionWithDuration:0.3f],
                                       [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
                                       [UDActionDestroy action], nil]];
+        }else{
+            [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
         }
         
     }
