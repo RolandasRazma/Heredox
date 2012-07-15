@@ -110,8 +110,14 @@
 
 
 - (CGPoint)positionInGrid {
-    return CGPointMake(roundf((self.position.x -self.textureRect.size.width  /2) /self.textureRect.size.width),
-                       roundf((self.position.y -self.textureRect.size.height /2) /self.textureRect.size.height));
+    return CGPointMake((self.position.x -self.textureRect.size.width  /2) /self.textureRect.size.width,
+                       (self.position.y -self.textureRect.size.height /2) /self.textureRect.size.height);
+}
+
+
+- (void)setPositionInGrid:(CGPoint)positionInGrid {
+    [self setPosition: CGPointMake(positionInGrid.x *self.textureRect.size.width  +self.textureRect.size.width  /2,
+                                   positionInGrid.y *self.textureRect.size.height +self.textureRect.size.height /2)];
 }
 
 

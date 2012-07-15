@@ -19,7 +19,7 @@ typedef enum UDTileEdge : NSUInteger {
 @interface UDTile : CCSprite
 
 @property (nonatomic, assign, getter = isBackSideVisible) BOOL backSideVisible;
-@property (nonatomic, readonly) CGPoint positionInGrid;
+@property (nonatomic, assign) CGPoint positionInGrid;
 @property (nonatomic, readonly) UDTileEdge edgeTop;
 @property (nonatomic, readonly) UDTileEdge edgeLeft;
 @property (nonatomic, readonly) UDTileEdge edgeBottom;
