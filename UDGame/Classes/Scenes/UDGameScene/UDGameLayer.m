@@ -105,13 +105,13 @@
         
 
         // Add score labels
-        _symbolsBlackLabel = [CCLabelTTF labelWithString:@"Black: 0" fontName:@"Thonburi" fontSize: (isDeviceIPad()?40:20)];
+        _symbolsBlackLabel = [CCLabelTTF labelWithString:@"Black: 0" fontName:@"Courier" fontSize: (isDeviceIPad()?40:20)];
         [_symbolsBlackLabel setAnchorPoint:CGPointMake(0, 1)];
         [_symbolsBlackLabel setPosition:CGPointMake(5, winSize.height)];
         [_symbolsBlackLabel setColor:ccBLACK];
         [self addChild:_symbolsBlackLabel];
         
-        _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"White: 0" fontName:@"Thonburi" fontSize: (isDeviceIPad()?40:20)];
+        _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"White: 0" fontName:@"Courier" fontSize: (isDeviceIPad()?40:20)];
         [_symbolsWhiteLabel setAnchorPoint:CGPointMake(1, 1)];
         [_symbolsWhiteLabel setPosition:CGPointMake(winSize.width -5, winSize.height)];
         [_symbolsWhiteLabel setColor:ccBLACK];
