@@ -10,18 +10,31 @@
 
 
 @implementation UDTile {
-    BOOL    _backSideVisible;
+    BOOL        _backSideVisible;
+    UDTileEdge  _edgeTop;
+    UDTileEdge  _edgeLeft;
+    UDTileEdge  _edgeBottom;
+    UDTileEdge  _edgeRight;
 }
 
 
 #pragma mark -
 #pragma mark CCSprite
 
+
 - (void)setOpacity:(GLubyte)opacity {
     [super setOpacity:opacity];
     for( CCSprite *child in self.children ){
         [child setOpacity: opacity];
     }
+}
+
+
+- (void)setRotation:(float)rotation {
+    if( rotation >= 360.0f ) rotation -= 360.0f;
+    if( rotation <= -360.0f) rotation += 360.0f;
+
+    [super setRotation:rotation];
 }
 
 
@@ -37,6 +50,11 @@
 - (id)initWithEdgeTop:(UDTileEdge)top left:(UDTileEdge)left bottom:(UDTileEdge)bottom right:(UDTileEdge)right {
     if( (self = [self initWithSpriteFrameName:@"UDEmptyTile.png"]) ){
 
+        _edgeTop    = top;
+        _edgeLeft   = left;
+        _edgeBottom = bottom;
+        _edgeRight  = right;
+        
         if( top != UDTileEdgeNone ){
             CCSprite *topSprite = [CCSprite spriteWithSpriteFrameName: ((top == UDTileEdgeBlack)?@"UDTileEdgeBlack.png":@"UDTileEdgeWhite.png")];
             [topSprite setRotation: -90];
@@ -85,9 +103,57 @@
 }
 
 
--(CGPoint)positionInGrid {
+- (CGPoint)positionInGrid {
     return CGPointMake(floorf((self.position.x -self.textureRect.size.width  /2) /self.textureRect.size.width),
                        floorf((self.position.y -self.textureRect.size.height /2) /self.textureRect.size.height));
+}
+
+
+- (UDTileEdge)edgeTop {
+    switch ( (int)self.rotation ) {
+        case  0: return _edgeTop;
+        case 90: return _edgeLeft;
+        case 180: return _edgeBottom;
+        case 270: return _edgeRight;
+    }
+    
+    return UDTileEdgeNone;
+}
+
+
+- (UDTileEdge)edgeLeft {
+    switch ( (int)self.rotation ) {
+        case 0: return _edgeLeft;
+        case 90: return _edgeBottom;
+        case 180: return _edgeRight;
+        case 270: return _edgeTop;
+    }
+    
+    return UDTileEdgeNone;
+}
+
+
+- (UDTileEdge)edgeBottom {
+    switch ( (int)self.rotation ) {
+        case 0: return _edgeBottom;
+        case 90: return _edgeRight;
+        case 180: return _edgeTop;
+        case 270: return _edgeLeft;
+    }
+    
+    return UDTileEdgeNone;
+}
+
+
+- (UDTileEdge)edgeRight {
+    switch ( (int)self.rotation ) {
+        case 0: return _edgeRight;
+        case 90: return _edgeTop;
+        case 180: return _edgeLeft;
+        case 270: return _edgeBottom;
+    }
+    
+    return UDTileEdgeNone;
 }
 
 

@@ -20,6 +20,10 @@ typedef enum UDTileEdge : NSUInteger {
 
 @property (nonatomic, assign, getter = isBackSideVisible) BOOL backSideVisible;
 @property (nonatomic, readonly) CGPoint positionInGrid;
+@property (nonatomic, readonly) UDTileEdge edgeTop;
+@property (nonatomic, readonly) UDTileEdge edgeLeft;
+@property (nonatomic, readonly) UDTileEdge edgeBottom;
+@property (nonatomic, readonly) UDTileEdge edgeRight;
 
 + (id)tileWithEdgeTop:(UDTileEdge)top left:(UDTileEdge)left bottom:(UDTileEdge)bottom right:(UDTileEdge)right;
 - (id)initWithEdgeTop:(UDTileEdge)top left:(UDTileEdge)left bottom:(UDTileEdge)bottom right:(UDTileEdge)right;

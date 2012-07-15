@@ -17,6 +17,11 @@
 #pragma mark UDGameScene
 
 
++ (id)sceneWithGameMode:(UDGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(UDPlayerColor)playerColor {
+    return [[[self alloc] initWithGameMode:gameMode numberOfPlayers:numberOfPlayers firstPlayerColor:playerColor] autorelease];
+}
+
+
 - (id)initWithGameMode:(UDGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(UDPlayerColor)playerColor {
     if( (self = [self init]) ){
         [self addChild: [UDGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor]];

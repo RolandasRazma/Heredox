@@ -159,6 +159,8 @@
     [_activeTile setPosition: [self snapPoint:_activeTile.position toGridWithTolerance: CGFLOAT_MAX]];
     
     if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid] ){
+//        CGPoint positionInGrid = [_activeTile positionInGrid];
+        
         _activeTile = nil;
         
         [self centerBoardAnimated:(self.children.count >1)];        

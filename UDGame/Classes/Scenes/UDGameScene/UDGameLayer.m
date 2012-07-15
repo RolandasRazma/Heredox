@@ -42,6 +42,14 @@
 }
 
 
+- (void)onEnterTransitionDidFinish {
+    [super onEnterTransitionDidFinish];
+    
+    // Make first player move as it makes no sense
+    [self endTurn];
+}
+
+
 #pragma mark -
 #pragma mark UDGameLayer
 
@@ -77,10 +85,10 @@
         // Reset deck
         [self resetDeckForGameMode:gameMode];
         
+        
         // Make first player move as it makes no sense
         [_gameBoardLayer addTile: [self takeTopTile] 
                         animated: NO];
-        [self endTurn];
     }
 	return self;
 }
@@ -88,7 +96,7 @@
 
 - (void)endTurn {
     if( [_gameBoardLayer haltTilePlaces] ){
-        
+
         if( _deck.count > 0 ){
             CCSprite *playerSprite;
             if( _playerColor == UDPlayerColorBlack ){
