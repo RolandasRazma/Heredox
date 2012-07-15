@@ -84,8 +84,8 @@
     const CGFloat tileSize = [UDTile tileSize];
     
     // Snaping
-    CGFloat kHGridOffset = tileSize /2 +8;
-    CGFloat kVGridOffset = tileSize /2 +8;
+    CGFloat kHGridOffset = tileSize /2;
+    CGFloat kVGridOffset = tileSize /2;
     
     CGFloat kHGridSpacing = tileSize;
     CGFloat kVGridSpacing = tileSize;
@@ -108,16 +108,19 @@
 
 - (BOOL)canPlaceTileAtGridLocation:(CGPoint)gridLocation {
     if( self.children.count < 2 ) return YES;
-    
-    NSInteger minX = NSIntegerMax;
-    NSInteger minY = NSIntegerMax;
-    NSInteger maxX = NSIntegerMin;
-    NSInteger maxY = NSIntegerMin;
+
+    NSInteger minX = gridLocation.x;
+    NSInteger minY = gridLocation.y;
+    NSInteger maxX = gridLocation.x;
+    NSInteger maxY = gridLocation.y;
     BOOL foundTouchPoint = NO;
     
     for( UDTile *tile in self.children ){
+        if ( [tile isEqual:_activeTile] ) continue;
+        
         CGPoint positionInGrid = tile.positionInGrid;
-        if ( ![tile isEqual:_activeTile] && CGPointEqualToPoint(positionInGrid, gridLocation) ) return NO;
+
+        if ( CGPointEqualToPoint(positionInGrid, gridLocation) ) return NO;
 
         if( foundTouchPoint == NO ){
             foundTouchPoint = 
@@ -133,12 +136,12 @@
         maxX = MAX(maxX, positionInGrid.x);
         maxY = MAX(maxY, positionInGrid.y);
     }
-    
+
     if( foundTouchPoint == NO ) return NO;
 
     if( (maxX -minX +1) > 4 ) return NO;
     if( (maxY -minY +1) > 4 ) return NO;
-
+        
     return YES;
 }
 
@@ -165,8 +168,9 @@
     [_activeTile setPosition: [self snapPoint:_activeTile.position toGridWithTolerance: CGFLOAT_MAX]];
     
     if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid] ){
-        [self checkForSymbolsAtTile:_activeTile];
+        [self checkForNewSymbols];
         
+        [_activeTile setScale: 1.0f];
         _activeTile = nil;
         
         [self centerBoardAnimated:(self.children.count >1)];        
@@ -178,8 +182,31 @@
 }
 
 
-- (void)checkForSymbolsAtTile:(UDTile *)tile {
+- (void)checkForNewSymbols {
+    NSUInteger white = 0;
+    NSUInteger black = 0;
+    
+    [self countSymbolsAtTile:_activeTile white:&white black:&black];
+
+    if( black ){
+        [self willChangeValueForKey: @"symbolsBlack"];
+        _symbolsBlack += black;
+        [self didChangeValueForKey: @"symbolsBlack"];
+    }
+    
+    if( white ){
+        [self willChangeValueForKey: @"symbolsWhite"];
+        _symbolsWhite += white;
+        [self didChangeValueForKey: @"symbolsWhite"];
+    }
+}
+
+
+- (void)countSymbolsAtTile:(UDTile *)tile white:(NSUInteger *)white black:(NSUInteger *)black {
     CGPoint gridLocation = _activeTile.positionInGrid;
+    
+    NSUInteger whiteSymbols = 0;
+    NSUInteger blackSymbols = 0;
     
     for( UDTile *tile in self.children ){
         if( [tile isEqual:_activeTile] ) continue;
@@ -189,46 +216,52 @@
         if( positionInGrid.x +1 == gridLocation.x && positionInGrid.y == gridLocation.y ){
             if( _activeTile.edgeLeft == tile.edgeRight && _activeTile.edgeLeft != UDTileEdgeNone ){
                 // | <-
-                [self addPointForEdge:_activeTile.edgeLeft];
+                if( _activeTile.edgeLeft == UDTileEdgeWhite ){
+                    whiteSymbols++;
+                }else{
+                    blackSymbols++;
+                }
             }
         }
         
         if( positionInGrid.x -1 == gridLocation.x && positionInGrid.y == gridLocation.y ){
             if( _activeTile.edgeRight == tile.edgeLeft && _activeTile.edgeRight != UDTileEdgeNone ){
                 // -> |
-                [self addPointForEdge:_activeTile.edgeRight];
+                if( _activeTile.edgeRight == UDTileEdgeWhite ){
+                    whiteSymbols++;
+                }else{
+                    blackSymbols++;
+                }
             }
         }
         
         if( positionInGrid.y +1 == gridLocation.y && positionInGrid.x == gridLocation.x ){
             if( _activeTile.edgeBottom == tile.edgeTop && _activeTile.edgeBottom != UDTileEdgeNone ){
                 // __
-                [self addPointForEdge:_activeTile.edgeBottom];
+                if( _activeTile.edgeBottom == UDTileEdgeWhite ){
+                    whiteSymbols++;
+                }else{
+                    blackSymbols++;
+                }
             }                            
         }
         
         if( positionInGrid.y -1 == gridLocation.y && positionInGrid.x == gridLocation.x ){
             if( _activeTile.edgeTop == tile.edgeBottom && _activeTile.edgeTop != UDTileEdgeNone ){
                 // ^^
-                [self addPointForEdge:_activeTile.edgeTop];
+                if( _activeTile.edgeTop == UDTileEdgeWhite ){
+                    whiteSymbols++;
+                }else{
+                    blackSymbols++;
+                }
             }
         }
     }
-}
-
-
-- (void)addPointForEdge:(UDTileEdge)tileEdge {
     
-    if( tileEdge == UDTileEdgeBlack ){
-        [self willChangeValueForKey: @"symbolsBlack"];
-        _symbolsBlack++;
-        [self didChangeValueForKey: @"symbolsBlack"];
-    }else if( tileEdge == UDTileEdgeWhite ){
-        [self willChangeValueForKey: @"symbolsWhite"];
-        _symbolsWhite++;
-        [self didChangeValueForKey: @"symbolsWhite"];
-    }
-
+    NSLog(@"i white: %i black:%i", whiteSymbols, blackSymbols);
+    
+    *white = whiteSymbols;
+    *black = blackSymbols;
 }
 
 
@@ -297,7 +330,7 @@
         _activeTileMoved = YES;
     }
     
-    if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid] ){
+    if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
         newPosition = [self snapPoint: newPosition toGridWithTolerance: 10];
     }
     
@@ -312,7 +345,7 @@
         [_activeTile setScale:1.0f];
         
         [_activeTile runAction: [CCRotateBy actionWithDuration:0.2f angle:90]];
-    }else if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid] ){
+    }else if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
         [_activeTile setScale:1.0f];
         
         CGPoint snapPosition = [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width];
@@ -322,5 +355,5 @@
 }
 
 
-@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite;
+@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile;
 @end

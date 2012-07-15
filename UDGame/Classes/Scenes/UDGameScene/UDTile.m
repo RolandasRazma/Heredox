@@ -16,6 +16,8 @@
     UDTileEdge  _edgeLeft;
     UDTileEdge  _edgeBottom;
     UDTileEdge  _edgeRight;
+    
+    CCLabelTTF  *_debugLabel;
 }
 
 
@@ -36,6 +38,13 @@
     if( rotation <= -360.0f) rotation += 360.0f;
 
     [super setRotation:rotation];
+}
+
+
+- (void)setPosition:(CGPoint)position {
+    [super setPosition:position];
+    
+    [_debugLabel setString: [NSString stringWithFormat:@"X:%.f Y:%.f", self.positionInGrid.x, self.positionInGrid.y]];
 }
 
 
@@ -88,6 +97,10 @@
             [self addChild:rightSprite];
         }
         
+        _debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Courier" fontSize: (isDeviceIPad()?30:15)];
+        [_debugLabel setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2)];
+        [self addChild:_debugLabel];
+
     }
     return self;
 }

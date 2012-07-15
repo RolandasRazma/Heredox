@@ -15,8 +15,9 @@ typedef enum UDGameMode : NSUInteger {
 
 
 typedef enum UDPlayerColor : NSUInteger {
-    UDPlayerColorBlack = 1,
-    UDPlayerColorWhite = 2,
+    UDPlayerColorUndefined  = 0,
+    UDPlayerColorBlack      = 1,
+    UDPlayerColorWhite      = 2,
 } UDPlayerColor;
 
 
