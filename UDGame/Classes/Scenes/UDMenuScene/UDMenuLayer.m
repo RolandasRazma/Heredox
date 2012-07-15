@@ -55,7 +55,7 @@
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
 
     UDPickColorScene *pickColorScene = [[UDPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
-	[[CCDirector sharedDirector] replaceScene: [CCTransitionSplitRows transitionWithDuration:1.0f scene:pickColorScene]];
+	[[CCDirector sharedDirector] replaceScene: [CCTransitionSlideInR transitionWithDuration:1.0f scene:pickColorScene]];
     [pickColorScene release];
     
 }

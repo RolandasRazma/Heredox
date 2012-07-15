@@ -59,7 +59,7 @@
 - (void)startGameWithFirstPlayerColor:(UDPlayerColor)playerColor {
  
     UDGameScene *gameScene = [[UDGameScene alloc] initWithGameMode:UDGameModeClosed numberOfPlayers:_numberOfPlayers firstPlayerColor:playerColor];
-	[[CCDirector sharedDirector] replaceScene: [CCTransitionSplitRows transitionWithDuration:1.0f scene:gameScene]];
+	[[CCDirector sharedDirector] replaceScene: [CCTransitionSlideInR transitionWithDuration:1.0f scene:gameScene]];
     [gameScene release];
     
 }
