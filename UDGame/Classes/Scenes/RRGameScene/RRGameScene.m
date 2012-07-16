@@ -1,6 +1,6 @@
 //
 //  UDGameScene.m
-//  UDHeredox
+//  RRHeredox
 //
 //  Created by Rolandas Razma on 7/13/12.
 //  Copyright UD7 2012. All rights reserved.
