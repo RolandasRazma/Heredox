@@ -304,6 +304,14 @@
 }
 
 
+- (RRTile *)tileAtGridPosition:(CGPoint)gridPosition {
+    for( RRTile *tile in self.children ){
+        if( CGPointEqualToPoint(tile.positionInGrid, gridPosition) ) return tile;
+    }
+    return nil;
+}
+
+
 #pragma mark -
 #pragma mark UDLayer
 

@@ -233,12 +233,14 @@
     [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
     [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
     
-    [_deck shuffleWithSeed:time(NULL)];
+    NSUInteger seed = time(NULL);
+    NSLog(@"game seed: %i", seed);
+    [_deck shuffleWithSeed:seed];
 
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     for( RRTile *tile in [_deck reverseObjectEnumerator] ){
         [tile setBackSideVisible: (gameMode == RRGameModeClosed)];
-        [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5, tile.textureRect.size.height /1.5)];
+        [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5f, tile.textureRect.size.height /1.5f)];
         [self addChild:tile z:-1];
     }
 }

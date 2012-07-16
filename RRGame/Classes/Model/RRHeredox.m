@@ -8,6 +8,8 @@
 
 #import "RRHeredox.h"
 
+const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){CGFLOAT_MAX, CGFLOAT_MAX}, 0.0f, CGFLOAT_MIN };
+
 
 @implementation RRHeredox
 

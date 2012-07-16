@@ -22,10 +22,17 @@ typedef enum RRPlayerColor : NSUInteger {
 } RRPlayerColor;
 
 
+#define RRPlayerColorOpposite(playerColor) ((playerColor) == RRPlayerColorBlack)?RRPlayerColorWhite:((playerColor) == RRPlayerColorWhite)?RRPlayerColorBlack:RRPlayerColorUndefined))
+
+
 typedef struct RRTileMove {
     CGPoint positionInGrid;
     CGFloat rotation;
+    CGFloat score;
 } RRTileMove;
+
+
+extern const RRTileMove RRTileMoveZero;
 
 
 @interface RRHeredox : NSObject
