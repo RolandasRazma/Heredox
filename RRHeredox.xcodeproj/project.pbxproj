@@ -551,8 +551,8 @@
 		F0CD5FD114CA92F000665366 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		F0CD5FD714CA92F000665366 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		F0CD5FE814CA92F100665366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
-		F0CD614714CA92F300665366 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = UDGameMacOS/Prefix.pch; sourceTree = SOURCE_ROOT; };
-		F0CD614814CA92F300665366 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = UDGameMacOS/main.m; sourceTree = SOURCE_ROOT; };
+		F0CD614714CA92F300665366 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = RRGameMacOS/Prefix.pch; sourceTree = SOURCE_ROOT; };
+		F0CD614814CA92F300665366 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RRGameMacOS/main.m; sourceTree = SOURCE_ROOT; };
 		F0CD645D14CA978500665366 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Resources/MainMenu.xib; sourceTree = "<group>"; };
 		F0CD646314CA983700665366 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F0CD647F14CA9ACB00665366 /* RRGameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameAppDelegate.h; sourceTree = "<group>"; };
@@ -1008,7 +1008,7 @@
 				F06582D214CA7BE20033B4F5 /* Resources */,
 				F065843E14CA7BE60033B4F5 /* Supporting Files */,
 				F06585BD14CA7CE30033B4F5 /* Frameworks & Librarys */,
-				F0CD5FDB14CA92F000665366 /* UDGameMacOS */,
+				F0CD5FDB14CA92F000665366 /* RRGameMacOS */,
 				F06582BC14CA7BE20033B4F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1029,7 +1029,7 @@
 				F06582E514CA7BE20033B4F5 /* Info.plist */,
 			);
 			name = Resources;
-			path = UDGame;
+			path = RRGame;
 			sourceTree = "<group>";
 		};
 		F065843E14CA7BE60033B4F5 /* Supporting Files */ = {
@@ -1039,7 +1039,7 @@
 				F0CD647D14CA9A9600665366 /* MacOS */,
 			);
 			name = "Supporting Files";
-			path = UDGame;
+			path = RRGame;
 			sourceTree = "<group>";
 		};
 		F06585A814CA7C8A0033B4F5 /* Images */ = {
@@ -1068,7 +1068,7 @@
 				F06582CB14CA7BE20033B4F5 /* Foundation.framework */,
 			);
 			name = "Frameworks & Librarys";
-			path = "UDGame/Frameworks & Librarys";
+			path = "RRGame/Frameworks & Librarys";
 			sourceTree = "<group>";
 		};
 		F06585BE14CA7CE30033B4F5 /* Cocos2D */ = {
@@ -1094,7 +1094,7 @@
 				F06586FF14CA7ED40033B4F5 /* RRGameDelegate.m */,
 			);
 			name = Classes;
-			path = UDGame/Classes;
+			path = RRGame/Classes;
 			sourceTree = "<group>";
 		};
 		F065871614CA81410033B4F5 /* Scenes */ = {
@@ -1118,13 +1118,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		F0CD5FDB14CA92F000665366 /* UDGameMacOS */ = {
+		F0CD5FDB14CA92F000665366 /* RRGameMacOS */ = {
 			isa = PBXGroup;
 			children = (
 				F0CD647E14CA9ACB00665366 /* Classes */,
 				F0CD5FDC14CA92F000665366 /* Resources */,
 			);
-			path = UDGameMacOS;
+			path = RRGameMacOS;
 			sourceTree = "<group>";
 		};
 		F0CD5FDC14CA92F000665366 /* Resources */ = {
@@ -1313,7 +1313,7 @@
 			dependencies = (
 			);
 			name = iOS;
-			productName = UDGame;
+			productName = RRGame;
 			productReference = F06582BB14CA7BE20033B4F5 /* Heredox.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -1330,7 +1330,7 @@
 			dependencies = (
 			);
 			name = MacOS;
-			productName = UDGameMacOS;
+			productName = RRGameMacOS;
 			productReference = F0CD5FCC14CA92F000665366 /* Heredox.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -1682,7 +1682,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"UDGame/Frameworks & Librarys/Cocos2D/kazmath/include\"",
+					"\"RRGame/Frameworks & Librarys/Cocos2D/kazmath/include\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1715,7 +1715,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"UDGame/Frameworks & Librarys/Cocos2D/kazmath/include\"",
+					"\"RRGame/Frameworks & Librarys/Cocos2D/kazmath/include\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = Heredox;
@@ -1732,11 +1732,11 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = UDGame/Prefix.pch;
-				INFOPLIST_FILE = UDGame/Resources/Info.plist;
+				GCC_PREFIX_HEADER = RRGame/Prefix.pch;
+				INFOPLIST_FILE = RRGame/Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/UDGame/Frameworks & Librarys/iOS/TestFlightSDK\"",
+					"\"$(SRCROOT)/RRGame/Frameworks & Librarys/iOS/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PROVISIONING_PROFILE = "";
@@ -1750,11 +1750,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = UDGame/Prefix.pch;
-				INFOPLIST_FILE = UDGame/Resources/Info.plist;
+				GCC_PREFIX_HEADER = RRGame/Prefix.pch;
+				INFOPLIST_FILE = RRGame/Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/UDGame/Frameworks & Librarys/iOS/TestFlightSDK\"",
+					"\"$(SRCROOT)/RRGame/Frameworks & Librarys/iOS/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PROVISIONING_PROFILE = "";
@@ -1774,8 +1774,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = UDGameMacOS/Prefix.pch;
-				INFOPLIST_FILE = UDGameMacOS/Resources/Info.plist;
+				GCC_PREFIX_HEADER = RRGameMacOS/Prefix.pch;
+				INFOPLIST_FILE = RRGameMacOS/Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "-lz";
@@ -1796,8 +1796,8 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = UDGameMacOS/Prefix.pch;
-				INFOPLIST_FILE = UDGameMacOS/Resources/Info.plist;
+				GCC_PREFIX_HEADER = RRGameMacOS/Prefix.pch;
+				INFOPLIST_FILE = RRGameMacOS/Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "-lz";
