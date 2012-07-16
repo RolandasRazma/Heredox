@@ -22,17 +22,17 @@
     if( (self = [super init]) ){
 
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"UDBackground.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"RRBackground.png"];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
         // Add buttons
-        UDSpriteButton *buttonPlayers1 = [UDSpriteButton spriteWithSpriteFrameName:@"UDButtonPlayers1.png"];
+        UDSpriteButton *buttonPlayers1 = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonPlayers1.png"];
         [buttonPlayers1 addBlock: ^{ [self startGameWithNumberOfPlayers:1]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonPlayers1 setPosition:CGPointMake(110, 300)];
         [self addChild:buttonPlayers1];
 
-        UDSpriteButton *buttonPlayers2 = [UDSpriteButton spriteWithSpriteFrameName:@"UDButtonPlayers2.png"];
+        UDSpriteButton *buttonPlayers2 = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonPlayers2.png"];
         [buttonPlayers2 addBlock: ^{ [self startGameWithNumberOfPlayers:2]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonPlayers2 setPosition:CGPointMake(210, 300)];
         [self addChild:buttonPlayers2];

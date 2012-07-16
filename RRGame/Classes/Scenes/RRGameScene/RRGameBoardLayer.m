@@ -257,9 +257,7 @@
             }
         }
     }
-    
-    NSLog(@"i white: %lu black:%lu", whiteSymbols, blackSymbols);
-    
+
     *white = whiteSymbols;
     *black = blackSymbols;
 }

@@ -63,7 +63,7 @@
 
 
 - (id)initWithEdgeTop:(RRTileEdge)top left:(RRTileEdge)left bottom:(RRTileEdge)bottom right:(RRTileEdge)right {
-    if( (self = [self initWithSpriteFrameName:@"UDEmptyTile.png"]) ){
+    if( (self = [self initWithSpriteFrameName:@"RREmptyTile.png"]) ){
 
         _edgeTop    = top;
         _edgeLeft   = left;
@@ -109,7 +109,7 @@
 - (void)setBackSideVisible:(BOOL)backSideVisible {
     if( _backSideVisible == backSideVisible ) return;
 
-    CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:((backSideVisible==YES)?@"UDTileBack.png":@"UDEmptyTile.png")];
+    CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:((backSideVisible==YES)?@"RRTileBack.png":@"RREmptyTile.png")];
 
     for( CCSprite *child in self.children ){
         [child setVisible: !backSideVisible];

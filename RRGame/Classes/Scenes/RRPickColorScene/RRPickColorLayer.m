@@ -30,18 +30,18 @@
         _numberOfPlayers = numberOfPlayers;
         
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"UDBackground.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"RRBackground.png"];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
         // Add buttons
-        UDSpriteButton *buttonColorWhite = [UDSpriteButton spriteWithSpriteFrameName:@"UDTileWhite.png"];
+        UDSpriteButton *buttonColorWhite = [UDSpriteButton spriteWithSpriteFrameName:@"RRTileWhite.png"];
         [buttonColorWhite setScale: 0.5f];
         [buttonColorWhite addBlock: ^{ [self startGameWithFirstPlayerColor:RRPlayerColorWhite]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonColorWhite setPosition:CGPointMake(110, 300)];
         [self addChild:buttonColorWhite];
         
-        UDSpriteButton *buttonColorBlack = [UDSpriteButton spriteWithSpriteFrameName:@"UDTileBlack.png"];
+        UDSpriteButton *buttonColorBlack = [UDSpriteButton spriteWithSpriteFrameName:@"RRTileBlack.png"];
         [buttonColorBlack setScale: 0.5f];
         [buttonColorBlack addBlock: ^{ [self startGameWithFirstPlayerColor:RRPlayerColorBlack]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonColorBlack setPosition:CGPointMake(210, 300)];

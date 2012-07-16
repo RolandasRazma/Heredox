@@ -92,12 +92,12 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"UDBackground.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"RRBackground.png"];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
 
         // Add End Turn
-        _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"UDButtonDone.png"];
+        _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonDone.png"];
         [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
         if( isDeviceIPad() ){
             [_buttonEndTurn setPosition:CGPointMake(100, 100)];
@@ -146,10 +146,10 @@
             CCSprite *playerSprite;
             if( _playerColor == RRPlayerColorBlack ){
                 _playerColor = RRPlayerColorWhite;
-                playerSprite = [CCSprite spriteWithSpriteFrameName:@"UDTileWhite.png"];
+                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileWhite.png"];
             }else{
                 _playerColor = RRPlayerColorBlack;
-                playerSprite = [CCSprite spriteWithSpriteFrameName:@"UDTileBlack.png"];                
+                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileBlack.png"];                
             }
             
             CGSize winSize = [[CCDirector sharedDirector] winSize];
