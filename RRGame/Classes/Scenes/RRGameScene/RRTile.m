@@ -37,6 +37,8 @@
     if( rotation >= 360.0f ) rotation -= 360.0f;
     if( rotation <= -360.0f) rotation += 360.0f;
 
+    [_debugLabel setRotation: -rotation];
+    
     [super setRotation:rotation];
 }
 
@@ -97,7 +99,8 @@
             [self addChild:rightSprite];
         }
         
-        _debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Courier" fontSize: (isDeviceIPad()?30:15)];
+        _debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Courier-Bold" fontSize: (isDeviceIPad()?26:13)];
+        [_debugLabel setColor: ccGREEN];
         [_debugLabel setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2)];
         [self addChild:_debugLabel];
 
