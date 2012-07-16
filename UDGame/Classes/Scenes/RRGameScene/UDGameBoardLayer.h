@@ -18,7 +18,7 @@
 @property (nonatomic, readonly) NSUInteger symbolsWhite;
 
 
-- (id)initWithGameMode:(UDGameMode)gameMode;
+- (id)initWithGameMode:(RRGameMode)gameMode;
 
 - (void)addTile:(UDTile *)tile animated:(BOOL)animated;
 - (BOOL)haltTilePlaces;

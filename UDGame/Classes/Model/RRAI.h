@@ -14,10 +14,10 @@
 
 @interface RRAI : NSObject
 
-@property (nonatomic, readonly) UDPlayerColor playerColor;
+@property (nonatomic, readonly) RRPlayerColor playerColor;
 
-+ (id)AIWithPlayerColor:(UDPlayerColor)playerColor;
-- (id)initWithPlayerColor:(UDPlayerColor)playerColor;
-- (UDTileMove)bestMoveOnBoard:(UDGameBoardLayer *)gameBoard;
++ (id)AIWithPlayerColor:(RRPlayerColor)playerColor;
+- (id)initWithPlayerColor:(RRPlayerColor)playerColor;
+- (RRTileMove)bestMoveOnBoard:(UDGameBoardLayer *)gameBoard;
 
 @end

@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 UD7. All rights reserved.
 //
 
-#import "UDPickColorLayer.h"
+#import "RRPickColorLayer.h"
 #import "UDSpriteButton.h"
 #import "UDGameScene.h"
 
 
-@implementation UDPickColorLayer {
+@implementation RRPickColorLayer {
     NSUInteger _numberOfPlayers;
 }
 
@@ -37,13 +37,13 @@
         // Add buttons
         UDSpriteButton *buttonColorWhite = [UDSpriteButton spriteWithSpriteFrameName:@"UDTileWhite.png"];
         [buttonColorWhite setScale: 0.5f];
-        [buttonColorWhite addBlock: ^{ [self startGameWithFirstPlayerColor:UDPlayerColorWhite]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonColorWhite addBlock: ^{ [self startGameWithFirstPlayerColor:RRPlayerColorWhite]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonColorWhite setPosition:CGPointMake(110, 300)];
         [self addChild:buttonColorWhite];
         
         UDSpriteButton *buttonColorBlack = [UDSpriteButton spriteWithSpriteFrameName:@"UDTileBlack.png"];
         [buttonColorBlack setScale: 0.5f];
-        [buttonColorBlack addBlock: ^{ [self startGameWithFirstPlayerColor:UDPlayerColorBlack]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonColorBlack addBlock: ^{ [self startGameWithFirstPlayerColor:RRPlayerColorBlack]; } forControlEvents: UDButtonEventTouchUpInside];
         [buttonColorBlack setPosition:CGPointMake(210, 300)];
         [self addChild:buttonColorBlack];
         
@@ -56,9 +56,9 @@
 }
 
 
-- (void)startGameWithFirstPlayerColor:(UDPlayerColor)playerColor {
+- (void)startGameWithFirstPlayerColor:(RRPlayerColor)playerColor {
  
-    UDGameScene *gameScene = [[UDGameScene alloc] initWithGameMode:UDGameModeClosed numberOfPlayers:_numberOfPlayers firstPlayerColor:playerColor];
+    UDGameScene *gameScene = [[UDGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers firstPlayerColor:playerColor];
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionSlideInR transitionWithDuration:0.7f scene:gameScene]];
     [gameScene release];
     

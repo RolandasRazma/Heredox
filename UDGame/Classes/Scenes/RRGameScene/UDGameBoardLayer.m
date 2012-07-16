@@ -11,7 +11,7 @@
 
 
 @implementation UDGameBoardLayer {
-    UDGameMode          _gameMode;
+    RRGameMode          _gameMode;
     
     NSUInteger          _symbolsBlack;
     NSUInteger          _symbolsWhite;
@@ -64,7 +64,7 @@
 #pragma mark UDGameBoardLayer
 
 
-- (id)initWithGameMode:(UDGameMode)gameMode {
+- (id)initWithGameMode:(RRGameMode)gameMode {
 	if( (self = [super init]) ) {
         [self setUserInteractionEnabled:YES];
                                       
@@ -146,7 +146,7 @@
 }
 
 
-- (void)resetBoardForGameMode:(UDGameMode)gameMode {
+- (void)resetBoardForGameMode:(RRGameMode)gameMode {
     [self removeAllChildrenWithCleanup:YES];
     
     _symbolsBlack = _symbolsWhite = 0;
@@ -258,7 +258,7 @@
         }
     }
     
-    NSLog(@"i white: %i black:%i", whiteSymbols, blackSymbols);
+    NSLog(@"i white: %lu black:%lu", whiteSymbols, blackSymbols);
     
     *white = whiteSymbols;
     *black = blackSymbols;

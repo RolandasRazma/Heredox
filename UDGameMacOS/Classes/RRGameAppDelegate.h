@@ -1,5 +1,5 @@
 //
-//  UDGameAppDelegate.h
+//  RRGameAppDelegate.h
 //  UDHeredox
 //
 //  Created by Rolandas Razma on 7/13/12.
@@ -7,7 +7,7 @@
 //
 
 
-@interface UDGameAppDelegate : NSObject <NSApplicationDelegate> {
+@interface RRGameAppDelegate : NSObject <NSApplicationDelegate> {
 	IBOutlet NSWindow	*_window;
 	IBOutlet CCGLView	*_glView;
     CCDirectorMac       *_director;

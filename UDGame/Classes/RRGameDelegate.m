@@ -7,12 +7,12 @@
 //
 
 #import "cocos2d.h"
-#import "UDGameDelegate.h"
+#import "RRGameDelegate.h"
 #import "UDGameScene.h"
-#import "UDMenuScene.h"
+#import "RRMenuScene.h"
 
 
-@implementation UDGameDelegate {
+@implementation RRGameDelegate {
 	UIWindow                *_window;
 	UINavigationController  *_navigationController;
 	CCDirectorIOS           *_director;
@@ -109,8 +109,8 @@
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-//  [_director pushScene: [UDGameScene sceneWithGameMode:UDGameModeClosed numberOfPlayers:2 firstPlayerColor:UDPlayerColorBlack]];
-    [_director pushScene: [UDMenuScene node]];
+//  [_director pushScene: [UDGameScene sceneWithGameMode:RRGameModeClosed numberOfPlayers:2 firstPlayerColor:RRPlayerColorBlack]];
+    [_director pushScene: [RRMenuScene node]];
     
 	return YES;
 }

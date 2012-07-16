@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 UD7. All rights reserved.
 //
 
-#import "UDPickColorScene.h"
-#import "UDPickColorLayer.h"
+#import "RRPickColorScene.h"
+#import "RRPickColorLayer.h"
 
 
-@implementation UDPickColorScene
+@implementation RRPickColorScene
 
 
 #pragma mark -
@@ -24,7 +24,7 @@
 
 - (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
     if( (self = [self init]) ){
-        [self addChild: [UDPickColorLayer layerWithNumberOfPlayers:numberOfPlayers]];
+        [self addChild: [RRPickColorLayer layerWithNumberOfPlayers:numberOfPlayers]];
     }
     return self;
 }

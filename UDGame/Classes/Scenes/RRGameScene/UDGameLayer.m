@@ -15,12 +15,12 @@
 
 
 @implementation UDGameLayer {
-    UDGameMode          _gameMode;
+    RRGameMode          _gameMode;
     
     NSMutableArray      *_deck;
     UDGameBoardLayer    *_gameBoardLayer;
     
-    UDPlayerColor       _playerColor;
+    RRPlayerColor       _playerColor;
     
     CCLabelTTF          *_symbolsBlackLabel;
     CCLabelTTF          *_symbolsWhiteLabel;
@@ -42,7 +42,7 @@
 
 
 - (id)init {
-    if( (self = [self initWithGameMode:UDGameModeClosed firstPlayerColor:UDPlayerColorWhite]) ){
+    if( (self = [self initWithGameMode:RRGameModeClosed firstPlayerColor:RRPlayerColorWhite]) ){
         
     }
     return self;
@@ -77,12 +77,12 @@
 #pragma mark UDGameLayer
 
 
-+ (id)layerWithGameMode:(UDGameMode)gameMode firstPlayerColor:(UDPlayerColor)playerColor {
++ (id)layerWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor {
     return [[[self alloc] initWithGameMode:gameMode firstPlayerColor:playerColor] autorelease];
 }
 
 
-- (id)initWithGameMode:(UDGameMode)gameMode firstPlayerColor:(UDPlayerColor)playerColor {
+- (id)initWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor {
 	if( (self = [super init]) ) {
         [self setUserInteractionEnabled:YES];
         
@@ -144,11 +144,11 @@
 
         if( _deck.count > 0 ){
             CCSprite *playerSprite;
-            if( _playerColor == UDPlayerColorBlack ){
-                _playerColor = UDPlayerColorWhite;
+            if( _playerColor == RRPlayerColorBlack ){
+                _playerColor = RRPlayerColorWhite;
                 playerSprite = [CCSprite spriteWithSpriteFrameName:@"UDTileWhite.png"];
             }else{
-                _playerColor = UDPlayerColorBlack;
+                _playerColor = RRPlayerColorBlack;
                 playerSprite = [CCSprite spriteWithSpriteFrameName:@"UDTileBlack.png"];                
             }
             
@@ -180,7 +180,7 @@
     if( _AI && _AI.playerColor == _playerColor ){
         [_gameBoardLayer setUserInteractionEnabled:NO];
         
-        UDTileMove tileMove = [_AI bestMoveOnBoard:_gameBoardLayer];
+        RRTileMove tileMove = [_AI bestMoveOnBoard:_gameBoardLayer];
         [_gameBoardLayer.activeTile setPositionInGrid:tileMove.positionInGrid];
         [_gameBoardLayer.activeTile setRotation:tileMove.rotation];
         
@@ -203,7 +203,7 @@
 }
 
 
-- (void)resetDeckForGameMode:(UDGameMode)gameMode {
+- (void)resetDeckForGameMode:(RRGameMode)gameMode {
     [_deck release];
     _deck = [[NSMutableArray alloc] initWithCapacity:16];
     
@@ -237,7 +237,7 @@
 
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     for( UDTile *tile in [_deck reverseObjectEnumerator] ){
-        [tile setBackSideVisible: (gameMode == UDGameModeClosed)];
+        [tile setBackSideVisible: (gameMode == RRGameModeClosed)];
         [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5, tile.textureRect.size.height /1.5)];
         [self addChild:tile z:-1];
     }

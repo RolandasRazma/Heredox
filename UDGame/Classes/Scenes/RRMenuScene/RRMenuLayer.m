@@ -6,12 +6,12 @@
 //  Copyright 2012 UD7. All rights reserved.
 //
 
-#import "UDMenuLayer.h"
+#import "RRMenuLayer.h"
 #import "UDSpriteButton.h"
-#import "UDPickColorScene.h"
+#import "RRPickColorScene.h"
 
 
-@implementation UDMenuLayer
+@implementation RRMenuLayer
 
 
 #pragma mark -
@@ -54,7 +54,7 @@
 
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
 
-    UDPickColorScene *pickColorScene = [[UDPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
+    RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionSlideInR transitionWithDuration:0.7f scene:pickColorScene]];
     [pickColorScene release];
     

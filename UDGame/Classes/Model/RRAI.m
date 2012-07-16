@@ -12,7 +12,7 @@
 
 
 @implementation RRAI {
-    UDPlayerColor _playerColor;
+    RRPlayerColor _playerColor;
 }
 
 
@@ -20,13 +20,13 @@
 #pragma mark RRAI
 
 
-+ (id)AIWithPlayerColor:(UDPlayerColor)playerColor {
++ (id)AIWithPlayerColor:(RRPlayerColor)playerColor {
     return [[[self alloc] initWithPlayerColor:playerColor] autorelease];
 }
 
 
 
-- (id)initWithPlayerColor:(UDPlayerColor)playerColor {
+- (id)initWithPlayerColor:(RRPlayerColor)playerColor {
     if( (self = [super init]) ){
         _playerColor = playerColor;
     }
@@ -34,8 +34,8 @@
 }
 
 
-- (UDTileMove)bestMoveOnBoard:(UDGameBoardLayer *)gameBoard {
-    UDTileMove tileMove;
+- (RRTileMove)bestMoveOnBoard:(UDGameBoardLayer *)gameBoard {
+    RRTileMove tileMove;
     CGFloat tileMoveScore = 0.0f;
     
     UDTile *activeTile = gameBoard.activeTile;
@@ -131,7 +131,7 @@
         
     }
     
-    NSLog(@"!move to: %@ at angle: %.f confidence: %.2f", NSStringFromCGPoint(tileMove.positionInGrid), tileMove.rotation, tileMoveScore);
+    NSLog(@"!move to: {%f, %f} at angle: %.f confidence: %.2f", tileMove.positionInGrid.x, tileMove.positionInGrid.y, tileMove.rotation, tileMoveScore);
     
     return tileMove;
 }

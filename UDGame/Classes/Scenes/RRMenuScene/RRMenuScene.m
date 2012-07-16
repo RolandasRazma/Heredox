@@ -6,11 +6,11 @@
 //  Copyright 2012 UD7. All rights reserved.
 //
 
-#import "UDMenuScene.h"
-#import "UDMenuLayer.h"
+#import "RRMenuScene.h"
+#import "RRMenuLayer.h"
 
 
-@implementation UDMenuScene
+@implementation RRMenuScene
 
 
 #pragma mark -
@@ -19,7 +19,7 @@
 
 - (id)init {
     if( (self = [super init]) ){
-        [self addChild: [UDMenuLayer node]];
+        [self addChild: [RRMenuLayer node]];
     }
     return self;
 }

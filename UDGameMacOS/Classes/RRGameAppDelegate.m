@@ -6,12 +6,12 @@
 //  Copyright UD7 2012. All rights reserved.
 //
 
-#import "UDGameAppDelegate.h"
+#import "RRGameAppDelegate.h"
 #import "cocos2d.h"
-#import "UDMenuScene.h"
+#import "RRMenuScene.h"
 
 
-@implementation UDGameAppDelegate
+@implementation RRGameAppDelegate
 
 
 #pragma mark -
@@ -61,7 +61,7 @@
     // Load Textures
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
     
-    [_director runWithScene: [UDMenuScene node]];
+    [_director runWithScene: [RRMenuScene node]];
 }
 
 

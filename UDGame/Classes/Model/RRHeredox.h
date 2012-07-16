@@ -8,23 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum UDGameMode : NSUInteger {
-    UDGameModeClosed    = 0,
-    UDGameModeOpen      = 1,
-} UDGameMode;
+typedef enum RRGameMode : NSUInteger {
+    RRGameModeClosed    = 0,
+    RRGameModeOpen      = 1,
+} RRGameMode;
 
 
-typedef enum UDPlayerColor : NSUInteger {
-    UDPlayerColorUndefined  = 0,
-    UDPlayerColorBlack      = 1,
-    UDPlayerColorWhite      = 2,
-} UDPlayerColor;
+typedef enum RRPlayerColor : NSUInteger {
+    RRPlayerColorUndefined  = 0,
+    RRPlayerColorBlack      = 1,
+    RRPlayerColorWhite      = 2,
+} RRPlayerColor;
 
 
-typedef struct UDTileMove {
+typedef struct RRTileMove {
     CGPoint positionInGrid;
     CGFloat rotation;
-} UDTileMove;
+} RRTileMove;
 
 
 @interface RRHeredox : NSObject

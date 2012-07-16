@@ -18,16 +18,16 @@
 #pragma mark UDGameScene
 
 
-+ (id)sceneWithGameMode:(UDGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(UDPlayerColor)playerColor {
++ (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
     return [[[self alloc] initWithGameMode:gameMode numberOfPlayers:numberOfPlayers firstPlayerColor:playerColor] autorelease];
 }
 
 
-- (id)initWithGameMode:(UDGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(UDPlayerColor)playerColor {
+- (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
     if( (self = [self init]) ){
         UDGameLayer *gameLayer = [UDGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor];
         if( numberOfPlayers == 1 ){
-            [gameLayer setAI: [RRAI AIWithPlayerColor: ((playerColor == UDPlayerColorBlack)?UDPlayerColorWhite:UDPlayerColorBlack)]];
+            [gameLayer setAI: [RRAI AIWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)]];
         }
         [self addChild: gameLayer];
     }
