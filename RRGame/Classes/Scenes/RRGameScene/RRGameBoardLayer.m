@@ -21,6 +21,8 @@
     RRTile              *_activeTile;
     CGPoint             _activeTileTouchOffset;
     BOOL                _activeTileMoved;
+
+    CGSize              _gridSize;
 }
 
 
@@ -69,6 +71,7 @@
         [self setUserInteractionEnabled:YES];
                                       
         _gameMode = gameMode;
+        _gridSize = CGSizeZero;
         
         // Reset board
         [self resetBoardForGameMode:gameMode];
@@ -107,7 +110,6 @@
 
 
 - (BOOL)canPlaceTileAtGridLocation:(CGPoint)gridLocation {
-    if( self.children.count < 2 ) return YES;
 
     NSInteger minX = gridLocation.x;
     NSInteger minY = gridLocation.y;
@@ -137,11 +139,13 @@
         maxY = MAX(maxY, positionInGrid.y);
     }
 
-    if( foundTouchPoint == NO ) return NO;
+    if( foundTouchPoint == NO && self.children.count >= 2 ) return NO;
 
     if( (maxX -minX +1) > 4 ) return NO;
     if( (maxY -minY +1) > 4 ) return NO;
-        
+
+    _gridSize = CGSizeMake((maxX -minX +1), (maxY -minY +1));
+
     return YES;
 }
 
@@ -353,5 +357,5 @@
 }
 
 
-@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile;
+@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile, gridSize=_gridSize;
 @end

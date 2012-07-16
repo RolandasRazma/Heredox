@@ -28,8 +28,7 @@
     
     NSUInteger white, black;
     
-    
-    
+
     for ( RRTile *tile in gameBoard.children ) {
         if( [tile isEqual:activeTile] ) continue;
         
