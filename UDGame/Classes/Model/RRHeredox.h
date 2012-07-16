@@ -21,6 +21,12 @@ typedef enum UDPlayerColor : NSUInteger {
 } UDPlayerColor;
 
 
+typedef struct UDTileMove {
+    CGPoint positionInGrid;
+    CGFloat rotation;
+} UDTileMove;
+
+
 @interface RRHeredox : NSObject
 
 @end

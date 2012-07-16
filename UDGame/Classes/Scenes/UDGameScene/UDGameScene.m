@@ -8,6 +8,7 @@
 
 #import "UDGameScene.h"
 #import "UDGameLayer.h"
+#import "RRAI.h"
 
 
 @implementation UDGameScene
@@ -24,7 +25,11 @@
 
 - (id)initWithGameMode:(UDGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(UDPlayerColor)playerColor {
     if( (self = [self init]) ){
-        [self addChild: [UDGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor]];
+        UDGameLayer *gameLayer = [UDGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor];
+        if( numberOfPlayers == 1 ){
+            [gameLayer setAI: [RRAI AIWithPlayerColor: ((playerColor == UDPlayerColorBlack)?UDPlayerColorWhite:UDPlayerColorBlack)]];
+        }
+        [self addChild: gameLayer];
     }
     return self;
 }

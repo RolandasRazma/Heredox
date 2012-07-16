@@ -278,6 +278,8 @@
 		F0CF53D9152DD4770084C6DA /* UDMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CF53D7152DD4770084C6DA /* UDMenuScene.m */; };
 		F0CF53DC152DD4F90084C6DA /* UDMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CF53DB152DD4F90084C6DA /* UDMenuLayer.m */; };
 		F0CF53DD152DD4F90084C6DA /* UDMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CF53DB152DD4F90084C6DA /* UDMenuLayer.m */; };
+		F0E3F67915B40FA800599E95 /* RRAI.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAI.m */; };
+		F0E3F67A15B40FA800599E95 /* RRAI.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAI.m */; };
 		F0EE5542152C536F004B1792 /* BlocksAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EE5541152C536F004B1792 /* BlocksAdditions.m */; };
 		F0EE5543152C536F004B1792 /* BlocksAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EE5541152C536F004B1792 /* BlocksAdditions.m */; };
 		F0FDBCA714CB018000CD1FE6 /* UDGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBCA114CB018000CD1FE6 /* UDGameScene.m */; };
@@ -539,7 +541,7 @@
 		F03EF74115B042E80085E637 /* textures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textures-hd.png"; sourceTree = "<group>"; };
 		F03EF74215B042E80085E637 /* textures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = textures.plist; sourceTree = "<group>"; };
 		F03EF74315B042E80085E637 /* textures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textures.png; sourceTree = "<group>"; };
-		F03EF75C15B059F30085E637 /* UDSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; path = UDSpriteButton.h; sourceTree = "<group>"; };
+		F03EF75C15B059F30085E637 /* UDSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDSpriteButton.h; sourceTree = "<group>"; };
 		F03EF75D15B059F30085E637 /* UDSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDSpriteButton.m; sourceTree = "<group>"; };
 		F043C4F214CAF08400BF47DE /* UDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDLog.h; sourceTree = "<group>"; };
 		F043C4F714CAF08400BF47DE /* UDMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMath.h; sourceTree = "<group>"; };
@@ -585,6 +587,8 @@
 		F0CF53D7152DD4770084C6DA /* UDMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDMenuScene.m; sourceTree = "<group>"; };
 		F0CF53DA152DD4F80084C6DA /* UDMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMenuLayer.h; sourceTree = "<group>"; };
 		F0CF53DB152DD4F90084C6DA /* UDMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDMenuLayer.m; sourceTree = "<group>"; };
+		F0E3F67715B40FA800599E95 /* RRAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAI.h; sourceTree = "<group>"; };
+		F0E3F67815B40FA800599E95 /* RRAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAI.m; sourceTree = "<group>"; };
 		F0EE5540152C536F004B1792 /* BlocksAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocksAdditions.h; sourceTree = "<group>"; };
 		F0EE5541152C536F004B1792 /* BlocksAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocksAdditions.m; sourceTree = "<group>"; };
 		F0FDBCA014CB018000CD1FE6 /* UDGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDGameScene.h; sourceTree = "<group>"; };
@@ -1152,6 +1156,8 @@
 			children = (
 				F07476F415B1DEA500B69890 /* RRHeredox.h */,
 				F07476F515B1DEA500B69890 /* RRHeredox.m */,
+				F0E3F67715B40FA800599E95 /* RRAI.h */,
+				F0E3F67815B40FA800599E95 /* RRAI.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1521,6 +1527,7 @@
 				F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */,
 				F00D63F315B22BF20034DC10 /* UDPickColorScene.m in Sources */,
 				F00D63F715B22C300034DC10 /* UDPickColorLayer.m in Sources */,
+				F0E3F67915B40FA800599E95 /* RRAI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1645,6 +1652,7 @@
 				F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */,
 				F00D63F415B22BF20034DC10 /* UDPickColorScene.m in Sources */,
 				F00D63F815B22C300034DC10 /* UDPickColorLayer.m in Sources */,
+				F0E3F67A15B40FA800599E95 /* RRAI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
