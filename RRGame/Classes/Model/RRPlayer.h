@@ -1,5 +1,5 @@
 //
-//  RRAI.h
+//  RRPlayer.h
 //  RRHeredox
 //
 //  Created by Rolandas Razma on 7/16/12.
@@ -9,15 +9,11 @@
 #import <Foundation/Foundation.h>
 
 
-@class RRGameBoardLayer;
-
-
-@interface RRAI : NSObject
+@interface RRPlayer : NSObject
 
 @property (nonatomic, readonly) RRPlayerColor playerColor;
 
-+ (id)AIWithPlayerColor:(RRPlayerColor)playerColor;
++ (id)playerWithPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithPlayerColor:(RRPlayerColor)playerColor;
-- (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard;
 
 @end

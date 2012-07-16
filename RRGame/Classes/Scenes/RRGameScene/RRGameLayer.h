@@ -8,12 +8,12 @@
 
 #import "UDLayer.h"
 
-@class RRAI;
+@class RRAIPlayer;
 
 
 @interface RRGameLayer : UDLayer
 
-@property (nonatomic, retain) RRAI *AI;
+@property (nonatomic, retain) RRAIPlayer *AI;
 
 + (id)layerWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor;

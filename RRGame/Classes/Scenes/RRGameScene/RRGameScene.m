@@ -8,7 +8,7 @@
 
 #import "RRGameScene.h"
 #import "RRGameLayer.h"
-#import "RRAI.h"
+#import "RRAIPlayer.h"
 
 
 @implementation RRGameScene
@@ -27,7 +27,7 @@
     if( (self = [self init]) ){
         RRGameLayer *gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor];
         if( numberOfPlayers == 1 ){
-            [gameLayer setAI: [RRAI AIWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)]];
+            [gameLayer setAI: [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)]];
         }
         [self addChild: gameLayer];
     }

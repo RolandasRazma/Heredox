@@ -6,32 +6,16 @@
 //  Copyright (c) 2012 UD7. All rights reserved.
 //
 
-#import "RRAI.h"
+#import "RRAIPlayer.h"
 #import "RRGameBoardLayer.h"
 #import "RRTile.h"
 
 
-@implementation RRAI {
-    RRPlayerColor _playerColor;
-}
+@implementation RRAIPlayer
 
 
 #pragma mark -
-#pragma mark RRAI
-
-
-+ (id)AIWithPlayerColor:(RRPlayerColor)playerColor {
-    return [[[self alloc] initWithPlayerColor:playerColor] autorelease];
-}
-
-
-
-- (id)initWithPlayerColor:(RRPlayerColor)playerColor {
-    if( (self = [super init]) ){
-        _playerColor = playerColor;
-    }
-    return self;
-}
+#pragma mark RRAIPlayer
 
 
 - (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard {
@@ -137,5 +121,4 @@
 }
 
 
-@synthesize playerColor=_playerColor;
 @end

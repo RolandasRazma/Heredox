@@ -11,7 +11,7 @@
 #import "UDSpriteButton.h"
 #import "RRGameBoardLayer.h"
 #import "UDActionDestroy.h"
-#import "RRAI.h"
+#import "RRAIPlayer.h"
 
 
 @implementation RRGameLayer {
@@ -26,7 +26,7 @@
     CCLabelTTF          *_symbolsWhiteLabel;
     UDSpriteButton      *_buttonEndTurn;
     
-    RRAI                *_AI;
+    RRAIPlayer                *_AI;
 }
 
 

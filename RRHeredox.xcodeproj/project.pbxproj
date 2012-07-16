@@ -229,6 +229,8 @@
 		F0602A4715AFA16600B60FB1 /* Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A4015AFA16600B60FB1 /* Icon@2x~ipad.png */; };
 		F0602A4815AFA16600B60FB1 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A4115AFA16600B60FB1 /* Icon~ipad.png */; };
 		F0602A4A15AFA31600B60FB1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A4915AFA31600B60FB1 /* Default-Portrait~ipad.png */; };
+		F063238015B43A03005715E7 /* RRPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F063237F15B43A03005715E7 /* RRPlayer.m */; };
+		F063238115B43A03005715E7 /* RRPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F063237F15B43A03005715E7 /* RRPlayer.m */; };
 		F06582C014CA7BE20033B4F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582BF14CA7BE20033B4F5 /* QuartzCore.framework */; };
 		F06582C214CA7BE20033B4F5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582C114CA7BE20033B4F5 /* OpenGLES.framework */; };
 		F06582C414CA7BE20033B4F5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582C314CA7BE20033B4F5 /* OpenAL.framework */; };
@@ -252,8 +254,8 @@
 		F0CD646914CA995100665366 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582C514CA7BE20033B4F5 /* AudioToolbox.framework */; };
 		F0CD646A14CA995B00665366 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582CB14CA7BE20033B4F5 /* Foundation.framework */; };
 		F0CD648114CA9ACB00665366 /* RRGameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD648014CA9ACB00665366 /* RRGameAppDelegate.m */; };
-		F0E3F67915B40FA800599E95 /* RRAI.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAI.m */; };
-		F0E3F67A15B40FA800599E95 /* RRAI.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAI.m */; };
+		F0E3F67915B40FA800599E95 /* RRAIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAIPlayer.m */; };
+		F0E3F67A15B40FA800599E95 /* RRAIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAIPlayer.m */; };
 		F0E3F6FD15B41D6E00599E95 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F68815B41D6E00599E95 /* CDAudioManager.m */; };
 		F0E3F6FE15B41D6E00599E95 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F68815B41D6E00599E95 /* CDAudioManager.m */; };
 		F0E3F6FF15B41D6E00599E95 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F68B15B41D6E00599E95 /* CDOpenALSupport.m */; };
@@ -530,6 +532,8 @@
 		F0602A4015AFA16600B60FB1 /* Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x~ipad.png"; sourceTree = "<group>"; };
 		F0602A4115AFA16600B60FB1 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
 		F0602A4915AFA31600B60FB1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		F063237E15B43A03005715E7 /* RRPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRPlayer.h; sourceTree = "<group>"; };
+		F063237F15B43A03005715E7 /* RRPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRPlayer.m; sourceTree = "<group>"; };
 		F06582BB14CA7BE20033B4F5 /* Heredox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heredox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06582BF14CA7BE20033B4F5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F06582C114CA7BE20033B4F5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -557,8 +561,8 @@
 		F0CD646314CA983700665366 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F0CD647F14CA9ACB00665366 /* RRGameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameAppDelegate.h; sourceTree = "<group>"; };
 		F0CD648014CA9ACB00665366 /* RRGameAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameAppDelegate.m; sourceTree = "<group>"; };
-		F0E3F67715B40FA800599E95 /* RRAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAI.h; sourceTree = "<group>"; };
-		F0E3F67815B40FA800599E95 /* RRAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAI.m; sourceTree = "<group>"; };
+		F0E3F67715B40FA800599E95 /* RRAIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAIPlayer.h; sourceTree = "<group>"; };
+		F0E3F67815B40FA800599E95 /* RRAIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAIPlayer.m; sourceTree = "<group>"; };
 		F0E3F68715B41D6E00599E95 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		F0E3F68815B41D6E00599E95 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		F0E3F68915B41D6E00599E95 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -1112,8 +1116,10 @@
 			children = (
 				F07476F415B1DEA500B69890 /* RRHeredox.h */,
 				F07476F515B1DEA500B69890 /* RRHeredox.m */,
-				F0E3F67715B40FA800599E95 /* RRAI.h */,
-				F0E3F67815B40FA800599E95 /* RRAI.m */,
+				F063237E15B43A03005715E7 /* RRPlayer.h */,
+				F063237F15B43A03005715E7 /* RRPlayer.m */,
+				F0E3F67715B40FA800599E95 /* RRAIPlayer.h */,
+				F0E3F67815B40FA800599E95 /* RRAIPlayer.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1514,7 +1520,7 @@
 				F03EF73215B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */,
 				F03EF75E15B059F30085E637 /* UDSpriteButton.m in Sources */,
 				F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */,
-				F0E3F67915B40FA800599E95 /* RRAI.m in Sources */,
+				F0E3F67915B40FA800599E95 /* RRAIPlayer.m in Sources */,
 				F0E3F6FD15B41D6E00599E95 /* CDAudioManager.m in Sources */,
 				F0E3F6FF15B41D6E00599E95 /* CDOpenALSupport.m in Sources */,
 				F0E3F70115B41D6E00599E95 /* CocosDenshion.m in Sources */,
@@ -1527,6 +1533,7 @@
 				F0E3F7AE15B41FBC00599E95 /* RRGameLayer.m in Sources */,
 				F0E3F7B015B41FBC00599E95 /* RRGameScene.m in Sources */,
 				F0E3F7B215B41FBC00599E95 /* RRTile.m in Sources */,
+				F063238015B43A03005715E7 /* RRPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1637,7 +1644,7 @@
 				F03EF73315B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */,
 				F03EF75F15B059F30085E637 /* UDSpriteButton.m in Sources */,
 				F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */,
-				F0E3F67A15B40FA800599E95 /* RRAI.m in Sources */,
+				F0E3F67A15B40FA800599E95 /* RRAIPlayer.m in Sources */,
 				F0E3F6FE15B41D6E00599E95 /* CDAudioManager.m in Sources */,
 				F0E3F70015B41D6E00599E95 /* CDOpenALSupport.m in Sources */,
 				F0E3F70215B41D6E00599E95 /* CocosDenshion.m in Sources */,
@@ -1651,6 +1658,7 @@
 				F0E3F7AF15B41FBC00599E95 /* RRGameLayer.m in Sources */,
 				F0E3F7B115B41FBC00599E95 /* RRGameScene.m in Sources */,
 				F0E3F7B315B41FBC00599E95 /* RRTile.m in Sources */,
+				F063238115B43A03005715E7 /* RRPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
