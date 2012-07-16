@@ -8,7 +8,7 @@
 
 #import "RRPickColorLayer.h"
 #import "UDSpriteButton.h"
-#import "UDGameScene.h"
+#import "RRGameScene.h"
 
 
 @implementation RRPickColorLayer {
@@ -58,7 +58,7 @@
 
 - (void)startGameWithFirstPlayerColor:(RRPlayerColor)playerColor {
  
-    UDGameScene *gameScene = [[UDGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers firstPlayerColor:playerColor];
+    RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers firstPlayerColor:playerColor];
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionSlideInR transitionWithDuration:0.7f scene:gameScene]];
     [gameScene release];
     

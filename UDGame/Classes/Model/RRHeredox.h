@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 typedef enum RRGameMode : NSUInteger {
     RRGameModeClosed    = 0,
     RRGameModeOpen      = 1,

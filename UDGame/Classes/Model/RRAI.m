@@ -7,8 +7,8 @@
 //
 
 #import "RRAI.h"
-#import "UDGameBoardLayer.h"
-#import "UDTile.h"
+#import "RRGameBoardLayer.h"
+#import "RRTile.h"
 
 
 @implementation RRAI {
@@ -34,11 +34,11 @@
 }
 
 
-- (RRTileMove)bestMoveOnBoard:(UDGameBoardLayer *)gameBoard {
+- (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard {
     RRTileMove tileMove;
     CGFloat tileMoveScore = 0.0f;
     
-    UDTile *activeTile = gameBoard.activeTile;
+    RRTile *activeTile = gameBoard.activeTile;
     
     
     
@@ -46,7 +46,7 @@
     
     
     
-    for ( UDTile *tile in gameBoard.children ) {
+    for ( RRTile *tile in gameBoard.children ) {
         if( [tile isEqual:activeTile] ) continue;
         
         CGPoint positionInGrid = tile.positionInGrid;

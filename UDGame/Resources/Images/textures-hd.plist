@@ -5,7 +5,7 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>UDBackground.png</key>
+		<key>RRBackground.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -27,7 +27,7 @@
 			<false/>
 		</dict>
 		
-		<key>UDBoardGuide.png</key>
+		<key>RRBoardGuide.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -49,7 +49,7 @@
 			<false/>
 		</dict>
 		
-		<key>UDButtonDone.png</key>
+		<key>RRButtonDone.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -71,29 +71,7 @@
 			<false/>
 		</dict>
 		
-		<key>UDButtonPlayers1.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {152, 76}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{152, 76}</string>
-			<key>spriteSourceSize</key>
-			<string>{152, 76}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{1276, 433}, {152, 76}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>UDButtonPlayers2.png</key>
+		<key>RRButtonPlayers1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -115,7 +93,29 @@
 			<false/>
 		</dict>
 		
-		<key>UDEmptyTile.png</key>
+		<key>RRButtonPlayers2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {152, 76}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{152, 76}</string>
+			<key>spriteSourceSize</key>
+			<string>{152, 76}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{1276, 433}, {152, 76}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>RREmptyTile.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -137,7 +137,7 @@
 			<false/>
 		</dict>
 		
-		<key>UDTileBack.png</key>
+		<key>RRTileBack.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -159,7 +159,7 @@
 			<false/>
 		</dict>
 		
-		<key>UDTileBlack.png</key>
+		<key>RRTileBlack.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -181,7 +181,7 @@
 			<false/>
 		</dict>
 		
-		<key>UDTileEdgeBlack.png</key>
+		<key>RRTileEdgeBlack.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -198,12 +198,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{1276, 311}, {60, 120}}</string>
+			<string>{{1078, 465}, {60, 120}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>UDTileEdgeWhite.png</key>
+		<key>RRTileEdgeWhite.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -220,12 +220,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{1078, 465}, {60, 120}}</string>
+			<string>{{1276, 311}, {60, 120}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>UDTileWhite.png</key>
+		<key>RRTileWhite.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -257,7 +257,7 @@
 		<key>size</key>
 		<string>{2048, 1024}</string>
 		<key>name</key>
-		<string>textures</string>
+		<string>textures.zwd</string>
 		<key>premultipliedAlpha</key>
 		<false/>
 		<key>target</key>

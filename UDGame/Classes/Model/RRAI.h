@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@class UDGameBoardLayer;
+@class RRGameBoardLayer;
 
 
 @interface RRAI : NSObject
@@ -18,6 +18,6 @@
 
 + (id)AIWithPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithPlayerColor:(RRPlayerColor)playerColor;
-- (RRTileMove)bestMoveOnBoard:(UDGameBoardLayer *)gameBoard;
+- (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard;
 
 @end
