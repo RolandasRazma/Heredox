@@ -99,11 +99,12 @@
             [self addChild:rightSprite];
         }
         
+#if TARGET_IPHONE_SIMULATOR
         _debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Courier-Bold" fontSize: (isDeviceIPad()?26:13)];
         [_debugLabel setColor: ccGREEN];
         [_debugLabel setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2)];
         [self addChild:_debugLabel];
-
+#endif
     }
     return self;
 }

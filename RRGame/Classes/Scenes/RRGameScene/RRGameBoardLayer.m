@@ -22,7 +22,8 @@
     CGPoint             _activeTileTouchOffset;
     BOOL                _activeTileMoved;
 
-    CGSize              _gridSize;
+    CGRect              _gridBounds;
+    RRTile              *_emptyTile;
 }
 
 
@@ -31,7 +32,8 @@
 
 
 - (void)dealloc {
-
+    [_emptyTile release];
+    
     [super dealloc];
 }
 
@@ -70,8 +72,9 @@
 	if( (self = [super init]) ) {
         [self setUserInteractionEnabled:YES];
                                       
-        _gameMode = gameMode;
-        _gridSize = CGSizeZero;
+        _gameMode   = gameMode;
+        _gridBounds = CGRectNull;
+        _emptyTile = [[RRTile tileWithEdgeTop:RRTileEdgeNone left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeNone] retain];
         
         // Reset board
         [self resetBoardForGameMode:gameMode];
@@ -110,7 +113,11 @@
 
 
 - (BOOL)canPlaceTileAtGridLocation:(CGPoint)gridLocation {
+    return [self canPlaceTileAtGridLocation:gridLocation gridBounds:NULL];
+}
 
+
+- (BOOL)canPlaceTileAtGridLocation:(CGPoint)gridLocation gridBounds:(CGRect *)gridBounds{
     NSInteger minX = gridLocation.x;
     NSInteger minY = gridLocation.y;
     NSInteger maxX = gridLocation.x;
@@ -144,8 +151,11 @@
     if( (maxX -minX +1) > 4 ) return NO;
     if( (maxY -minY +1) > 4 ) return NO;
 
-    _gridSize = CGSizeMake((maxX -minX +1), (maxY -minY +1));
-
+    // Cache some information about board
+    if( gridBounds != NULL ){
+        *gridBounds = CGRectMake(minX, minY, (maxX -minX +1), (maxY -minY +1));
+    }
+    
     return YES;
 }
 
@@ -170,12 +180,14 @@
 
 - (BOOL)haltTilePlaces {
     [_activeTile setPosition: [self snapPoint:_activeTile.position toGridWithTolerance: CGFLOAT_MAX]];
-    
-    if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid] ){
+
+    CGRect newGridBounds;        
+    if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid gridBounds:&newGridBounds] ){
         [self checkForNewSymbols];
         
         [_activeTile setScale: 1.0f];
         _activeTile = nil;
+        _gridBounds = newGridBounds;
         
         [self centerBoardAnimated:(self.children.count >1)];        
         
@@ -305,6 +317,15 @@
 
 
 - (RRTile *)tileAtGridPosition:(CGPoint)gridPosition {
+    
+    if( _gridBounds.size.width == 4 && (gridPosition.x < _gridBounds.origin.x || (_gridBounds.origin.x +_gridBounds.size.width -1) < gridPosition.x) ){
+        return _emptyTile;
+    }
+    
+    if( _gridBounds.size.height == 4 && (gridPosition.y < _gridBounds.origin.y || (_gridBounds.origin.y +_gridBounds.size.height -1) < gridPosition.y) ){
+        return _emptyTile;
+    }
+
     for( RRTile *tile in self.children ){
         if( CGPointEqualToPoint(tile.positionInGrid, gridPosition) ) return tile;
     }
@@ -365,5 +386,5 @@
 }
 
 
-@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile, gridSize=_gridSize;
+@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile;
 @end

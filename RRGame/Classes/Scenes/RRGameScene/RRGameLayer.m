@@ -179,14 +179,17 @@
     
     if( _AI && _AI.playerColor == _playerColor ){
         [_gameBoardLayer setUserInteractionEnabled:NO];
-        
+
         RRTileMove tileMove = [_AI bestMoveOnBoard:_gameBoardLayer];
-        [_gameBoardLayer.activeTile setPositionInGrid:tileMove.positionInGrid];
-        [_gameBoardLayer.activeTile setRotation:tileMove.rotation];
-        
-        [_gameBoardLayer setUserInteractionEnabled:YES];
-        
-        [self endTurn];
+
+        [_gameBoardLayer.activeTile runAction:[CCSequence actions:
+                                               [CCScaleTo actionWithDuration:0.0f scale:1.1f],
+                                               [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
+                                                                                                      tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
+                                               [CCRotateBy actionWithDuration:0.2f *tileMove.rotation /90.0f angle:tileMove.rotation],
+                                               [CCScaleTo actionWithDuration:0.0f scale:1.0f],
+                                               [CCCallBlock actionWithBlock:^{ [self endTurn]; }],
+                                               nil]];
     }
     
 }
