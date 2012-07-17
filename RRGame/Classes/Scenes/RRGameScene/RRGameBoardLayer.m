@@ -226,12 +226,16 @@
     NSUInteger whiteSymbols = 0;
     NSUInteger blackSymbols = 0;
     
+//    NSLog(@"-------- LOOK FOR TILE");
+    
     for( RRTile *tile in self.children ){
         if( [tile isEqual:_activeTile] ) continue;
         
         CGPoint positionInGrid = CGPointRound(tile.positionInGrid);
         
         if( positionInGrid.x +1 == gridLocation.x && positionInGrid.y == gridLocation.y ){
+//            NSLog(@"x +1");
+            
             if( _activeTile.edgeLeft == tile.edgeRight && _activeTile.edgeLeft != RRTileEdgeNone ){
                 // | <-
                 if( _activeTile.edgeLeft == RRTileEdgeWhite ){
@@ -243,6 +247,8 @@
         }
         
         if( positionInGrid.x -1 == gridLocation.x && positionInGrid.y == gridLocation.y ){
+//            NSLog(@"x -1");
+            
             if( _activeTile.edgeRight == tile.edgeLeft && _activeTile.edgeRight != RRTileEdgeNone ){
                 // -> |
                 if( _activeTile.edgeRight == RRTileEdgeWhite ){
@@ -254,6 +260,8 @@
         }
         
         if( positionInGrid.y +1 == gridLocation.y && positionInGrid.x == gridLocation.x ){
+//            NSLog(@"y +1");
+            
             if( _activeTile.edgeBottom == tile.edgeTop && _activeTile.edgeBottom != RRTileEdgeNone ){
                 // __
                 if( _activeTile.edgeBottom == RRTileEdgeWhite ){
@@ -265,6 +273,8 @@
         }
         
         if( positionInGrid.y -1 == gridLocation.y && positionInGrid.x == gridLocation.x ){
+//            NSLog(@"y -1");
+            
             if( _activeTile.edgeTop == tile.edgeBottom && _activeTile.edgeTop != RRTileEdgeNone ){
                 // ^^
                 if( _activeTile.edgeTop == RRTileEdgeWhite ){

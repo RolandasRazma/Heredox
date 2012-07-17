@@ -35,7 +35,7 @@
             // NSLog(@"x +1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x +1, positionInGrid.y)];
-            if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
+            if( bestMove.score >= tileMove.score ){
                 tileMove = bestMove;
             }
         }
@@ -44,7 +44,7 @@
             // NSLog(@"x -1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x -1, positionInGrid.y)];
-            if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
+            if( bestMove.score >= tileMove.score ){
                 tileMove = bestMove;
             }
         }
@@ -53,7 +53,7 @@
             // NSLog(@"y +1");
 
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x, positionInGrid.y +1)];
-            if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
+            if( bestMove.score >= tileMove.score ){
                 tileMove = bestMove;
             }
         }
@@ -62,7 +62,7 @@
             // NSLog(@"y -1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x, positionInGrid.y -1)];
-            if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
+            if( bestMove.score >= tileMove.score ){
                 tileMove = bestMove;
             }
         }
@@ -72,7 +72,7 @@
     [activeTile setPosition:activeTilePosition];
     [activeTile setRotation:0];
     
-    // NSLog(@"!move to: {%.f, %.f} at angle: %.f confidence: %.2f", tileMove.positionInGrid.x, tileMove.positionInGrid.y, tileMove.rotation, tileMove.score);
+    NSLog(@"!move to: {%.f, %.f} at angle: %.f confidence: %.2f", tileMove.positionInGrid.x, tileMove.positionInGrid.y, tileMove.rotation, tileMove.score);
     
     return tileMove;
 }
@@ -83,6 +83,8 @@
     RRTile *activeTile = gameBoard.activeTile;
     
     [activeTile setPositionInGrid:positionInGrid];
+    
+    NSLog(@"RRTileMoveZero: %f", tileMove.score);
     
     // TODO: padaryti tikrinima ar nenusuka savo spalvos uz ekrano ribu arba i siena
     
@@ -208,8 +210,8 @@
                 // NSLog(@"LEFT #3 {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
         }
-        
-        if( (int)(moveValue *1000) >= (int)(tileMove.score *1000) ){
+
+        if( moveValue >= tileMove.score ){
             tileMove.score    = moveValue;
             tileMove.rotation = angle;
             tileMove.positionInGrid = activeTile.positionInGrid;

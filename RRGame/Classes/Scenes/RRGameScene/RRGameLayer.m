@@ -141,7 +141,8 @@
 
 
 - (void)endTurn {
-
+    NSLog(@"-- endTurn --");
+    
     if( [_gameBoardLayer haltTilePlaces] ){
 
         if( _deck.count > 0 ){
@@ -161,7 +162,9 @@
             [playerSprite runAction: [CCSequence actions:
                                       [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:NO]; }],
                                       [CCScaleTo actionWithDuration:0.1f scale:1.2f],
+#if !TARGET_IPHONE_SIMULATOR
                                       [CCDelayTime actionWithDuration:0.7f],
+#endif
                                       [CCCallFunc actionWithTarget:self selector:@selector(takeNewTile)],
                                       [CCDelayTime actionWithDuration:0.5f],
                                       [CCScaleTo actionWithDuration:0.3f scale:1.0f],
@@ -269,8 +272,8 @@
     [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
     
     NSUInteger seed = time(NULL);
-    seed = 1342530709;
-    NSLog(@"game seed: %lu", seed);
+//    seed = 1342542677;
+    NSLog(@"game seed: %u", seed);
     [_deck shuffleWithSeed:seed];
 
     CGSize winSize = [[CCDirector sharedDirector] winSize];
