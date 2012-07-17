@@ -27,12 +27,12 @@
 - (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
     if( (self = [self init]) ){
         RRGameLayer *gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor];
-#if TARGET_IPHONE_SIMULATOR
-        [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor: playerColor]];
-#else
         [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
+
+        if( numberOfPlayers == 1 ){      
+#if TARGET_IPHONE_SIMULATOR
+            [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor: playerColor]];
 #endif
-        if( numberOfPlayers == 1 ){
             [gameLayer setPlayer2: [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)]];
         }
          

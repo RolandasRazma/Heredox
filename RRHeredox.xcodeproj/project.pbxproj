@@ -242,6 +242,8 @@
 		F06582D014CA7BE20033B4F5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582CF14CA7BE20033B4F5 /* GameKit.framework */; };
 		F065844114CA7BE60033B4F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F065844014CA7BE60033B4F5 /* main.m */; };
 		F065870214CA7ED40033B4F5 /* RRGameDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F06586FF14CA7ED40033B4F5 /* RRGameDelegate.m */; };
+		F06F0D6A15B5B19D00526BDB /* CGGeometry+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F06F0D6915B5B19D00526BDB /* CGGeometry+UDAdditions.m */; };
+		F06F0D6B15B5B19D00526BDB /* CGGeometry+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F06F0D6915B5B19D00526BDB /* CGGeometry+UDAdditions.m */; };
 		F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
 		F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
 		F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD114CA92F000665366 /* OpenGL.framework */; };
@@ -549,6 +551,8 @@
 		F065844014CA7BE60033B4F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F06586FE14CA7ED40033B4F5 /* RRGameDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameDelegate.h; sourceTree = "<group>"; };
 		F06586FF14CA7ED40033B4F5 /* RRGameDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameDelegate.m; sourceTree = "<group>"; };
+		F06F0D6815B5B19D00526BDB /* CGGeometry+UDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+UDAdditions.h"; sourceTree = "<group>"; };
+		F06F0D6915B5B19D00526BDB /* CGGeometry+UDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+UDAdditions.m"; sourceTree = "<group>"; };
 		F07476F415B1DEA500B69890 /* RRHeredox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRHeredox.h; sourceTree = "<group>"; };
 		F07476F515B1DEA500B69890 /* RRHeredox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRHeredox.m; sourceTree = "<group>"; };
 		F0CD5FCC14CA92F000665366 /* Heredox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heredox.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -980,6 +984,7 @@
 				F0EE553F152C536F004B1792 /* BlocksAdditions */,
 				F0FDBCAD14CB01B300CD1FE6 /* UDLayer */,
 				F043C4F114CAF08400BF47DE /* UDMacros */,
+				F06F0D6715B5B19D00526BDB /* CGGeometryAdditions */,
 				F043C4F414CAF08400BF47DE /* UDMath */,
 			);
 			path = Support;
@@ -1109,6 +1114,15 @@
 				F0E3F7A315B41FBC00599E95 /* RRGameScene */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F06F0D6715B5B19D00526BDB /* CGGeometryAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				F06F0D6815B5B19D00526BDB /* CGGeometry+UDAdditions.h */,
+				F06F0D6915B5B19D00526BDB /* CGGeometry+UDAdditions.m */,
+			);
+			path = CGGeometryAdditions;
 			sourceTree = "<group>";
 		};
 		F07476F315B1DE9800B69890 /* Model */ = {
@@ -1534,6 +1548,7 @@
 				F0E3F7B015B41FBC00599E95 /* RRGameScene.m in Sources */,
 				F0E3F7B215B41FBC00599E95 /* RRTile.m in Sources */,
 				F063238015B43A03005715E7 /* RRPlayer.m in Sources */,
+				F06F0D6A15B5B19D00526BDB /* CGGeometry+UDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1659,6 +1674,7 @@
 				F0E3F7B115B41FBC00599E95 /* RRGameScene.m in Sources */,
 				F0E3F7B315B41FBC00599E95 /* RRTile.m in Sources */,
 				F063238115B43A03005715E7 /* RRPlayer.m in Sources */,
+				F06F0D6B15B5B19D00526BDB /* CGGeometry+UDAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

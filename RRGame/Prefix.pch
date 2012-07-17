@@ -14,6 +14,7 @@
     #import "UDMath.h"
     #import "UDMacros.h"
     #import "NSMutableArray+UDAdditions.h"
+    #import "CGGeometry+UDAdditions.h"
 
     #import "RRHeredox.h"
 #endif

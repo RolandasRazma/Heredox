@@ -139,7 +139,7 @@
 
 
 - (RRTileEdge)edgeTop {
-    switch ( (int)self.rotation ) {
+    switch ( (int)roundf(self.rotation) ) {
         case  0: return _edgeTop;
         case 90: return _edgeLeft;
         case 180: return _edgeBottom;
@@ -151,7 +151,7 @@
 
 
 - (RRTileEdge)edgeLeft {
-    switch ( (int)self.rotation ) {
+    switch ( (int)roundf(self.rotation) ) {
         case 0: return _edgeLeft;
         case 90: return _edgeBottom;
         case 180: return _edgeRight;
@@ -163,7 +163,7 @@
 
 
 - (RRTileEdge)edgeBottom {
-    switch ( (int)self.rotation ) {
+    switch ( (int)roundf(self.rotation) ) {
         case 0: return _edgeBottom;
         case 90: return _edgeRight;
         case 180: return _edgeTop;
@@ -175,7 +175,7 @@
 
 
 - (RRTileEdge)edgeRight {
-    switch ( (int)self.rotation ) {
+    switch ( (int)roundf(self.rotation) ) {
         case 0: return _edgeRight;
         case 90: return _edgeTop;
         case 180: return _edgeLeft;

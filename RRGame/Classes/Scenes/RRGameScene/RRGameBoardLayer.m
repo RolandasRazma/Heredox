@@ -203,6 +203,8 @@
     NSUInteger black = 0;
     
     [self countSymbolsAtTile:_activeTile white:&white black:&black];
+    
+    NSLog(@"white:%lu black:%lu", white, black);
 
     if( black ){
         [self willChangeValueForKey: @"symbolsBlack"];
@@ -219,7 +221,7 @@
 
 
 - (void)countSymbolsAtTile:(RRTile *)tile white:(NSUInteger *)white black:(NSUInteger *)black {
-    CGPoint gridLocation = _activeTile.positionInGrid;
+    CGPoint gridLocation = CGPointRound(_activeTile.positionInGrid);
     
     NSUInteger whiteSymbols = 0;
     NSUInteger blackSymbols = 0;
@@ -227,7 +229,7 @@
     for( RRTile *tile in self.children ){
         if( [tile isEqual:_activeTile] ) continue;
         
-        CGPoint positionInGrid = tile.positionInGrid;
+        CGPoint positionInGrid = CGPointRound(tile.positionInGrid);
         
         if( positionInGrid.x +1 == gridLocation.x && positionInGrid.y == gridLocation.y ){
             if( _activeTile.edgeLeft == tile.edgeRight && _activeTile.edgeLeft != RRTileEdgeNone ){

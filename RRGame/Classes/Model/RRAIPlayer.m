@@ -32,7 +32,7 @@
         CGPoint positionInGrid = tile.positionInGrid;
 
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x +1, positionInGrid.y)] ){
-            NSLog(@"x +1");
+            // NSLog(@"x +1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x +1, positionInGrid.y)];
             if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
@@ -41,7 +41,7 @@
         }
         
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x -1, positionInGrid.y)] ){
-            NSLog(@"x -1");
+            // NSLog(@"x -1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x -1, positionInGrid.y)];
             if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
@@ -50,7 +50,7 @@
         }
         
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x, positionInGrid.y +1)] ){
-            NSLog(@"y +1");
+            // NSLog(@"y +1");
 
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x, positionInGrid.y +1)];
             if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
@@ -59,7 +59,7 @@
         }
         
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x, positionInGrid.y -1)] ){
-            NSLog(@"y -1");
+            // NSLog(@"y -1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x, positionInGrid.y -1)];
             if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
@@ -72,7 +72,7 @@
     [activeTile setPosition:activeTilePosition];
     [activeTile setRotation:0];
     
-    NSLog(@"!move to: {%.f, %.f} at angle: %.f confidence: %.2f", tileMove.positionInGrid.x, tileMove.positionInGrid.y, tileMove.rotation, tileMove.score);
+    // NSLog(@"!move to: {%.f, %.f} at angle: %.f confidence: %.2f", tileMove.positionInGrid.x, tileMove.positionInGrid.y, tileMove.rotation, tileMove.score);
     
     return tileMove;
 }
@@ -108,7 +108,7 @@
             if(   tileOnTop.edgeBottom == RRTileEdgeNone 
                && (RRPlayerColor)activeTile.edgeTop != RRTileEdgeNone 
                && (RRPlayerColor)activeTile.edgeTop != self.playerColor ){
-                moveValue += 0.3f;
+                moveValue += 0.5f;
                 // NSLog(@"UP blocking active tile top with empty upper tile at {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
             
@@ -116,14 +116,14 @@
             if(   tileOnTop.edgeBottom != RRTileEdgeNone 
                && tileOnTop.edgeBottom != (RRTileEdge)self.playerColor 
                && (RRPlayerColor)activeTile.edgeTop == RRTileEdgeNone ){
-                moveValue += 0.3f;
+                moveValue += 0.5f;
                 // NSLog(@"UP blocking upper tile bottom with empty upper tile at {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
             
             // jeigu as blokuoju savo spalva su virsutiniu -
             if(   (RRPlayerColor)activeTile.edgeTop == self.playerColor
                && (RRPlayerColor)tileOnTop.edgeBottom != self.playerColor ){
-                moveValue -= 0.3f;
+                moveValue -= 0.5f;
                 // NSLog(@"UP if im blocking my upper tile at {%.f, %.f} - substract points", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
         }
@@ -135,7 +135,7 @@
             if(   tileOnRight.edgeLeft == RRTileEdgeNone 
                && (RRPlayerColor)activeTile.edgeRight != RRTileEdgeNone 
                && (RRPlayerColor)activeTile.edgeRight != self.playerColor ){
-                moveValue += 0.3f;
+                moveValue += 0.5f;
                 // NSLog(@"RIGHT #1 {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
             
@@ -143,14 +143,14 @@
             if(   tileOnRight.edgeLeft != RRTileEdgeNone 
                && tileOnRight.edgeLeft != (RRTileEdge)self.playerColor 
                && (RRPlayerColor)activeTile.edgeRight == RRTileEdgeNone ){
-                moveValue += 0.3f;
+                moveValue += 0.5f;
                 // NSLog(@"RIGHT #2 {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
             
             // jeigu as blokuoju savo spalva su virsutiniu -
             if(   (RRPlayerColor)activeTile.edgeRight == self.playerColor
                && (RRPlayerColor)tileOnRight.edgeLeft != self.playerColor ){
-                moveValue -= 0.3f;
+                moveValue -= 0.5f;
                 // NSLog(@"RIGHT #3 {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
         }
@@ -162,7 +162,7 @@
             if(   tileOnBottom.edgeTop == RRTileEdgeNone 
                && (RRPlayerColor)activeTile.edgeBottom != RRTileEdgeNone 
                && (RRPlayerColor)activeTile.edgeBottom != self.playerColor ){
-                moveValue += 0.3f;
+                moveValue += 0.5f;
                 // NSLog(@"DOWN blocking active tile bottom with empty lower tile at {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
             
@@ -170,14 +170,14 @@
             if(   tileOnBottom.edgeTop != RRTileEdgeNone 
                && tileOnBottom.edgeTop != (RRTileEdge)self.playerColor 
                && (RRPlayerColor)activeTile.edgeBottom == RRTileEdgeNone ){
-                moveValue += 0.3f;
+                moveValue += 0.5f;
                 // NSLog(@"DOWN blocking bottom tile top with empty bottom tile at {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
             
             // jeigu as blokuoju savo spalva su virsutiniu -
             if(   (RRPlayerColor)activeTile.edgeBottom == self.playerColor
                && (RRPlayerColor)tileOnBottom.edgeTop  != self.playerColor ){
-                moveValue -= 0.3f;
+                moveValue -= 0.5f;
                 // NSLog(@"DOWN if im blocking my bottom tile at {%.f, %.f} - substract points", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
         }
@@ -189,7 +189,7 @@
             if(   tileOnLeft.edgeRight == RRTileEdgeNone 
                && (RRPlayerColor)activeTile.edgeLeft != RRTileEdgeNone 
                && (RRPlayerColor)activeTile.edgeLeft != self.playerColor ){
-                moveValue += 0.3f;
+                moveValue += 0.5f;
                 // NSLog(@"LEFT #1 {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
             
@@ -197,28 +197,22 @@
             if(   tileOnLeft.edgeRight != RRTileEdgeNone 
                && tileOnLeft.edgeRight != (RRTileEdge)self.playerColor 
                && (RRPlayerColor)activeTile.edgeLeft == RRTileEdgeNone ){
-                moveValue += 0.3f;
+                moveValue += 0.5f;
                 // NSLog(@"LEFT #2 {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
             
             // jeigu as blokuoju savo spalva su virsutiniu -
             if(   (RRPlayerColor)activeTile.edgeLeft  == self.playerColor
                && (RRPlayerColor)tileOnLeft.edgeRight != self.playerColor ){
-                moveValue -= 0.3f;
+                moveValue -= 0.5f;
                 // NSLog(@"LEFT #3 {%.f, %.f}", activeTile.positionInGrid.x, activeTile.positionInGrid.y);
             }
         }
-        
-        
-        NSLog(@"!moveValue: %f VS %f (%i %i)", moveValue, tileMove.score, moveValue>0.0f, tileMove.score>0.0f);
-        
         
         if( (int)(moveValue *1000) >= (int)(tileMove.score *1000) ){
             tileMove.score    = moveValue;
             tileMove.rotation = angle;
             tileMove.positionInGrid = activeTile.positionInGrid;
-            
-            NSLog(@"activeTile.positionInGrid: %@", NSStringFromCGPoint(activeTile.positionInGrid));
         }
     }
     

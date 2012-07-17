@@ -141,8 +141,7 @@
 
 
 - (void)endTurn {
-    NSLog(@"------ endTurn --------");
-    
+
     if( [_gameBoardLayer haltTilePlaces] ){
 
         if( _deck.count > 0 ){
@@ -175,6 +174,7 @@
         }
         
     }
+    
 }
 
 
@@ -195,7 +195,7 @@
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.1f],
                                                    [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
                                                                                                           tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
-                                                   [CCRotateTo actionWithDuration:0.2f *tileMove.rotation /90.0f angle:tileMove.rotation],
+                                                   [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.0f],
                                                    [CCCallBlock actionWithBlock:^{ [self endTurn]; }],
                                                    nil]];      
@@ -216,7 +216,7 @@
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.1f],
                                                    [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
                                                                                                           tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
-                                                   [CCRotateTo actionWithDuration:0.2f *tileMove.rotation /90.0f angle:tileMove.rotation],
+                                                   [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.0f],
                                                    [CCCallBlock actionWithBlock:^{ [self endTurn]; }],
                                                    nil]];
@@ -270,7 +270,7 @@
     
     NSUInteger seed = time(NULL);
     seed = 1342530709;
-    NSLog(@"game seed: %i", seed);
+    NSLog(@"game seed: %lu", seed);
     [_deck shuffleWithSeed:seed];
 
     CGSize winSize = [[CCDirector sharedDirector] winSize];
