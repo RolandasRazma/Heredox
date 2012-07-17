@@ -12,6 +12,7 @@
 #import "RRGameBoardLayer.h"
 #import "UDActionDestroy.h"
 #import "RRAIPlayer.h"
+#import "RRMenuScene.h"
 
 
 @implementation RRGameLayer {
@@ -21,6 +22,7 @@
     RRGameBoardLayer    *_gameBoardLayer;
     
     RRPlayerColor       _playerColor;
+    RRPlayerColor       _firstPlayerColor;
     
     CCLabelTTF          *_symbolsBlackLabel;
     CCLabelTTF          *_symbolsWhiteLabel;
@@ -28,6 +30,10 @@
     
     RRPlayer            *_player1;
     RRPlayer            *_player2;
+    
+    CCSprite            *_backgroundBlackSprite;
+    CCSprite            *_backgroundWhiteSprite;
+    UDSpriteButton      *_resetGameButton;
 }
 
 
@@ -88,15 +94,39 @@
         [self setUserInteractionEnabled:YES];
         
         _gameMode   = gameMode;
-        _playerColor= playerColor;
+        _playerColor= _firstPlayerColor = playerColor;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"RRBackground.png"];
-        [backgroundSprite setAnchorPoint:CGPointZero];
-        [self addChild:backgroundSprite z:-1];
+        CCLayer *backgroundLayer = [CCLayer node];
+        [self addChild:backgroundLayer z: -1];
+        
+        _backgroundBlackSprite = [CCSprite spriteWithFile:@"RRBackgroundBlack.png"];
+        [_backgroundBlackSprite setAnchorPoint:CGPointZero];
+        [backgroundLayer addChild:_backgroundBlackSprite];
 
+        _backgroundWhiteSprite = [CCSprite spriteWithFile:@"RRBackgroundWhite.png"];
+        [_backgroundWhiteSprite setAnchorPoint:CGPointZero];
+        [backgroundLayer addChild:_backgroundWhiteSprite];
+        
+        if( _playerColor == RRPlayerColorBlack ){
+            [_backgroundWhiteSprite setVisible: NO];
+        }else{
+            [_backgroundBlackSprite setVisible: NO];
+        }
+
+        
+
+
+        
+        // Add menu button
+        UDSpriteButton *buttonHome = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHome.png"];
+        [buttonHome setPosition:CGPointMake(655, 915)];
+        [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
+        [self addChild:buttonHome];
+        
+        
         // Add End Turn
         _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonDone.png"];
         [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
@@ -140,6 +170,13 @@
 }
 
 
+- (void)showMenu {
+
+	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+
+}
+
+
 - (void)endTurn {
     NSLog(@"-- endTurn --");
     
@@ -147,12 +184,29 @@
 
         if( _deck.count > 0 ){
             CCSprite *playerSprite;
+            
             if( _playerColor == RRPlayerColorBlack ){
                 _playerColor = RRPlayerColorWhite;
                 playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileWhite.png"];
+
+                [_backgroundWhiteSprite setVisible:YES];
+                [_backgroundWhiteSprite setOpacity:0];
+                [_backgroundWhiteSprite runAction: [CCSequence actions:
+                                                    [CCFadeIn actionWithDuration:0.7f],
+                                                    [CCCallBlock actionWithBlock:^{ [_backgroundBlackSprite setVisible:NO]; }], nil]];
+                [_backgroundWhiteSprite.parent reorderChild:_backgroundWhiteSprite z:1];
+                [_backgroundBlackSprite.parent reorderChild:_backgroundBlackSprite z:0];
             }else{
                 _playerColor = RRPlayerColorBlack;
-                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileBlack.png"];                
+                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileBlack.png"];
+                
+                [_backgroundBlackSprite setVisible:YES];
+                [_backgroundBlackSprite setOpacity:0];
+                [_backgroundBlackSprite runAction: [CCSequence actions:
+                                                    [CCFadeIn actionWithDuration:0.7f],
+                                                    [CCCallBlock actionWithBlock:^{ [_backgroundWhiteSprite setVisible:NO]; }], nil]];
+                [_backgroundBlackSprite.parent reorderChild:_backgroundBlackSprite z:1];
+                [_backgroundWhiteSprite.parent reorderChild:_backgroundWhiteSprite z:0];
             }
             
             CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -162,9 +216,7 @@
             [playerSprite runAction: [CCSequence actions:
                                       [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:NO]; }],
                                       [CCScaleTo actionWithDuration:0.1f scale:1.2f],
-#if !TARGET_IPHONE_SIMULATOR
                                       [CCDelayTime actionWithDuration:0.7f],
-#endif
                                       [CCCallFunc actionWithTarget:self selector:@selector(takeNewTile)],
                                       [CCDelayTime actionWithDuration:0.5f],
                                       [CCScaleTo actionWithDuration:0.3f scale:1.0f],
@@ -173,11 +225,41 @@
                                       [CCCallFunc actionWithTarget:self selector:@selector(newTurn)],
                                       [UDActionDestroy action], nil]];
         }else{
+            if( !_resetGameButton ){
+                _resetGameButton = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHeredox.png"];
+                [_resetGameButton setPosition:CGPointMake(405, 66)];
+                [_resetGameButton setOpacity:0];
+                [_resetGameButton addBlock: ^{ [self resetGame]; } forControlEvents: UDButtonEventTouchUpInside];
+                [self addChild:_resetGameButton];
+            }
+            
+            [_resetGameButton runAction:[CCFadeIn actionWithDuration:0.3f]];
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
         }
         
     }
     
+}
+
+
+- (void)resetGame {
+    [self resetDeckForGameMode:_gameMode];
+    [_gameBoardLayer resetBoardForGameMode: _gameMode];
+    
+    _playerColor = _firstPlayerColor;
+    
+    if( _playerColor == RRPlayerColorBlack ){
+        [_backgroundWhiteSprite setVisible: NO];
+        [_backgroundBlackSprite setVisible: YES];
+    }else{
+        [_backgroundBlackSprite setVisible: NO];
+        [_backgroundWhiteSprite setVisible: YES];
+    }
+    
+    // Make first player move as it makes no sense
+    [_gameBoardLayer addTile: [self takeTopTile] 
+                    animated: NO];
+    [self endTurn];
 }
 
 
@@ -276,11 +358,14 @@
     NSLog(@"game seed: %u", seed);
     [_deck shuffleWithSeed:seed];
 
+    CGFloat offsetY = 0;
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     for( RRTile *tile in [_deck reverseObjectEnumerator] ){
         [tile setBackSideVisible: (gameMode == RRGameModeClosed)];
-        [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5f, tile.textureRect.size.height /1.5f)];
+        [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5f, tile.textureRect.size.height /1.5f +offsetY)];
         [self addChild:tile z:-1];
+        
+        offsetY += (isDeviceIPad()?6.0f:3.0f);
     }
 }
 
@@ -317,6 +402,25 @@
         [_symbolsWhiteLabel runAction: [CCSequence actions:
                                         [CCScaleTo actionWithDuration:0.3f scale:1.1f],
                                         [CCScaleTo actionWithDuration:0.3f scale:1.0f], nil]];
+    }
+    
+}
+
+
+#pragma mark -
+#pragma mark UDLayer
+
+
+- (BOOL)touchBeganAtLocation:(CGPoint)location {
+    if( _deck.count == 0 ) return NO;
+    return CGRectContainsPoint([[_deck objectAtIndex:0] boundingBox], location);
+}
+
+
+- (void)touchEndedAtLocation:(CGPoint)location {
+    
+    if( CGRectContainsPoint([[_deck objectAtIndex:0] boundingBox], location) ){
+        [self endTurn];
     }
     
 }

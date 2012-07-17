@@ -7,9 +7,10 @@
 //
 
 #import "CCLayer.h"
+#import "UDLayer.h"
 
 
-@interface RRPickColorLayer : CCLayer
+@interface RRPickColorLayer : UDLayer
 
 + (id)layerWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
 - (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers;

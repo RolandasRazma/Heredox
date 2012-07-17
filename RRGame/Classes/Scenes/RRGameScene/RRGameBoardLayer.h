@@ -24,5 +24,6 @@
 - (BOOL)canPlaceTileAtGridLocation:(CGPoint)gridLocation;
 - (void)countSymbolsAtTile:(RRTile *)tile white:(NSUInteger *)white black:(NSUInteger *)black;
 - (RRTile *)tileAtGridPosition:(CGPoint)gridPosition;
+- (void)resetBoardForGameMode:(RRGameMode)gameMode;
 
 @end

@@ -73,7 +73,6 @@
         [self setUserInteractionEnabled:YES];
                                       
         _gameMode   = gameMode;
-        _gridBounds = CGRectNull;
         _emptyTile = [[RRTile tileWithEdgeTop:RRTileEdgeNone left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeNone] retain];
         
         // Reset board
@@ -163,7 +162,13 @@
 - (void)resetBoardForGameMode:(RRGameMode)gameMode {
     [self removeAllChildrenWithCleanup:YES];
     
+    [self willChangeValueForKey: @"symbolsBlack"];
+    [self willChangeValueForKey: @"symbolsWhite"];
     _symbolsBlack = _symbolsWhite = 0;
+    [self didChangeValueForKey: @"symbolsWhite"];
+    [self didChangeValueForKey: @"symbolsBlack"];
+    
+    _gridBounds = CGRectNull;
 }
 
 

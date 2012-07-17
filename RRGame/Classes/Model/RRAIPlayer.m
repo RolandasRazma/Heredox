@@ -83,9 +83,7 @@
     RRTile *activeTile = gameBoard.activeTile;
     
     [activeTile setPositionInGrid:positionInGrid];
-    
-    NSLog(@"RRTileMoveZero: %f", tileMove.score);
-    
+
     // TODO: padaryti tikrinima ar nenusuka savo spalvos uz ekrano ribu arba i siena
     
     for( NSUInteger angle=0; angle<=270; angle += 90 ){
