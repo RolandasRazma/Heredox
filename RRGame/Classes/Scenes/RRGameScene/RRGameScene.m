@@ -9,6 +9,7 @@
 #import "RRGameScene.h"
 #import "RRGameLayer.h"
 #import "RRAIPlayer.h"
+#import "RRPlayer.h"
 
 
 @implementation RRGameScene
@@ -26,9 +27,15 @@
 - (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
     if( (self = [self init]) ){
         RRGameLayer *gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor];
+#if TARGET_IPHONE_SIMULATOR
+        [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor: playerColor]];
+#else
+        [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
+#endif
         if( numberOfPlayers == 1 ){
-            [gameLayer setAI: [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)]];
+            [gameLayer setPlayer2: [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)]];
         }
+         
         [self addChild: gameLayer];
     }
     return self;

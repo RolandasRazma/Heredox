@@ -35,7 +35,7 @@
             NSLog(@"x +1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x +1, positionInGrid.y)];
-            if( bestMove.score >= tileMove.score ){
+            if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
                 tileMove = bestMove;
             }
         }
@@ -44,7 +44,7 @@
             NSLog(@"x -1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x -1, positionInGrid.y)];
-            if( bestMove.score >= tileMove.score ){
+            if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
                 tileMove = bestMove;
             }
         }
@@ -53,7 +53,7 @@
             NSLog(@"y +1");
 
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x, positionInGrid.y +1)];
-            if( bestMove.score >= tileMove.score ){
+            if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
                 tileMove = bestMove;
             }
         }
@@ -62,7 +62,7 @@
             NSLog(@"y -1");
             
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x, positionInGrid.y -1)];
-            if( bestMove.score >= tileMove.score ){
+            if( (int)(bestMove.score *1000) >= (int)(tileMove.score *1000) ){
                 tileMove = bestMove;
             }
         }
@@ -91,15 +91,16 @@
         
         NSUInteger white, black;
         [gameBoard countSymbolsAtTile:activeTile white:&white black:&black];
-        
+
+        // Count how much points you gain
         CGFloat moveValue;
         if( self.playerColor == RRPlayerColorBlack ){
-            moveValue = (float)black -white;
+            moveValue = (float)black -(float)white;
         }else if( self.playerColor == RRPlayerColorWhite ){
-            moveValue = (float)white -black;
+            moveValue = (float)white -(float)black;
         }
-        
-        
+
+        // Count how bad this move is in other means
         RRTile *tileOnTop, *tileOnRight, *tileOnBottom, *tileOnLeft;
         if( (tileOnTop = [gameBoard tileAtGridPosition:CGPointMake(positionInGrid.x, positionInGrid.y +1)]) ) {
             
@@ -209,25 +210,15 @@
         }
         
         
+        NSLog(@"!moveValue: %f VS %f (%i %i)", moveValue, tileMove.score, moveValue>0.0f, tileMove.score>0.0f);
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        if( moveValue >= tileMove.score ){
+        if( (int)(moveValue *1000) >= (int)(tileMove.score *1000) ){
             tileMove.score    = moveValue;
             tileMove.rotation = angle;
             tileMove.positionInGrid = activeTile.positionInGrid;
+            
+            NSLog(@"activeTile.positionInGrid: %@", NSStringFromCGPoint(activeTile.positionInGrid));
         }
     }
     

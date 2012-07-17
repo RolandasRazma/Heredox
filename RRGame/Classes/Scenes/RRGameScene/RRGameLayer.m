@@ -26,7 +26,8 @@
     CCLabelTTF          *_symbolsWhiteLabel;
     UDSpriteButton      *_buttonEndTurn;
     
-    RRAIPlayer                *_AI;
+    RRPlayer            *_player1;
+    RRPlayer            *_player2;
 }
 
 
@@ -140,6 +141,8 @@
 
 
 - (void)endTurn {
+    NSLog(@"------ endTurn --------");
+    
     if( [_gameBoardLayer haltTilePlaces] ){
 
         if( _deck.count > 0 ){
@@ -176,20 +179,49 @@
 
 
 - (void)newTurn {
-    
-    if( _AI && _AI.playerColor == _playerColor ){
-        [_gameBoardLayer setUserInteractionEnabled:NO];
 
-        RRTileMove tileMove = [_AI bestMoveOnBoard:_gameBoardLayer];
-
-        [_gameBoardLayer.activeTile runAction:[CCSequence actions:
-                                               [CCScaleTo actionWithDuration:0.0f scale:1.1f],
-                                               [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
-                                                                                                      tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
-                                               [CCRotateBy actionWithDuration:0.2f *tileMove.rotation /90.0f angle:tileMove.rotation],
-                                               [CCScaleTo actionWithDuration:0.0f scale:1.0f],
-                                               [CCCallBlock actionWithBlock:^{ [self endTurn]; }],
-                                               nil]];
+    if( _player1.playerColor == _playerColor ){
+        if( [_player1 isKindOfClass:[RRAIPlayer class]] ){
+            [_gameBoardLayer setUserInteractionEnabled:NO];
+            
+            RRTileMove tileMove = [(RRAIPlayer *)_player1 bestMoveOnBoard:_gameBoardLayer];
+            
+#if TARGET_IPHONE_SIMULATOR
+            [_gameBoardLayer.activeTile setRotation:tileMove.rotation];
+            [_gameBoardLayer.activeTile setPositionInGrid:tileMove.positionInGrid];
+            [self endTurn];
+#else
+            [_gameBoardLayer.activeTile runAction:[CCSequence actions:
+                                                   [CCScaleTo actionWithDuration:0.0f scale:1.1f],
+                                                   [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
+                                                                                                          tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
+                                                   [CCRotateTo actionWithDuration:0.2f *tileMove.rotation /90.0f angle:tileMove.rotation],
+                                                   [CCScaleTo actionWithDuration:0.0f scale:1.0f],
+                                                   [CCCallBlock actionWithBlock:^{ [self endTurn]; }],
+                                                   nil]];      
+#endif
+        }
+    }else if( _player2.playerColor == _playerColor ){
+        if( [_player2 isKindOfClass:[RRAIPlayer class]] ){
+            [_gameBoardLayer setUserInteractionEnabled:NO];
+            
+            RRTileMove tileMove = [(RRAIPlayer *)_player2 bestMoveOnBoard:_gameBoardLayer];
+            
+#if TARGET_IPHONE_SIMULATOR
+            [_gameBoardLayer.activeTile setRotation:tileMove.rotation];
+            [_gameBoardLayer.activeTile setPositionInGrid:tileMove.positionInGrid];
+            [self endTurn];
+#else
+            [_gameBoardLayer.activeTile runAction:[CCSequence actions:
+                                                   [CCScaleTo actionWithDuration:0.0f scale:1.1f],
+                                                   [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
+                                                                                                          tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
+                                                   [CCRotateTo actionWithDuration:0.2f *tileMove.rotation /90.0f angle:tileMove.rotation],
+                                                   [CCScaleTo actionWithDuration:0.0f scale:1.0f],
+                                                   [CCCallBlock actionWithBlock:^{ [self endTurn]; }],
+                                                   nil]];
+#endif
+        }
     }
     
 }
@@ -237,6 +269,7 @@
     [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
     
     NSUInteger seed = time(NULL);
+    seed = 1342530709;
     NSLog(@"game seed: %i", seed);
     [_deck shuffleWithSeed:seed];
 
@@ -271,7 +304,7 @@
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
         [_symbolsBlackLabel setString:[NSString stringWithFormat:@"Black: %i", _gameBoardLayer.symbolsBlack]];
-        
+
         [_symbolsBlackLabel runAction: [CCSequence actions:
                                         [CCScaleTo actionWithDuration:0.3f scale:1.1f],
                                         [CCScaleTo actionWithDuration:0.3f scale:1.0f], nil]];
@@ -286,5 +319,5 @@
 }
 
 
-@synthesize AI=_AI;
+@synthesize player1=_player1, player2=_player2;
 @end
