@@ -22,8 +22,17 @@
     [self reorderChild:fadeToSprite z:NSUIntegerMax];
     
     [fadeToSprite setVisible:YES];
-    [fadeToSprite setOpacity:0];
     
+    
+    // No animation
+    if( duration == 0.0f ){
+        [self hideSpritesExcept: fadeToSprite];
+        
+        return YES;
+    }
+    
+    
+    [fadeToSprite setOpacity:0];
     [fadeToSprite runAction: [CCSequence actions: 
                               [CCFadeIn actionWithDuration:duration],
                               [CCCallFuncN actionWithTarget:self selector:@selector(hideSpritesExcept:)],
@@ -36,7 +45,9 @@
 - (void)hideSpritesExcept:(CCSprite *)sprite {
     for( CCSprite *child in self.children ){
         if( [child isEqual:sprite] ) continue;
+        
         [child setVisible:NO];
+        [child setOpacity:255];
     }
 }
 

@@ -14,6 +14,7 @@
 #import "RRAIPlayer.h"
 #import "RRMenuScene.h"
 #import "RRCrossfadeLayer.h"
+#import "RRScoreLayer.h"
 
 
 @implementation RRGameLayer {
@@ -24,15 +25,14 @@
     
     RRPlayerColor       _playerColor;
     RRPlayerColor       _firstPlayerColor;
-    
-    CCLabelTTF          *_symbolsBlackLabel;
-    CCLabelTTF          *_symbolsWhiteLabel;
+
     UDSpriteButton      *_buttonEndTurn;
     
     RRPlayer            *_player1;
     RRPlayer            *_player2;
     
     RRCrossfadeLayer    *_backgroundLayer;
+    RRScoreLayer        *_scoreLayer;
     UDSpriteButton      *_resetGameButton;
 }
 
@@ -126,20 +126,9 @@
         [_buttonEndTurn setPosition:CGPointMake(winSize.width -[RRTile tileSize] /1.5f, [RRTile tileSize] /1.5f)];
         [self addChild:_buttonEndTurn z:-2];
         
-
         // Add score labels
-        _symbolsBlackLabel = [CCLabelTTF labelWithString:@"Black: 0" fontName:@"Courier" fontSize: (isDeviceIPad()?40:20)];
-        [_symbolsBlackLabel setAnchorPoint:CGPointMake(0, 1)];
-        [_symbolsBlackLabel setPosition:CGPointMake(5, winSize.height)];
-        [_symbolsBlackLabel setColor:ccBLACK];
-        [self addChild:_symbolsBlackLabel];
-        
-        _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"White: 0" fontName:@"Courier" fontSize: (isDeviceIPad()?40:20)];
-        [_symbolsWhiteLabel setAnchorPoint:CGPointMake(1, 1)];
-        [_symbolsWhiteLabel setPosition:CGPointMake(winSize.width -5, winSize.height)];
-        [_symbolsWhiteLabel setColor:ccBLACK];
-        [self addChild:_symbolsWhiteLabel];
-        
+        _scoreLayer = [RRScoreLayer node];
+        [self addChild:_scoreLayer];
         
         // Add board layer
         _gameBoardLayer = [[RRGameBoardLayer alloc] initWithGameMode: _gameMode];
@@ -209,7 +198,7 @@
                 [_resetGameButton addBlock: ^{ [self resetGame]; } forControlEvents: UDButtonEventTouchUpInside];
                 [self addChild:_resetGameButton];
             }
-            
+
             [_resetGameButton runAction:[CCFadeIn actionWithDuration:0.3f]];
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
         }
@@ -226,6 +215,7 @@
     _playerColor = _firstPlayerColor;
     
     [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
+    [_resetGameButton runAction:[CCFadeOut actionWithDuration:0.3f]];
     
     // Make first player move as it makes no sense
     [_gameBoardLayer addTile: [self takeTopTile] 
@@ -253,7 +243,7 @@
                                                                                                           tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
                                                    [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.0f],
-                                                   [CCCallBlock actionWithBlock:^{ [self endTurn]; }],
+                                                   [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
                                                    nil]];      
 #endif
         }
@@ -274,7 +264,7 @@
                                                                                                           tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
                                                    [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.0f],
-                                                   [CCCallBlock actionWithBlock:^{ [self endTurn]; }],
+                                                   [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
                                                    nil]];
 #endif
         }
@@ -362,17 +352,9 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
-        [_symbolsBlackLabel setString:[NSString stringWithFormat:@"Black: %i", _gameBoardLayer.symbolsBlack]];
-
-        [_symbolsBlackLabel runAction: [CCSequence actions:
-                                        [CCScaleTo actionWithDuration:0.3f scale:1.1f],
-                                        [CCScaleTo actionWithDuration:0.3f scale:1.0f], nil]];
+        [_scoreLayer setScoreBlack: _gameBoardLayer.symbolsBlack];
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
-        [_symbolsWhiteLabel setString:[NSString stringWithFormat:@"White: %i", _gameBoardLayer.symbolsWhite]];
-        
-        [_symbolsWhiteLabel runAction: [CCSequence actions:
-                                        [CCScaleTo actionWithDuration:0.3f scale:1.1f],
-                                        [CCScaleTo actionWithDuration:0.3f scale:1.0f], nil]];
+        [_scoreLayer setScoreWhite: _gameBoardLayer.symbolsWhite];
     }
     
 }
