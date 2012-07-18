@@ -31,7 +31,7 @@
 
         if( numberOfPlayers == 1 ){      
 #if TARGET_IPHONE_SIMULATOR
-            [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor: playerColor]];
+            // [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor: playerColor]];
 #endif
             [gameLayer setPlayer2: [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)]];
         }

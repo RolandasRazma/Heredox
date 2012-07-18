@@ -236,34 +236,7 @@
             [_gameBoardLayer setUserInteractionEnabled:NO];
             
             RRTileMove tileMove = [(RRAIPlayer *)_player1 bestMoveOnBoard:_gameBoardLayer];
-            
-#if TARGET_IPHONE_SIMULATOR
-            [_gameBoardLayer.activeTile setRotation:tileMove.rotation];
-            [_gameBoardLayer.activeTile setPositionInGrid:tileMove.positionInGrid];
-            [self endTurn];
-#else
-            [_gameBoardLayer.activeTile runAction:[CCSequence actions:
-                                                   [CCScaleTo actionWithDuration:0.0f scale:1.1f],
-                                                   [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
-                                                                                                          tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
-                                                   [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
-                                                   [CCScaleTo actionWithDuration:0.0f scale:1.0f],
-                                                   [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
-                                                   [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
-                                                   nil]];      
-#endif
-        }
-    }else if( _player2.playerColor == _playerColor ){
-        if( [_player2 isKindOfClass:[RRAIPlayer class]] ){
-            [_gameBoardLayer setUserInteractionEnabled:NO];
-            
-            RRTileMove tileMove = [(RRAIPlayer *)_player2 bestMoveOnBoard:_gameBoardLayer];
-            
-#if TARGET_IPHONE_SIMULATOR
-            [_gameBoardLayer.activeTile setRotation:tileMove.rotation];
-            [_gameBoardLayer.activeTile setPositionInGrid:tileMove.positionInGrid];
-            [self endTurn];
-#else
+
             [_gameBoardLayer.activeTile runAction:[CCSequence actions:
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.1f],
                                                    [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
@@ -273,7 +246,22 @@
                                                    [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
                                                    [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
                                                    nil]];
-#endif
+        }
+    }else if( _player2.playerColor == _playerColor ){
+        if( [_player2 isKindOfClass:[RRAIPlayer class]] ){
+            [_gameBoardLayer setUserInteractionEnabled:NO];
+            
+            RRTileMove tileMove = [(RRAIPlayer *)_player2 bestMoveOnBoard:_gameBoardLayer];
+
+            [_gameBoardLayer.activeTile runAction:[CCSequence actions:
+                                                   [CCScaleTo actionWithDuration:0.0f scale:1.1f],
+                                                   [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
+                                                                                                          tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
+                                                   [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
+                                                   [CCScaleTo actionWithDuration:0.0f scale:1.0f],
+                                                   [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
+                                                   [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
+                                                   nil]];
         }
     }
     
