@@ -175,6 +175,10 @@
                 [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorBlack duration:0.7f];
             }
             
+            [self takeNewTile];
+            [self newTurn];
+            
+            /*
             CGSize winSize = [[CCDirector sharedDirector] winSize];
             [playerSprite setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
             [self addChild:playerSprite];
@@ -190,6 +194,7 @@
                                       [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
                                       [CCCallFunc actionWithTarget:self selector:@selector(newTurn)],
                                       [UDActionDestroy action], nil]];
+             */
         }else{
             if( !_resetGameButton ){
                 _resetGameButton = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHeredox.png"];

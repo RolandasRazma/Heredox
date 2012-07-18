@@ -14,11 +14,18 @@
 
 - (BOOL)fadeToSpriteWithTag:(NSInteger)tag duration:(CGFloat)duration {
     if( self.children.count < 2  ) return NO;
-    
-    CCSprite *fadeToSprite = (CCSprite *)[self getChildByTag:tag];
-    
-    if( !fadeToSprite) return NO;
 
+    // Cancel all actions and reset opacity
+    for( CCSprite *child in self.children ){
+        [child stopAllActions];
+        [child setOpacity:255];
+    }
+
+    
+    CCSprite *fadeToSprite;
+    if( !(fadeToSprite= (CCSprite *)[self getChildByTag:tag]) ) return NO;
+
+    
     [self reorderChild:fadeToSprite z:NSUIntegerMax];
     
     [fadeToSprite setVisible:YES];

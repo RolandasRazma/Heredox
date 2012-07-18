@@ -42,26 +42,16 @@
 #pragma mark CCNode
 
 
-#if DEBUG && __CC_PLATFORM_IOS
-- (void)draw {
-    glPushGroupMarkerEXT(0, "-[UDGameScene draw]");
+- (void)setPosition:(CGPoint)position {
+    CGPoint oldPosition = self.position;
     
-	[super draw];
+    [super setPosition:position];
     
-    /*
-    ccDrawColor4B(255, 0, 0, 255);
-
-    for( NSInteger x=-1056; x<=1000; x+=76 ){
-        for( NSInteger y=-1056; y<=1000; y+=76 ){
-            ccDrawLine(CGPointMake(x, y), CGPointMake(x +76, y));
-            ccDrawLine(CGPointMake(x, y), CGPointMake(x, y +76));
-        }
+    if( _activeTile ){
+        [_activeTile setPosition:CGPointMake(_activeTile.position.x +oldPosition.x -position.x, 
+                                             _activeTile.position.y +oldPosition.y -position.y)];
     }
-    */
-
-	glPopGroupMarkerEXT();
 }
-#endif
 
 
 #pragma mark -
@@ -175,7 +165,7 @@
 - (void)addTile:(RRTile *)tile animated:(BOOL)animated {
     _activeTile = tile;
     [self addChild:tile];
-    
+
     if( animated ){
         [tile setOpacity:0];
         [tile runAction:[CCFadeIn actionWithDuration:0.3f]];
@@ -189,7 +179,7 @@
     CGRect newGridBounds;        
     if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid gridBounds:&newGridBounds] ){
         [self checkForNewSymbols];
-        
+
         [_activeTile setScale: 1.0f];
         _activeTile = nil;
         _gridBounds = newGridBounds;
@@ -326,6 +316,7 @@
     newPosition.y += 30;
     
     if( animated ){
+        [self stopAllActions];
         [self runAction: [CCMoveTo actionWithDuration:0.3f position:newPosition]];
     }else{
         [self setPosition:newPosition];
