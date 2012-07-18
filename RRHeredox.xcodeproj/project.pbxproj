@@ -211,6 +211,18 @@
 		F035877515B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877015B2FEE500BBAB82 /* fps_images-ipadhd.png */; };
 		F035877615B2FEE500BBAB82 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877115B2FEE500BBAB82 /* fps_images.png */; };
 		F035877715B2FEE500BBAB82 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877115B2FEE500BBAB82 /* fps_images.png */; };
+		F03C982015B6DCC80091FEEE /* RRRulesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C981F15B6DCC80091FEEE /* RRRulesScene.m */; };
+		F03C982115B6DCC80091FEEE /* RRRulesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C981F15B6DCC80091FEEE /* RRRulesScene.m */; };
+		F03C982415B6DCE90091FEEE /* RRRulesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982315B6DCE90091FEEE /* RRRulesLayer.m */; };
+		F03C982515B6DCE90091FEEE /* RRRulesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982315B6DCE90091FEEE /* RRRulesLayer.m */; };
+		F03C982815B6DE7D0091FEEE /* RROptionsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982715B6DE7D0091FEEE /* RROptionsScene.m */; };
+		F03C982915B6DE7D0091FEEE /* RROptionsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982715B6DE7D0091FEEE /* RROptionsScene.m */; };
+		F03C982C15B6DEB40091FEEE /* RROptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982B15B6DEB40091FEEE /* RROptionsLayer.m */; };
+		F03C982D15B6DEB40091FEEE /* RROptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982B15B6DEB40091FEEE /* RROptionsLayer.m */; };
+		F03C983015B6DF050091FEEE /* RRAboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982F15B6DF050091FEEE /* RRAboutScene.m */; };
+		F03C983115B6DF050091FEEE /* RRAboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982F15B6DF050091FEEE /* RRAboutScene.m */; };
+		F03C983415B6DF2B0091FEEE /* RRAboutLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C983315B6DF2B0091FEEE /* RRAboutLayer.m */; };
+		F03C983515B6DF2B0091FEEE /* RRAboutLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C983315B6DF2B0091FEEE /* RRAboutLayer.m */; };
 		F03EF73215B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */; };
 		F03EF73315B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */; };
 		F03EF74415B042E80085E637 /* textures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74015B042E80085E637 /* textures-hd.plist */; };
@@ -522,6 +534,18 @@
 		F035876F15B2FEE500BBAB82 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		F035877015B2FEE500BBAB82 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		F035877115B2FEE500BBAB82 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
+		F03C981E15B6DCC80091FEEE /* RRRulesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRulesScene.h; sourceTree = "<group>"; };
+		F03C981F15B6DCC80091FEEE /* RRRulesScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRulesScene.m; sourceTree = "<group>"; };
+		F03C982215B6DCE90091FEEE /* RRRulesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRulesLayer.h; sourceTree = "<group>"; };
+		F03C982315B6DCE90091FEEE /* RRRulesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRulesLayer.m; sourceTree = "<group>"; };
+		F03C982615B6DE7D0091FEEE /* RROptionsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RROptionsScene.h; sourceTree = "<group>"; };
+		F03C982715B6DE7D0091FEEE /* RROptionsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RROptionsScene.m; sourceTree = "<group>"; };
+		F03C982A15B6DEB40091FEEE /* RROptionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RROptionsLayer.h; sourceTree = "<group>"; };
+		F03C982B15B6DEB40091FEEE /* RROptionsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RROptionsLayer.m; sourceTree = "<group>"; };
+		F03C982E15B6DF050091FEEE /* RRAboutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAboutScene.h; sourceTree = "<group>"; };
+		F03C982F15B6DF050091FEEE /* RRAboutScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAboutScene.m; sourceTree = "<group>"; };
+		F03C983215B6DF2B0091FEEE /* RRAboutLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAboutLayer.h; sourceTree = "<group>"; };
+		F03C983315B6DF2B0091FEEE /* RRAboutLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAboutLayer.m; sourceTree = "<group>"; };
 		F03EF73015B03E390085E637 /* NSMutableArray+UDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+UDAdditions.h"; sourceTree = "<group>"; };
 		F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+UDAdditions.m"; sourceTree = "<group>"; };
 		F03EF74015B042E80085E637 /* textures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "textures-hd.plist"; sourceTree = "<group>"; };
@@ -972,6 +996,39 @@
 			path = TestFlightSDK;
 			sourceTree = "<group>";
 		};
+		F03C981A15B6DCA00091FEEE /* RRAboutScene */ = {
+			isa = PBXGroup;
+			children = (
+				F03C982E15B6DF050091FEEE /* RRAboutScene.h */,
+				F03C982F15B6DF050091FEEE /* RRAboutScene.m */,
+				F03C983215B6DF2B0091FEEE /* RRAboutLayer.h */,
+				F03C983315B6DF2B0091FEEE /* RRAboutLayer.m */,
+			);
+			path = RRAboutScene;
+			sourceTree = "<group>";
+		};
+		F03C981B15B6DCA00091FEEE /* RROptionsScene */ = {
+			isa = PBXGroup;
+			children = (
+				F03C982615B6DE7D0091FEEE /* RROptionsScene.h */,
+				F03C982715B6DE7D0091FEEE /* RROptionsScene.m */,
+				F03C982A15B6DEB40091FEEE /* RROptionsLayer.h */,
+				F03C982B15B6DEB40091FEEE /* RROptionsLayer.m */,
+			);
+			path = RROptionsScene;
+			sourceTree = "<group>";
+		};
+		F03C981C15B6DCA00091FEEE /* RRRulesScene */ = {
+			isa = PBXGroup;
+			children = (
+				F03C981E15B6DCC80091FEEE /* RRRulesScene.h */,
+				F03C981F15B6DCC80091FEEE /* RRRulesScene.m */,
+				F03C982215B6DCE90091FEEE /* RRRulesLayer.h */,
+				F03C982315B6DCE90091FEEE /* RRRulesLayer.m */,
+			);
+			path = RRRulesScene;
+			sourceTree = "<group>";
+		};
 		F03EF72F15B03E380085E637 /* NSMutableArrayAdditions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1126,6 +1183,9 @@
 			isa = PBXGroup;
 			children = (
 				F0E3F79115B41F9B00599E95 /* RRMenuScene */,
+				F03C981C15B6DCA00091FEEE /* RRRulesScene */,
+				F03C981B15B6DCA00091FEEE /* RROptionsScene */,
+				F03C981A15B6DCA00091FEEE /* RRAboutScene */,
 				F0E3F79A15B41FA900599E95 /* RRPickColorScene */,
 				F0E3F7A315B41FBC00599E95 /* RRGameScene */,
 			);
@@ -1569,6 +1629,12 @@
 				F0E3F7B215B41FBC00599E95 /* RRTile.m in Sources */,
 				F063238015B43A03005715E7 /* RRPlayer.m in Sources */,
 				F06F0D6A15B5B19D00526BDB /* CGGeometry+UDAdditions.m in Sources */,
+				F03C982015B6DCC80091FEEE /* RRRulesScene.m in Sources */,
+				F03C982415B6DCE90091FEEE /* RRRulesLayer.m in Sources */,
+				F03C982815B6DE7D0091FEEE /* RROptionsScene.m in Sources */,
+				F03C982C15B6DEB40091FEEE /* RROptionsLayer.m in Sources */,
+				F03C983015B6DF050091FEEE /* RRAboutScene.m in Sources */,
+				F03C983415B6DF2B0091FEEE /* RRAboutLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1695,6 +1761,12 @@
 				F0E3F7B315B41FBC00599E95 /* RRTile.m in Sources */,
 				F063238115B43A03005715E7 /* RRPlayer.m in Sources */,
 				F06F0D6B15B5B19D00526BDB /* CGGeometry+UDAdditions.m in Sources */,
+				F03C982115B6DCC80091FEEE /* RRRulesScene.m in Sources */,
+				F03C982515B6DCE90091FEEE /* RRRulesLayer.m in Sources */,
+				F03C982915B6DE7D0091FEEE /* RROptionsScene.m in Sources */,
+				F03C982D15B6DEB40091FEEE /* RROptionsLayer.m in Sources */,
+				F03C983115B6DF050091FEEE /* RRAboutScene.m in Sources */,
+				F03C983515B6DF2B0091FEEE /* RRAboutLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

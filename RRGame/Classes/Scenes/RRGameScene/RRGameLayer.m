@@ -100,7 +100,7 @@
 
         // Add background
         CCLayer *backgroundLayer = [CCLayer node];
-        [self addChild:backgroundLayer z: -1];
+        [self addChild:backgroundLayer z:-10];
         
         _backgroundBlackSprite = [CCSprite spriteWithFile:@"RRBackgroundBlack.png"];
         [_backgroundBlackSprite setAnchorPoint:CGPointZero];
@@ -130,12 +130,8 @@
         // Add End Turn
         _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonDone.png"];
         [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
-        if( isDeviceIPad() ){
-            [_buttonEndTurn setPosition:CGPointMake(100, 100)];
-        }else{
-            [_buttonEndTurn setPosition:CGPointMake(50, 50)];
-        }
-        [self addChild:_buttonEndTurn];
+        [_buttonEndTurn setPosition:CGPointMake(winSize.width -[RRTile tileSize] /1.5f, [RRTile tileSize] /1.5f)];
+        [self addChild:_buttonEndTurn z:-2];
         
 
         // Add score labels

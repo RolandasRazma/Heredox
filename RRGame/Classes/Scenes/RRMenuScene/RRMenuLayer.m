@@ -9,6 +9,9 @@
 #import "RRMenuLayer.h"
 #import "UDSpriteButton.h"
 #import "RRPickColorScene.h"
+#import "RRRulesScene.h"
+#import "RROptionsScene.h"
+#import "RRAboutScene.h"
 
 
 @implementation RRMenuLayer
@@ -86,15 +89,21 @@
 
 - (void)showRules {
     
+	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRRulesScene node]]];
+
 }
 
 
 - (void)showOptions {
+
+    [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RROptionsScene node]]];
     
 }
 
 
 - (void)showAbout {
+    
+    [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRAboutScene node]]];
     
 }
 
