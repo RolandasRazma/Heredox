@@ -11,7 +11,21 @@
 #import "RRTile.h"
 
 
-@implementation RRAIPlayer
+@implementation RRAIPlayer {
+    RRAILevel _dificultyLevel;
+}
+
+
+#pragma mark -
+#pragma mark RRPlayer
+
+
+- (id)initWithPlayerColor:(RRPlayerColor)playerColor {
+    if( (self = [super initWithPlayerColor:playerColor]) ){
+        _dificultyLevel = RRAILevelDeacon;
+    }
+    return self;
+}
 
 
 #pragma mark -
@@ -220,4 +234,5 @@
 }
 
 
+@synthesize dificultyLevel=_dificultyLevel;
 @end

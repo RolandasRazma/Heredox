@@ -12,7 +12,16 @@
 @class RRGameBoardLayer;
 
 
+typedef enum RRAILevel : NSInteger {
+    RRAILevelNovice = -1,
+    RRAILevelDeacon = 0,
+    RRAILevelAbbot  = 1,
+} RRAILevel;
+
+
 @interface RRAIPlayer : RRPlayer
+
+@property (nonatomic, assign) RRAILevel dificultyLevel;
 
 - (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard;
 

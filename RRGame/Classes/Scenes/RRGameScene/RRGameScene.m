@@ -29,11 +29,11 @@
         RRGameLayer *gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor];
         [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
 
-        if( numberOfPlayers == 1 ){      
-#if TARGET_IPHONE_SIMULATOR
-            // [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor: playerColor]];
-#endif
-            [gameLayer setPlayer2: [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)]];
+        if( numberOfPlayers == 1 ){
+            RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
+            [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRAILevel"]];
+            
+            [gameLayer setPlayer2: player];
         }
          
         [self addChild: gameLayer];

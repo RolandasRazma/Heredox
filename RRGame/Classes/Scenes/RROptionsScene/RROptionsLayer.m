@@ -9,6 +9,7 @@
 #import "RROptionsLayer.h"
 #import "UDSpriteButton.h"
 #import "RRMenuScene.h"
+#import "RRAIPlayer.h"
 
 
 @implementation RROptionsLayer {
@@ -43,20 +44,21 @@
         
         // Dificulty buttons
         _buttonNovice = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonNovice.png" highliteSpriteFrameName:@"RRButtonNoviceSelected.png"];
-        [_buttonNovice setSelected:YES];
         [_buttonNovice setPosition:CGPointMake(190, 280)];
-        [_buttonNovice addBlock: ^{ } forControlEvents: UDButtonEventTouchUpInside];
+        [_buttonNovice addBlock: ^{ [self setDificultyLevel:RRAILevelNovice]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:_buttonNovice];
         
         _buttonDeacon = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonDeacon.png" highliteSpriteFrameName:@"RRButtonDeaconSelected.png"];
         [_buttonDeacon setPosition:CGPointMake(390, 280)];
-        [_buttonDeacon addBlock: ^{ } forControlEvents: UDButtonEventTouchUpInside];
+        [_buttonDeacon addBlock: ^{ [self setDificultyLevel:RRAILevelDeacon]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:_buttonDeacon];
         
         _buttonAbbot = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonAbbot.png" highliteSpriteFrameName:@"RRButtonAbbotSelected.png"];
         [_buttonAbbot setPosition:CGPointMake(620, 280)];
-        [_buttonAbbot addBlock: ^{ } forControlEvents: UDButtonEventTouchUpInside];
+        [_buttonAbbot addBlock: ^{ [self setDificultyLevel:RRAILevelAbbot]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:_buttonAbbot];
+        
+        [self setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRAILevel"]];
         
         
         // Sound buttons
@@ -81,6 +83,17 @@
 
 - (void)showMenu {
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+}
+
+
+- (void)setDificultyLevel:(RRAILevel)dificultyLevel {
+    
+    [_buttonNovice setSelected:(dificultyLevel==RRAILevelNovice)];
+    [_buttonDeacon setSelected:(dificultyLevel==RRAILevelDeacon)];
+    [_buttonAbbot setSelected:(dificultyLevel==RRAILevelAbbot)];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:dificultyLevel forKey:@"RRAILevel"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
