@@ -316,9 +316,10 @@
     
     NSUInteger seed = time(NULL);
 //    seed = 1342542677;
-    NSLog(@"game seed: %u", seed);
+    UDLog(@"game seed: %u", seed);
     [_deck shuffleWithSeed:seed];
 
+    CGFloat angle   = 0;
     CGFloat offsetY = 0;
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     for( RRTile *tile in [_deck reverseObjectEnumerator] ){
@@ -327,6 +328,8 @@
         [self addChild:tile z:-1];
         
         offsetY += (isDeviceIPad()?6.0f:3.0f);
+        
+        [tile setRotation: CC_RADIANS_TO_DEGREES(sinf(++angle)) /20.0f];
     }
 }
 
@@ -335,10 +338,12 @@
     if( _deck.count == 0 ) return nil;
     
     RRTile *tile = [[_deck objectAtIndex:0] retain];
+    [tile stopAllActions];
+    [tile setOpacity:255];
     [tile setRotation:0.0f];
     [tile setBackSideVisible:NO];
-    [_deck removeObject:tile];
     
+    [_deck removeObject:tile];
     [self removeChild:tile cleanup:NO];
 
     return [tile autorelease];
