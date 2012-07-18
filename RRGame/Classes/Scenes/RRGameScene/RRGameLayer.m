@@ -161,16 +161,16 @@
     if( [_gameBoardLayer haltTilePlaces] ){
 
         if( _deck.count > 0 ){
-            CCSprite *playerSprite;
+//            CCSprite *playerSprite;
             
             if( _playerColor == RRPlayerColorBlack ){
                 _playerColor = RRPlayerColorWhite;
-                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileWhite.png"];
+//                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileWhite.png"];
 
                 [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorWhite duration:0.7f];
             }else{
                 _playerColor = RRPlayerColorBlack;
-                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileBlack.png"];
+//                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileBlack.png"];
                 
                 [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorBlack duration:0.7f];
             }
@@ -248,6 +248,7 @@
                                                                                                           tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
                                                    [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.0f],
+                                                   [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
                                                    [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
                                                    nil]];      
 #endif
@@ -269,6 +270,7 @@
                                                                                                           tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
                                                    [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
                                                    [CCScaleTo actionWithDuration:0.0f scale:1.0f],
+                                                   [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
                                                    [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
                                                    nil]];
 #endif
