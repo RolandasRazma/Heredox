@@ -34,4 +34,6 @@ extern const RRTileMove RRTileMoveZero;
 
 @interface RRHeredox : NSObject
 
++ (RRHeredox *)sharedInstance;
+
 @end

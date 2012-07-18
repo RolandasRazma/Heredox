@@ -7,8 +7,9 @@
 //
 
 #import "CCLayer.h"
+#import "UDLayer.h"
 
 
-@interface RROptionsLayer : CCLayer
+@interface RROptionsLayer : UDLayer
 
 @end

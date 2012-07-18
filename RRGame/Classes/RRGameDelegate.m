@@ -8,7 +8,6 @@
 
 #import "cocos2d.h"
 #import "RRGameDelegate.h"
-#import "RRGameScene.h"
 #import "RRMenuScene.h"
 
 
@@ -108,8 +107,10 @@
     // Load Textures
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
     
-	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-//  [_director pushScene: [UDGameScene sceneWithGameMode:RRGameModeClosed numberOfPlayers:2 firstPlayerColor:RRPlayerColorBlack]];
+    // Init RRHeredox
+    [RRHeredox sharedInstance];
+    
+    // Push First Scene
     [_director pushScene: [RRMenuScene node]];
     
 	return YES;

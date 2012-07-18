@@ -96,6 +96,8 @@
     RRTileMove tileMove = RRTileMoveZero;
     RRTile *activeTile = gameBoard.activeTile;
     
+#warning TODO: implement AI levels
+    
     [activeTile setPositionInGrid:positionInGrid];
 
     // TODO: padaryti tikrinima ar nenusuka savo spalvos uz ekrano ribu arba i siena

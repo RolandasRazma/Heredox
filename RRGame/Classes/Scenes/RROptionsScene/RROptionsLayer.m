@@ -13,12 +13,13 @@
 
 
 @implementation RROptionsLayer {
-    UDSpriteButton *_buttonNovice;
-    UDSpriteButton *_buttonDeacon;
-    UDSpriteButton *_buttonAbbot;
+    UDSpriteButton  *_buttonNovice;
+    UDSpriteButton  *_buttonDeacon;
+    UDSpriteButton  *_buttonAbbot;
     
-    UDSpriteButton *_buttonSliderSound;
-    UDSpriteButton *_buttonSliderSFX;
+    CCSprite        *_sliderSound;
+    CCSprite        *_sliderSFX;
+    CCSprite        *_sliderActive;
 }
 
 
@@ -28,7 +29,8 @@
 
 - (id)init {
     if( (self = [super init]) ){
-        
+        [self setUserInteractionEnabled:YES];
+         
         // Add background
         CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"RRBackgroundOptions.png"];
         [backgroundSprite setAnchorPoint:CGPointZero];
@@ -58,22 +60,36 @@
         [_buttonAbbot addBlock: ^{ [self setDificultyLevel:RRAILevelAbbot]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:_buttonAbbot];
         
-        [self setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRAILevel"]];
+        [self setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
         
         
         // Sound buttons
-        _buttonSliderSound = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonSlider.png"];
-        [_buttonSliderSound setPosition:CGPointMake(406, 662)];
-        [_buttonSliderSound addBlock: ^{ } forControlEvents: UDButtonEventTouchUpInside];
-        [self addChild:_buttonSliderSound];
+        _sliderSound = [CCSprite spriteWithSpriteFrameName:@"RRButtonSlider.png"];
+        [_sliderSound setPosition:CGPointMake(406, 662)];
+        [self addChild:_sliderSound];
         
-        _buttonSliderSFX = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonSlider.png"];
-        [_buttonSliderSFX setPosition:CGPointMake(406, 517)];
-        [_buttonSliderSFX addBlock: ^{ } forControlEvents: UDButtonEventTouchUpInside];
-        [self addChild:_buttonSliderSFX];
+        _sliderSFX = [CCSprite spriteWithSpriteFrameName:@"RRButtonSlider.png"];
+        [_sliderSFX setPosition:CGPointMake(406, 517)];
+        [self addChild:_sliderSFX];
+        
+        
+        CGFloat levelSound = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"];
+        CGFloat levelSFX   = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSFXLevel"];
 
+        [_sliderSound setPosition:CGPointMake(500.0f *levelSound +150, _sliderSound.position.y)];
+        [_sliderSFX setPosition:CGPointMake(500.0f *levelSFX +150, _sliderSFX.position.y)];        
     }
     return self;
+}
+
+
+#pragma mark -
+#pragma mark CCNode
+
+
+- (void)onExit {
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [super onExit];
 }
 
 
@@ -92,8 +108,46 @@
     [_buttonDeacon setSelected:(dificultyLevel==RRAILevelDeacon)];
     [_buttonAbbot setSelected:(dificultyLevel==RRAILevelAbbot)];
     
-    [[NSUserDefaults standardUserDefaults] setInteger:dificultyLevel forKey:@"RRAILevel"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSUserDefaults standardUserDefaults] setInteger:dificultyLevel forKey:@"RRHeredoxAILevel"];
+}
+
+
+#pragma mark -
+#pragma mark UDLayer
+
+
+- (BOOL)touchBeganAtLocation:(CGPoint)location {
+    
+    if( CGRectContainsPoint(_sliderSound.boundingBox, location) ){
+        _sliderActive = _sliderSound;
+        return YES;
+    }
+    
+    if( CGRectContainsPoint(_sliderSFX.boundingBox, location) ){
+        _sliderActive = _sliderSFX;
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+- (void)touchMovedToLocation:(CGPoint)location {
+    
+    location.x = MIN(MAX(150, location.x), 650);
+    [_sliderActive setPosition:CGPointMake(location.x, _sliderActive.position.y)];
+
+    CGFloat sliderValue = (_sliderActive.position.x -150) /500.0f;
+    if( [_sliderActive isEqual:_sliderSFX] ){
+        [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSFXLevel"];
+    }else if( [_sliderActive isEqual:_sliderSound] ){
+        [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSoundLevel"];
+    }
+}
+
+
+- (void)touchEndedAtLocation:(CGPoint)location {
+    _sliderActive = nil;
 }
 
 

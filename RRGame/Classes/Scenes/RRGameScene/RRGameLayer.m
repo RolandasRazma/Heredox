@@ -60,6 +60,7 @@
     [super onEnterTransitionDidFinish];
     
     // Make first player move as it makes no sense
+    [self takeNewTile];
     [self endTurn];
 }
 
@@ -93,8 +94,9 @@
 	if( (self = [super init]) ) {
         [self setUserInteractionEnabled:YES];
         
-        _gameMode   = gameMode;
-        _playerColor= _firstPlayerColor = playerColor;
+        _gameMode           = gameMode;
+        _firstPlayerColor   = playerColor;
+        _playerColor        = RRPlayerColorWhite;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
@@ -138,11 +140,6 @@
         
         // Reset deck
         [self resetDeckForGameMode:gameMode];
-        
-        
-        // Make first player move as it makes no sense
-        [_gameBoardLayer addTile: [self takeTopTile] 
-                        animated: NO];
     }
 	return self;
 }
@@ -161,40 +158,18 @@
     if( [_gameBoardLayer haltTilePlaces] ){
 
         if( _deck.count > 0 ){
-//            CCSprite *playerSprite;
-            
             if( _playerColor == RRPlayerColorBlack ){
                 _playerColor = RRPlayerColorWhite;
-//                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileWhite.png"];
 
                 [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorWhite duration:0.7f];
             }else{
                 _playerColor = RRPlayerColorBlack;
-//                playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileBlack.png"];
                 
                 [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorBlack duration:0.7f];
             }
             
             [self takeNewTile];
             [self newTurn];
-            
-            /*
-            CGSize winSize = [[CCDirector sharedDirector] winSize];
-            [playerSprite setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
-            [self addChild:playerSprite];
-            
-            [playerSprite runAction: [CCSequence actions:
-                                      [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:NO]; }],
-                                      [CCScaleTo actionWithDuration:0.1f scale:1.2f],
-                                      [CCDelayTime actionWithDuration:0.7f],
-                                      [CCCallFunc actionWithTarget:self selector:@selector(takeNewTile)],
-                                      [CCDelayTime actionWithDuration:0.5f],
-                                      [CCScaleTo actionWithDuration:0.3f scale:1.0f],
-                                      [CCFadeOut actionWithDuration:0.3f],
-                                      [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
-                                      [CCCallFunc actionWithTarget:self selector:@selector(newTurn)],
-                                      [UDActionDestroy action], nil]];
-             */
         }else{
             if( !_resetGameButton ){
                 _resetGameButton = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHeredox.png"];
@@ -210,22 +185,6 @@
         
     }
     
-}
-
-
-- (void)resetGame {
-    [self resetDeckForGameMode:_gameMode];
-    [_gameBoardLayer resetBoardForGameMode: _gameMode];
-    
-    _playerColor = _firstPlayerColor;
-    
-    [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
-    [_resetGameButton runAction:[CCFadeOut actionWithDuration:0.3f]];
-    
-    // Make first player move as it makes no sense
-    [_gameBoardLayer addTile: [self takeTopTile] 
-                    animated: NO];
-    [self endTurn];
 }
 
 
@@ -276,6 +235,22 @@
     [_gameBoardLayer addTile: newTile
                     animated: YES];
     
+}
+
+
+- (void)resetGame {
+    [self resetDeckForGameMode:_gameMode];
+    [_gameBoardLayer resetBoardForGameMode: _gameMode];
+    
+    _playerColor = _firstPlayerColor;
+    
+    [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
+    [_resetGameButton runAction:[CCFadeOut actionWithDuration:0.3f]];
+    
+    // Make first player move as it makes no sense
+    [_gameBoardLayer addTile: [self takeTopTile] 
+                    animated: NO];
+    [self endTurn];
 }
 
 
