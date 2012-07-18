@@ -19,6 +19,7 @@ typedef enum RRTileEdge : NSUInteger {
 @interface RRTile : CCSprite
 
 @property (nonatomic, assign, getter = isBackSideVisible) BOOL backSideVisible;
+@property (nonatomic, assign, getter = isLookIs3D) BOOL lookIs3D;
 @property (nonatomic, assign) CGPoint positionInGrid;
 @property (nonatomic, readonly) RRTileEdge edgeTop;
 @property (nonatomic, readonly) RRTileEdge edgeLeft;

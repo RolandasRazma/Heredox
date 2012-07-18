@@ -12,6 +12,9 @@
 @implementation RRTile {
     BOOL        _backSideVisible;
     
+    BOOL        _lookIs3D;
+    CCSprite    *_look3DSprite;
+    
     RRTileEdge  _edgeTop;
     RRTileEdge  _edgeLeft;
     RRTileEdge  _edgeBottom;
@@ -47,6 +50,14 @@
     [super setPosition:position];
     
     [_debugLabel setString: [NSString stringWithFormat:@"X:%.f Y:%.f", self.positionInGrid.x, self.positionInGrid.y]];
+}
+
+
+- (void)setScale:(float)scale {
+    [super setScale:scale];
+
+    [self setLookIs3D:(scale == 1.0f)];
+    [self setZOrder:((scale == 1.0f)?100-(int)self.position.y:NSIntegerMax)];
 }
 
 
@@ -114,6 +125,7 @@
     if( _backSideVisible == backSideVisible ) return;
 
     for( CCSprite *child in self.children ){
+        if( [child isEqual:_look3DSprite] ) continue;
         [child setVisible: !backSideVisible];
     }    
     
@@ -198,5 +210,47 @@
 }
 
 
-@synthesize backSideVisible=_backSideVisible;
+- (void)setLookIs3D:(BOOL)lookIs3D {
+    if( _lookIs3D == lookIs3D ) return;
+
+    if( lookIs3D ){
+        if( !_look3DSprite ){
+            _look3DSprite = [CCSprite spriteWithSpriteFrameName:@"RREmptyTile3D.png"];
+            [_look3DSprite setAnchorPoint:CGPointMake(0, 1)];
+            [self addChild:_look3DSprite z:-1];
+        }
+        [_look3DSprite setRotation: -self.rotation];
+
+        switch ( (int)roundf(self.rotation) ) {
+            case    0: {
+                [_look3DSprite setPosition:CGPointMake(0, 0)];
+                break;
+            }
+            case -270:
+            case   90: {
+                [_look3DSprite setPosition:CGPointMake(self.textureRect.size.height, 0)];
+                break;
+            }
+            case -180:
+            case  180: {
+                [_look3DSprite setPosition:CGPointMake(self.textureRect.size.width, self.textureRect.size.height)];
+                break;
+            }
+            case  -90:
+            case  270: {
+                [_look3DSprite setPosition:CGPointMake(0, self.textureRect.size.width)];
+                break;
+            }
+        }
+
+        [_look3DSprite setVisible:YES];
+    }else{
+        [_look3DSprite setVisible:NO];
+    }
+    
+    _lookIs3D = lookIs3D;
+}
+
+
+@synthesize backSideVisible=_backSideVisible, lookIs3D=_lookIs3D;
 @end

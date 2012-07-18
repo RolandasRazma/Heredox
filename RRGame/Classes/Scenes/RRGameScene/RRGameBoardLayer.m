@@ -381,14 +381,15 @@
 - (void)touchEndedAtLocation:(CGPoint)location {
     
     if( !_activeTileMoved ){
-        [_activeTile setScale:1.0f];
-        
-        [_activeTile runAction: [CCRotateBy actionWithDuration:0.2f angle:90]];
+        [_activeTile runAction: [CCSequence actions:
+                                 [CCRotateBy actionWithDuration:0.2f angle:90],
+                                 [UDActionScaleTo  actionWithDuration:0.0f scale:1.0f],
+                                 nil]];
     }else if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
         [_activeTile setScale:1.0f];
         
         CGPoint snapPosition = [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width];
-        [_activeTile setPosition: snapPosition];  
+        [_activeTile setPosition: snapPosition];
     }
     
 }

@@ -21,7 +21,7 @@
 - (id)init {
     if( (self = [super init]) ){
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"RRBackgroundWhite.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"RRBackground.png"];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
