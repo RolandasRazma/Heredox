@@ -23,6 +23,7 @@
     NSMutableDictionary *_allBlocks;
     BOOL                _touchActive;
     BOOL                _userInteractionEnabled;
+    BOOL                _selected;
     
     NSString            *_spriteFrameName;
     NSString            *_highliteSpriteFrameName;
@@ -137,6 +138,32 @@
         }
     }
 #endif
+    
+    if( _userInteractionEnabled ) [self setTouchActiveInside:NO];
+}
+
+
+- (void)setTouchActiveInside:(BOOL)touchActiveInside {
+    if( _touchActiveInside == touchActiveInside ) return;
+    
+    _touchActiveInside = touchActiveInside;
+    
+    if( _spriteFrameName && _highliteSpriteFrameName ){
+        CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:((_touchActiveInside||_selected)?_highliteSpriteFrameName:_spriteFrameName)];
+        
+        [self setTexture:spriteFrame.texture];
+        [self setTextureRect:spriteFrame.rect];
+    }
+}
+
+
+- (void)setSelected:(BOOL)selected {
+    if( _selected == selected ) return;
+
+    _selected = selected;
+    
+    [self setTouchActiveInside:!_touchActiveInside];
+    [self setTouchActiveInside:!_touchActiveInside];
 }
 
 
@@ -170,20 +197,6 @@
     }
 
     [self setTouchActiveInside:NO];
-}
-
-
-- (void)setTouchActiveInside:(BOOL)touchActiveInside {
-    if( _touchActiveInside == touchActiveInside ) return;
-    
-    _touchActiveInside = touchActiveInside;
-    
-    if( _spriteFrameName && _highliteSpriteFrameName ){
-        CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:(_touchActiveInside?_highliteSpriteFrameName:_spriteFrameName)];
-    
-        [self setTexture:spriteFrame.texture];
-        [self setTextureRect:spriteFrame.rect];
-    }
 }
 
 
@@ -295,5 +308,5 @@
 #endif
 
 
-@synthesize userInteractionEnabled=_userInteractionEnabled;
+@synthesize userInteractionEnabled=_userInteractionEnabled, selected=_selected;
 @end

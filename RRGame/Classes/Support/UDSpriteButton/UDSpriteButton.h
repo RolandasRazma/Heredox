@@ -24,6 +24,7 @@ typedef NSUInteger UDButtonEvents;
 @interface UDSpriteButton : CCSprite
 
 @property(nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
+@property(nonatomic, getter = isSelected) BOOL selected;
 
 + (id)buttonWithSpriteFile:(NSString *)fileName;
 + (id)buttonWithSpriteFrameName:(NSString *)spriteFrameName highliteSpriteFrameName:(NSString *)highliteSpriteFrameName;
