@@ -13,6 +13,7 @@
 #import "UDActionDestroy.h"
 #import "RRAIPlayer.h"
 #import "RRMenuScene.h"
+#import "RRCrossfadeLayer.h"
 
 
 @implementation RRGameLayer {
@@ -31,8 +32,7 @@
     RRPlayer            *_player1;
     RRPlayer            *_player2;
     
-    CCSprite            *_backgroundBlackSprite;
-    CCSprite            *_backgroundWhiteSprite;
+    RRCrossfadeLayer    *_backgroundLayer;
     UDSpriteButton      *_resetGameButton;
 }
 
@@ -99,26 +99,19 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         // Add background
-        CCLayer *backgroundLayer = [CCLayer node];
-        [self addChild:backgroundLayer z:-10];
+        _backgroundLayer = [RRCrossfadeLayer node];
+        [self addChild:_backgroundLayer z:-10];
         
-        _backgroundBlackSprite = [CCSprite spriteWithFile:@"RRBackgroundBlack.png"];
-        [_backgroundBlackSprite setAnchorPoint:CGPointZero];
-        [backgroundLayer addChild:_backgroundBlackSprite];
+        CCSprite *backgroundBlackSprite = [CCSprite spriteWithFile:@"RRBackgroundBlack.png"];
+        [backgroundBlackSprite setAnchorPoint:CGPointZero];
+        [_backgroundLayer addChild:backgroundBlackSprite z:0 tag:RRPlayerColorBlack];
 
-        _backgroundWhiteSprite = [CCSprite spriteWithFile:@"RRBackgroundWhite.png"];
-        [_backgroundWhiteSprite setAnchorPoint:CGPointZero];
-        [backgroundLayer addChild:_backgroundWhiteSprite];
+        CCSprite *backgroundWhiteSprite = [CCSprite spriteWithFile:@"RRBackgroundWhite.png"];
+        [backgroundWhiteSprite setAnchorPoint:CGPointZero];
+        [_backgroundLayer addChild:backgroundWhiteSprite z:0 tag:RRPlayerColorWhite];
         
-        if( _playerColor == RRPlayerColorBlack ){
-            [_backgroundWhiteSprite setVisible: NO];
-        }else{
-            [_backgroundBlackSprite setVisible: NO];
-        }
-
+        [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
         
-
-
         
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHome.png"];
@@ -185,24 +178,12 @@
                 _playerColor = RRPlayerColorWhite;
                 playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileWhite.png"];
 
-                [_backgroundWhiteSprite setVisible:YES];
-                [_backgroundWhiteSprite setOpacity:0];
-                [_backgroundWhiteSprite runAction: [CCSequence actions:
-                                                    [CCFadeIn actionWithDuration:0.7f],
-                                                    [CCCallBlock actionWithBlock:^{ [_backgroundBlackSprite setVisible:NO]; }], nil]];
-                [_backgroundWhiteSprite.parent reorderChild:_backgroundWhiteSprite z:1];
-                [_backgroundBlackSprite.parent reorderChild:_backgroundBlackSprite z:0];
+                [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorWhite duration:0.7f];
             }else{
                 _playerColor = RRPlayerColorBlack;
                 playerSprite = [CCSprite spriteWithSpriteFrameName:@"RRTileBlack.png"];
                 
-                [_backgroundBlackSprite setVisible:YES];
-                [_backgroundBlackSprite setOpacity:0];
-                [_backgroundBlackSprite runAction: [CCSequence actions:
-                                                    [CCFadeIn actionWithDuration:0.7f],
-                                                    [CCCallBlock actionWithBlock:^{ [_backgroundWhiteSprite setVisible:NO]; }], nil]];
-                [_backgroundBlackSprite.parent reorderChild:_backgroundBlackSprite z:1];
-                [_backgroundWhiteSprite.parent reorderChild:_backgroundWhiteSprite z:0];
+                [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorBlack duration:0.7f];
             }
             
             CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -244,13 +225,7 @@
     
     _playerColor = _firstPlayerColor;
     
-    if( _playerColor == RRPlayerColorBlack ){
-        [_backgroundWhiteSprite setVisible: NO];
-        [_backgroundBlackSprite setVisible: YES];
-    }else{
-        [_backgroundBlackSprite setVisible: NO];
-        [_backgroundWhiteSprite setVisible: YES];
-    }
+    [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
     
     // Make first player move as it makes no sense
     [_gameBoardLayer addTile: [self takeTopTile] 
