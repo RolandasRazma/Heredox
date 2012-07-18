@@ -26,7 +26,9 @@ typedef NSUInteger UDButtonEvents;
 @property(nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
 
 + (id)buttonWithSpriteFile:(NSString *)fileName;
++ (id)buttonWithSpriteFrameName:(NSString *)spriteFrameName highliteSpriteFrameName:(NSString *)highliteSpriteFrameName;
 - (id)initWithSpriteFile:(NSString *)fileName;
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName highliteSpriteFrameName:(NSString *)highliteSpriteFrameName;
 
 - (void)addBlock:(BasicBlock)block forControlEvents:(UDButtonEvents)controlEvents;
 

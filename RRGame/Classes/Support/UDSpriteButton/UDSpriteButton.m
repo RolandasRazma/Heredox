@@ -23,6 +23,9 @@
     NSMutableDictionary *_allBlocks;
     BOOL                _touchActive;
     BOOL                _userInteractionEnabled;
+    
+    NSString            *_spriteFrameName;
+    NSString            *_highliteSpriteFrameName;
 }
 
 
@@ -31,6 +34,10 @@
 
 - (void)dealloc {
     [_allBlocks release];
+    
+    [_spriteFrameName release];
+    [_highliteSpriteFrameName release];
+    
     [super dealloc];
 }
 
@@ -44,9 +51,23 @@
 }
 
 
++ (id)buttonWithSpriteFrameName:(NSString *)spriteFrameName highliteSpriteFrameName:(NSString *)highliteSpriteFrameName {
+    return [[[self alloc] initWithSpriteFrameName:spriteFrameName highliteSpriteFrameName:highliteSpriteFrameName] autorelease];
+}
+
+
 - (id)initWithSpriteFile:(NSString *)fileName {
     if( (self = [super initWithFile:fileName]) ){
         
+    }
+    return self;
+}
+
+
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName highliteSpriteFrameName:(NSString *)highliteSpriteFrameName {
+    if( (self = [super initWithSpriteFrameName:spriteFrameName]) ){
+        _spriteFrameName         = [spriteFrameName retain];
+        _highliteSpriteFrameName = [highliteSpriteFrameName retain];
     }
     return self;
 }
@@ -124,18 +145,18 @@
     
     [self invokeControlEvent: UDButtonEventTouchDown];
 
-    _touchActiveInside = YES;
-    
+    [self setTouchActiveInside:YES];
+   
 	return YES;
 }
 
 
 - (void)touchMovedToLocation:(CGPoint)location {
     if ( CGRectContainsPoint(self.boundingBox, location) ) {
-        _touchActiveInside = YES;
+        [self setTouchActiveInside:YES];
         [self invokeControlEvent: UDButtonEventTouchDragInside];
     }else{
-        _touchActiveInside = NO;
+        [self setTouchActiveInside:NO];
         [self invokeControlEvent: UDButtonEventTouchDragOutside];        
     }
 }
@@ -147,8 +168,22 @@
     }else{
         [self invokeControlEvent: UDButtonEventTouchUpOutside];
     }
+
+    [self setTouchActiveInside:NO];
+}
+
+
+- (void)setTouchActiveInside:(BOOL)touchActiveInside {
+    if( _touchActiveInside == touchActiveInside ) return;
     
-    _touchActiveInside = NO;
+    _touchActiveInside = touchActiveInside;
+    
+    if( _spriteFrameName && _highliteSpriteFrameName ){
+        CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:(_touchActiveInside?_highliteSpriteFrameName:_spriteFrameName)];
+    
+        [self setTexture:spriteFrame.texture];
+        [self setTextureRect:spriteFrame.rect];
+    }
 }
 
 
