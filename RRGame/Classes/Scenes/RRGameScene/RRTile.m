@@ -113,12 +113,12 @@
 - (void)setBackSideVisible:(BOOL)backSideVisible {
     if( _backSideVisible == backSideVisible ) return;
 
-    CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:((backSideVisible==YES)?@"RRTileBack.png":@"RREmptyTile.png")];
-
     for( CCSprite *child in self.children ){
         [child setVisible: !backSideVisible];
-    }
+    }    
     
+    CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:((backSideVisible==YES)?@"RRTileBack.png":@"RREmptyTile.png")];
+
     [self setTexture:spriteFrame.texture];
     [self setTextureRect:spriteFrame.rect];
 

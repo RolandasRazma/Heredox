@@ -275,6 +275,7 @@
 		F0CD646914CA995100665366 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582C514CA7BE20033B4F5 /* AudioToolbox.framework */; };
 		F0CD646A14CA995B00665366 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582CB14CA7BE20033B4F5 /* Foundation.framework */; };
 		F0CD648114CA9ACB00665366 /* RRGameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD648014CA9ACB00665366 /* RRGameAppDelegate.m */; };
+		F0E033AF15B720880079EED5 /* RRBackgroundOptions.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E033AE15B720880079EED5 /* RRBackgroundOptions.png */; };
 		F0E3F67915B40FA800599E95 /* RRAIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAIPlayer.m */; };
 		F0E3F67A15B40FA800599E95 /* RRAIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAIPlayer.m */; };
 		F0E3F6FD15B41D6E00599E95 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F68815B41D6E00599E95 /* CDAudioManager.m */; };
@@ -603,6 +604,7 @@
 		F0CD646314CA983700665366 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F0CD647F14CA9ACB00665366 /* RRGameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameAppDelegate.h; sourceTree = "<group>"; };
 		F0CD648014CA9ACB00665366 /* RRGameAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameAppDelegate.m; sourceTree = "<group>"; };
+		F0E033AE15B720880079EED5 /* RRBackgroundOptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundOptions.png; sourceTree = "<group>"; };
 		F0E3F67715B40FA800599E95 /* RRAIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAIPlayer.h; sourceTree = "<group>"; };
 		F0E3F67815B40FA800599E95 /* RRAIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAIPlayer.m; sourceTree = "<group>"; };
 		F0E3F68715B41D6E00599E95 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 		F0142CC715B5FCE7004BAB1C /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				F0E033AE15B720880079EED5 /* RRBackgroundOptions.png */,
 				F0142CC915B5FCE7004BAB1C /* RRBackgroundPlayerColor.png */,
 				F0142CC815B5FCE7004BAB1C /* RRBackgroundBlack.png */,
 				F0142CCA15B5FCE7004BAB1C /* RRBackgroundWhite.png */,
@@ -1503,6 +1506,7 @@
 				F0142CCB15B5FCE7004BAB1C /* RRBackgroundBlack.png in Resources */,
 				F0142CCC15B5FCE7004BAB1C /* RRBackgroundPlayerColor.png in Resources */,
 				F0142CCD15B5FCE7004BAB1C /* RRBackgroundWhite.png in Resources */,
+				F0E033AF15B720880079EED5 /* RRBackgroundOptions.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
