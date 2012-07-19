@@ -34,6 +34,8 @@
             [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRAILevel"]];
             
             [gameLayer setPlayer2: player];
+            
+            // [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor:playerColor]];
         }
          
         [self addChild: gameLayer];

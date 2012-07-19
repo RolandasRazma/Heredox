@@ -180,7 +180,7 @@
     if( [self canPlaceTileAtGridLocation:_activeTile.positionInGrid gridBounds:&newGridBounds] ){
         [self checkForNewSymbols];
 
-        [_activeTile setScale: 1.0f];
+        [_activeTile placeTile];
         _activeTile = nil;
         _gridBounds = newGridBounds;
         
