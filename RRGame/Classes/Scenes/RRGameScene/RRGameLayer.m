@@ -10,7 +10,6 @@
 #import "RRTile.h"
 #import "UDSpriteButton.h"
 #import "RRGameBoardLayer.h"
-#import "UDActionDestroy.h"
 #import "RRAIPlayer.h"
 #import "RRMenuScene.h"
 #import "RRCrossfadeLayer.h"
@@ -197,11 +196,12 @@
             RRTileMove tileMove = [(RRAIPlayer *)_player1 bestMoveOnBoard:_gameBoardLayer];
 
             [_gameBoardLayer.activeTile runAction:[CCSequence actions:
-                                                   [UDActionScaleTo actionWithDuration:0.0f scale:1.1f],
+                                                   [UDActionCallFunc actionWithSelector:@selector(liftTile)],
                                                    [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
                                                                                                           tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
                                                    [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
-                                                   [UDActionScaleTo actionWithDuration:0.0f scale:1.0f],
+                                                   [UDActionCallFunc actionWithSelector:@selector(placeTile)],
+                                                   
                                                    [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
                                                    [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
                                                    nil]];
@@ -213,11 +213,12 @@
             RRTileMove tileMove = [(RRAIPlayer *)_player2 bestMoveOnBoard:_gameBoardLayer];
 
             [_gameBoardLayer.activeTile runAction:[CCSequence actions:
-                                                   [UDActionScaleTo actionWithDuration:0.0f scale:1.1f],
+                                                   [UDActionCallFunc actionWithSelector:@selector(liftTile)],
                                                    [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
                                                                                                           tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
                                                    [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
-                                                   [UDActionScaleTo actionWithDuration:0.0f scale:1.0f],
+                                                   [UDActionCallFunc actionWithSelector:@selector(placeTile)],
+                                                   
                                                    [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
                                                    [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
                                                    nil]];
@@ -294,9 +295,6 @@
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     for( RRTile *tile in [_deck reverseObjectEnumerator] ){
         [tile setRotation:0];
-        [tile setLookIs3D:NO];
-        [tile setLookIs3D:YES];
-        
         [tile setBackSideVisible: (gameMode == RRGameModeClosed)];
         [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5f, tile.textureRect.size.height /1.5f +offsetY)];
         [self addChild:tile z:-1];

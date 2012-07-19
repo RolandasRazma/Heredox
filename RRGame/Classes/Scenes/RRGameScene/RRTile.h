@@ -30,4 +30,7 @@ typedef enum RRTileEdge : NSUInteger {
 + (id)tileWithEdgeTop:(RRTileEdge)top left:(RRTileEdge)left bottom:(RRTileEdge)bottom right:(RRTileEdge)right;
 - (id)initWithEdgeTop:(RRTileEdge)top left:(RRTileEdge)left bottom:(RRTileEdge)bottom right:(RRTileEdge)right;
 
+- (void)liftTile;
+- (void)placeTile;
+
 @end

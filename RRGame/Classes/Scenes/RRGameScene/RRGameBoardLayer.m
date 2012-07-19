@@ -199,8 +199,6 @@
     
     [self countSymbolsAtTile:_activeTile white:&white black:&black];
     
-    NSLog(@"white:%lu black:%lu", white, black);
-
     if( black ){
         [self willChangeValueForKey: @"symbolsBlack"];
         _symbolsBlack += black;
@@ -348,7 +346,7 @@
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
     if( !_activeTile || [_activeTile numberOfRunningActions] || !CGRectContainsPoint(_activeTile.boundingBox, [self convertToNodeSpace:location])) return NO;
     
-    [_activeTile setScale:1.1f];
+    [_activeTile liftTile];
     
     _activeTileMoved        = NO;
     _activeTileTouchOffset  = ccpRotateByAngle([_activeTile convertToNodeSpaceAR:location], CGPointZero, -CC_DEGREES_TO_RADIANS(_activeTile.rotation));
@@ -383,13 +381,12 @@
     if( !_activeTileMoved ){
         [_activeTile runAction: [CCSequence actions:
                                  [CCRotateBy actionWithDuration:0.2f angle:90],
-                                 [UDActionScaleTo  actionWithDuration:0.0f scale:1.0f],
+                                 [UDActionCallFunc actionWithSelector:@selector(placeTile)],
                                  nil]];
     }else if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
-        [_activeTile setScale:1.0f];
-        
         CGPoint snapPosition = [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width];
         [_activeTile setPosition: snapPosition];
+        [_activeTile placeTile];
     }
     
 }

@@ -17,6 +17,8 @@
     #import "NSMutableArray+UDAdditions.h"
     #import "CGGeometry+UDAdditions.h"
     #import "UDActionScaleTo.h"
+    #import "UDActionCallFunc.h"
+    #import "UDActionDestroy.h"
 
     #import "RRHeredox.h"
 #endif

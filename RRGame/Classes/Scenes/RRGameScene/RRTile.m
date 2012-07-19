@@ -42,6 +42,16 @@
 
     [_debugLabel setRotation: -rotation];
     
+    if( (rotation >= 0.0f && rotation <= 45.0f) || (rotation >= -45.0f && rotation <= 0.0f) || (rotation >= 315.0f && rotation <= 360.0f) || (rotation <= -315.0f && rotation >= -360.0f) ){
+        [_look3DSprite setRotation:0];
+    }else if( (rotation >= 45.0f && rotation <= 135.0f) || (rotation <= -225.0f && rotation >= -315.0f) ){
+        [_look3DSprite setRotation:-90];
+    }else if( (rotation >= 135.0f && rotation <= 225.0f) || (rotation <= -135.0f && rotation >= -225.0f) ){
+        [_look3DSprite setRotation:-180];
+    }else if( (rotation >= 225.0f && rotation <= 315.0f) || (rotation <= -45 && rotation >= -90.0f) ){
+        [_look3DSprite setRotation:-270];
+    }
+
     [super setRotation:rotation];
 }
 
@@ -56,8 +66,9 @@
 - (void)setScale:(float)scale {
     [super setScale:scale];
 
-    [self setLookIs3D:(scale == 1.0f)];
-    [self setZOrder:((scale == 1.0f)?100-(int)self.position.y:NSIntegerMax)];
+    
+    // [self setLookIs3D:(scale == 1.0f)];
+    // [self setZOrder:((scale == 1.0f)?100-(int)self.position.y:NSIntegerMax)];
 }
 
 
@@ -82,6 +93,7 @@
         _edgeLeft   = left;
         _edgeBottom = bottom;
         _edgeRight  = right;
+        _lookIs3D   = YES;
         
         if( top != RRTileEdgeNone ){
             CCSprite *topSprite = [CCSprite spriteWithSpriteFrameName: ((top == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
@@ -109,6 +121,13 @@
             [rightSprite setPosition:CGPointMake(self.textureRect.size.width -rightSprite.textureRect.size.width /2, self.textureRect.size.height /2)];
             [self addChild:rightSprite];
         }
+
+        // 3D Look edge
+        _look3DSprite = [CCSprite spriteWithSpriteFrameName:@"RREmptyTile3D.png"];
+        [_look3DSprite setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2)];
+        [_look3DSprite setAnchorPoint:CGPointMake(0.5f, (self.textureRect.size.height /2 +_look3DSprite.textureRect.size.height) /_look3DSprite.textureRect.size.height)];
+        [_look3DSprite setVisible:_lookIs3D];
+        [self addChild:_look3DSprite z:-1];
         
 #if TARGET_IPHONE_SIMULATOR
         _debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Courier-Bold" fontSize: (isDeviceIPad()?26:13)];
@@ -212,43 +231,20 @@
 
 - (void)setLookIs3D:(BOOL)lookIs3D {
     if( _lookIs3D == lookIs3D ) return;
-
-    if( lookIs3D ){
-        if( !_look3DSprite ){
-            _look3DSprite = [CCSprite spriteWithSpriteFrameName:@"RREmptyTile3D.png"];
-            [_look3DSprite setAnchorPoint:CGPointMake(0, 1)];
-            [self addChild:_look3DSprite z:-1];
-        }
-        [_look3DSprite setRotation: -self.rotation];
-
-        switch ( (int)roundf(self.rotation) ) {
-            case    0: {
-                [_look3DSprite setPosition:CGPointMake(0, 0)];
-                break;
-            }
-            case -270:
-            case   90: {
-                [_look3DSprite setPosition:CGPointMake(self.textureRect.size.height, 0)];
-                break;
-            }
-            case -180:
-            case  180: {
-                [_look3DSprite setPosition:CGPointMake(self.textureRect.size.width, self.textureRect.size.height)];
-                break;
-            }
-            case  -90:
-            case  270: {
-                [_look3DSprite setPosition:CGPointMake(0, self.textureRect.size.width)];
-                break;
-            }
-        }
-
-        [_look3DSprite setVisible:YES];
-    }else{
-        [_look3DSprite setVisible:NO];
-    }
-    
+    [_look3DSprite setVisible:lookIs3D];
     _lookIs3D = lookIs3D;
+}
+
+
+- (void)liftTile {
+    [self setScale:1.1f];
+    [self setZOrder:NSIntegerMax];
+}
+
+
+- (void)placeTile {
+    [self setScale:1.0f];
+    [self setZOrder: -(int)self.positionInGrid.y];
 }
 
 
