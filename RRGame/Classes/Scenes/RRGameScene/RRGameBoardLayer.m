@@ -379,10 +379,13 @@
 - (void)touchEndedAtLocation:(CGPoint)location {
     
     if( !_activeTileMoved ){
-        [_activeTile runAction: [CCSequence actions:
-                                 [CCRotateBy actionWithDuration:0.2f angle:90],
-                                 [UDActionCallFunc actionWithSelector:@selector(placeTile)],
-                                 nil]];
+        NSMutableArray *actions = [NSMutableArray arrayWithCapacity:3];
+        [actions addObject:[CCRotateBy actionWithDuration:0.2f angle:90]];
+        if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
+            [actions addObject:[UDActionCallFunc actionWithSelector:@selector(placeTile)]];
+        }
+        
+        [_activeTile runAction: [CCSequence actionsWithArray:actions]];
     }else if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
         CGPoint snapPosition = [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width];
         [_activeTile setPosition: snapPosition];
@@ -392,5 +395,5 @@
 }
 
 
-@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile;
+@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile, gridBounds=_gridBounds;
 @end

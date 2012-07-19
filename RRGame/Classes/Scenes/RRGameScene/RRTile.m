@@ -59,8 +59,7 @@
 - (void)setPosition:(CGPoint)position {
     [super setPosition:position];
     
-//    [_debugLabel setString: [NSString stringWithFormat:@"X:%.f Y:%.f", self.positionInGrid.x, self.positionInGrid.y]];
-    [_debugLabel setString: [NSString stringWithFormat:@"Z: %i", self.zOrder]];
+    [_debugLabel setString: [NSString stringWithFormat:@"X:%.f Y:%.f", self.positionInGrid.x, self.positionInGrid.y]];
 }
 
 
@@ -72,11 +71,6 @@
     // [self setZOrder:((scale == 1.0f)?100-(int)self.position.y:NSIntegerMax)];
 }
 
-
-- (void)setZOrder:(NSInteger)zOrder {
-    [super setZOrder:zOrder];
-    [_debugLabel setString: [NSString stringWithFormat:@"Z: %i", self.zOrder]];
-}
 
 #pragma mark -
 #pragma mark UDTile

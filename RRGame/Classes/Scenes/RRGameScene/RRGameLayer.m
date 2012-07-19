@@ -155,7 +155,9 @@
     NSLog(@"-- endTurn --");
     
     if( [_gameBoardLayer haltTilePlaces] ){
-
+#if TARGET_IPHONE_SIMULATOR
+        if( _gameBoardLayer.gridBounds.size.width == 4 || _gameBoardLayer.gridBounds.size.height == 4 ) return;
+#endif
         if( _deck.count > 0 ){
             if( _playerColor == RRPlayerColorBlack ){
                 _playerColor = RRPlayerColorWhite;
@@ -286,7 +288,7 @@
     [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
     
     NSUInteger seed = time(NULL);
-//    seed = 1342542677;
+    //seed = 1342698277;
     UDLog(@"game seed: %u", seed);
     [_deck shuffleWithSeed:seed];
 

@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) RRTile *activeTile;
 @property (nonatomic, readonly) NSUInteger symbolsBlack;
 @property (nonatomic, readonly) NSUInteger symbolsWhite;
+@property (nonatomic, readonly) CGRect gridBounds;
 
 - (id)initWithGameMode:(RRGameMode)gameMode;
 

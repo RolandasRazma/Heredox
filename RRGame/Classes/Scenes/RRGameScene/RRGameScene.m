@@ -35,7 +35,9 @@
             
             [gameLayer setPlayer2: player];
             
-            // [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor:playerColor]];
+#if TARGET_IPHONE_SIMULATOR
+            [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor:playerColor]];
+#endif
         }
          
         [self addChild: gameLayer];
