@@ -53,13 +53,15 @@
     }
 
     [super setRotation:rotation];
+    
+    [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, rotation_]];
 }
 
 
 - (void)setPosition:(CGPoint)position {
     [super setPosition:position];
     
-    [_debugLabel setString: [NSString stringWithFormat:@"X:%.f Y:%.f", self.positionInGrid.x, self.positionInGrid.y]];
+    [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, rotation_]];
 }
 
 

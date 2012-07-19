@@ -31,12 +31,14 @@
 
         if( numberOfPlayers == 1 ){
             RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
-            [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRAILevel"]];
+            [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
             
             [gameLayer setPlayer2: player];
             
 #if TARGET_IPHONE_SIMULATOR
-            [gameLayer setPlayer1: [RRAIPlayer playerWithPlayerColor:playerColor]];
+            RRAIPlayer *player1 = [RRAIPlayer playerWithPlayerColor:playerColor];
+            [player1 setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
+            [gameLayer setPlayer1: player1];
 #endif
         }
          

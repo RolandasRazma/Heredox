@@ -180,8 +180,8 @@
                 [self addChild:_resetGameButton];
             }
 
-            [_resetGameButton runAction:[CCFadeIn actionWithDuration:0.3f]];
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
+            [_resetGameButton runAction:[CCSequence actions: [CCDelayTime actionWithDuration: 0.3f], [CCFadeIn actionWithDuration:0.3f], nil]];
         }
         
     }
@@ -288,7 +288,7 @@
     [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
     
     NSUInteger seed = time(NULL);
-    //seed = 1342698277;
+    seed = 1342728185;
     UDLog(@"game seed: %u", seed);
     [_deck shuffleWithSeed:seed];
 

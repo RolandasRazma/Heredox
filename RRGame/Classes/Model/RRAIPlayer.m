@@ -96,8 +96,6 @@
     RRTileMove tileMove = RRTileMoveZero;
     RRTile *activeTile = gameBoard.activeTile;
     
-#warning TODO: implement AI levels
-    
     [activeTile setPositionInGrid:positionInGrid];
 
     // TODO: padaryti tailu cauntinga. Ar tai kanors duoda?
@@ -217,68 +215,14 @@
             }
         }
 
-        
-        UDLog(@"Check active block");
-        
-        // Active tile blocking after move
-        if( gameBoard.gridBounds.size.height == 3 ){
-            
-            NSInteger upperGridBoundY = gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1;
-            NSInteger lowerGridBoundY = gameBoard.gridBounds.origin.y;
-            
-            if( positionInGrid.y > upperGridBoundY ){
-                UDLog(@"Check what we block on top of activeTile %@", NSStringFromCGPoint(positionInGrid));
+        // TODO: calculate how much i will loose if next player end board size
 
-                if( activeTile.edgeTop == (RRTileEdge)self.playerColor ){
-                    edgeBlockModifyer -= 0.5f;
-                    UDLog(@"-= 0.5f");
-                }else if( activeTile.edgeTop != RRTileEdgeNone ){
-                    edgeBlockModifyer += 0.3f;
-                    UDLog(@"+= 0.3f");
-                }
-            }else if( positionInGrid.y < lowerGridBoundY ){
-                UDLog(@"Check what we block on bottom of activeTile %@", NSStringFromCGPoint(positionInGrid));
-                
-                if( activeTile.edgeBottom == (RRTileEdge)self.playerColor ){
-                    edgeBlockModifyer -= 0.5f;
-                    UDLog(@"-= 0.5f");
-                }else if( activeTile.edgeBottom != RRTileEdgeNone ){
-                    edgeBlockModifyer += 0.3f;
-                    UDLog(@"+= 0.3f");
-                }
+        if( _dificultyLevel > RRAILevelNovice ){
+            moveValue += [self activeTileEdgeBlockModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
+            if( _dificultyLevel > RRAILevelDeacon ){
+                moveValue += edgeBlockModifyer;
             }
         }
-        
-        if( gameBoard.gridBounds.size.width == 3 ){
-            
-            NSInteger leftGridBoundX = gameBoard.gridBounds.origin.x;
-            NSInteger rightGridBoundX = gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1;
-            
-            if( positionInGrid.x < leftGridBoundX ){
-                UDLog(@"Check what we block on left of activeTile %@", NSStringFromCGPoint(positionInGrid));
-
-                if( activeTile.edgeLeft == (RRTileEdge)self.playerColor ){
-                    edgeBlockModifyer -= 0.5f;
-                    UDLog(@"-= 0.5f");
-                }else if( activeTile.edgeLeft != RRTileEdgeNone ){
-                    edgeBlockModifyer += 0.3f;
-                    UDLog(@"+= 0.3f");
-                }
-            }else if( positionInGrid.x > rightGridBoundX ){
-                UDLog(@"Check what we block on right of activeTile %@", NSStringFromCGPoint(positionInGrid));
-
-                if( activeTile.edgeRight == (RRTileEdge)self.playerColor ){
-                    edgeBlockModifyer -= 0.5f;
-                    UDLog(@"-= 0.5f");
-                }else if( activeTile.edgeRight != RRTileEdgeNone ){
-                    edgeBlockModifyer += 0.3f;
-                    UDLog(@"+= 0.3f");
-                }
-            }
-        }
-        
-        
-        moveValue += edgeBlockModifyer;
         
         if( moveValue >= tileMove.score ){
             tileMove.score    = moveValue;
@@ -294,7 +238,7 @@
 - (CGFloat)edgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
     CGFloat edgeBlockModifyer = 0.0f;
     
-    // TODO: padaryti tikrinima kad kai dedi ketvirta taila tikrintu ar tavo kita puse nebus i siena
+    UDLog(@"edgeBlockModifyerForMoveOnGameBoard:positionInGrid: %@", NSStringFromCGPoint(positionInGrid));
     
     if( gameBoard.gridBounds.size.height == 3 ){
         
@@ -371,6 +315,75 @@
             
         }
     }
+    
+    return edgeBlockModifyer;
+}
+
+
+- (CGFloat)activeTileEdgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+    RRTile *activeTile = gameBoard.activeTile;
+    CGFloat edgeBlockModifyer = 0.0f;
+    
+    UDLog(@"activeTileEdgeBlockModifyerForMoveOnGameBoard:positionInGrid: %@ at angle: %.f", NSStringFromCGPoint(positionInGrid), activeTile.rotation);
+    
+    // Active tile blocking after move
+    if( gameBoard.gridBounds.size.height == 3 ){
+        
+        NSInteger upperGridBoundY = gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1;
+        NSInteger lowerGridBoundY = gameBoard.gridBounds.origin.y;
+        
+        if( positionInGrid.y > upperGridBoundY ){
+            UDLog(@"Check what we block on top of activeTile %@", NSStringFromCGPoint(positionInGrid));
+            
+            if( activeTile.edgeTop == (RRTileEdge)self.playerColor ){
+                edgeBlockModifyer -= 0.5f;
+                UDLog(@"-= 0.5f");
+            }else if( activeTile.edgeTop != RRTileEdgeNone ){
+                edgeBlockModifyer += 0.3f;
+                UDLog(@"+= 0.3f");
+            }
+        }else if( positionInGrid.y < lowerGridBoundY ){
+            UDLog(@"Check what we block on bottom of activeTile %@", NSStringFromCGPoint(positionInGrid));
+            
+            if( activeTile.edgeBottom == (RRTileEdge)self.playerColor ){
+                edgeBlockModifyer -= 0.5f;
+                UDLog(@"-= 0.5f");
+            }else if( activeTile.edgeBottom != RRTileEdgeNone ){
+                edgeBlockModifyer += 0.3f;
+                UDLog(@"+= 0.3f");
+            }
+        }
+    }
+    
+    
+    if( gameBoard.gridBounds.size.width == 3 ){
+        
+        NSInteger leftGridBoundX = gameBoard.gridBounds.origin.x;
+        NSInteger rightGridBoundX = gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1;
+        
+        if( positionInGrid.x < leftGridBoundX ){
+            UDLog(@"Check what we block on left of activeTile %@", NSStringFromCGPoint(positionInGrid));
+            
+            if( activeTile.edgeLeft == (RRTileEdge)self.playerColor ){
+                edgeBlockModifyer -= 0.5f;
+                UDLog(@"-= 0.5f");
+            }else if( activeTile.edgeLeft != RRTileEdgeNone ){
+                edgeBlockModifyer += 0.3f;
+                UDLog(@"+= 0.3f");
+            }
+        }else if( positionInGrid.x > rightGridBoundX ){
+            UDLog(@"Check what we block on right of activeTile %@", NSStringFromCGPoint(positionInGrid));
+            
+            if( activeTile.edgeRight == (RRTileEdge)self.playerColor ){
+                edgeBlockModifyer -= 0.5f;
+                UDLog(@"-= 0.5f");
+            }else if( activeTile.edgeRight != RRTileEdgeNone ){
+                edgeBlockModifyer += 0.3f;
+                UDLog(@"+= 0.3f");
+            }
+        }
+    }
+    
     
     return edgeBlockModifyer;
 }
