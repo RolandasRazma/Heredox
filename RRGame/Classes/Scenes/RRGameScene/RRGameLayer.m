@@ -152,12 +152,9 @@
 
 
 - (void)endTurn {
-    NSLog(@"-- endTurn --");
-    
+
     if( [_gameBoardLayer haltTilePlaces] ){
-#if TARGET_IPHONE_SIMULATOR
-        if( _gameBoardLayer.gridBounds.size.width == 4 || _gameBoardLayer.gridBounds.size.height == 4 ) return;
-#endif
+
         if( _deck.count > 0 ){
             if( _playerColor == RRPlayerColorBlack ){
                 _playerColor = RRPlayerColorWhite;
@@ -176,7 +173,7 @@
                 _resetGameButton = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHeredox.png"];
                 [_resetGameButton setPosition:CGPointMake(405, 66)];
                 [_resetGameButton setOpacity:0];
-                [_resetGameButton addBlock: ^{ [self resetGame]; } forControlEvents: UDButtonEventTouchUpInside];
+                [_resetGameButton addBlock: ^{ if( _deck.count == 0 ) [self resetGame]; } forControlEvents: UDButtonEventTouchUpInside];
                 [self addChild:_resetGameButton];
             }
 
@@ -288,9 +285,9 @@
     [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
     
     NSUInteger seed = time(NULL);
-    seed = 1342728185;
-    UDLog(@"game seed: %u", seed);
     [_deck shuffleWithSeed:seed];
+    
+    NSLog(@"Game Seed: %u", seed);
 
     CGFloat angle   = 0;
     CGFloat offsetY = 0;
