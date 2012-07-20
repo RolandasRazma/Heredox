@@ -27,46 +27,47 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"Default-Portrait~ipad.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"Default-Portrait~ipad.png":@"Default.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
         // Add buttons
         UDSpriteButton *buttonPlayers1 = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonPlayers1.png"];
         [buttonPlayers1 addBlock: ^{ [self startGameWithNumberOfPlayers:1]; } forControlEvents: UDButtonEventTouchUpInside];
-        [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 535)];
         [self addChild:buttonPlayers1];
 
         UDSpriteButton *buttonPlayers2 = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonPlayers2.png"];
         [buttonPlayers2 addBlock: ^{ [self startGameWithNumberOfPlayers:2]; } forControlEvents: UDButtonEventTouchUpInside];
-        [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 465)];
         [self addChild:buttonPlayers2];
         
         
         UDSpriteButton *buttonRules = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonRules.png"];
         [buttonRules addBlock: ^{ [self showRules]; } forControlEvents: UDButtonEventTouchUpInside];
-        [buttonRules setPosition:CGPointMake(winSize.width /2, 360)];
         [self addChild:buttonRules];
         
         UDSpriteButton *buttonOptions = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonOptions.png"];
         [buttonOptions addBlock: ^{ [self showOptions]; } forControlEvents: UDButtonEventTouchUpInside];
-        [buttonOptions setPosition:CGPointMake(winSize.width /2, 280)];
         [self addChild:buttonOptions];
 
         UDSpriteButton *buttonAbout = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonAbout.png"];
         [buttonAbout addBlock: ^{ [self showAbout]; } forControlEvents: UDButtonEventTouchUpInside];
-        [buttonAbout setPosition:CGPointMake(winSize.width /2, 210)];
         [self addChild:buttonAbout];
-        
-        
-        
 
+        
         if( isDeviceIPad() ){
             [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 535)];
             [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 465)];
+            
             [buttonRules setPosition:CGPointMake(winSize.width /2, 360)];
             [buttonOptions setPosition:CGPointMake(winSize.width /2, 280)];
             [buttonAbout setPosition:CGPointMake(winSize.width /2, 210)];
+        }else{
+            [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 250)];
+            [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 215)];
+            
+            [buttonRules setPosition:CGPointMake(winSize.width /2, 165)];
+            [buttonOptions setPosition:CGPointMake(winSize.width /2, 130)];
+            [buttonAbout setPosition:CGPointMake(winSize.width /2, 95)];
         }
         
     }

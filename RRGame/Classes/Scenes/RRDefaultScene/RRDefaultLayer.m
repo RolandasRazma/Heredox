@@ -20,7 +20,7 @@
 - (id)init {
     if( (self = [super init]) ){
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"Default-Portrait~ipad.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"Default-Portrait~ipad.png":@"Default.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
     }
