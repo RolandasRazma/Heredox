@@ -138,7 +138,6 @@
         [self addChild:_gameBoardLayer];
         [_gameBoardLayer release];
         
-        
         // Reset deck
         [self resetDeckForGameMode:gameMode];
     }
@@ -253,8 +252,7 @@
     [_resetGameButton runAction:[CCFadeOut actionWithDuration:0.3f]];
     
     // Make first player move as it makes no sense
-    [_gameBoardLayer addTile: [self takeTopTile] 
-                    animated: NO];
+    [_gameBoardLayer addTile:[self takeTopTile] animated:NO];
     [self endTurn];
 }
 
@@ -294,19 +292,23 @@
     
     NSLog(@"Game Seed: %u", seed);
 
+    // Place tiles on game board
     CGFloat angle   = 0;
     CGFloat offsetY = 0;
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     for( RRTile *tile in [_deck reverseObjectEnumerator] ){
         [tile setRotation:0];
         [tile setBackSideVisible: (gameMode == RRGameModeClosed)];
-        [tile setPosition:CGPointMake(winSize.width -tile.textureRect.size.width /1.5f, tile.textureRect.size.height /1.5f +offsetY)];
-        [self addChild:tile z:-1];
-        
+
         offsetY += (isDeviceIPad()?6.0f:3.0f);
+        [tile setRotation: CC_RADIANS_TO_DEGREES(sinf(++angle)) /20.0f];        
         
-        [tile setRotation: CC_RADIANS_TO_DEGREES(sinf(++angle)) /20.0f];
+        [tile setPosition:CGPointMake((winSize.width -tile.boundingBox.size.width) /2 +tile.boundingBox.size.width /2, 
+                                      tile.textureRect.size.height /1.5f +offsetY)];
+        [self addChild:tile z:-1];
     }
+
+    [_buttonEndTurn setPosition: [[_deck objectAtIndex: _deck.count -1] position]];
 }
 
 

@@ -214,6 +214,10 @@
 		F035877515B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877015B2FEE500BBAB82 /* fps_images-ipadhd.png */; };
 		F035877615B2FEE500BBAB82 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877115B2FEE500BBAB82 /* fps_images.png */; };
 		F035877715B2FEE500BBAB82 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = F035877115B2FEE500BBAB82 /* fps_images.png */; };
+		F036E5FA15B984F5009462B1 /* RRDefaultScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F036E5F915B984F5009462B1 /* RRDefaultScene.m */; };
+		F036E5FB15B984F5009462B1 /* RRDefaultScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F036E5F915B984F5009462B1 /* RRDefaultScene.m */; };
+		F036E5FE15B98529009462B1 /* RRDefaultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F036E5FD15B98529009462B1 /* RRDefaultLayer.m */; };
+		F036E5FF15B98529009462B1 /* RRDefaultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F036E5FD15B98529009462B1 /* RRDefaultLayer.m */; };
 		F03C982015B6DCC80091FEEE /* RRRulesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C981F15B6DCC80091FEEE /* RRRulesScene.m */; };
 		F03C982115B6DCC80091FEEE /* RRRulesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C981F15B6DCC80091FEEE /* RRRulesScene.m */; };
 		F03C982415B6DCE90091FEEE /* RRRulesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F03C982315B6DCE90091FEEE /* RRRulesLayer.m */; };
@@ -547,6 +551,10 @@
 		F035876F15B2FEE500BBAB82 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		F035877015B2FEE500BBAB82 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		F035877115B2FEE500BBAB82 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
+		F036E5F815B984F5009462B1 /* RRDefaultScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRDefaultScene.h; sourceTree = "<group>"; };
+		F036E5F915B984F5009462B1 /* RRDefaultScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRDefaultScene.m; sourceTree = "<group>"; };
+		F036E5FC15B98529009462B1 /* RRDefaultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRDefaultLayer.h; sourceTree = "<group>"; };
+		F036E5FD15B98529009462B1 /* RRDefaultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRDefaultLayer.m; sourceTree = "<group>"; };
 		F03C981E15B6DCC80091FEEE /* RRRulesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRulesScene.h; sourceTree = "<group>"; };
 		F03C981F15B6DCC80091FEEE /* RRRulesScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRulesScene.m; sourceTree = "<group>"; };
 		F03C982215B6DCE90091FEEE /* RRRulesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRulesLayer.h; sourceTree = "<group>"; };
@@ -1022,6 +1030,17 @@
 			path = TestFlightSDK;
 			sourceTree = "<group>";
 		};
+		F036E5F715B984F5009462B1 /* RRDefaultScene */ = {
+			isa = PBXGroup;
+			children = (
+				F036E5F815B984F5009462B1 /* RRDefaultScene.h */,
+				F036E5F915B984F5009462B1 /* RRDefaultScene.m */,
+				F036E5FC15B98529009462B1 /* RRDefaultLayer.h */,
+				F036E5FD15B98529009462B1 /* RRDefaultLayer.m */,
+			);
+			path = RRDefaultScene;
+			sourceTree = "<group>";
+		};
 		F03C981A15B6DCA00091FEEE /* RRAboutScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1218,6 +1237,7 @@
 		F065871614CA81410033B4F5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F036E5F715B984F5009462B1 /* RRDefaultScene */,
 				F0E3F79115B41F9B00599E95 /* RRMenuScene */,
 				F0E3F79A15B41FA900599E95 /* RRPickColorScene */,
 				F0E3F7A315B41FBC00599E95 /* RRGameScene */,
@@ -1679,6 +1699,8 @@
 				F03C983D15B6EA880091FEEE /* RRScoreLayer.m in Sources */,
 				F029586415B75F5A001279AB /* UDActionScaleTo.m in Sources */,
 				F0D2D3D815B8069E00F6001D /* UDActionCallFunc.m in Sources */,
+				F036E5FA15B984F5009462B1 /* RRDefaultScene.m in Sources */,
+				F036E5FE15B98529009462B1 /* RRDefaultLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1815,6 +1837,8 @@
 				F03C983E15B6EA880091FEEE /* RRScoreLayer.m in Sources */,
 				F029586515B75F5A001279AB /* UDActionScaleTo.m in Sources */,
 				F0D2D3D915B8069E00F6001D /* UDActionCallFunc.m in Sources */,
+				F036E5FB15B984F5009462B1 /* RRDefaultScene.m in Sources */,
+				F036E5FF15B98529009462B1 /* RRDefaultLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

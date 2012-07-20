@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 #import "RRGameDelegate.h"
-#import "RRMenuScene.h"
+#import "RRDefaultScene.h"
 
 
 @implementation RRGameDelegate {
@@ -104,14 +104,11 @@
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
-    // Load Textures
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
-    
     // Init RRHeredox
     [RRHeredox sharedInstance];
     
     // Push First Scene
-    [_director pushScene: [RRMenuScene node]];
+    [_director pushScene: [RRDefaultScene node]];
     
 	return YES;
 }

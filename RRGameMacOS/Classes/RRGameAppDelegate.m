@@ -8,7 +8,7 @@
 
 #import "RRGameAppDelegate.h"
 #import "cocos2d.h"
-#import "RRMenuScene.h"
+#import "RRDefaultScene.h"
 
 
 @implementation RRGameAppDelegate
@@ -57,15 +57,12 @@
     
 	// Center main window
 	[_window center];
-	
-    // Load Textures
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
-    
+
     // Init RRHeredox
     [RRHeredox sharedInstance];
     
     // Push First Scene
-    [_director runWithScene: [RRMenuScene node]];
+    [_director runWithScene: [RRDefaultScene node]];
 }
 
 
