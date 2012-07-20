@@ -58,3 +58,10 @@ static inline bool UDTriangleContainsPoint(UDTriangle triangle, CGPoint point){
     
     return ((b1 == b2) && (b2 == b3));
 }
+
+
+#if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+static inline NSString *NSStringFromCGPoint(CGPoint point){
+    return [NSString stringWithFormat:@"{%g, %g}", point.x, point.y];
+}
+#endif
