@@ -118,7 +118,6 @@
         
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHome.png"];
-        [buttonHome setPosition:CGPointMake(655, 915)];
         [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonHome];
         
@@ -140,6 +139,14 @@
         
         // Reset deck
         [self resetDeckForGameMode:gameMode];
+        
+        
+        // Device layout
+        if( isDeviceIPad() ){
+            [buttonHome setPosition:CGPointMake(655, 915)];
+        }else{
+            [buttonHome setPosition:CGPointMake(275, 425)];
+        }
     }
 	return self;
 }
@@ -174,11 +181,19 @@
             [self newTurn];
         }else{
             if( !_resetGameButton ){
+                CGSize winSize = [[CCDirector sharedDirector] winSize];
+                
                 _resetGameButton = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHeredox.png"];
-                [_resetGameButton setPosition:CGPointMake(405, 66)];
                 [_resetGameButton setOpacity:0];
                 [_resetGameButton addBlock: ^{ if( _deck.count == 0 ) [self resetGame]; } forControlEvents: UDButtonEventTouchUpInside];
                 [self addChild:_resetGameButton];
+             
+                // Device layout
+                if( isDeviceIPad() ){
+                    [_resetGameButton setPosition:CGPointMake(winSize.width /2, 70)];
+                }else{
+                    [_resetGameButton setPosition:CGPointMake(winSize.width /2, 70)];
+                }
             }
 
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
@@ -303,7 +318,7 @@
         offsetY += (isDeviceIPad()?6.0f:3.0f);
         [tile setRotation: CC_RADIANS_TO_DEGREES(sinf(++angle)) /20.0f];        
         
-        [tile setPosition:CGPointMake((winSize.width -tile.boundingBox.size.width) /2 +tile.boundingBox.size.width /2, 
+        [tile setPosition:CGPointMake(winSize.width /2, 
                                       tile.textureRect.size.height /1.5f +offsetY)];
         [self addChild:tile z:-1];
     }
