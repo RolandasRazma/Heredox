@@ -39,7 +39,8 @@
         if( isDeviceIPad() ){
             [buttonHome setPosition:CGPointMake(winSize.width -135, winSize.height -90)];
         }else{
-            [buttonHome setPosition:CGPointMake(winSize.width -65, winSize.height -45)];
+            [buttonHome setScale:0.8f];
+            [buttonHome setPosition:CGPointMake(winSize.width -60, winSize.height -40)];
         }
     }
     

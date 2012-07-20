@@ -282,7 +282,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{524, 257}, {320, 480}}</string>
 				<int key="NSWTFlags">1685585920</int>
-				<string key="NSWindowTitle">UDBloodyFlight</string>
+				<string key="NSWindowTitle">Heredox</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
@@ -734,6 +734,14 @@
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CCGLView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CCGLView.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">RRGameAppDelegate</string>
 					<string key="superclassName">NSObject</string>

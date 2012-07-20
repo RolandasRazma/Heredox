@@ -87,7 +87,8 @@
             _sliderEdgeLeft = 150;
             _sliderWidth    = 500.0f;
         }else{
-            [buttonHome setPosition:CGPointMake(winSize.width -65, winSize.height -45)];
+            [buttonHome setScale:0.8f];
+            [buttonHome setPosition:CGPointMake(winSize.width -60, winSize.height -40)];
             
             [_buttonNovice setPosition:CGPointMake(60,  122)];
             [_buttonDeacon setPosition:CGPointMake(150, 115)];

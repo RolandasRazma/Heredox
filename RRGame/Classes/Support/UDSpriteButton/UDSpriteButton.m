@@ -237,10 +237,10 @@
 
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-	if( !visible_ ) return NO;
+	if( !visible_ || opacity_ == 0.0f ) return NO;
 	
 	for( CCNode *c = self.parent; c != nil; c = c.parent ){
-		if( c.visible == NO ) return NO;
+		if( c.visible == NO || opacity_ == 0.0f ) return NO;
     }
 
     _touchActive = [self touchBeganAtLocation: [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]]];
@@ -281,7 +281,7 @@
 
 
 - (BOOL)ccMouseDown:(NSEvent *)event {
-    if( !visible_ ) return NO;
+    if( !visible_ || opacity_ == 0.0f ) return NO;
 
     _touchActive = [self touchBeganAtLocation: [(CCDirectorMac *)[CCDirector sharedDirector] convertEventToGL:event]];
     return _touchActive;
@@ -289,7 +289,7 @@
 
 
 - (BOOL)ccMouseDragged:(NSEvent *)event {
-    if( !visible_ || !_touchActive ) return NO;
+    if( !visible_ || !_touchActive || opacity_ == 0.0f ) return NO;
     
     [self touchMovedToLocation: [(CCDirectorMac *)[CCDirector sharedDirector] convertEventToGL:event]];
     return YES;
@@ -297,7 +297,7 @@
 
 
 - (BOOL)ccMouseUp:(NSEvent *)event {
-    if( !visible_ || !_touchActive ) return NO;
+    if( !visible_ || !_touchActive || opacity_ == 0.0f ) return NO;
     
     [self touchEndedAtLocation: [(CCDirectorMac *)[CCDirector sharedDirector] convertEventToGL:event]];
     _touchActive = NO;

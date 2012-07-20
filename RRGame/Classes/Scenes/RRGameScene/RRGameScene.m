@@ -35,11 +35,11 @@
             
             [gameLayer setPlayer2: player];
             
-#if TARGET_IPHONE_SIMULATOR
+//#if TARGET_IPHONE_SIMULATOR
             RRAIPlayer *player1 = [RRAIPlayer playerWithPlayerColor:playerColor];
             [player1 setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
             [gameLayer setPlayer1: player1];
-#endif
+//#endif
         }
         
 //        [(RRAIPlayer *)gameLayer.player1 setDificultyLevel: RRAILevelNovice];

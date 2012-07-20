@@ -128,13 +128,13 @@
         [_buttonEndTurn setPosition:CGPointMake(winSize.width -[RRTile tileSize] /1.5f, [RRTile tileSize] /1.5f)];
         [self addChild:_buttonEndTurn z:-2];
         
-        // Add score labels
+        // Add scores
         _scoreLayer = [RRScoreLayer node];
         [self addChild:_scoreLayer];
         
         // Add board layer
         _gameBoardLayer = [[RRGameBoardLayer alloc] initWithGameMode: _gameMode];
-        [self addChild:_gameBoardLayer];
+        [self addChild:_gameBoardLayer z:1];
         [_gameBoardLayer release];
         
         // Reset deck
@@ -145,7 +145,8 @@
         if( isDeviceIPad() ){
             [buttonHome setPosition:CGPointMake(655, 915)];
         }else{
-            [buttonHome setPosition:CGPointMake(275, 425)];
+            [buttonHome setScale:0.8f];
+            [buttonHome setPosition:CGPointMake(280, 435)];
         }
     }
 	return self;
@@ -180,20 +181,18 @@
             [self takeNewTile];
             [self newTurn];
         }else{
-            if( !_resetGameButton ){
-                CGSize winSize = [[CCDirector sharedDirector] winSize];
-                
-                _resetGameButton = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHeredox.png"];
-                [_resetGameButton setOpacity:0];
-                [_resetGameButton addBlock: ^{ if( _deck.count == 0 ) [self resetGame]; } forControlEvents: UDButtonEventTouchUpInside];
-                [self addChild:_resetGameButton];
-             
-                // Device layout
-                if( isDeviceIPad() ){
-                    [_resetGameButton setPosition:CGPointMake(winSize.width /2, 70)];
-                }else{
-                    [_resetGameButton setPosition:CGPointMake(winSize.width /2, 70)];
-                }
+            CGSize winSize = [[CCDirector sharedDirector] winSize];
+            
+            _resetGameButton = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHeredox.png"];
+            [_resetGameButton setOpacity:0];
+            [_resetGameButton addBlock: ^{ if( _deck.count == 0 ) [self resetGame]; } forControlEvents: UDButtonEventTouchUpInside];
+            [self addChild:_resetGameButton z:-2];
+            
+            // Device layout
+            if( isDeviceIPad() ){
+                [_resetGameButton setPosition:CGPointMake(winSize.width /2, 70)];
+            }else{
+                [_resetGameButton setPosition:CGPointMake(winSize.width /2, 70)];
             }
 
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
@@ -251,8 +250,7 @@
     RRTile *newTile = [self takeTopTile];
     [newTile setPosition:CGPointMake(newTile.position.x -_gameBoardLayer.position.x, newTile.position.y -_gameBoardLayer.position.y)];
     
-    [_gameBoardLayer addTile: newTile
-                    animated: YES];
+    [_gameBoardLayer addTile:newTile animated:YES];
     
 }
 
@@ -264,7 +262,10 @@
     _playerColor = _firstPlayerColor;
     
     [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
-    [_resetGameButton runAction:[CCFadeOut actionWithDuration:0.3f]];
+    
+    [_resetGameButton stopAllActions];
+    [_resetGameButton runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.3f], [UDActionDestroy action], nil]];
+    _resetGameButton = nil;
     
     // Make first player move as it makes no sense
     [_gameBoardLayer addTile:[self takeTopTile] animated:NO];
@@ -323,7 +324,7 @@
         [self addChild:tile z:-1];
     }
 
-    [_buttonEndTurn setPosition: [[_deck objectAtIndex: _deck.count -1] position]];
+    [_buttonEndTurn setPosition: [(RRTile *)[_deck objectAtIndex: _deck.count -1] position]];
 }
 
 

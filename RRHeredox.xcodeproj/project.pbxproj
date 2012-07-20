@@ -233,9 +233,7 @@
 		F03EF73215B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */; };
 		F03EF73315B03E390085E637 /* NSMutableArray+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF73115B03E390085E637 /* NSMutableArray+UDAdditions.m */; };
 		F03EF74415B042E80085E637 /* textures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74015B042E80085E637 /* textures-hd.plist */; };
-		F03EF74515B042E80085E637 /* textures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74015B042E80085E637 /* textures-hd.plist */; };
 		F03EF74615B042E80085E637 /* textures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74115B042E80085E637 /* textures-hd.png */; };
-		F03EF74715B042E80085E637 /* textures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74115B042E80085E637 /* textures-hd.png */; };
 		F03EF74815B042E80085E637 /* textures.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74215B042E80085E637 /* textures.plist */; };
 		F03EF74915B042E80085E637 /* textures.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74215B042E80085E637 /* textures.plist */; };
 		F03EF74A15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
@@ -288,6 +286,7 @@
 		F078FF3915B9E06F00813DDD /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3315B9E06E00813DDD /* RRBackgroundWhite.png */; };
 		F078FF3A15B9E06F00813DDD /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3315B9E06E00813DDD /* RRBackgroundWhite.png */; };
 		F078FF3B15B9E06F00813DDD /* RRBackgroundWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3415B9E06F00813DDD /* RRBackgroundWhite@2x.png */; };
+		F092AD2015B9E93300172704 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
 		F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD114CA92F000665366 /* OpenGL.framework */; };
 		F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD714CA92F000665366 /* AppKit.framework */; };
 		F0CD614914CA92F300665366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD614814CA92F300665366 /* main.m */; };
@@ -1599,8 +1598,6 @@
 				F0CD646414CA983700665366 /* icon.icns in Resources */,
 				F023312615AF97DC00D7EF8F /* ChangeLog in Resources */,
 				F023312815AF97DC00D7EF8F /* CMakeLists.txt in Resources */,
-				F03EF74515B042E80085E637 /* textures-hd.plist in Resources */,
-				F03EF74715B042E80085E637 /* textures-hd.png in Resources */,
 				F03EF74915B042E80085E637 /* textures.plist in Resources */,
 				F03EF74B15B042E80085E637 /* textures.png in Resources */,
 				F035877315B2FEE500BBAB82 /* fps_images-hd.png in Resources */,
@@ -1611,6 +1608,7 @@
 				F078FF2E15B9DC5A00813DDD /* RRBackgroundPlayerColor.png in Resources */,
 				F078FF3615B9E06F00813DDD /* RRBackgroundBlack.png in Resources */,
 				F078FF3A15B9E06F00813DDD /* RRBackgroundWhite.png in Resources */,
+				F092AD2015B9E93300172704 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

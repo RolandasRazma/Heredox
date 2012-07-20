@@ -23,7 +23,7 @@
     [self setIsTouchEnabled: enabled];
     if( isRunning_ ){
         if( enabled ){
-            [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate:self priority:0 swallowsTouches:YES];
+            [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate:self priority:[self mouseDelegatePriority] swallowsTouches:YES];
         }else{
             [[CCDirector sharedDirector].touchDispatcher removeDelegate:self];
         }
@@ -64,13 +64,18 @@
 #pragma mark CCNode
 
 
+- (NSInteger)mouseDelegatePriority {
+	return 0;
+}
+
+
 #ifdef __CC_PLATFORM_IOS
 
 
 - (void)onEnter {
     if( [self isUserInteractionEnabled] ){
         [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: self
-                                                                priority: 0
+                                                                priority: [self mouseDelegatePriority]
                                                          swallowsTouches: YES];
     }
     [super onEnter];
@@ -88,10 +93,10 @@
 
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-	if( !visible_ ) return NO;
+	if( !visible_ || opacity_ == 0.0f ) return NO;
 	
 	for( CCNode *c = self.parent; c != nil; c = c.parent ){
-		if( c.visible == NO ) return NO;
+		if( c.visible == NO || opacity_ == 0.0f ) return NO;
     }
 
     _touchActive = [self touchBeganAtLocation: [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]]];
@@ -118,7 +123,7 @@
 
 - (BOOL)ccMouseDown:(NSEvent *)event {
     if( !visible_ ) return NO;
-    
+
     _touchActive = [self touchBeganAtLocation: [(CCDirectorMac *)[CCDirector sharedDirector] convertEventToGL:event]];
     return _touchActive;
 }

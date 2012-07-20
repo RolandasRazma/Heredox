@@ -54,6 +54,11 @@
 }
 
 
+- (NSInteger)mouseDelegatePriority {
+	return -1;
+}
+
+
 #pragma mark -
 #pragma mark UDGameBoardLayer
 
@@ -164,7 +169,7 @@
 
 - (void)addTile:(RRTile *)tile animated:(BOOL)animated {
     _activeTile = tile;
-    [self addChild:tile];
+    [self addChild:tile z:0];
 
     if( animated ){
         [tile setOpacity:0];
