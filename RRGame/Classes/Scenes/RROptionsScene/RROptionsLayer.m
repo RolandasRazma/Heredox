@@ -90,9 +90,14 @@
             [buttonHome setScale:0.8f];
             [buttonHome setPosition:CGPointMake(winSize.width -60, winSize.height -40)];
             
-            [_buttonNovice setPosition:CGPointMake(60,  122)];
-            [_buttonDeacon setPosition:CGPointMake(150, 115)];
-            [_buttonAbbot setPosition:CGPointMake(255,  115)];
+            [_buttonNovice setScale:0.8f];
+            [_buttonNovice setPosition:CGPointMake(60,  132)];
+            
+            [_buttonDeacon setScale:0.8f];
+            [_buttonDeacon setPosition:CGPointMake(150, 125)];
+            
+            [_buttonAbbot setScale:0.8f];
+            [_buttonAbbot setPosition:CGPointMake(255,  125)];
             
             [_sliderSound setPosition:CGPointMake(160, 315)];
             [_sliderSFX setPosition:CGPointMake(160, 243)];

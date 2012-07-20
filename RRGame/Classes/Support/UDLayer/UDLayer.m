@@ -93,10 +93,10 @@
 
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-	if( !visible_ || opacity_ == 0.0f ) return NO;
+	if( !visible_ ) return NO;
 	
 	for( CCNode *c = self.parent; c != nil; c = c.parent ){
-		if( c.visible == NO || opacity_ == 0.0f ) return NO;
+		if( c.visible == NO ) return NO;
     }
 
     _touchActive = [self touchBeganAtLocation: [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]]];
