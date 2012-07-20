@@ -54,6 +54,7 @@
         [self addChild:buttonAbout];
 
         
+        // Device layout
         if( isDeviceIPad() ){
             [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 535)];
             [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 465)];
@@ -66,7 +67,7 @@
             [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 215)];
             
             [buttonRules setPosition:CGPointMake(winSize.width /2, 165)];
-            [buttonOptions setPosition:CGPointMake(winSize.width /2, 130)];
+            [buttonOptions setPosition:CGPointMake(winSize.width /2, 128)];
             [buttonAbout setPosition:CGPointMake(winSize.width /2, 95)];
         }
         

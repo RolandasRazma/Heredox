@@ -48,7 +48,7 @@
         
         
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"RRBackgroundPlayerColor.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"RRBackgroundPlayerColor~ipad.png"];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
 

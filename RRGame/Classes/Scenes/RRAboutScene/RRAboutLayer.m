@@ -20,17 +20,27 @@
 
 - (id)init {
     if( (self = [super init]) ){
+
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"RRBackground.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackground~ipad.png":@"RRBackground.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
-        
+
         
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonCherubHome.png"];
-        [buttonHome setPosition:CGPointMake(635, 935)];
         [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonHome];
+        
+        
+        // Device layout
+        if( isDeviceIPad() ){
+            [buttonHome setPosition:CGPointMake(winSize.width -135, winSize.height -90)];
+        }else{
+            [buttonHome setPosition:CGPointMake(winSize.width -65, winSize.height -45)];
+        }
     }
     
     return self;

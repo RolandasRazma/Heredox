@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F0142CCB15B5FCE7004BAB1C /* RRBackgroundBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = F0142CC815B5FCE7004BAB1C /* RRBackgroundBlack.png */; };
-		F0142CCC15B5FCE7004BAB1C /* RRBackgroundPlayerColor.png in Resources */ = {isa = PBXBuildFile; fileRef = F0142CC915B5FCE7004BAB1C /* RRBackgroundPlayerColor.png */; };
-		F0142CCD15B5FCE7004BAB1C /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F0142CCA15B5FCE7004BAB1C /* RRBackgroundWhite.png */; };
 		F01CD2C51530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F01CD2C61530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F023307915AF97DC00D7EF8F /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0232F8E15AF97DC00D7EF8F /* CCAction.m */; };
@@ -204,7 +201,6 @@
 		F023313E15AF97DC00D7EF8F /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = F023307715AF97DC00D7EF8F /* vec3.c */; };
 		F023313F15AF97DC00D7EF8F /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = F023307815AF97DC00D7EF8F /* vec4.c */; };
 		F023314015AF97DC00D7EF8F /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = F023307815AF97DC00D7EF8F /* vec4.c */; };
-		F029586115B75711001279AB /* RRBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F029586015B75711001279AB /* RRBackground.png */; };
 		F029586415B75F5A001279AB /* UDActionScaleTo.m in Sources */ = {isa = PBXBuildFile; fileRef = F029586315B75F5A001279AB /* UDActionScaleTo.m */; };
 		F029586515B75F5A001279AB /* UDActionScaleTo.m in Sources */ = {isa = PBXBuildFile; fileRef = F029586315B75F5A001279AB /* UDActionScaleTo.m */; };
 		F0330B41152D78C7001F1915 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0330B3D152D78C7001F1915 /* libTestFlight.a */; };
@@ -272,6 +268,18 @@
 		F06F0D6B15B5B19D00526BDB /* CGGeometry+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F06F0D6915B5B19D00526BDB /* CGGeometry+UDAdditions.m */; };
 		F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
 		F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
+		F078FF1615B9D2CC00813DDD /* RRBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF1515B9D2CC00813DDD /* RRBackground.png */; };
+		F078FF1715B9D2CC00813DDD /* RRBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF1515B9D2CC00813DDD /* RRBackground.png */; };
+		F078FF1915B9D2D500813DDD /* RRBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF1815B9D2D500813DDD /* RRBackground@2x.png */; };
+		F078FF2015B9D2E200813DDD /* RRBackgroundBlack~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF1B15B9D2E200813DDD /* RRBackgroundBlack~ipad.png */; };
+		F078FF2115B9D2E200813DDD /* RRBackgroundOptions~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF1C15B9D2E200813DDD /* RRBackgroundOptions~ipad.png */; };
+		F078FF2215B9D2E200813DDD /* RRBackgroundPlayerColor~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF1D15B9D2E200813DDD /* RRBackgroundPlayerColor~ipad.png */; };
+		F078FF2315B9D2E200813DDD /* RRBackgroundWhite~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF1E15B9D2E200813DDD /* RRBackgroundWhite~ipad.png */; };
+		F078FF2415B9D2E200813DDD /* RRBackground~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF1F15B9D2E200813DDD /* RRBackground~ipad.png */; };
+		F078FF2715B9D6BC00813DDD /* RRBackgroundOptions.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2515B9D6BC00813DDD /* RRBackgroundOptions.png */; };
+		F078FF2815B9D6BC00813DDD /* RRBackgroundOptions.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2515B9D6BC00813DDD /* RRBackgroundOptions.png */; };
+		F078FF2915B9D6BC00813DDD /* RRBackgroundOptions@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2615B9D6BC00813DDD /* RRBackgroundOptions@2x.png */; };
+		F078FF2A15B9D6BC00813DDD /* RRBackgroundOptions@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2615B9D6BC00813DDD /* RRBackgroundOptions@2x.png */; };
 		F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD114CA92F000665366 /* OpenGL.framework */; };
 		F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD714CA92F000665366 /* AppKit.framework */; };
 		F0CD614914CA92F300665366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD614814CA92F300665366 /* main.m */; };
@@ -284,7 +292,6 @@
 		F0CD648114CA9ACB00665366 /* RRGameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD648014CA9ACB00665366 /* RRGameAppDelegate.m */; };
 		F0D2D3D815B8069E00F6001D /* UDActionCallFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D2D3D715B8069E00F6001D /* UDActionCallFunc.m */; };
 		F0D2D3D915B8069E00F6001D /* UDActionCallFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D2D3D715B8069E00F6001D /* UDActionCallFunc.m */; };
-		F0E033AF15B720880079EED5 /* RRBackgroundOptions.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E033AE15B720880079EED5 /* RRBackgroundOptions.png */; };
 		F0E3F67915B40FA800599E95 /* RRAIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAIPlayer.m */; };
 		F0E3F67A15B40FA800599E95 /* RRAIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F67815B40FA800599E95 /* RRAIPlayer.m */; };
 		F0E3F6FD15B41D6E00599E95 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F68815B41D6E00599E95 /* CDAudioManager.m */; };
@@ -320,9 +327,6 @@
 
 /* Begin PBXFileReference section */
 		F00D63F915B2329D0034DC10 /* UDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMacros.h; sourceTree = "<group>"; };
-		F0142CC815B5FCE7004BAB1C /* RRBackgroundBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundBlack.png; sourceTree = "<group>"; };
-		F0142CC915B5FCE7004BAB1C /* RRBackgroundPlayerColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundPlayerColor.png; sourceTree = "<group>"; };
-		F0142CCA15B5FCE7004BAB1C /* RRBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundWhite.png; sourceTree = "<group>"; };
 		F01CD2C31530241F000149C4 /* UDActionDestroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionDestroy.h; sourceTree = "<group>"; };
 		F01CD2C41530241F000149C4 /* UDActionDestroy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionDestroy.m; sourceTree = "<group>"; };
 		F0232F8D15AF97DC00D7EF8F /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
@@ -541,7 +545,6 @@
 		F023307615AF97DC00D7EF8F /* vec2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec2.c; sourceTree = "<group>"; };
 		F023307715AF97DC00D7EF8F /* vec3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec3.c; sourceTree = "<group>"; };
 		F023307815AF97DC00D7EF8F /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
-		F029586015B75711001279AB /* RRBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackground.png; sourceTree = "<group>"; };
 		F029586215B75F5A001279AB /* UDActionScaleTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionScaleTo.h; sourceTree = "<group>"; };
 		F029586315B75F5A001279AB /* UDActionScaleTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionScaleTo.m; sourceTree = "<group>"; };
 		F0330B3D152D78C7001F1915 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
@@ -610,6 +613,15 @@
 		F06F0D6915B5B19D00526BDB /* CGGeometry+UDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+UDAdditions.m"; sourceTree = "<group>"; };
 		F07476F415B1DEA500B69890 /* RRHeredox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRHeredox.h; sourceTree = "<group>"; };
 		F07476F515B1DEA500B69890 /* RRHeredox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRHeredox.m; sourceTree = "<group>"; };
+		F078FF1515B9D2CC00813DDD /* RRBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackground.png; sourceTree = "<group>"; };
+		F078FF1815B9D2D500813DDD /* RRBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackground@2x.png"; sourceTree = "<group>"; };
+		F078FF1B15B9D2E200813DDD /* RRBackgroundBlack~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack~ipad.png"; sourceTree = "<group>"; };
+		F078FF1C15B9D2E200813DDD /* RRBackgroundOptions~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundOptions~ipad.png"; sourceTree = "<group>"; };
+		F078FF1D15B9D2E200813DDD /* RRBackgroundPlayerColor~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundPlayerColor~ipad.png"; sourceTree = "<group>"; };
+		F078FF1E15B9D2E200813DDD /* RRBackgroundWhite~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite~ipad.png"; sourceTree = "<group>"; };
+		F078FF1F15B9D2E200813DDD /* RRBackground~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackground~ipad.png"; sourceTree = "<group>"; };
+		F078FF2515B9D6BC00813DDD /* RRBackgroundOptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundOptions.png; sourceTree = "<group>"; };
+		F078FF2615B9D6BC00813DDD /* RRBackgroundOptions@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundOptions@2x.png"; sourceTree = "<group>"; };
 		F0CD5FCC14CA92F000665366 /* Heredox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heredox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0CD5FD114CA92F000665366 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		F0CD5FD714CA92F000665366 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -622,7 +634,6 @@
 		F0CD648014CA9ACB00665366 /* RRGameAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameAppDelegate.m; sourceTree = "<group>"; };
 		F0D2D3D615B8069E00F6001D /* UDActionCallFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionCallFunc.h; sourceTree = "<group>"; };
 		F0D2D3D715B8069E00F6001D /* UDActionCallFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionCallFunc.m; sourceTree = "<group>"; };
-		F0E033AE15B720880079EED5 /* RRBackgroundOptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundOptions.png; sourceTree = "<group>"; };
 		F0E3F67715B40FA800599E95 /* RRAIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAIPlayer.h; sourceTree = "<group>"; };
 		F0E3F67815B40FA800599E95 /* RRAIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAIPlayer.m; sourceTree = "<group>"; };
 		F0E3F68715B41D6E00599E95 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -692,18 +703,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F0142CC715B5FCE7004BAB1C /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				F0E033AE15B720880079EED5 /* RRBackgroundOptions.png */,
-				F0142CC915B5FCE7004BAB1C /* RRBackgroundPlayerColor.png */,
-				F0142CC815B5FCE7004BAB1C /* RRBackgroundBlack.png */,
-				F0142CCA15B5FCE7004BAB1C /* RRBackgroundWhite.png */,
-				F029586015B75711001279AB /* RRBackground.png */,
-			);
-			path = iPad;
-			sourceTree = "<group>";
-		};
 		F01CD2C1153023F8000149C4 /* UDActions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1184,6 +1183,10 @@
 			children = (
 				F0CD646514CA985100665366 /* iOS */,
 				F0CD646214CA983700665366 /* MacOS */,
+				F078FF1515B9D2CC00813DDD /* RRBackground.png */,
+				F078FF1815B9D2D500813DDD /* RRBackground@2x.png */,
+				F078FF2515B9D6BC00813DDD /* RRBackgroundOptions.png */,
+				F078FF2615B9D6BC00813DDD /* RRBackgroundOptions@2x.png */,
 				F03EF74215B042E80085E637 /* textures.plist */,
 				F03EF74315B042E80085E637 /* textures.png */,
 				F03EF74015B042E80085E637 /* textures-hd.plist */,
@@ -1270,6 +1273,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F078FF1A15B9D2E200813DDD /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				F078FF1B15B9D2E200813DDD /* RRBackgroundBlack~ipad.png */,
+				F078FF1C15B9D2E200813DDD /* RRBackgroundOptions~ipad.png */,
+				F078FF1D15B9D2E200813DDD /* RRBackgroundPlayerColor~ipad.png */,
+				F078FF1E15B9D2E200813DDD /* RRBackgroundWhite~ipad.png */,
+				F078FF1F15B9D2E200813DDD /* RRBackground~ipad.png */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
 		F0CD5FDB14CA92F000665366 /* RRGameMacOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1299,7 +1314,7 @@
 		F0CD646514CA985100665366 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F0142CC715B5FCE7004BAB1C /* iPad */,
+				F078FF1A15B9D2E200813DDD /* iPad */,
 				F0602A3E15AFA16600B60FB1 /* Icon.png */,
 				F0602A3F15AFA16600B60FB1 /* Icon@2x.png */,
 				F0602A4115AFA16600B60FB1 /* Icon~ipad.png */,
@@ -1538,11 +1553,15 @@
 				F035877215B2FEE500BBAB82 /* fps_images-hd.png in Resources */,
 				F035877415B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */,
 				F035877615B2FEE500BBAB82 /* fps_images.png in Resources */,
-				F0142CCB15B5FCE7004BAB1C /* RRBackgroundBlack.png in Resources */,
-				F0142CCC15B5FCE7004BAB1C /* RRBackgroundPlayerColor.png in Resources */,
-				F0142CCD15B5FCE7004BAB1C /* RRBackgroundWhite.png in Resources */,
-				F0E033AF15B720880079EED5 /* RRBackgroundOptions.png in Resources */,
-				F029586115B75711001279AB /* RRBackground.png in Resources */,
+				F078FF1615B9D2CC00813DDD /* RRBackground.png in Resources */,
+				F078FF1915B9D2D500813DDD /* RRBackground@2x.png in Resources */,
+				F078FF2015B9D2E200813DDD /* RRBackgroundBlack~ipad.png in Resources */,
+				F078FF2115B9D2E200813DDD /* RRBackgroundOptions~ipad.png in Resources */,
+				F078FF2215B9D2E200813DDD /* RRBackgroundPlayerColor~ipad.png in Resources */,
+				F078FF2315B9D2E200813DDD /* RRBackgroundWhite~ipad.png in Resources */,
+				F078FF2415B9D2E200813DDD /* RRBackground~ipad.png in Resources */,
+				F078FF2715B9D6BC00813DDD /* RRBackgroundOptions.png in Resources */,
+				F078FF2915B9D6BC00813DDD /* RRBackgroundOptions@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1561,6 +1580,9 @@
 				F035877315B2FEE500BBAB82 /* fps_images-hd.png in Resources */,
 				F035877515B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */,
 				F035877715B2FEE500BBAB82 /* fps_images.png in Resources */,
+				F078FF1715B9D2CC00813DDD /* RRBackground.png in Resources */,
+				F078FF2815B9D6BC00813DDD /* RRBackgroundOptions.png in Resources */,
+				F078FF2A15B9D6BC00813DDD /* RRBackgroundOptions@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
