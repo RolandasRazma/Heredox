@@ -39,27 +39,28 @@
         
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        
-        _upperRect     = CGRectMake(0, winSize.height -315, winSize.width, 315);
-        _upperTriangle = UDTriangleMake( CGPointMake(0, 260), CGPointMake(winSize.width, winSize.height -315), CGPointMake(0, winSize.height -315) );
-        
-        _lowerRect     = CGRectMake(0, 0, winSize.width, 260);
-        _lowerTriangle = UDTriangleMake( CGPointMake(0, 260), CGPointMake(winSize.width, 260), CGPointMake(winSize.width, winSize.height -315) );
-        
-        
+
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:@"RRBackgroundPlayerColor~ipad.png"];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundPlayerColor~ipad.png":@"RRBackgroundPlayerColor.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
 
         
-        // Add menu button
-        /*
-        UDSpriteButton *buttonHome = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHome.png"];
-        [buttonHome setPosition:CGPointMake(655, 915)];
-        [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
-        [self addChild:buttonHome];
-        */
+        // Device layout
+        if( isDeviceIPad() ){
+            _upperRect     = CGRectMake(0, winSize.height -315, winSize.width, 315);
+            _upperTriangle = UDTriangleMake( CGPointMake(0, 260), CGPointMake(winSize.width, winSize.height -315), CGPointMake(0, winSize.height -315) );
+            
+            _lowerRect     = CGRectMake(0, 0, winSize.width, 260);
+            _lowerTriangle = UDTriangleMake( CGPointMake(0, 260), CGPointMake(winSize.width, 260), CGPointMake(winSize.width, winSize.height -315) );
+        }else{
+            _upperRect     = CGRectMake(0, winSize.height -150, winSize.width, 150);
+            _upperTriangle = UDTriangleMake( CGPointMake(0, 120), CGPointMake(winSize.width, winSize.height -150), CGPointMake(0, winSize.height -150) );
+            
+            
+            _lowerRect     = CGRectMake(0, 0, winSize.width, 120);
+            _lowerTriangle = UDTriangleMake( CGPointMake(0, 120), CGPointMake(winSize.width, 120), CGPointMake(winSize.width, winSize.height -150) );
+        }
     }
     return self;
 }
@@ -86,7 +87,6 @@
 
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
-
     return YES;
 }
 

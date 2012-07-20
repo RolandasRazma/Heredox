@@ -279,7 +279,15 @@
 		F078FF2715B9D6BC00813DDD /* RRBackgroundOptions.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2515B9D6BC00813DDD /* RRBackgroundOptions.png */; };
 		F078FF2815B9D6BC00813DDD /* RRBackgroundOptions.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2515B9D6BC00813DDD /* RRBackgroundOptions.png */; };
 		F078FF2915B9D6BC00813DDD /* RRBackgroundOptions@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2615B9D6BC00813DDD /* RRBackgroundOptions@2x.png */; };
-		F078FF2A15B9D6BC00813DDD /* RRBackgroundOptions@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2615B9D6BC00813DDD /* RRBackgroundOptions@2x.png */; };
+		F078FF2D15B9DC5A00813DDD /* RRBackgroundPlayerColor.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2B15B9DC5900813DDD /* RRBackgroundPlayerColor.png */; };
+		F078FF2E15B9DC5A00813DDD /* RRBackgroundPlayerColor.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2B15B9DC5900813DDD /* RRBackgroundPlayerColor.png */; };
+		F078FF2F15B9DC5A00813DDD /* RRBackgroundPlayerColor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF2C15B9DC5900813DDD /* RRBackgroundPlayerColor@2x.png */; };
+		F078FF3515B9E06F00813DDD /* RRBackgroundBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3115B9E06E00813DDD /* RRBackgroundBlack.png */; };
+		F078FF3615B9E06F00813DDD /* RRBackgroundBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3115B9E06E00813DDD /* RRBackgroundBlack.png */; };
+		F078FF3715B9E06F00813DDD /* RRBackgroundBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3215B9E06E00813DDD /* RRBackgroundBlack@2x.png */; };
+		F078FF3915B9E06F00813DDD /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3315B9E06E00813DDD /* RRBackgroundWhite.png */; };
+		F078FF3A15B9E06F00813DDD /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3315B9E06E00813DDD /* RRBackgroundWhite.png */; };
+		F078FF3B15B9E06F00813DDD /* RRBackgroundWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F078FF3415B9E06F00813DDD /* RRBackgroundWhite@2x.png */; };
 		F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD114CA92F000665366 /* OpenGL.framework */; };
 		F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD714CA92F000665366 /* AppKit.framework */; };
 		F0CD614914CA92F300665366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD614814CA92F300665366 /* main.m */; };
@@ -622,6 +630,12 @@
 		F078FF1F15B9D2E200813DDD /* RRBackground~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackground~ipad.png"; sourceTree = "<group>"; };
 		F078FF2515B9D6BC00813DDD /* RRBackgroundOptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundOptions.png; sourceTree = "<group>"; };
 		F078FF2615B9D6BC00813DDD /* RRBackgroundOptions@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundOptions@2x.png"; sourceTree = "<group>"; };
+		F078FF2B15B9DC5900813DDD /* RRBackgroundPlayerColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundPlayerColor.png; sourceTree = "<group>"; };
+		F078FF2C15B9DC5900813DDD /* RRBackgroundPlayerColor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundPlayerColor@2x.png"; sourceTree = "<group>"; };
+		F078FF3115B9E06E00813DDD /* RRBackgroundBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundBlack.png; sourceTree = "<group>"; };
+		F078FF3215B9E06E00813DDD /* RRBackgroundBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack@2x.png"; sourceTree = "<group>"; };
+		F078FF3315B9E06E00813DDD /* RRBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundWhite.png; sourceTree = "<group>"; };
+		F078FF3415B9E06F00813DDD /* RRBackgroundWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite@2x.png"; sourceTree = "<group>"; };
 		F0CD5FCC14CA92F000665366 /* Heredox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heredox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0CD5FD114CA92F000665366 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		F0CD5FD714CA92F000665366 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1187,6 +1201,12 @@
 				F078FF1815B9D2D500813DDD /* RRBackground@2x.png */,
 				F078FF2515B9D6BC00813DDD /* RRBackgroundOptions.png */,
 				F078FF2615B9D6BC00813DDD /* RRBackgroundOptions@2x.png */,
+				F078FF2B15B9DC5900813DDD /* RRBackgroundPlayerColor.png */,
+				F078FF2C15B9DC5900813DDD /* RRBackgroundPlayerColor@2x.png */,
+				F078FF3115B9E06E00813DDD /* RRBackgroundBlack.png */,
+				F078FF3215B9E06E00813DDD /* RRBackgroundBlack@2x.png */,
+				F078FF3315B9E06E00813DDD /* RRBackgroundWhite.png */,
+				F078FF3415B9E06F00813DDD /* RRBackgroundWhite@2x.png */,
 				F03EF74215B042E80085E637 /* textures.plist */,
 				F03EF74315B042E80085E637 /* textures.png */,
 				F03EF74015B042E80085E637 /* textures-hd.plist */,
@@ -1562,6 +1582,12 @@
 				F078FF2415B9D2E200813DDD /* RRBackground~ipad.png in Resources */,
 				F078FF2715B9D6BC00813DDD /* RRBackgroundOptions.png in Resources */,
 				F078FF2915B9D6BC00813DDD /* RRBackgroundOptions@2x.png in Resources */,
+				F078FF2D15B9DC5A00813DDD /* RRBackgroundPlayerColor.png in Resources */,
+				F078FF2F15B9DC5A00813DDD /* RRBackgroundPlayerColor@2x.png in Resources */,
+				F078FF3515B9E06F00813DDD /* RRBackgroundBlack.png in Resources */,
+				F078FF3715B9E06F00813DDD /* RRBackgroundBlack@2x.png in Resources */,
+				F078FF3915B9E06F00813DDD /* RRBackgroundWhite.png in Resources */,
+				F078FF3B15B9E06F00813DDD /* RRBackgroundWhite@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1582,7 +1608,9 @@
 				F035877715B2FEE500BBAB82 /* fps_images.png in Resources */,
 				F078FF1715B9D2CC00813DDD /* RRBackground.png in Resources */,
 				F078FF2815B9D6BC00813DDD /* RRBackgroundOptions.png in Resources */,
-				F078FF2A15B9D6BC00813DDD /* RRBackgroundOptions@2x.png in Resources */,
+				F078FF2E15B9DC5A00813DDD /* RRBackgroundPlayerColor.png in Resources */,
+				F078FF3615B9E06F00813DDD /* RRBackgroundBlack.png in Resources */,
+				F078FF3A15B9E06F00813DDD /* RRBackgroundWhite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

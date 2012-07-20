@@ -105,11 +105,11 @@
         _backgroundLayer = [RRCrossfadeLayer node];
         [self addChild:_backgroundLayer z:-10];
         
-        CCSprite *backgroundBlackSprite = [CCSprite spriteWithFile:@"RRBackgroundBlack~ipad.png"];
+        CCSprite *backgroundBlackSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundBlack~ipad.png":@"RRBackgroundBlack.png")];
         [backgroundBlackSprite setAnchorPoint:CGPointZero];
         [_backgroundLayer addChild:backgroundBlackSprite z:0 tag:RRPlayerColorBlack];
 
-        CCSprite *backgroundWhiteSprite = [CCSprite spriteWithFile:@"RRBackgroundWhite~ipad.png"];
+        CCSprite *backgroundWhiteSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundWhite~ipad.png":@"RRBackgroundWhite.png")];
         [backgroundWhiteSprite setAnchorPoint:CGPointZero];
         [_backgroundLayer addChild:backgroundWhiteSprite z:0 tag:RRPlayerColorWhite];
         
