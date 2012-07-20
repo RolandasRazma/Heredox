@@ -217,6 +217,7 @@
             moveValue += [self activeTileEdgeBlockModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
             if( _dificultyLevel > RRAILevelDeacon ){
                 moveValue += edgeBlockModifyer;
+                moveValue += [self nextTrunEdgeBlockModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
             }
         }
         
@@ -254,7 +255,7 @@
         }else if( positionInGrid.y < lowerGridBoundY ){
 
             for( NSInteger x=gameBoard.gridBounds.origin.x; x<gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width; x++ ){
-                RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(x,upperGridBoundY)];
+                RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(x, upperGridBoundY)];
                 
                 if( edgeTile.edgeTop == (RRTileEdge)self.playerColor ){
                     edgeBlockModifyer -= 0.5f;
@@ -357,6 +358,90 @@
         }
     }
     
+    
+    return edgeBlockModifyer;
+}
+
+
+- (CGFloat)nextTrunEdgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+    CGFloat edgeBlockModifyer = 0.0f;
+    
+    UDLog(@"nextTrunEdgeBlockModifyerForMoveOnGameBoard:positionInGrid: %@", NSStringFromCGPoint(positionInGrid));
+    
+    if( gameBoard.gridBounds.size.height == 3 ){
+        
+        NSInteger upperGridBoundY = gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1;
+        NSInteger lowerGridBoundY = gameBoard.gridBounds.origin.y;
+
+        // If I leave width == 3 this turn, how much damage can other player make on his turn?
+        if( (positionInGrid.y <= upperGridBoundY) && (positionInGrid.y >= lowerGridBoundY) ){
+
+            // If other player will block bottom
+            for( NSInteger x=gameBoard.gridBounds.origin.x; x<gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width; x++ ){
+                RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(x, lowerGridBoundY)];
+                
+                if( edgeTile.edgeBottom == (RRTileEdge)self.playerColor ){
+                    edgeBlockModifyer -= 0.3f;
+                    //UDLog(@"-= 0.2 (YB @ %@)", NSStringFromCGPoint(edgeTile.positionInGrid));
+                }else if( edgeTile.edgeBottom != RRTileEdgeNone ){
+                    edgeBlockModifyer += 0.3f;   
+                    //UDLog(@"+= 0.2 (YB @ %@)", NSStringFromCGPoint(edgeTile.positionInGrid));
+                }
+            }
+
+            // If other player will block top
+            for( NSInteger x=gameBoard.gridBounds.origin.x; x<gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width; x++ ){
+                RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(x, upperGridBoundY)];
+                
+                if( edgeTile.edgeTop == (RRTileEdge)self.playerColor ){
+                    edgeBlockModifyer -= 0.3f;
+                    //UDLog(@"-= 0.2 (YT @ %@)", NSStringFromCGPoint(edgeTile.positionInGrid));
+                }else if( edgeTile.edgeTop != RRTileEdgeNone ){
+                    edgeBlockModifyer += 0.3f;
+                    //UDLog(@"+= 0.2 (YT @ %@)", NSStringFromCGPoint(edgeTile.positionInGrid));
+                }
+            }
+        }
+    }
+    
+    if( gameBoard.gridBounds.size.width == 3 ){
+        
+        NSInteger leftGridBoundX = gameBoard.gridBounds.origin.x;
+        NSInteger rightGridBoundX = gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1;
+        
+        // If I leave height == 3 this turn, how much damage can other player make on his turn?
+        if( (positionInGrid.x >= leftGridBoundX) && (positionInGrid.x <= rightGridBoundX) ){
+
+            // If other player will block right
+            for( NSInteger y=gameBoard.gridBounds.origin.y; y<gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height; y++ ){
+                RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(rightGridBoundX, y)];
+
+                if( edgeTile.edgeRight == (RRTileEdge)self.playerColor ){
+                    edgeBlockModifyer -= 0.3f;
+                    //UDLog(@"-= 0.2 (XR @ %@)", NSStringFromCGPoint(edgeTile.positionInGrid));
+                }else if( edgeTile.edgeRight != RRTileEdgeNone ){
+                    edgeBlockModifyer += 0.3f;
+                    //UDLog(@"+= 0.2 (XR @ %@)", NSStringFromCGPoint(edgeTile.positionInGrid));
+                }
+            }
+
+            // If other player will block left
+            for( NSInteger y=gameBoard.gridBounds.origin.y; y<gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height; y++ ){
+                RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(leftGridBoundX, y)];
+             
+                if( edgeTile.edgeLeft == (RRTileEdge)self.playerColor ){
+                    edgeBlockModifyer -= 0.3f;
+                    //UDLog(@"-= 0.2 (XL @ %@)", NSStringFromCGPoint(edgeTile.positionInGrid));
+                }else if( edgeTile.edgeLeft != RRTileEdgeNone ){
+                    edgeBlockModifyer += 0.3f;
+                    //UDLog(@"+= 0.2 (XL @ %@)", NSStringFromCGPoint(edgeTile.positionInGrid));
+                }
+            }
+
+        }
+    }
+    
+    UDLog(@"/nextTrunEdgeBlockModifyerForMoveOnGameBoard = %.2f", edgeBlockModifyer);
     
     return edgeBlockModifyer;
 }

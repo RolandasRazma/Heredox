@@ -42,7 +42,9 @@
 
 - (void)dealloc {
     [_deck release];
-
+    [_player1 release];
+    [_player2 release];
+    
     [super dealloc];
 }
 
@@ -155,6 +157,9 @@
 
     if( [_gameBoardLayer haltTilePlaces] ){
 
+//        if( _gameBoardLayer.gridBounds.size.width  == 4 ) return;
+//        if( _gameBoardLayer.gridBounds.size.height == 4 ) return;
+        
         if( _deck.count > 0 ){
             if( _playerColor == RRPlayerColorBlack ){
                 _playerColor = RRPlayerColorWhite;
