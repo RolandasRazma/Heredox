@@ -20,6 +20,8 @@
     RRTileEdge  _edgeBottom;
     RRTileEdge  _edgeRight;
     
+    CCSprite    *_endTurnSprite;
+    
     CCLabelTTF  *_debugLabel;
 }
 
@@ -54,24 +56,18 @@
 
     [super setRotation:rotation];
     
+#if TARGET_IPHONE_SIMULATOR
     [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, rotation_]];
+#endif
 }
 
 
+#if TARGET_IPHONE_SIMULATOR
 - (void)setPosition:(CGPoint)position {
     [super setPosition:position];
-    
     [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, rotation_]];
 }
-
-
-- (void)setScale:(float)scale {
-    [super setScale:scale];
-
-    
-    // [self setLookIs3D:(scale == 1.0f)];
-    // [self setZOrder:((scale == 1.0f)?100-(int)self.position.y:NSIntegerMax)];
-}
+#endif
 
 
 #pragma mark -
@@ -145,6 +141,10 @@
 - (void)setBackSideVisible:(BOOL)backSideVisible {
     if( _backSideVisible == backSideVisible ) return;
 
+    [_endTurnSprite stopAllActions];
+    [self removeChild:_endTurnSprite cleanup:YES];
+    _endTurnSprite = nil;
+    
     for( CCSprite *child in self.children ){
         if( [child isEqual:_look3DSprite] ) continue;
         [child setVisible: !backSideVisible];
@@ -155,7 +155,32 @@
     [self setTexture:spriteFrame.texture];
     [self setTextureRect:spriteFrame.rect];
 
+    
+    CCSpriteFrame *look3DSpriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:((backSideVisible==YES)?@"RREmptyTile3DBack.png":@"RREmptyTile3D.png")];
+    
+    [_look3DSprite setTexture:look3DSpriteFrame.texture];
+    [_look3DSprite setTextureRect:look3DSpriteFrame.rect];
+
     _backSideVisible = backSideVisible;
+}
+
+
+- (void)showEndTurnTextAnimated:(BOOL)animated {
+
+    [_endTurnSprite stopAllActions];
+    if( !_endTurnSprite ){
+        _endTurnSprite = [CCSprite spriteWithSpriteFrameName:@"RRTextEndTurn.png"];
+        [_endTurnSprite setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2 +7)];
+        [self addChild:_endTurnSprite];
+    }
+    
+    if( animated ){
+        [_endTurnSprite setOpacity:0];
+        [_endTurnSprite runAction:[CCSequence actions:[CCDelayTime actionWithDuration:3], [CCFadeIn actionWithDuration:0.5f], nil]];
+    }else{
+        [_endTurnSprite setOpacity:255];
+    }
+    
 }
 
 

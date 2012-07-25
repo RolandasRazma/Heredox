@@ -33,4 +33,6 @@ typedef enum RRTileEdge : NSUInteger {
 - (void)liftTile;
 - (void)placeTile;
 
+- (void)showEndTurnTextAnimated:(BOOL)animated;
+
 @end

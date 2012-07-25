@@ -60,9 +60,12 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
     
-    // Make first player move as it makes no sense
-    [self takeNewTile];
-    [self endTurn];
+    if( _deck.count ){
+        // Make first player move as it makes no sense
+        
+        [self takeNewTile];
+        [self endTurn];
+    }
 }
 
 
@@ -71,12 +74,19 @@
     
     [_gameBoardLayer addObserver:self forKeyPath:@"symbolsBlack" options:NSKeyValueObservingOptionNew context:NULL];
     [_gameBoardLayer addObserver:self forKeyPath:@"symbolsWhite" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self 
+                                             selector: @selector(tileMovedToValidLocation) 
+                                                 name: RRGameBoardLayerTileMovedToValidLocationNotification 
+                                               object: nil];
 }
 
 
 - (void)onExit {
     [_gameBoardLayer removeObserver:self forKeyPath:@"symbolsBlack"];
     [_gameBoardLayer removeObserver:self forKeyPath:@"symbolsWhite"];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RRGameBoardLayerTileMovedToValidLocationNotification object:nil];
     
     [super onExit];
 }
@@ -117,11 +127,12 @@
         
         
         // Add menu button
-        UDSpriteButton *buttonHome = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHome.png"];
+        UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
+        [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
         [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonHome];
         
-        
+
         // Add End Turn
         _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonDone.png"];
         [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
@@ -137,17 +148,15 @@
         [self addChild:_gameBoardLayer z:1];
         [_gameBoardLayer release];
         
-        // Reset deck
-        [self resetDeckForGameMode:gameMode];
-        
-        
         // Device layout
         if( isDeviceIPad() ){
-            [buttonHome setPosition:CGPointMake(655, 915)];
+            [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
         }else{
-            [buttonHome setScale:0.8f];
-            [buttonHome setPosition:CGPointMake(280, 435)];
+
         }
+        
+        // Reset deck
+        [self resetDeckForGameMode:gameMode];
     }
 	return self;
 }
@@ -164,9 +173,6 @@
 
     if( [_gameBoardLayer haltTilePlaces] ){
 
-//        if( _gameBoardLayer.gridBounds.size.width  == 4 ) return;
-//        if( _gameBoardLayer.gridBounds.size.height == 4 ) return;
-        
         if( _deck.count > 0 ){
             if( _playerColor == RRPlayerColorBlack ){
                 _playerColor = RRPlayerColorWhite;
@@ -181,22 +187,7 @@
             [self takeNewTile];
             [self newTurn];
         }else{
-            CGSize winSize = [[CCDirector sharedDirector] winSize];
-            
-            _resetGameButton = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonHeredox.png"];
-            [_resetGameButton setOpacity:0];
-            [_resetGameButton addBlock: ^{ if( _deck.count == 0 ) [self resetGame]; } forControlEvents: UDButtonEventTouchUpInside];
-            [self addChild:_resetGameButton z:-2];
-            
-            // Device layout
-            if( isDeviceIPad() ){
-                [_resetGameButton setPosition:CGPointMake(winSize.width /2, 70)];
-            }else{
-                [_resetGameButton setPosition:CGPointMake(winSize.width /2, 70)];
-            }
-
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
-            [_resetGameButton runAction:[CCSequence actions: [CCDelayTime actionWithDuration: 0.3f], [CCFadeIn actionWithDuration:0.3f], nil]];
         }
         
     }
@@ -340,7 +331,20 @@
     [_deck removeObject:tile];
     [self removeChild:tile cleanup:NO];
 
+    if( _deck.count ){
+        [(RRTile *)[_deck objectAtIndex:0] showEndTurnTextAnimated:YES];
+    }
+    
     return [tile autorelease];
+}
+
+
+- (void)tileMovedToValidLocation {
+    
+    if( _deck.count ){
+        [(RRTile *)[_deck objectAtIndex:0] showEndTurnTextAnimated:NO];
+    }
+    
 }
 
 

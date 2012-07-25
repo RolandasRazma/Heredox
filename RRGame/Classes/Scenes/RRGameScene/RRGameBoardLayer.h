@@ -10,6 +10,8 @@
 
 @class RRTile;
 
+NSString * const RRGameBoardLayerTileMovedToValidLocationNotification;
+
 
 @interface RRGameBoardLayer : UDLayer
 

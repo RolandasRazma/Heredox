@@ -10,6 +10,7 @@
 #import "UDSpriteButton.h"
 #import "RRPickColorScene.h"
 #import "RRAIPlayer.h"
+#import "RRGameScene.h"
 
 
 @implementation RRDifficultyLayer {
@@ -44,10 +45,16 @@
         [self addChild:backgroundSprite z:-1];
         
         // Add menu button
-        UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
+        UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonBack.png" highliteSpriteFrameName:@"RRButtonBackSelected.png"];
         [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
         [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonHome];
+        
+        
+        // Add start game button
+        UDSpriteButton *buttonStartGame = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonStartGame.png" highliteSpriteFrameName:@"RRButtonStartGameSelected.png"];
+        [buttonStartGame addBlock: ^{ [self startGame]; } forControlEvents: UDButtonEventTouchUpInside];
+        [self addChild:buttonStartGame];
      
         
         // Dificulty buttons
@@ -70,6 +77,7 @@
         // Device layout
         if( isDeviceIPad() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
+            [buttonStartGame setPosition:CGPointMake(winSize.width /2, 100)];
             
             [_buttonNovice setPosition:CGPointMake(180, 460)];
             [_buttonDeacon setPosition:CGPointMake(winSize.width /2, 445)];
@@ -98,6 +106,15 @@
     [_buttonAbbot setSelected:(dificultyLevel==RRAILevelAbbot)];
     
     [[NSUserDefaults standardUserDefaults] setInteger:dificultyLevel forKey:@"RRHeredoxAILevel"];
+}
+
+
+- (void)startGame {
+
+    RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:1 firstPlayerColor:_playerColor];
+    [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:gameScene]];
+    [gameScene release];
+    
 }
 
 

@@ -266,6 +266,8 @@
 		F08FBF7915C06DA9008085F1 /* RRDifficultyLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F08FBF7815C06DA9008085F1 /* RRDifficultyLayer.m */; };
 		F08FBF7A15C06DA9008085F1 /* RRDifficultyLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F08FBF7815C06DA9008085F1 /* RRDifficultyLayer.m */; };
 		F08FBF7C15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */; };
+		F08FBF8415C07952008085F1 /* RRBackgroundBlack~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */; };
+		F08FBF8515C07952008085F1 /* RRBackgroundWhite~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */; };
 		F092AD2015B9E93300172704 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
 		F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD114CA92F000665366 /* OpenGL.framework */; };
 		F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD714CA92F000665366 /* AppKit.framework */; };
@@ -600,6 +602,8 @@
 		F08FBF7715C06DA9008085F1 /* RRDifficultyLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRDifficultyLayer.h; sourceTree = "<group>"; };
 		F08FBF7815C06DA9008085F1 /* RRDifficultyLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRDifficultyLayer.m; sourceTree = "<group>"; };
 		F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundDifficulty~ipad.png"; sourceTree = "<group>"; };
+		F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack~ipad.png"; sourceTree = "<group>"; };
+		F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite~ipad.png"; sourceTree = "<group>"; };
 		F0CD5FCC14CA92F000665366 /* Heredox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heredox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0CD5FD114CA92F000665366 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		F0CD5FD714CA92F000665366 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1234,6 +1238,8 @@
 				F08FBF6715C05E83008085F1 /* Icon@2x~ipad.png */,
 				F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */,
 				F08FBF6815C05E83008085F1 /* Icon~ipad.png */,
+				F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */,
+				F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -1518,6 +1524,8 @@
 				F08FBF6F15C062D0008085F1 /* RRBackgroundRules~ipad.png in Resources */,
 				F08FBF7115C066E0008085F1 /* RRBackgroundPlayerColor~ipad.png in Resources */,
 				F08FBF7C15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png in Resources */,
+				F08FBF8415C07952008085F1 /* RRBackgroundBlack~ipad.png in Resources */,
+				F08FBF8515C07952008085F1 /* RRBackgroundWhite~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

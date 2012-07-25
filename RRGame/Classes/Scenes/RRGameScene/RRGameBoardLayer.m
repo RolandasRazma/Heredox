@@ -10,6 +10,9 @@
 #import "RRTile.h"
 
 
+NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGameBoardLayerTileMovedToValidLocationNotification";
+
+
 @implementation RRGameBoardLayer {
     RRGameMode          _gameMode;
     
@@ -316,7 +319,7 @@
     }
 
     // Offset
-    newPosition.y += 30;
+    newPosition.y += 60;
     
     if( animated ){
         [self stopAllActions];
@@ -395,6 +398,8 @@
         CGPoint snapPosition = [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width];
         [_activeTile setPosition: snapPosition];
         [_activeTile placeTile];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:RRGameBoardLayerTileMovedToValidLocationNotification object:self];
     }
     
 }
