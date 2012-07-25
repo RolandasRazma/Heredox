@@ -19,6 +19,9 @@
     UDTriangle _upperTriangle;
     CGRect     _lowerRect;
     UDTriangle _lowerTriangle;
+    
+    CCSprite    *_backgroundPlayerWhiteSelectedSprite;
+    CCSprite    *_backgroundPlayerBlackSelectedSprite;
 }
 
 
@@ -46,20 +49,38 @@
         [self addChild:backgroundSprite z:-1];
 
         
+        // Add menu button
+        UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
+        [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
+        [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
+        [self addChild:buttonHome];
+        
+        
+        _backgroundPlayerWhiteSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"RRBackgroundPlayerWhiteSelected.png"];
+        [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
+        [self addChild:_backgroundPlayerWhiteSelectedSprite];
+        
+        _backgroundPlayerBlackSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"RRBackgroundPlayerBlackSelected.png"];
+        [_backgroundPlayerBlackSelectedSprite setVisible:NO];
+        [self addChild:_backgroundPlayerBlackSelectedSprite];
+        
+        
+        // 
+        // RRBackgroundPlayerBlackSelected
+        
         // Device layout
         if( isDeviceIPad() ){
-            _upperRect     = CGRectMake(0, winSize.height -315, winSize.width, 315);
-            _upperTriangle = UDTriangleMake( CGPointMake(0, 260), CGPointMake(winSize.width, winSize.height -315), CGPointMake(0, winSize.height -315) );
+            [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
+            [_backgroundPlayerWhiteSelectedSprite setPosition:CGPointMake(165, 702)];
+            [_backgroundPlayerBlackSelectedSprite setPosition:CGPointMake(594, 185)];
             
-            _lowerRect     = CGRectMake(0, 0, winSize.width, 260);
-            _lowerTriangle = UDTriangleMake( CGPointMake(0, 260), CGPointMake(winSize.width, 260), CGPointMake(winSize.width, winSize.height -315) );
+            _upperRect     = CGRectMake(0, winSize.height -400, winSize.width, 400);
+            _upperTriangle = UDTriangleMake( CGPointMake(0, 210), CGPointMake(winSize.width, winSize.height -400), CGPointMake(0, winSize.height -400) );
+            
+            _lowerRect     = CGRectMake(0, 0, winSize.width, 210);
+            _lowerTriangle = UDTriangleMake( CGPointMake(0, 210), CGPointMake(winSize.width, 210), CGPointMake(winSize.width, winSize.height -400) );
         }else{
-            _upperRect     = CGRectMake(0, winSize.height -150, winSize.width, 150);
-            _upperTriangle = UDTriangleMake( CGPointMake(0, 120), CGPointMake(winSize.width, winSize.height -150), CGPointMake(0, winSize.height -150) );
-            
-            
-            _lowerRect     = CGRectMake(0, 0, winSize.width, 120);
-            _lowerTriangle = UDTriangleMake( CGPointMake(0, 120), CGPointMake(winSize.width, 120), CGPointMake(winSize.width, winSize.height -150) );
+
         }
     }
     return self;
@@ -87,7 +108,21 @@
 
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
+    [self touchMovedToLocation:location];
     return YES;
+}
+
+
+- (void)touchMovedToLocation:(CGPoint)location {
+    [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
+    [_backgroundPlayerBlackSelectedSprite setVisible:NO];
+    
+    if( CGRectContainsPoint(_upperRect, location) || UDTriangleContainsPoint(_upperTriangle, location) ){
+        [_backgroundPlayerWhiteSelectedSprite setVisible:YES];
+    }else if( CGRectContainsPoint(_lowerRect, location) || UDTriangleContainsPoint(_lowerTriangle, location) ){
+        [_backgroundPlayerBlackSelectedSprite setVisible:YES];
+    }
+    
 }
 
 
