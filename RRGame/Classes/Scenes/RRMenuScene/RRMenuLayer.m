@@ -10,8 +10,6 @@
 #import "UDSpriteButton.h"
 #import "RRPickColorScene.h"
 #import "RRRulesScene.h"
-#import "RROptionsScene.h"
-#import "RRAboutScene.h"
 
 
 @implementation RRMenuLayer
@@ -27,48 +25,33 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"Default-Portrait~ipad.png":@"Default.png")];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundMenu~ipad.png":@"RRBackgroundMenu.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
         // Add buttons
-        UDSpriteButton *buttonPlayers1 = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonPlayers1.png"];
+        UDSpriteButton *buttonPlayers1 = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonPlayers1.png" highliteSpriteFrameName:@"RRButtonPlayers1Selected.png"];
         [buttonPlayers1 addBlock: ^{ [self startGameWithNumberOfPlayers:1]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonPlayers1];
 
-        UDSpriteButton *buttonPlayers2 = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonPlayers2.png"];
+        UDSpriteButton *buttonPlayers2 = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonPlayers2.png" highliteSpriteFrameName:@"RRButtonPlayers2Selected.png"];
         [buttonPlayers2 addBlock: ^{ [self startGameWithNumberOfPlayers:2]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonPlayers2];
         
         
-        UDSpriteButton *buttonRules = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonRules.png"];
+        UDSpriteButton *buttonRules = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonHowToPlay.png" highliteSpriteFrameName:@"RRButtonHowToPlaySelected.png"];
         [buttonRules addBlock: ^{ [self showRules]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonRules];
         
-        UDSpriteButton *buttonOptions = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonOptions.png"];
-        [buttonOptions addBlock: ^{ [self showOptions]; } forControlEvents: UDButtonEventTouchUpInside];
-        [self addChild:buttonOptions];
-
-        UDSpriteButton *buttonAbout = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonAbout.png"];
-        [buttonAbout addBlock: ^{ [self showAbout]; } forControlEvents: UDButtonEventTouchUpInside];
-        [self addChild:buttonAbout];
-
         
         // Device layout
         if( isDeviceIPad() ){
-            [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 535)];
+            [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 540)];
             [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 465)];
             
-            [buttonRules setPosition:CGPointMake(winSize.width /2, 360)];
-            [buttonOptions setPosition:CGPointMake(winSize.width /2, 280)];
-            [buttonAbout setPosition:CGPointMake(winSize.width /2, 210)];
+            [buttonRules setPosition:CGPointMake(winSize.width /2, 345)];
         }else{
-            [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 250)];
-            [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 215)];
-            
-            [buttonRules setPosition:CGPointMake(winSize.width /2, 165)];
-            [buttonOptions setPosition:CGPointMake(winSize.width /2, 128)];
-            [buttonAbout setPosition:CGPointMake(winSize.width /2, 95)];
+
         }
         
     }
@@ -93,20 +76,6 @@
     
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRRulesScene node]]];
 
-}
-
-
-- (void)showOptions {
-
-    [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RROptionsScene node]]];
-    
-}
-
-
-- (void)showAbout {
-    
-    [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRAboutScene node]]];
-    
 }
 
 

@@ -24,23 +24,29 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackground~ipad.png":@"RRBackground.png")];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundRules~ipad.png":@"RRBackgroundRules.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
         
         // Add menu button
-        UDSpriteButton *buttonHome = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonCherubHome.png"];
+        UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
+        [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
         [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonHome];
+        
+        // Add WWW button
+        UDSpriteButton *buttonWWW = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonWWW.png" highliteSpriteFrameName:@"RRButtonWWWSelected.png"];
+        [buttonWWW addBlock: ^{ [self goToWWW]; } forControlEvents: UDButtonEventTouchUpInside];
+        [self addChild:buttonWWW];
         
         
         // Device layout
         if( isDeviceIPad() ){
-            [buttonHome setPosition:CGPointMake(winSize.width -135, winSize.height -90)];
+            [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
+            [buttonWWW setPosition:CGPointMake(winSize.width /2, 160)];
         }else{
-            [buttonHome setScale:0.8f];
-            [buttonHome setPosition:CGPointMake(winSize.width -60, winSize.height -40)];
+
         }
     }
     
@@ -54,6 +60,11 @@
 
 - (void)showMenu {
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+}
+
+
+- (void)goToWWW {
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"http://heredox.com/"]];
 }
 
 
