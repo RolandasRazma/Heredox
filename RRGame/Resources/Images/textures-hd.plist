@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 236}, {348, 370}}</string>
+			<string>{{0, 260}, {348, 370}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,139 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 608}, {330, 364}}</string>
+			<string>{{0, 632}, {330, 364}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>RRButtonAILevelAbbot.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {224, 258}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{224, 258}</string>
+			<key>spriteSourceSize</key>
+			<string>{224, 258}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{790, 260}, {224, 258}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>RRButtonAILevelAbbotSelected.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {224, 258}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{224, 258}</string>
+			<key>spriteSourceSize</key>
+			<string>{224, 258}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{796, 0}, {224, 258}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>RRButtonAILevelDeacon.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {186, 206}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{186, 206}</string>
+			<key>spriteSourceSize</key>
+			<string>{186, 206}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{350, 236}, {186, 206}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>RRButtonAILevelDeaconSelected.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {186, 206}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{186, 206}</string>
+			<key>spriteSourceSize</key>
+			<string>{186, 206}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{538, 386}, {186, 206}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>RRButtonAILevelNovice.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {176, 196}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{176, 204}</string>
+			<key>spriteSourceSize</key>
+			<string>{176, 204}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{350, 444}, {176, 204}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>RRButtonAILevelNoviceSelected.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {176, 204}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{176, 204}</string>
+			<key>spriteSourceSize</key>
+			<string>{176, 204}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{612, 180}, {176, 204}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 120}, {270, 54}}</string>
+			<string>{{0, 60}, {270, 54}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +220,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 176}, {270, 54}}</string>
+			<string>{{340, 180}, {270, 54}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +242,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{796, 0}, {168, 116}}</string>
+			<string>{{0, 120}, {168, 116}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +264,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{776, 118}, {168, 116}}</string>
+			<string>{{170, 116}, {168, 116}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -154,7 +286,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 60}, {386, 58}}</string>
+			<string>{{350, 60}, {386, 58}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -176,7 +308,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{388, 60}, {386, 58}}</string>
+			<string>{{350, 120}, {386, 58}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -198,7 +330,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {396, 58}}</string>
+			<string>{{398, 0}, {396, 58}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -220,7 +352,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{398, 0}, {396, 58}}</string>
+			<string>{{0, 0}, {396, 58}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -242,7 +374,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{332, 608}, {274, 292}}</string>
+			<string>{{726, 520}, {274, 292}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -264,7 +396,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{350, 236}, {274, 292}}</string>
+			<string>{{332, 650}, {274, 292}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
