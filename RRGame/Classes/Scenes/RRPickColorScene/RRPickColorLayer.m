@@ -10,6 +10,7 @@
 #import "UDSpriteButton.h"
 #import "RRGameScene.h"
 #import "RRMenuScene.h"
+#import "RRDifficultyScene.h"
 
 
 @implementation RRPickColorLayer {
@@ -39,8 +40,7 @@
         [self setUserInteractionEnabled:YES];
         
         _numberOfPlayers = numberOfPlayers;
-        
-        
+
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         // Add background
@@ -56,6 +56,7 @@
         [self addChild:buttonHome];
         
         
+        // Selected images
         _backgroundPlayerWhiteSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"RRBackgroundPlayerWhiteSelected.png"];
         [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
         [self addChild:_backgroundPlayerWhiteSelectedSprite];
@@ -64,13 +65,11 @@
         [_backgroundPlayerBlackSelectedSprite setVisible:NO];
         [self addChild:_backgroundPlayerBlackSelectedSprite];
         
-        
-        // 
-        // RRBackgroundPlayerBlackSelected
-        
+
         // Device layout
         if( isDeviceIPad() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
+            
             [_backgroundPlayerWhiteSelectedSprite setPosition:CGPointMake(165, 702)];
             [_backgroundPlayerBlackSelectedSprite setPosition:CGPointMake(594, 185)];
             
@@ -89,9 +88,15 @@
 
 - (void)startGameWithFirstPlayerColor:(RRPlayerColor)playerColor {
  
-    RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers firstPlayerColor:playerColor];
-	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:gameScene]];
-    [gameScene release];
+    if( _numberOfPlayers == 1 ){
+        RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
+        [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:difficultyScene]];
+        [difficultyScene release];
+    }else{
+        RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers firstPlayerColor:playerColor];
+        [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:gameScene]];
+        [gameScene release];        
+    }
     
 }
 
