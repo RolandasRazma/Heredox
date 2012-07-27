@@ -122,7 +122,7 @@
     if( isRunning_ ){
         if( enabled ){
             [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: (id <CCTargetedTouchDelegate>)self 
-                                                                    priority: 0 
+                                                                    priority: -100
                                                              swallowsTouches: YES];
         }else{
             [[CCDirector sharedDirector].touchDispatcher removeDelegate:self];
@@ -132,7 +132,7 @@
     if( isRunning_ ) {
         if( enabled ) {
             [[CCDirector sharedDirector].eventDispatcher addMouseDelegate: (id <CCMouseEventDelegate>)self
-                                                                 priority: 0];
+                                                                 priority: -100];
         } else {
             [[CCDirector sharedDirector].eventDispatcher removeMouseDelegate:self];
         }
@@ -168,6 +168,8 @@
 
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
+    location = [self.parent convertToNodeSpace:location];
+
     if( !CGRectContainsPoint(self.boundingBox, location) ) return NO;
     
     [self invokeControlEvent: UDButtonEventTouchDown];
@@ -179,6 +181,8 @@
 
 
 - (void)touchMovedToLocation:(CGPoint)location {
+    location = [self.parent convertToNodeSpace:location];
+    
     if ( CGRectContainsPoint(self.boundingBox, location) ) {
         [self setTouchActiveInside:YES];
         [self invokeControlEvent: UDButtonEventTouchDragInside];
@@ -190,6 +194,8 @@
 
 
 - (void)touchEndedAtLocation:(CGPoint)location {
+    location = [self.parent convertToNodeSpace:location];
+    
 	if ( CGRectContainsPoint(self.boundingBox, location) ) {
         [self invokeControlEvent: UDButtonEventTouchUpInside];        
     }else{
@@ -219,7 +225,7 @@
 - (void)onEnter {
     if( [self isUserInteractionEnabled] ){
         [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: (id <CCTargetedTouchDelegate>)self
-                                                                priority: 0
+                                                                priority: -100
                                                          swallowsTouches: YES];
     }
     [super onEnter];
@@ -264,7 +270,7 @@
 - (void)onEnter {
     if( [self isUserInteractionEnabled] ){
         [[CCDirector sharedDirector].eventDispatcher addMouseDelegate: (id <CCMouseEventDelegate>)self
-                                                             priority: 0];
+                                                             priority: -100];
     }
     [super onEnter];
 }

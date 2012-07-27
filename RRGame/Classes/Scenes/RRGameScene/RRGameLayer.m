@@ -14,6 +14,7 @@
 #import "RRMenuScene.h"
 #import "RRCrossfadeLayer.h"
 #import "RRScoreLayer.h"
+#import "RRGameMenuLayer.h"
 
 
 @implementation RRGameLayer {
@@ -157,6 +158,12 @@
         
         // Reset deck
         [self resetDeckForGameMode:gameMode];
+        
+        
+        
+        RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
+        [self addChild:gameMenuLayer z:1000];
+        
     }
 	return self;
 }
@@ -164,7 +171,8 @@
 
 - (void)showMenu {
 
-	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+    RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
+    [self addChild:gameMenuLayer z:1000];
 
 }
 

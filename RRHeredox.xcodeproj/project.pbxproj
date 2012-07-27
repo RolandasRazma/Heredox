@@ -255,6 +255,8 @@
 		F06F0D6B15B5B19D00526BDB /* CGGeometry+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F06F0D6915B5B19D00526BDB /* CGGeometry+UDAdditions.m */; };
 		F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
 		F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
+		F07E8BBC15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */; };
+		F07E8BBD15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */; };
 		F08FBF6915C05E83008085F1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */; };
 		F08FBF6A15C05E83008085F1 /* Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6715C05E83008085F1 /* Icon@2x~ipad.png */; };
 		F08FBF6B15C05E83008085F1 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6815C05E83008085F1 /* Icon~ipad.png */; };
@@ -591,6 +593,8 @@
 		F06F0D6915B5B19D00526BDB /* CGGeometry+UDAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+UDAdditions.m"; sourceTree = "<group>"; };
 		F07476F415B1DEA500B69890 /* RRHeredox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRHeredox.h; sourceTree = "<group>"; };
 		F07476F515B1DEA500B69890 /* RRHeredox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRHeredox.m; sourceTree = "<group>"; };
+		F07E8BBA15C33F1E0074F4E0 /* RRGameMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameMenuLayer.h; sourceTree = "<group>"; };
+		F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameMenuLayer.m; sourceTree = "<group>"; };
 		F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		F08FBF6715C05E83008085F1 /* Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x~ipad.png"; sourceTree = "<group>"; };
 		F08FBF6815C05E83008085F1 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
@@ -1411,6 +1415,8 @@
 				F0E3F7A515B41FBC00599E95 /* RRGameBoardLayer.m */,
 				F03C983B15B6EA880091FEEE /* RRScoreLayer.h */,
 				F03C983C15B6EA880091FEEE /* RRScoreLayer.m */,
+				F07E8BBA15C33F1E0074F4E0 /* RRGameMenuLayer.h */,
+				F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */,
 			);
 			path = RRGameScene;
 			sourceTree = "<group>";
@@ -1681,6 +1687,7 @@
 				F036E5FE15B98529009462B1 /* RRDefaultLayer.m in Sources */,
 				F08FBF7515C06CFA008085F1 /* RRDifficultyScene.m in Sources */,
 				F08FBF7915C06DA9008085F1 /* RRDifficultyLayer.m in Sources */,
+				F07E8BBC15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1817,6 +1824,7 @@
 				F036E5FF15B98529009462B1 /* RRDefaultLayer.m in Sources */,
 				F08FBF7615C06CFA008085F1 /* RRDifficultyScene.m in Sources */,
 				F08FBF7A15C06DA9008085F1 /* RRDifficultyLayer.m in Sources */,
+				F07E8BBD15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
