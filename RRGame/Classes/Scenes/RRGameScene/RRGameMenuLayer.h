@@ -10,6 +10,18 @@
 #import "UDLayer.h"
 
 
+@protocol RRGameMenuDelegate;
+
+
 @interface RRGameMenuLayer : UDLayer
+
+@property (nonatomic, assign) id <RRGameMenuDelegate>delegate;
+
+@end
+
+
+@protocol RRGameMenuDelegate <NSObject>
+
+- (void)gameMenuLayer:(RRGameMenuLayer *)gameMenuLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex;
 
 @end

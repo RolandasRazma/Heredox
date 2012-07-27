@@ -11,7 +11,12 @@
 #import "RRMenuScene.h"
 
 
-@implementation RRGameMenuLayer
+@implementation RRGameMenuLayer {
+    CCSprite    *_sliderSound;
+    CGFloat     _sliderEdgeLeft;
+    CGFloat     _sliderWidth;
+    id <RRGameMenuDelegate>_delegate;
+}
 
 
 #pragma mark -
@@ -19,7 +24,7 @@
 
 
 - (NSInteger)mouseDelegatePriority {
-	return -1000;
+	return -99;
 }
 
 
@@ -29,16 +34,15 @@
 
 - (id)init {
     if( (self = [super init]) ){
+        [self setUserInteractionEnabled:YES];
+        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
-        [self setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
+        [self setPosition:CGPointMake(0, 0)];
         
         CCLayerColor *colorBackground = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 180)];
-        [colorBackground setAnchorPoint:CGPointMake(0.5f, 0.5f)];
-        [colorBackground setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
         [self addChild:colorBackground];
 
-        return self;
         
         CCSprite *menuBG = [CCSprite spriteWithSpriteFrameName:@"RRMenuBG.png"];
         [menuBG setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
@@ -47,19 +51,19 @@
         
         // RRButtonResume
         UDSpriteButton *buttonResume = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonResume.png" highliteSpriteFrameName:@"RRButtonResumeSelected.png"];
-        [buttonResume addBlock: ^{ [self gameResume]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonResume addBlock: ^{ [_delegate gameMenuLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInside];
         [menuBG addChild:buttonResume];
         
         
         // RRButtonRestart
         UDSpriteButton *buttonRestart = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonRestart.png" highliteSpriteFrameName:@"RRButtonRestartSelected.png"];
-        [buttonRestart addBlock: ^{ [self gameRestart]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonRestart addBlock: ^{ [_delegate gameMenuLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInside];
         [menuBG addChild:buttonRestart];
         
         
         // RRButtonQuit
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];
-        [buttonQuit addBlock: ^{ [self gameQuit]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonQuit addBlock: ^{ [_delegate gameMenuLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInside];
         [menuBG addChild:buttonQuit];
         
         CCSprite *textVolume = [CCSprite spriteWithSpriteFrameName:@"RRTextVolume.png"];
@@ -69,8 +73,8 @@
         [menuBG addChild:sliderBG];
         
         // RRButtonQuit
-        UDSpriteButton *buttonSlider = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonSlider.png" highliteSpriteFrameName:@"RRButtonSliderSelected.png"];
-        [menuBG addChild:buttonSlider];
+        _sliderSound = [CCSprite spriteWithSpriteFrameName:@"RRButtonSlider.png"];
+        [menuBG addChild:_sliderSound];
         
         // Device layout
         if( isDeviceIPad() ){
@@ -80,10 +84,16 @@
             [textVolume setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 185)];
 
             [sliderBG setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 100)];
-            [buttonSlider setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 100)];
+            [_sliderSound setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 100)];
+            
+            _sliderEdgeLeft = 145;
+            _sliderWidth    = 335.0f;
         }else{
             
         }
+        
+        CGFloat levelSound = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"];
+        [_sliderSound setPosition:CGPointMake(_sliderWidth *levelSound +_sliderEdgeLeft, _sliderSound.position.y)];
 
     }
     return self;
@@ -91,33 +101,44 @@
 
 
 #pragma mark -
-#pragma mark RRGameMenuLayer
-
-
-- (void)gameResume {
-    [self removeFromParentAndCleanup:YES];
-}
-
-
-- (void)gameRestart {
-
-}
-
-
-- (void)gameQuit {
-	
-    [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
-    
-}
-
-
-#pragma mark -
-#pragma mark UDLayer
+#pragma mark UDLayerc
 
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
+    location = [_sliderSound.parent convertToNodeSpace:location];
+    
+    if( CGRectContainsPoint(_sliderSound.boundingBox, location) ){
+        CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"RRButtonSliderSelected.png"];
+        
+        [_sliderSound setTexture:spriteFrame.texture];
+        [_sliderSound setTextureRect:spriteFrame.rect];
+    }
+
     return YES;
 }
 
 
+- (void)touchMovedToLocation:(CGPoint)location {
+    location = [_sliderSound.parent convertToNodeSpace:location];
+    
+    location.x = MIN(MAX(_sliderEdgeLeft, location.x), _sliderWidth +_sliderEdgeLeft);
+    [_sliderSound setPosition:CGPointMake(location.x, _sliderSound.position.y)];
+    
+    CGFloat sliderValue = (_sliderSound.position.x -_sliderEdgeLeft) /_sliderWidth;
+    [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSFXLevel"];
+    [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSoundLevel"];
+}
+
+
+- (void)touchEndedAtLocation:(CGPoint)location {
+
+    CCSpriteFrame *spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"RRButtonSlider.png"];
+    
+    [_sliderSound setTexture:spriteFrame.texture];
+    [_sliderSound setTextureRect:spriteFrame.rect];
+    
+}
+
+
+@synthesize delegate=_delegate;
 @end

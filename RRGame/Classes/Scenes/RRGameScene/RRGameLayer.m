@@ -14,7 +14,6 @@
 #import "RRMenuScene.h"
 #import "RRCrossfadeLayer.h"
 #import "RRScoreLayer.h"
-#import "RRGameMenuLayer.h"
 
 
 @implementation RRGameLayer {
@@ -162,6 +161,7 @@
         
         
         RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
+        [gameMenuLayer setDelegate:self];
         [self addChild:gameMenuLayer z:1000];
         
     }
@@ -172,6 +172,7 @@
 - (void)showMenu {
 
     RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
+    [gameMenuLayer setDelegate:self];
     [self addChild:gameMenuLayer z:1000];
 
 }
@@ -366,6 +367,28 @@
         [_scoreLayer setScoreBlack: _gameBoardLayer.symbolsBlack];
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
         [_scoreLayer setScoreWhite: _gameBoardLayer.symbolsWhite];
+    }
+    
+}
+
+
+#pragma mark -
+#pragma mark RRGameMenuDelegate
+
+
+- (void)gameMenuLayer:(RRGameMenuLayer *)gameMenuLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex {
+    
+    [gameMenuLayer removeFromParentAndCleanup:YES];
+    
+    switch ( buttonIndex ) {
+        case 1: {
+            [self resetGame];
+            break;
+        }
+        case 2: {
+            [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+            break;
+        }
     }
     
 }

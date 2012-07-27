@@ -365,9 +365,7 @@
 
 - (CGFloat)nextTrunEdgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
     CGFloat edgeBlockModifyer = 0.0f;
-    
-    UDLog(@"nextTrunEdgeBlockModifyerForMoveOnGameBoard:positionInGrid: %@", NSStringFromCGPoint(positionInGrid));
-    
+
     if( gameBoard.gridBounds.size.height == 3 ){
         
         NSInteger upperGridBoundY = gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1;
@@ -440,9 +438,7 @@
 
         }
     }
-    
-    UDLog(@"/nextTrunEdgeBlockModifyerForMoveOnGameBoard = %.2f", edgeBlockModifyer);
-    
+
     return edgeBlockModifyer;
 }
 
