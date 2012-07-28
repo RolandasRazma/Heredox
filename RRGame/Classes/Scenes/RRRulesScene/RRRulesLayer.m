@@ -64,7 +64,13 @@
 
 
 - (void)goToWWW {
+    
+#ifdef __CC_PLATFORM_IOS
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"http://heredox.com/"]];
+#elif defined(__CC_PLATFORM_MAC)
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://heredox.com/"]];
+#endif
+    
 }
 
 
