@@ -17,6 +17,9 @@
 
 @property (nonatomic, assign) id <RRGameMenuDelegate>delegate;
 
+- (void)showInLayer:(CCLayer *)layer;
+- (void)dismiss;
+
 @end
 
 

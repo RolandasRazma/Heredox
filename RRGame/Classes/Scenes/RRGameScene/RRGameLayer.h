@@ -8,12 +8,13 @@
 
 #import "UDLayer.h"
 #import "RRGameMenuLayer.h"
+#import "RRGameWictoryLayer.h"
 
 
 @class RRPlayer;
 
 
-@interface RRGameLayer : UDLayer <RRGameMenuDelegate>
+@interface RRGameLayer : UDLayer <RRGameMenuDelegate, RRPlayerColorWictoriousDelegate>
 
 @property (nonatomic, retain) RRPlayer *player1;
 @property (nonatomic, retain) RRPlayer *player2;

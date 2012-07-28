@@ -271,6 +271,8 @@
 		F08FBF8415C07952008085F1 /* RRBackgroundBlack~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */; };
 		F08FBF8515C07952008085F1 /* RRBackgroundWhite~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */; };
 		F092AD2015B9E93300172704 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
+		F0A18E6815C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
+		F0A18E6915C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
 		F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD114CA92F000665366 /* OpenGL.framework */; };
 		F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD714CA92F000665366 /* AppKit.framework */; };
 		F0CD614914CA92F300665366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD614814CA92F300665366 /* main.m */; };
@@ -608,6 +610,8 @@
 		F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundDifficulty~ipad.png"; sourceTree = "<group>"; };
 		F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack~ipad.png"; sourceTree = "<group>"; };
 		F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite~ipad.png"; sourceTree = "<group>"; };
+		F0A18E6615C353DA00E09D46 /* RRGameWictoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameWictoryLayer.h; sourceTree = "<group>"; };
+		F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameWictoryLayer.m; sourceTree = "<group>"; };
 		F0CD5FCC14CA92F000665366 /* Heredox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heredox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0CD5FD114CA92F000665366 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		F0CD5FD714CA92F000665366 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1417,6 +1421,8 @@
 				F03C983C15B6EA880091FEEE /* RRScoreLayer.m */,
 				F07E8BBA15C33F1E0074F4E0 /* RRGameMenuLayer.h */,
 				F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */,
+				F0A18E6615C353DA00E09D46 /* RRGameWictoryLayer.h */,
+				F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */,
 			);
 			path = RRGameScene;
 			sourceTree = "<group>";
@@ -1688,6 +1694,7 @@
 				F08FBF7515C06CFA008085F1 /* RRDifficultyScene.m in Sources */,
 				F08FBF7915C06DA9008085F1 /* RRDifficultyLayer.m in Sources */,
 				F07E8BBC15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */,
+				F0A18E6815C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1825,6 +1832,7 @@
 				F08FBF7615C06CFA008085F1 /* RRDifficultyScene.m in Sources */,
 				F08FBF7A15C06DA9008085F1 /* RRDifficultyLayer.m in Sources */,
 				F07E8BBD15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */,
+				F0A18E6915C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -122,7 +122,7 @@
     if( isRunning_ ){
         if( enabled ){
             [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: (id <CCTargetedTouchDelegate>)self 
-                                                                    priority: -100
+                                                                    priority: self.mouseDelegatePriority
                                                              swallowsTouches: YES];
         }else{
             [[CCDirector sharedDirector].touchDispatcher removeDelegate:self];
@@ -132,7 +132,7 @@
     if( isRunning_ ) {
         if( enabled ) {
             [[CCDirector sharedDirector].eventDispatcher addMouseDelegate: (id <CCMouseEventDelegate>)self
-                                                                 priority: -100];
+                                                                 priority: self.mouseDelegatePriority];
         } else {
             [[CCDirector sharedDirector].eventDispatcher removeMouseDelegate:self];
         }
@@ -219,13 +219,26 @@
 }
 
 
+- (NSInteger)mouseDelegatePriority {
+    NSInteger priority = self.zOrder;
+    CCNode *parent = self;
+    while ( (parent = parent.parent) ) {
+        priority += parent.zOrder;
+    }
+    
+    NSLog(@"UDSpriteButton priority: %i", priority);
+    
+    return -priority;
+}
+
+
 #ifdef __CC_PLATFORM_IOS
 
 
 - (void)onEnter {
     if( [self isUserInteractionEnabled] ){
         [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: (id <CCTargetedTouchDelegate>)self
-                                                                priority: -100
+                                                                priority: self.mouseDelegatePriority
                                                          swallowsTouches: YES];
     }
     [super onEnter];
@@ -270,7 +283,7 @@
 - (void)onEnter {
     if( [self isUserInteractionEnabled] ){
         [[CCDirector sharedDirector].eventDispatcher addMouseDelegate: (id <CCMouseEventDelegate>)self
-                                                             priority: -100];
+                                                             priority: self.mouseDelegatePriority];
     }
     [super onEnter];
 }

@@ -15,7 +15,10 @@
     CCSprite    *_sliderSound;
     CGFloat     _sliderEdgeLeft;
     CGFloat     _sliderWidth;
-    id <RRGameMenuDelegate>_delegate;
+    
+    id <RRGameMenuDelegate> _delegate;
+    CCLayerColor            *_colorBackground;
+    CCSprite                *_menu;
 }
 
 
@@ -40,55 +43,55 @@
         
         [self setPosition:CGPointMake(0, 0)];
         
-        CCLayerColor *colorBackground = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 180)];
-        [self addChild:colorBackground];
+        _colorBackground = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)];
+        [self addChild:_colorBackground];
 
         
-        CCSprite *menuBG = [CCSprite spriteWithSpriteFrameName:@"RRMenuBG.png"];
-        [menuBG setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
-        [self addChild:menuBG];
+        _menu = [CCSprite spriteWithSpriteFrameName:@"RRMenuBG.png"];
+        [_menu setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
+        [self addChild:_menu];
         
         
         // RRButtonResume
         UDSpriteButton *buttonResume = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonResume.png" highliteSpriteFrameName:@"RRButtonResumeSelected.png"];
         [buttonResume addBlock: ^{ [_delegate gameMenuLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInside];
-        [menuBG addChild:buttonResume];
+        [_menu addChild:buttonResume];
         
         
         // RRButtonRestart
         UDSpriteButton *buttonRestart = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonRestart.png" highliteSpriteFrameName:@"RRButtonRestartSelected.png"];
         [buttonRestart addBlock: ^{ [_delegate gameMenuLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInside];
-        [menuBG addChild:buttonRestart];
+        [_menu addChild:buttonRestart];
         
         
         // RRButtonQuit
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];
         [buttonQuit addBlock: ^{ [_delegate gameMenuLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInside];
-        [menuBG addChild:buttonQuit];
+        [_menu addChild:buttonQuit];
         
         CCSprite *textVolume = [CCSprite spriteWithSpriteFrameName:@"RRTextVolume.png"];
-        [menuBG addChild:textVolume];
+        [_menu addChild:textVolume];
 
         CCSprite *sliderBG = [CCSprite spriteWithSpriteFrameName:@"RRSliderBG.png"];
-        [menuBG addChild:sliderBG];
+        [_menu addChild:sliderBG];
         
-        // RRButtonQuit
+        // Sound slider
         _sliderSound = [CCSprite spriteWithSpriteFrameName:@"RRButtonSlider.png"];
-        [menuBG addChild:_sliderSound];
+        [_menu addChild:_sliderSound];
         
         // Device layout
         if( isDeviceIPad() ){
-            [buttonResume setPosition:CGPointMake(menuBG.boundingBox.size.width  /2, 570)];
-            [buttonRestart setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 450)];
-            [buttonQuit setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 330)];
-            [textVolume setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 185)];
+            [buttonResume setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 570)];
+            [buttonRestart setPosition:CGPointMake(_menu.boundingBox.size.width /2, 450)];
+            [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width /2, 330)];
+            [textVolume setPosition:CGPointMake(_menu.boundingBox.size.width /2, 185)];
 
-            [sliderBG setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 100)];
-            [_sliderSound setPosition:CGPointMake(menuBG.boundingBox.size.width /2, 100)];
+            [sliderBG setPosition:CGPointMake(_menu.boundingBox.size.width /2, 100)];
+            [_sliderSound setPosition:CGPointMake(_menu.boundingBox.size.width /2, 100)];
             
             _sliderEdgeLeft = 145;
             _sliderWidth    = 335.0f;
-        }else{
+        } else {
             
         }
         
@@ -101,7 +104,43 @@
 
 
 #pragma mark -
-#pragma mark UDLayerc
+#pragma mark RRGameMenuLayer
+
+
+- (void)showInLayer:(CCLayer *)layer {
+    [layer addChild:self z:1000];
+    
+    [_colorBackground setOpacity:0];
+    [_colorBackground runAction:[CCFadeTo actionWithDuration:0.31f opacity:180]];
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];
+    
+    [_menu runAction:[CCSequence actions:
+                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2 -_menu.boundingBox.size.height *0.1f)],
+                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2)],
+                      nil]];
+}
+
+
+- (void)dismiss {
+    [_colorBackground stopAllActions];
+    [_menu stopAllActions];
+    
+    [_colorBackground runAction:[CCFadeOut actionWithDuration:0.31f]];
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    [_menu setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
+    
+    [_menu runAction:[CCSequence actions:
+                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)],
+                      [UDActionDestroy actionWithTarget:self],
+                      nil]];
+}
+
+
+#pragma mark -
+#pragma mark UDLayer
 
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {

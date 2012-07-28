@@ -156,14 +156,7 @@
         }
         
         // Reset deck
-        [self resetDeckForGameMode:gameMode];
-        
-        
-        
-        RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
-        [gameMenuLayer setDelegate:self];
-        [self addChild:gameMenuLayer z:1000];
-        
+        [self resetDeckForGameMode:gameMode];        
     }
 	return self;
 }
@@ -173,8 +166,7 @@
 
     RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
     [gameMenuLayer setDelegate:self];
-    [self addChild:gameMenuLayer z:1000];
-
+    [gameMenuLayer showInLayer:self];
 }
 
 
@@ -197,6 +189,18 @@
             [self newTurn];
         }else{
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
+            
+            
+            RRGameWictoryLayer *gameWictoryLayer;
+            if( _scoreLayer.scoreBlack == _scoreLayer.scoreWhite ){
+                gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousNo];
+            }else if( _scoreLayer.scoreBlack > _scoreLayer.scoreWhite ){
+                gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousBlack];
+            }else{
+                gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousWhite];
+            }
+            [gameWictoryLayer setDelegate:self];
+            [gameWictoryLayer showInLayer:self];
         }
         
     }
@@ -377,11 +381,15 @@
 
 
 - (void)gameMenuLayer:(RRGameMenuLayer *)gameMenuLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex {
-    
-    [gameMenuLayer removeFromParentAndCleanup:YES];
-    
+
     switch ( buttonIndex ) {
+        case 0: {
+            [gameMenuLayer dismiss];
+            break;
+        }
         case 1: {
+            [gameMenuLayer dismiss];
+            
             [self resetGame];
             break;
         }
@@ -391,6 +399,17 @@
         }
     }
     
+}
+
+
+#pragma mark -
+#pragma mark RRGameWictoryDelegate
+
+
+- (void)gameWictoryLayer:(RRGameWictoryLayer *)gameMenuLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex {
+    [gameMenuLayer dismiss];
+    
+    [self resetGame];
 }
 
 

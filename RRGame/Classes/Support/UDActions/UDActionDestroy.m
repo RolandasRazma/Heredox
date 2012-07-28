@@ -8,11 +8,26 @@
 #import "UDActionDestroy.h"
 
 
-@implementation UDActionDestroy
+@implementation UDActionDestroy {
+    CCNode *otherTarget_;
+}
 
 
 + (id)action {
 	return [[[self alloc] initWithDuration:0.0f] autorelease];
+}
+
+
++ (id)actionWithTarget:(CCNode *)target {
+	return [[[self alloc] initWithTarget:target] autorelease];
+}
+
+
+- (id)initWithTarget:(CCNode *)target {
+    if( (self = [super initWithDuration:0.0f]) ){
+        otherTarget_ = target;
+    }
+    return self;
 }
 
 
@@ -26,7 +41,11 @@
 
 
 - (void)stop {
-    [target_ removeFromParentAndCleanup:YES];
+    if( otherTarget_ ){
+        [otherTarget_ removeFromParentAndCleanup:YES];
+    }else{
+        [target_ removeFromParentAndCleanup:YES];
+    }
     [super stop];
 }
 

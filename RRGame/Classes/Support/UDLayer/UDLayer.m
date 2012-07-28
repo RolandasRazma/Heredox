@@ -65,7 +65,15 @@
 
 
 - (NSInteger)mouseDelegatePriority {
-	return 0;
+    NSInteger priority = self.zOrder;
+    CCNode *parent = self;
+    while ( (parent = parent.parent) ) {
+        priority += parent.zOrder;
+    }
+    
+    NSLog(@"UDLayer priority: %i", priority);
+    
+    return -priority;
 }
 
 
