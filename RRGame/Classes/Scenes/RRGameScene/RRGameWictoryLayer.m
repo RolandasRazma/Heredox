@@ -14,6 +14,7 @@
     id <RRPlayerColorWictoriousDelegate>_delegate;
     CCLayerColor            *_colorBackground;
     CCSprite                *_menu;
+    RRPlayerColorWictorious _playerColorWictorious;
 }
 
 
@@ -23,6 +24,20 @@
 
 - (NSInteger)mouseDelegatePriority {
 	return -99;
+}
+
+
+- (void)onEnter {
+    [super onEnter];
+    
+    [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%i.mp3", _playerColorWictorious]];
+}
+
+
+- (void)onExit {
+    [super onExit];
+    
+    [[RRHeredox sharedInstance] stopEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%i.mp3", _playerColorWictorious]];
 }
 
 
@@ -39,6 +54,8 @@
 
     if( (self = [self init]) ){
         [self setUserInteractionEnabled:YES];
+        
+        _playerColorWictorious = playerColorWictorious;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         

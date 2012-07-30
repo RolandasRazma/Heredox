@@ -7,6 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F01063CE15C707D0003BB881 /* ambience.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063CD15C707D0003BB881 /* ambience.mp3 */; };
+		F01063CF15C707D0003BB881 /* ambience.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063CD15C707D0003BB881 /* ambience.mp3 */; };
+		F01063D115C70885003BB881 /* RRDefaultScene.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D015C70885003BB881 /* RRDefaultScene.mp3 */; };
+		F01063D215C70885003BB881 /* RRDefaultScene.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D015C70885003BB881 /* RRDefaultScene.mp3 */; };
+		F01063D415C709C8003BB881 /* RRSceneTransition.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D315C709C8003BB881 /* RRSceneTransition.mp3 */; };
+		F01063D515C709C8003BB881 /* RRSceneTransition.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D315C709C8003BB881 /* RRSceneTransition.mp3 */; };
+		F01063DB15C71110003BB881 /* RRGameSceneNumberOfPlayers2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D915C71110003BB881 /* RRGameSceneNumberOfPlayers2.mp3 */; };
+		F01063DC15C71110003BB881 /* RRGameSceneNumberOfPlayers2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D915C71110003BB881 /* RRGameSceneNumberOfPlayers2.mp3 */; };
+		F01063E015C71222003BB881 /* RRGameSceneNumberOfPlayers1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063DF15C71222003BB881 /* RRGameSceneNumberOfPlayers1.mp3 */; };
+		F01063E115C71222003BB881 /* RRGameSceneNumberOfPlayers1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063DF15C71222003BB881 /* RRGameSceneNumberOfPlayers1.mp3 */; };
+		F01063E515C712B6003BB881 /* RRAILevel0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063E215C712B5003BB881 /* RRAILevel0.mp3 */; };
+		F01063E615C712B6003BB881 /* RRAILevel0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063E215C712B5003BB881 /* RRAILevel0.mp3 */; };
+		F01063E715C712B6003BB881 /* RRAILevel1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063E315C712B5003BB881 /* RRAILevel1.mp3 */; };
+		F01063E815C712B6003BB881 /* RRAILevel1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063E315C712B5003BB881 /* RRAILevel1.mp3 */; };
+		F01063E915C712B6003BB881 /* RRAILevel-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063E415C712B5003BB881 /* RRAILevel-1.mp3 */; };
+		F01063EA15C712B6003BB881 /* RRAILevel-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063E415C712B5003BB881 /* RRAILevel-1.mp3 */; };
+		F01063EE15C71538003BB881 /* RRPlayerColorWictorious0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063EB15C71537003BB881 /* RRPlayerColorWictorious0.mp3 */; };
+		F01063EF15C71538003BB881 /* RRPlayerColorWictorious0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063EB15C71537003BB881 /* RRPlayerColorWictorious0.mp3 */; };
+		F01063F015C71538003BB881 /* RRPlayerColorWictorious1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063EC15C71537003BB881 /* RRPlayerColorWictorious1.mp3 */; };
+		F01063F115C71538003BB881 /* RRPlayerColorWictorious1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063EC15C71537003BB881 /* RRPlayerColorWictorious1.mp3 */; };
+		F01063F215C71538003BB881 /* RRPlayerColorWictorious2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063ED15C71538003BB881 /* RRPlayerColorWictorious2.mp3 */; };
+		F01063F315C71538003BB881 /* RRPlayerColorWictorious2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063ED15C71538003BB881 /* RRPlayerColorWictorious2.mp3 */; };
 		F01CD2C51530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F01CD2C61530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F023307915AF97DC00D7EF8F /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0232F8E15AF97DC00D7EF8F /* CCAction.m */; };
@@ -320,6 +342,17 @@
 
 /* Begin PBXFileReference section */
 		F00D63F915B2329D0034DC10 /* UDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMacros.h; sourceTree = "<group>"; };
+		F01063CD15C707D0003BB881 /* ambience.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ambience.mp3; sourceTree = "<group>"; };
+		F01063D015C70885003BB881 /* RRDefaultScene.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRDefaultScene.mp3; sourceTree = "<group>"; };
+		F01063D315C709C8003BB881 /* RRSceneTransition.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRSceneTransition.mp3; sourceTree = "<group>"; };
+		F01063D915C71110003BB881 /* RRGameSceneNumberOfPlayers2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRGameSceneNumberOfPlayers2.mp3; sourceTree = "<group>"; };
+		F01063DF15C71222003BB881 /* RRGameSceneNumberOfPlayers1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRGameSceneNumberOfPlayers1.mp3; sourceTree = "<group>"; };
+		F01063E215C712B5003BB881 /* RRAILevel0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRAILevel0.mp3; sourceTree = "<group>"; };
+		F01063E315C712B5003BB881 /* RRAILevel1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRAILevel1.mp3; sourceTree = "<group>"; };
+		F01063E415C712B5003BB881 /* RRAILevel-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRAILevel-1.mp3"; sourceTree = "<group>"; };
+		F01063EB15C71537003BB881 /* RRPlayerColorWictorious0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlayerColorWictorious0.mp3; sourceTree = "<group>"; };
+		F01063EC15C71537003BB881 /* RRPlayerColorWictorious1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlayerColorWictorious1.mp3; sourceTree = "<group>"; };
+		F01063ED15C71538003BB881 /* RRPlayerColorWictorious2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlayerColorWictorious2.mp3; sourceTree = "<group>"; };
 		F01CD2C31530241F000149C4 /* UDActionDestroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionDestroy.h; sourceTree = "<group>"; };
 		F01CD2C41530241F000149C4 /* UDActionDestroy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionDestroy.m; sourceTree = "<group>"; };
 		F0232F8D15AF97DC00D7EF8F /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
@@ -693,6 +726,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F01063CC15C70524003BB881 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F01063EB15C71537003BB881 /* RRPlayerColorWictorious0.mp3 */,
+				F01063EC15C71537003BB881 /* RRPlayerColorWictorious1.mp3 */,
+				F01063ED15C71538003BB881 /* RRPlayerColorWictorious2.mp3 */,
+				F01063E415C712B5003BB881 /* RRAILevel-1.mp3 */,
+				F01063E215C712B5003BB881 /* RRAILevel0.mp3 */,
+				F01063E315C712B5003BB881 /* RRAILevel1.mp3 */,
+				F01063D915C71110003BB881 /* RRGameSceneNumberOfPlayers2.mp3 */,
+				F01063DF15C71222003BB881 /* RRGameSceneNumberOfPlayers1.mp3 */,
+				F01063D015C70885003BB881 /* RRDefaultScene.mp3 */,
+				F01063D315C709C8003BB881 /* RRSceneTransition.mp3 */,
+				F01063CD15C707D0003BB881 /* ambience.mp3 */,
+			);
+			name = Sounds;
+			path = Resources/Sounds;
+			sourceTree = "<group>";
+		};
 		F01CD2C1153023F8000149C4 /* UDActions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1130,6 +1182,7 @@
 			isa = PBXGroup;
 			children = (
 				F06585A814CA7C8A0033B4F5 /* Images */,
+				F01063CC15C70524003BB881 /* Sounds */,
 				F06582E514CA7BE20033B4F5 /* Info.plist */,
 			);
 			name = Resources;
@@ -1538,6 +1591,17 @@
 				F08FBF7C15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png in Resources */,
 				F08FBF8415C07952008085F1 /* RRBackgroundBlack~ipad.png in Resources */,
 				F08FBF8515C07952008085F1 /* RRBackgroundWhite~ipad.png in Resources */,
+				F01063CE15C707D0003BB881 /* ambience.mp3 in Resources */,
+				F01063D115C70885003BB881 /* RRDefaultScene.mp3 in Resources */,
+				F01063D415C709C8003BB881 /* RRSceneTransition.mp3 in Resources */,
+				F01063DB15C71110003BB881 /* RRGameSceneNumberOfPlayers2.mp3 in Resources */,
+				F01063E015C71222003BB881 /* RRGameSceneNumberOfPlayers1.mp3 in Resources */,
+				F01063E515C712B6003BB881 /* RRAILevel0.mp3 in Resources */,
+				F01063E715C712B6003BB881 /* RRAILevel1.mp3 in Resources */,
+				F01063E915C712B6003BB881 /* RRAILevel-1.mp3 in Resources */,
+				F01063EE15C71538003BB881 /* RRPlayerColorWictorious0.mp3 in Resources */,
+				F01063F015C71538003BB881 /* RRPlayerColorWictorious1.mp3 in Resources */,
+				F01063F215C71538003BB881 /* RRPlayerColorWictorious2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1555,6 +1619,17 @@
 				F035877515B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */,
 				F035877715B2FEE500BBAB82 /* fps_images.png in Resources */,
 				F092AD2015B9E93300172704 /* Default.png in Resources */,
+				F01063CF15C707D0003BB881 /* ambience.mp3 in Resources */,
+				F01063D215C70885003BB881 /* RRDefaultScene.mp3 in Resources */,
+				F01063D515C709C8003BB881 /* RRSceneTransition.mp3 in Resources */,
+				F01063DC15C71110003BB881 /* RRGameSceneNumberOfPlayers2.mp3 in Resources */,
+				F01063E115C71222003BB881 /* RRGameSceneNumberOfPlayers1.mp3 in Resources */,
+				F01063E615C712B6003BB881 /* RRAILevel0.mp3 in Resources */,
+				F01063E815C712B6003BB881 /* RRAILevel1.mp3 in Resources */,
+				F01063EA15C712B6003BB881 /* RRAILevel-1.mp3 in Resources */,
+				F01063EF15C71538003BB881 /* RRPlayerColorWictorious0.mp3 in Resources */,
+				F01063F115C71538003BB881 /* RRPlayerColorWictorious1.mp3 in Resources */,
+				F01063F315C71538003BB881 /* RRPlayerColorWictorious2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

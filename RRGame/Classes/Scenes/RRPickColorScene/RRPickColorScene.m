@@ -30,4 +30,15 @@
 }
 
 
+#pragma mark -
+#pragma mark CCNode
+
+
+- (void)onExitTransitionDidStart {
+    [super onExitTransitionDidStart];
+    
+    [[RRHeredox sharedInstance] playEffect:@"RRSceneTransition.mp3"];
+}
+
+
 @end

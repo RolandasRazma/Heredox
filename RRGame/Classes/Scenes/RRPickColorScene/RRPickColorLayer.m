@@ -92,7 +92,11 @@
 
 
 - (void)startGameWithFirstPlayerColor:(RRPlayerColor)playerColor {
- 
+
+    NSString *fileNameFormat = [NSString stringWithFormat:@"RRPlayerColor%i-numberOfPlayers%i.png", playerColor, _numberOfPlayers];
+    
+    [[RRHeredox sharedInstance] playEffect:fileNameFormat];
+    
     if( _numberOfPlayers == 1 ){
         RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
         [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:difficultyScene]];

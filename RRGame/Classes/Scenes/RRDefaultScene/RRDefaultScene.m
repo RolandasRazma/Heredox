@@ -25,4 +25,22 @@
 }
 
 
+#pragma mark -
+#pragma mark CCNode
+
+
+- (void)onEnter {
+    [super onEnter];
+
+    [[RRHeredox sharedInstance] playEffect:@"RRMenuScene.mp3"];
+}
+
+
+- (void)onExitTransitionDidStart {
+    [super onExitTransitionDidStart];
+
+    [[RRHeredox sharedInstance] playEffect:@"RRSceneTransition.mp3"];
+}
+
+
 @end

@@ -12,7 +12,9 @@
 const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){CGFLOAT_MAX, CGFLOAT_MAX}, 0.0f, (float)NSIntegerMin };
 
 
-@implementation RRHeredox
+@implementation RRHeredox {
+    NSMutableDictionary *_effectsCache;
+}
 
 
 + (RRHeredox *)sharedInstance {
@@ -30,6 +32,7 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){CGFLOAT_MAX, CGFLOAT_M
         if( ![[NSUserDefaults standardUserDefaults] boolForKey:@"RRHeredoxOptionsSet"] ){
             [self initUserDefaults];
         }
+        _effectsCache = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -42,6 +45,28 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){CGFLOAT_MAX, CGFLOAT_M
     [[NSUserDefaults standardUserDefaults] setInteger:RRAILevelDeacon   forKey:@"RRHeredoxAILevel"];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+- (ALuint)playEffect:(NSString *)filePath {
+    [self stopEffect:filePath];
+    ALuint effectID = [[SimpleAudioEngine sharedEngine] playEffect:filePath];
+    
+    [_effectsCache setObject:[NSNumber numberWithUnsignedInteger:effectID] forKey:filePath];
+    
+    return effectID;
+}
+
+
+- (void)stopEffect:(NSString *)filePath {
+    
+    NSLog(@"%@ %@", _effectsCache, filePath);
+    
+    NSNumber *effectID = nil;
+    if( (effectID = [_effectsCache objectForKey:filePath]) ){
+        [[SimpleAudioEngine sharedEngine] stopEffect:[effectID unsignedIntegerValue]];
+        [_effectsCache removeObjectForKey:filePath];
+    }
 }
 
 

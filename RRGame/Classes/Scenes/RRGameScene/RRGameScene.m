@@ -12,7 +12,9 @@
 #import "RRPlayer.h"
 
 
-@implementation RRGameScene
+@implementation RRGameScene {
+    NSUInteger _numberOfPlayers;
+}
 
 
 #pragma mark -
@@ -26,6 +28,8 @@
 
 - (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
     if( (self = [self init]) ){
+        _numberOfPlayers = numberOfPlayers;
+        
         RRGameLayer *gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor];
         [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
 
@@ -39,6 +43,24 @@
         [self addChild: gameLayer];
     }
     return self;
+}
+
+
+#pragma mark -
+#pragma mark CCNode
+
+
+- (void)onExitTransitionDidStart {
+    [super onExitTransitionDidStart];
+    
+    [[RRHeredox sharedInstance] playEffect:@"RRSceneTransition.mp3"];
+    [[RRHeredox sharedInstance] stopEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%i.mp3", _numberOfPlayers]];
+}
+
+
+- (void)onEnterTransitionDidFinish {
+    [super onEnterTransitionDidFinish];
+    [[RRHeredox sharedInstance] playEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%i.mp3", _numberOfPlayers]];
 }
 
 

@@ -100,6 +100,12 @@
 
 
 - (void)setDificultyLevel:(RRAILevel)dificultyLevel {
+    NSUInteger oldDificultyLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"];
+
+    if( oldDificultyLevel != dificultyLevel ){
+        [[RRHeredox sharedInstance] stopEffect:[NSString stringWithFormat:@"RRAILevel%i.mp3", oldDificultyLevel]];
+        [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRAILevel%i.mp3", dificultyLevel]];
+    }
     
     [_buttonNovice setSelected:(dificultyLevel==RRAILevelNovice)];
     [_buttonDeacon setSelected:(dificultyLevel==RRAILevelDeacon)];

@@ -44,8 +44,15 @@
 
 - (void)loadAssets {
 
+    // Load Sounds
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ambience.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"RRMenuScene.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"RRSceneTransition.mp3"];
+    
+    
     // Load Textures
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
+
     
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node]]];
     

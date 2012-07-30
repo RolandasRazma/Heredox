@@ -36,4 +36,7 @@ extern const RRTileMove RRTileMoveZero;
 
 + (RRHeredox *)sharedInstance;
 
+- (ALuint)playEffect:(NSString *)filePath;
+- (void)stopEffect:(NSString *)filePath;
+
 @end
