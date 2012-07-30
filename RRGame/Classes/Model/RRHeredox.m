@@ -64,14 +64,15 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){CGFLOAT_MAX, CGFLOAT_M
 
     [_effectsCache setObject:[NSNumber numberWithUnsignedInteger:effectID] forKey:filePath];
     
+    if( effectID == CD_NO_SOURCE ){
+        NSLog(@"No source for sound file %@", filePathp);
+    }
+    
     return effectID;
 }
 
 
 - (void)stopEffect:(NSString *)filePath {
-    
-    NSLog(@"%@ %@", _effectsCache, filePath);
-    
     NSNumber *effectID = nil;
     if( (effectID = [_effectsCache objectForKey:filePath]) ){
         [[SimpleAudioEngine sharedEngine] stopEffect:[effectID unsignedIntegerValue]];
