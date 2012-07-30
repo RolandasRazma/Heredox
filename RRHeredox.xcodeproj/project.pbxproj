@@ -29,6 +29,26 @@
 		F01063F115C71538003BB881 /* RRPlayerColorWictorious1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063EC15C71537003BB881 /* RRPlayerColorWictorious1.mp3 */; };
 		F01063F215C71538003BB881 /* RRPlayerColorWictorious2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063ED15C71538003BB881 /* RRPlayerColorWictorious2.mp3 */; };
 		F01063F315C71538003BB881 /* RRPlayerColorWictorious2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063ED15C71538003BB881 /* RRPlayerColorWictorious2.mp3 */; };
+		F01063F615C71842003BB881 /* RRPlayerColor1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063F415C71841003BB881 /* RRPlayerColor1.mp3 */; };
+		F01063F715C71842003BB881 /* RRPlayerColor1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063F415C71841003BB881 /* RRPlayerColor1.mp3 */; };
+		F01063F815C71842003BB881 /* RRPlayerColor2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063F515C71842003BB881 /* RRPlayerColor2.mp3 */; };
+		F01063F915C71842003BB881 /* RRPlayerColor2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063F515C71842003BB881 /* RRPlayerColor2.mp3 */; };
+		F010640215C71B44003BB881 /* RRPlayerColor1-points1-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FA15C71B42003BB881 /* RRPlayerColor1-points1-s2.mp3 */; };
+		F010640315C71B44003BB881 /* RRPlayerColor1-points1-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FA15C71B42003BB881 /* RRPlayerColor1-points1-s2.mp3 */; };
+		F010640415C71B44003BB881 /* RRPlayerColor2-points1-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FB15C71B42003BB881 /* RRPlayerColor2-points1-s2.mp3 */; };
+		F010640515C71B44003BB881 /* RRPlayerColor2-points1-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FB15C71B42003BB881 /* RRPlayerColor2-points1-s2.mp3 */; };
+		F010640615C71B44003BB881 /* RRPlayerColor2-points2-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FC15C71B42003BB881 /* RRPlayerColor2-points2-s1.mp3 */; };
+		F010640715C71B44003BB881 /* RRPlayerColor2-points2-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FC15C71B42003BB881 /* RRPlayerColor2-points2-s1.mp3 */; };
+		F010640815C71B44003BB881 /* RRPlayerColor2-points2-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FD15C71B43003BB881 /* RRPlayerColor2-points2-s2.mp3 */; };
+		F010640915C71B44003BB881 /* RRPlayerColor2-points2-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FD15C71B43003BB881 /* RRPlayerColor2-points2-s2.mp3 */; };
+		F010640A15C71B44003BB881 /* RRPlayerColor2-points1-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FE15C71B43003BB881 /* RRPlayerColor2-points1-s1.mp3 */; };
+		F010640B15C71B44003BB881 /* RRPlayerColor2-points1-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FE15C71B43003BB881 /* RRPlayerColor2-points1-s1.mp3 */; };
+		F010640C15C71B44003BB881 /* RRPlayerColor1-points2-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */; };
+		F010640D15C71B44003BB881 /* RRPlayerColor1-points2-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */; };
+		F010640E15C71B44003BB881 /* RRPlayerColor1-points2-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F010640015C71B43003BB881 /* RRPlayerColor1-points2-s2.mp3 */; };
+		F010640F15C71B44003BB881 /* RRPlayerColor1-points2-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F010640015C71B43003BB881 /* RRPlayerColor1-points2-s2.mp3 */; };
+		F010641015C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */; };
+		F010641115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */; };
 		F01CD2C51530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F01CD2C61530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F023307915AF97DC00D7EF8F /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0232F8E15AF97DC00D7EF8F /* CCAction.m */; };
@@ -353,6 +373,16 @@
 		F01063EB15C71537003BB881 /* RRPlayerColorWictorious0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlayerColorWictorious0.mp3; sourceTree = "<group>"; };
 		F01063EC15C71537003BB881 /* RRPlayerColorWictorious1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlayerColorWictorious1.mp3; sourceTree = "<group>"; };
 		F01063ED15C71538003BB881 /* RRPlayerColorWictorious2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlayerColorWictorious2.mp3; sourceTree = "<group>"; };
+		F01063F415C71841003BB881 /* RRPlayerColor1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlayerColor1.mp3; sourceTree = "<group>"; };
+		F01063F515C71842003BB881 /* RRPlayerColor2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlayerColor2.mp3; sourceTree = "<group>"; };
+		F01063FA15C71B42003BB881 /* RRPlayerColor1-points1-s2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor1-points1-s2.mp3"; sourceTree = "<group>"; };
+		F01063FB15C71B42003BB881 /* RRPlayerColor2-points1-s2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor2-points1-s2.mp3"; sourceTree = "<group>"; };
+		F01063FC15C71B42003BB881 /* RRPlayerColor2-points2-s1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor2-points2-s1.mp3"; sourceTree = "<group>"; };
+		F01063FD15C71B43003BB881 /* RRPlayerColor2-points2-s2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor2-points2-s2.mp3"; sourceTree = "<group>"; };
+		F01063FE15C71B43003BB881 /* RRPlayerColor2-points1-s1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor2-points1-s1.mp3"; sourceTree = "<group>"; };
+		F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor1-points2-s1.mp3"; sourceTree = "<group>"; };
+		F010640015C71B43003BB881 /* RRPlayerColor1-points2-s2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor1-points2-s2.mp3"; sourceTree = "<group>"; };
+		F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor1-points1-s1.mp3"; sourceTree = "<group>"; };
 		F01CD2C31530241F000149C4 /* UDActionDestroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionDestroy.h; sourceTree = "<group>"; };
 		F01CD2C41530241F000149C4 /* UDActionDestroy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionDestroy.m; sourceTree = "<group>"; };
 		F0232F8D15AF97DC00D7EF8F /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
@@ -729,6 +759,16 @@
 		F01063CC15C70524003BB881 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				F01063FA15C71B42003BB881 /* RRPlayerColor1-points1-s2.mp3 */,
+				F01063FB15C71B42003BB881 /* RRPlayerColor2-points1-s2.mp3 */,
+				F01063FC15C71B42003BB881 /* RRPlayerColor2-points2-s1.mp3 */,
+				F01063FD15C71B43003BB881 /* RRPlayerColor2-points2-s2.mp3 */,
+				F01063FE15C71B43003BB881 /* RRPlayerColor2-points1-s1.mp3 */,
+				F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */,
+				F010640015C71B43003BB881 /* RRPlayerColor1-points2-s2.mp3 */,
+				F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */,
+				F01063F415C71841003BB881 /* RRPlayerColor1.mp3 */,
+				F01063F515C71842003BB881 /* RRPlayerColor2.mp3 */,
 				F01063EB15C71537003BB881 /* RRPlayerColorWictorious0.mp3 */,
 				F01063EC15C71537003BB881 /* RRPlayerColorWictorious1.mp3 */,
 				F01063ED15C71538003BB881 /* RRPlayerColorWictorious2.mp3 */,
@@ -1602,6 +1642,16 @@
 				F01063EE15C71538003BB881 /* RRPlayerColorWictorious0.mp3 in Resources */,
 				F01063F015C71538003BB881 /* RRPlayerColorWictorious1.mp3 in Resources */,
 				F01063F215C71538003BB881 /* RRPlayerColorWictorious2.mp3 in Resources */,
+				F01063F615C71842003BB881 /* RRPlayerColor1.mp3 in Resources */,
+				F01063F815C71842003BB881 /* RRPlayerColor2.mp3 in Resources */,
+				F010640215C71B44003BB881 /* RRPlayerColor1-points1-s2.mp3 in Resources */,
+				F010640415C71B44003BB881 /* RRPlayerColor2-points1-s2.mp3 in Resources */,
+				F010640615C71B44003BB881 /* RRPlayerColor2-points2-s1.mp3 in Resources */,
+				F010640815C71B44003BB881 /* RRPlayerColor2-points2-s2.mp3 in Resources */,
+				F010640A15C71B44003BB881 /* RRPlayerColor2-points1-s1.mp3 in Resources */,
+				F010640C15C71B44003BB881 /* RRPlayerColor1-points2-s1.mp3 in Resources */,
+				F010640E15C71B44003BB881 /* RRPlayerColor1-points2-s2.mp3 in Resources */,
+				F010641015C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1630,6 +1680,16 @@
 				F01063EF15C71538003BB881 /* RRPlayerColorWictorious0.mp3 in Resources */,
 				F01063F115C71538003BB881 /* RRPlayerColorWictorious1.mp3 in Resources */,
 				F01063F315C71538003BB881 /* RRPlayerColorWictorious2.mp3 in Resources */,
+				F01063F715C71842003BB881 /* RRPlayerColor1.mp3 in Resources */,
+				F01063F915C71842003BB881 /* RRPlayerColor2.mp3 in Resources */,
+				F010640315C71B44003BB881 /* RRPlayerColor1-points1-s2.mp3 in Resources */,
+				F010640515C71B44003BB881 /* RRPlayerColor2-points1-s2.mp3 in Resources */,
+				F010640715C71B44003BB881 /* RRPlayerColor2-points2-s1.mp3 in Resources */,
+				F010640915C71B44003BB881 /* RRPlayerColor2-points2-s2.mp3 in Resources */,
+				F010640B15C71B44003BB881 /* RRPlayerColor2-points1-s1.mp3 in Resources */,
+				F010640D15C71B44003BB881 /* RRPlayerColor1-points2-s1.mp3 in Resources */,
+				F010640F15C71B44003BB881 /* RRPlayerColor1-points2-s2.mp3 in Resources */,
+				F010641115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

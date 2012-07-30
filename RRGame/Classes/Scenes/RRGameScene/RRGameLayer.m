@@ -210,40 +210,27 @@
 
 - (void)newTurn {
 
-    if( _player1.playerColor == _playerColor ){
-        if( [_player1 isKindOfClass:[RRAIPlayer class]] ){
-            [_gameBoardLayer setUserInteractionEnabled:NO];
-            
-            RRTileMove tileMove = [(RRAIPlayer *)_player1 bestMoveOnBoard:_gameBoardLayer];
-
-            [_gameBoardLayer.activeTile runAction:[CCSequence actions:
-                                                   [UDActionCallFunc actionWithSelector:@selector(liftTile)],
-                                                   [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
-                                                                                                          tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
-                                                   [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
-                                                   [UDActionCallFunc actionWithSelector:@selector(placeTile)],
-                                                   
-                                                   [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
-                                                   [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
-                                                   nil]];
-        }
-    }else if( _player2.playerColor == _playerColor ){
-        if( [_player2 isKindOfClass:[RRAIPlayer class]] ){
-            [_gameBoardLayer setUserInteractionEnabled:NO];
-            
-            RRTileMove tileMove = [(RRAIPlayer *)_player2 bestMoveOnBoard:_gameBoardLayer];
-
-            [_gameBoardLayer.activeTile runAction:[CCSequence actions:
-                                                   [UDActionCallFunc actionWithSelector:@selector(liftTile)],
-                                                   [CCMoveTo actionWithDuration:0.3f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2, 
-                                                                                                          tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
-                                                   [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
-                                                   [UDActionCallFunc actionWithSelector:@selector(placeTile)],
-                                                   
-                                                   [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
-                                                   [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
-                                                   nil]];
-        }
+    if(   (_player1.playerColor == _playerColor && [_player1 isKindOfClass:[RRAIPlayer class]])
+       || (_player2.playerColor == _playerColor && [_player2 isKindOfClass:[RRAIPlayer class]]) ){
+        
+        [_gameBoardLayer setUserInteractionEnabled:NO];
+        
+        RRTileMove tileMove = [(RRAIPlayer *)((_player1.playerColor == _playerColor)?_player1:_player2) bestMoveOnBoard:_gameBoardLayer];
+        
+        [_gameBoardLayer.activeTile runAction:[CCSequence actions:
+                                               [CCDelayTime actionWithDuration:0.1f],
+                                               [UDActionCallFunc actionWithSelector:@selector(liftTile)],
+                                               [CCDelayTime actionWithDuration:0.1f],
+                                               [CCMoveTo actionWithDuration:0.5f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2,
+                                                                                                      tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
+                                               [CCDelayTime actionWithDuration:0.1f],
+                                               [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
+                                               [UDActionCallFunc actionWithSelector:@selector(placeTile)],
+                                               [CCDelayTime actionWithDuration:0.1f],
+                                               
+                                               [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
+                                               [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
+                                               nil]];
     }
     
 }
@@ -369,8 +356,20 @@
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
         [_scoreLayer setScoreBlack: _gameBoardLayer.symbolsBlack];
+
+        if( _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack == 1 ){
+            [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat: @"RRPlayerColor1-points1-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)]];
+        }else{
+            [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColor1-points2-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)]];
+        }
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
         [_scoreLayer setScoreWhite: _gameBoardLayer.symbolsWhite];
+        
+        if( _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack == 1 ){
+            [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat: @"RRPlayerColor2-points1-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)]];
+        }else{
+            [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColor2-points2-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)]];
+        }
     }
     
 }

@@ -93,9 +93,7 @@
 
 - (void)startGameWithFirstPlayerColor:(RRPlayerColor)playerColor {
 
-    NSString *fileNameFormat = [NSString stringWithFormat:@"RRPlayerColor%i-numberOfPlayers%i.png", playerColor, _numberOfPlayers];
-    
-    [[RRHeredox sharedInstance] playEffect:fileNameFormat];
+    [[RRHeredox sharedInstance] playEffect: [NSString stringWithFormat:@"RRPlayerColor%i.mp3", playerColor]];
     
     if( _numberOfPlayers == 1 ){
         RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
