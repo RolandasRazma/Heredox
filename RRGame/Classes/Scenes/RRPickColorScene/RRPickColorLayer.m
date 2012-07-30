@@ -46,8 +46,11 @@
         // Add background
         CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundPlayerColor~ipad.png":@"RRBackgroundPlayerColor.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
-        [self addChild:backgroundSprite z:-1];
+        [self addChild:backgroundSprite];
 
+        
+        CCSprite *titleTextSprite = [CCSprite spriteWithSpriteFrameName:((numberOfPlayers==1)?@"RRTextChooseYourAllegiance.png":@"RRTextWhoMakesTheFirstMove.png")];
+        [self addChild:titleTextSprite];
         
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
@@ -69,6 +72,8 @@
         // Device layout
         if( isDeviceIPad() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
+            [titleTextSprite setPosition:CGPointMake(315, 920)];
+            [titleTextSprite setColor:ccRED];
             
             [_backgroundPlayerWhiteSelectedSprite setPosition:CGPointMake(165, 702)];
             [_backgroundPlayerBlackSelectedSprite setPosition:CGPointMake(594, 185)];

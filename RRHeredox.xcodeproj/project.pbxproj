@@ -1362,6 +1362,8 @@
 		F0E3F68615B41D6E00599E95 /* CocosDenshion */ = {
 			isa = PBXGroup;
 			children = (
+				F0E3F68E15B41D6E00599E95 /* SimpleAudioEngine.h */,
+				F0E3F68F15B41D6E00599E95 /* SimpleAudioEngine.m */,
 				F0E3F68715B41D6E00599E95 /* CDAudioManager.h */,
 				F0E3F68815B41D6E00599E95 /* CDAudioManager.m */,
 				F0E3F68915B41D6E00599E95 /* CDConfig.h */,
@@ -1369,8 +1371,6 @@
 				F0E3F68B15B41D6E00599E95 /* CDOpenALSupport.m */,
 				F0E3F68C15B41D6E00599E95 /* CocosDenshion.h */,
 				F0E3F68D15B41D6E00599E95 /* CocosDenshion.m */,
-				F0E3F68E15B41D6E00599E95 /* SimpleAudioEngine.h */,
-				F0E3F68F15B41D6E00599E95 /* SimpleAudioEngine.m */,
 			);
 			path = CocosDenshion;
 			sourceTree = "<group>";

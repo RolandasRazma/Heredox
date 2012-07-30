@@ -44,7 +44,7 @@
         // Device layout
         if( isDeviceIPad() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
-            [buttonWWW setPosition:CGPointMake(winSize.width /2, 160)];
+            [buttonWWW setPosition:CGPointMake(winSize.width /2, 155)];
         }else{
 
         }

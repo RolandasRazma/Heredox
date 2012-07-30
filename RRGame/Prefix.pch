@@ -19,6 +19,7 @@
     #import "UDActionScaleTo.h"
     #import "UDActionCallFunc.h"
     #import "UDActionDestroy.h"
+    #import "SimpleAudioEngine.h"
 
     #import "RRHeredox.h"
 #endif
