@@ -759,14 +759,14 @@
 		F01063CC15C70524003BB881 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */,
 				F01063FA15C71B42003BB881 /* RRPlayerColor1-points1-s2.mp3 */,
+				F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */,
+				F010640015C71B43003BB881 /* RRPlayerColor1-points2-s2.mp3 */,
+				F01063FE15C71B43003BB881 /* RRPlayerColor2-points1-s1.mp3 */,
 				F01063FB15C71B42003BB881 /* RRPlayerColor2-points1-s2.mp3 */,
 				F01063FC15C71B42003BB881 /* RRPlayerColor2-points2-s1.mp3 */,
 				F01063FD15C71B43003BB881 /* RRPlayerColor2-points2-s2.mp3 */,
-				F01063FE15C71B43003BB881 /* RRPlayerColor2-points1-s1.mp3 */,
-				F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */,
-				F010640015C71B43003BB881 /* RRPlayerColor1-points2-s2.mp3 */,
-				F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */,
 				F01063F415C71841003BB881 /* RRPlayerColor1.mp3 */,
 				F01063F515C71842003BB881 /* RRPlayerColor2.mp3 */,
 				F01063EB15C71537003BB881 /* RRPlayerColorWictorious0.mp3 */,

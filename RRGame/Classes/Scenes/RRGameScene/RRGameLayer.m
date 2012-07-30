@@ -216,21 +216,29 @@
         [_gameBoardLayer setUserInteractionEnabled:NO];
         
         RRTileMove tileMove = [(RRAIPlayer *)((_player1.playerColor == _playerColor)?_player1:_player2) bestMoveOnBoard:_gameBoardLayer];
+
         
-        [_gameBoardLayer.activeTile runAction:[CCSequence actions:
-                                               [CCDelayTime actionWithDuration:0.1f],
-                                               [UDActionCallFunc actionWithSelector:@selector(liftTile)],
-                                               [CCDelayTime actionWithDuration:0.1f],
-                                               [CCMoveTo actionWithDuration:0.5f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2,
-                                                                                                      tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)],
-                                               [CCDelayTime actionWithDuration:0.1f],
-                                               [CCRotateTo actionWithDuration:0.2f angle:tileMove.rotation],
-                                               [UDActionCallFunc actionWithSelector:@selector(placeTile)],
-                                               [CCDelayTime actionWithDuration:0.1f],
-                                               
-                                               [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }],
-                                               [CCCallFunc actionWithTarget: self selector:@selector(endTurn)],
-                                               nil]];
+        NSMutableArray *actions = [NSMutableArray array];
+        [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
+        [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
+        [actions addObject: [CCMoveTo actionWithDuration:0.4f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2,
+                                                                                   tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)]];
+        [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
+        [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
+
+        
+        for( NSUInteger rotation=0; rotation<tileMove.rotation; rotation += 90 ){
+            [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
+            [actions addObject: [CCRotateBy actionWithDuration:0.2f angle:90]];
+            [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
+            [actions addObject: [CCDelayTime actionWithDuration:0.2f]];
+        }
+        
+        [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
+        [actions addObject: [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }]];
+        [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
+        
+        [_gameBoardLayer.activeTile runAction:[CCSequence actionsWithArray: actions]];
     }
     
 }
@@ -354,24 +362,34 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
+    NSString *soundEffext = nil;
+    
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
         [_scoreLayer setScoreBlack: _gameBoardLayer.symbolsBlack];
-
-        if( _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack == 1 ){
-            [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat: @"RRPlayerColor1-points1-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)]];
-        }else{
-            [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColor1-points2-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)]];
+        
+        if( _scoreLayer.scoreBlack ){
+            if( _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack == 1 ){
+                soundEffext = [NSString stringWithFormat: @"RRPlayerColor1-points1-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)];
+            }else{
+                soundEffext = [NSString stringWithFormat:@"RRPlayerColor1-points2-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)];
+            }
         }
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
         [_scoreLayer setScoreWhite: _gameBoardLayer.symbolsWhite];
         
-        if( _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack == 1 ){
-            [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat: @"RRPlayerColor2-points1-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)]];
-        }else{
-            [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColor2-points2-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)]];
+        if( _scoreLayer.scoreWhite ){
+            if( _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite == 1 ){
+                soundEffext = [NSString stringWithFormat: @"RRPlayerColor2-points1-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)];
+            }else{
+                soundEffext = [NSString stringWithFormat:@"RRPlayerColor2-points2-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)];
+            }
         }
     }
     
+    
+    if( soundEffext ){
+        [[RRHeredox sharedInstance] playEffect:soundEffext withoutStopingPrevious:YES];
+    }
 }
 
 
