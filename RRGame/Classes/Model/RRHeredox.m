@@ -65,7 +65,10 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){CGFLOAT_MAX, CGFLOAT_M
     [_effectsCache setObject:[NSNumber numberWithUnsignedInteger:effectID] forKey:filePath];
     
     if( effectID == CD_NO_SOURCE ){
-        NSLog(@"No source for sound file %@", filePathp);
+#if TARGET_IPHONE_SIMULATOR
+        NSAssert1(NO, @"No source for sound file %@", filePath);
+#endif
+        NSLog(@"No source for sound file %@", filePath);
     }
     
     return effectID;
