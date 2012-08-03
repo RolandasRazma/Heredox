@@ -51,7 +51,10 @@
             
             [buttonRules setPosition:CGPointMake(winSize.width /2, 345)];
         }else{
-
+            [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 250)];
+            [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 215)];
+            
+            [buttonRules setPosition:CGPointMake(winSize.width /2, 178)];
         }
         
     }
