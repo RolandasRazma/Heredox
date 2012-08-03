@@ -68,24 +68,37 @@
         [_backgroundPlayerBlackSelectedSprite setVisible:NO];
         [self addChild:_backgroundPlayerBlackSelectedSprite];
         
-
+        CGFloat leftBottomY;    // From bottom
+        CGFloat rightTopY;      // From top
+        
         // Device layout
         if( isDeviceIPad() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
             [titleTextSprite setPosition:CGPointMake(315, 920)];
-            [titleTextSprite setColor:ccRED];
-            
+
             [_backgroundPlayerWhiteSelectedSprite setPosition:CGPointMake(165, 702)];
             [_backgroundPlayerBlackSelectedSprite setPosition:CGPointMake(594, 185)];
             
-            _upperRect     = CGRectMake(0, winSize.height -400, winSize.width, 400);
-            _upperTriangle = UDTriangleMake( CGPointMake(0, 210), CGPointMake(winSize.width, winSize.height -400), CGPointMake(0, winSize.height -400) );
-            
-            _lowerRect     = CGRectMake(0, 0, winSize.width, 210);
-            _lowerTriangle = UDTriangleMake( CGPointMake(0, 210), CGPointMake(winSize.width, 210), CGPointMake(winSize.width, winSize.height -400) );
+            leftBottomY = 210;
+            rightTopY   = 400;
         }else{
-
+            [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
+            [buttonHome setScale:0.9f];
+            [titleTextSprite setPosition:CGPointMake(130, 435)];
+            [titleTextSprite setScale:0.9f];
+            
+            [_backgroundPlayerWhiteSelectedSprite setPosition:CGPointMake(63, 326)];
+            [_backgroundPlayerBlackSelectedSprite setPosition:CGPointMake(242, 93)];
+            
+            leftBottomY = 100;
+            rightTopY   = 200;
         }
+        
+        _upperRect     = CGRectMake(0, winSize.height -rightTopY, winSize.width, rightTopY);
+        _upperTriangle = UDTriangleMake( CGPointMake(0, leftBottomY), CGPointMake(winSize.width, winSize.height -rightTopY), CGPointMake(0, winSize.height -rightTopY) );
+        
+        _lowerRect     = CGRectMake(0, 0, winSize.width, leftBottomY);
+        _lowerTriangle = UDTriangleMake( CGPointMake(0, leftBottomY), CGPointMake(winSize.width, leftBottomY), CGPointMake(winSize.width, winSize.height -rightTopY) );
     }
     return self;
 }
@@ -128,7 +141,7 @@
 - (void)touchMovedToLocation:(CGPoint)location {
     [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
     [_backgroundPlayerBlackSelectedSprite setVisible:NO];
-    
+
     if( CGRectContainsPoint(_upperRect, location) || UDTriangleContainsPoint(_upperTriangle, location) ){
         [_backgroundPlayerWhiteSelectedSprite setVisible:YES];
     }else if( CGRectContainsPoint(_lowerRect, location) || UDTriangleContainsPoint(_lowerTriangle, location) ){
@@ -148,7 +161,9 @@
         [self startGameWithFirstPlayerColor: RRPlayerColorBlack];
         return;
     }
-
+cd
+    [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
+    [_backgroundPlayerBlackSelectedSprite setVisible:NO];
 }
 
 
