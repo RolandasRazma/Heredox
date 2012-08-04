@@ -52,6 +52,12 @@
 		F012ACF115CDBD130095190C /* RRBackgroundDifficulty.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */; };
 		F012ACF215CDBD130095190C /* RRBackgroundDifficulty.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */; };
 		F012ACF315CDBD130095190C /* RRBackgroundDifficulty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACF015CDBD130095190C /* RRBackgroundDifficulty@2x.png */; };
+		F012ACF815CDBF810095190C /* RRBackgroundBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACF615CDBF810095190C /* RRBackgroundBlack.png */; };
+		F012ACF915CDBF810095190C /* RRBackgroundBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACF615CDBF810095190C /* RRBackgroundBlack.png */; };
+		F012ACFA15CDBF810095190C /* RRBackgroundBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACF715CDBF810095190C /* RRBackgroundBlack@2x.png */; };
+		F012ACFE15CDBFF10095190C /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */; };
+		F012ACFF15CDBFF10095190C /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */; };
+		F012AD0015CDBFF10095190C /* RRBackgroundWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFD15CDBFF10095190C /* RRBackgroundWhite@2x.png */; };
 		F01CD2C51530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F01CD2C61530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F023307915AF97DC00D7EF8F /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0232F8E15AF97DC00D7EF8F /* CCAction.m */; };
@@ -398,6 +404,10 @@
 		F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor1-points1-s1.mp3"; sourceTree = "<group>"; };
 		F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundDifficulty.png; sourceTree = "<group>"; };
 		F012ACF015CDBD130095190C /* RRBackgroundDifficulty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundDifficulty@2x.png"; sourceTree = "<group>"; };
+		F012ACF615CDBF810095190C /* RRBackgroundBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundBlack.png; sourceTree = "<group>"; };
+		F012ACF715CDBF810095190C /* RRBackgroundBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack@2x.png"; sourceTree = "<group>"; };
+		F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundWhite.png; sourceTree = "<group>"; };
+		F012ACFD15CDBFF10095190C /* RRBackgroundWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite@2x.png"; sourceTree = "<group>"; };
 		F01CD2C31530241F000149C4 /* UDActionDestroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionDestroy.h; sourceTree = "<group>"; };
 		F01CD2C41530241F000149C4 /* UDActionDestroy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionDestroy.m; sourceTree = "<group>"; };
 		F0232F8D15AF97DC00D7EF8F /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
@@ -1419,6 +1429,10 @@
 				F0C1ED0215CBB38700BB265F /* RRBackgroundPlayerColor@2x.png */,
 				F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */,
 				F012ACF015CDBD130095190C /* RRBackgroundDifficulty@2x.png */,
+				F012ACF615CDBF810095190C /* RRBackgroundBlack.png */,
+				F012ACF715CDBF810095190C /* RRBackgroundBlack@2x.png */,
+				F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */,
+				F012ACFD15CDBFF10095190C /* RRBackgroundWhite@2x.png */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1689,6 +1703,10 @@
 				F0C1ED0515CBB38700BB265F /* RRBackgroundPlayerColor@2x.png in Resources */,
 				F012ACF115CDBD130095190C /* RRBackgroundDifficulty.png in Resources */,
 				F012ACF315CDBD130095190C /* RRBackgroundDifficulty@2x.png in Resources */,
+				F012ACF815CDBF810095190C /* RRBackgroundBlack.png in Resources */,
+				F012ACFA15CDBF810095190C /* RRBackgroundBlack@2x.png in Resources */,
+				F012ACFE15CDBFF10095190C /* RRBackgroundWhite.png in Resources */,
+				F012AD0015CDBFF10095190C /* RRBackgroundWhite@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1732,6 +1750,8 @@
 				F0C1ED0415CBB38700BB265F /* RRBackgroundPlayerColor.png in Resources */,
 				F0C1ED0615CBB38700BB265F /* RRBackgroundPlayerColor@2x.png in Resources */,
 				F012ACF215CDBD130095190C /* RRBackgroundDifficulty.png in Resources */,
+				F012ACF915CDBF810095190C /* RRBackgroundBlack.png in Resources */,
+				F012ACFF15CDBFF10095190C /* RRBackgroundWhite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

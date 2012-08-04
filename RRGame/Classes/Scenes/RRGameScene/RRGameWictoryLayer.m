@@ -99,7 +99,8 @@
             [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width  /2, _menu.boundingBox.size.height /2 +20)];
             [buttonContinue setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 80)];
         }else{
-            
+            [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width  /2, _menu.boundingBox.size.height /2 +20)];
+            [buttonContinue setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 45)];
         }
 
     }

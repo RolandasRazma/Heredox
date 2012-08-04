@@ -92,7 +92,16 @@
             _sliderEdgeLeft = 145;
             _sliderWidth    = 335.0f;
         } else {
+            [buttonResume setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 260)];
+            [buttonRestart setPosition:CGPointMake(_menu.boundingBox.size.width /2, 205)];
+            [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width /2, 150)];
+            [textVolume setPosition:CGPointMake(_menu.boundingBox.size.width /2, 85)];
             
+            [sliderBG setPosition:CGPointMake(_menu.boundingBox.size.width /2, 45)];
+            [_sliderSound setPosition:CGPointMake(_menu.boundingBox.size.width /2, 45)];
+            
+            _sliderEdgeLeft = 72.0f;
+            _sliderWidth    = 166.0f;
         }
         
         CGFloat levelSound = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"];

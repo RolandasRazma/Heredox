@@ -157,7 +157,8 @@
         }
         
         // Reset deck
-        [self resetDeckForGameMode:gameMode];        
+        [self resetDeckForGameMode:gameMode];
+        
     }
 	return self;
 }
@@ -257,74 +258,82 @@
 
 - (void)resetGame {
     [self resetDeckForGameMode:_gameMode];
-    [_gameBoardLayer resetBoardForGameMode: _gameMode];
-    
-    _playerColor = _firstPlayerColor;
-    
-    [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
-    
-    [_resetGameButton stopAllActions];
-    [_resetGameButton runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.3f], [UDActionDestroy action], nil]];
-    _resetGameButton = nil;
-    
-    // Make first player move as it makes no sense
-    [_gameBoardLayer addTile:[self takeTopTile] animated:NO];
-    [self endTurn];
+    @synchronized( self ){
+        [_gameBoardLayer resetBoardForGameMode: _gameMode];
+        
+        _playerColor = _firstPlayerColor;
+        
+        [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
+        
+        [_resetGameButton stopAllActions];
+        [_resetGameButton runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.3f], [UDActionDestroy action], nil]];
+        _resetGameButton = nil;
+        
+        // Make first player move as it makes no sense
+        [_gameBoardLayer addTile:[self takeTopTile] animated:NO];
+        [self endTurn];
+    }
 }
 
 
 - (void)resetDeckForGameMode:(RRGameMode)gameMode {
-    [_deck release];
-    _deck = [[NSMutableArray alloc] initWithCapacity:16];
-    
-    // 2x RRTileEdgeWhite RRTileEdgeNone RRTileEdgeBlack RRTileEdgeNone
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeBlack right:RRTileEdgeNone]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeBlack right:RRTileEdgeNone]];
-    
-    // 3x RRTileEdgeWhite RRTileEdgeNone RRTileEdgeNone RRTileEdgeBlack
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];    
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];
-
-    // 3x RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeNone RRTileEdgeNone
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
-
-    // 4x RRTileEdgeWhite RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeBlack
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
-    
-    // 4x RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeWhite RRTileEdgeBlack
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
-    [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
-    
-    NSUInteger seed = time(NULL);
-    [_deck shuffleWithSeed:seed];
-    
-    NSLog(@"Game Seed: %u", seed);
-
-    // Place tiles on game board
-    CGFloat angle   = 0;
-    CGFloat offsetY = 0;
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    for( RRTile *tile in [_deck reverseObjectEnumerator] ){
-        [tile setRotation:0];
-        [tile setBackSideVisible: (gameMode == RRGameModeClosed)];
-
-        offsetY += (isDeviceIPad()?6.0f:3.0f);
-        [tile setRotation: CC_RADIANS_TO_DEGREES(sinf(++angle)) /20.0f];        
+    @synchronized( self ){
+        for( RRTile *tile in _deck ){
+            [self removeChild:tile cleanup:YES];
+        }
         
-        [tile setPosition:CGPointMake(winSize.width /2, 
-                                      tile.textureRect.size.height /1.5f +offsetY)];
-        [self addChild:tile z:-1];
+        [_deck release];
+        _deck = [[NSMutableArray alloc] initWithCapacity:16];
+        
+        // 2x RRTileEdgeWhite RRTileEdgeNone RRTileEdgeBlack RRTileEdgeNone
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeBlack right:RRTileEdgeNone]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeBlack right:RRTileEdgeNone]];
+        
+        // 3x RRTileEdgeWhite RRTileEdgeNone RRTileEdgeNone RRTileEdgeBlack
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];
+        
+        // 3x RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeNone RRTileEdgeNone
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
+        
+        // 4x RRTileEdgeWhite RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeBlack
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
+        
+        // 4x RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeWhite RRTileEdgeBlack
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
+        
+        NSUInteger seed = time(NULL);
+        [_deck shuffleWithSeed:seed];
+        
+        NSLog(@"Game Seed: %u", seed);
+        
+        // Place tiles on game board
+        CGFloat angle   = 0;
+        CGFloat offsetY = 0;
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        for( RRTile *tile in [_deck reverseObjectEnumerator] ){
+            [tile setRotation:0];
+            [tile setBackSideVisible: (gameMode == RRGameModeClosed)];
+            
+            offsetY += (isDeviceIPad()?6.0f:3.0f);
+            [tile setRotation: CC_RADIANS_TO_DEGREES(sinf(++angle)) /20.0f];
+            
+            [tile setPosition:CGPointMake(winSize.width /2,
+                                          tile.textureRect.size.height /1.5f +offsetY)];
+            [self addChild:tile z:-1];
+        }
+        
+        [_buttonEndTurn setPosition: [(RRTile *)[_deck objectAtIndex: _deck.count -1] position]];
     }
-
-    [_buttonEndTurn setPosition: [(RRTile *)[_deck objectAtIndex: _deck.count -1] position]];
 }
 
 
