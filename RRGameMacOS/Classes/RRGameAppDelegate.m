@@ -58,6 +58,10 @@
 	// Center main window
 	[_window center];
 
+	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
+	[sharedFileUtils setEnableFallbackSuffixes:NO];				// Default: NO. No fallback suffixes are going to be used
+	[sharedFileUtils setMacSuffix:@""];                         // Default on iMac is ""
+
     // Init RRHeredox
     [RRHeredox sharedInstance];
     

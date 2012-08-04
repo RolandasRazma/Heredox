@@ -113,12 +113,13 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 
 @implementation CCFileUtils
 
-@synthesize fileManager=fileManager_, bundle=bundle_;
+@synthesize fileManager=fileManager_, bundle=bundle_, enableFallbackSuffixes = enableFallbackSuffixes_;
 #ifdef __CC_PLATFORM_IOS
 @synthesize iPhoneRetinaDisplaySuffix = iPhoneRetinaDisplaySuffix_;
 @synthesize iPadSuffix = iPadSuffix_;
 @synthesize iPadRetinaDisplaySuffix = iPadRetinaDisplaySuffix_;
-@synthesize enableFallbackSuffixes = enableFallbackSuffixes_;
+#elif __CC_PLATFORM_MAC
+@synthesize macSuffix = macSuffix_;
 #endif // __CC_PLATFORM_IOS
 
 + (id)sharedFileUtils
@@ -143,10 +144,11 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 		iPhoneRetinaDisplaySuffix_ = @"-hd";
 		iPadSuffix_ = @"-ipad";
 		iPadRetinaDisplaySuffix_ = @"-ipadhd";
-		
-		enableFallbackSuffixes_ = NO;
-#endif // __CC_PLATFORM_IOS
+#elif __CC_PLATFORM_MAC 
+        macSuffix_ = @"-hd";
+#endif 
 
+		enableFallbackSuffixes_ = NO;
 	}
 	
 	return self;
@@ -169,7 +171,9 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 	[iPhoneRetinaDisplaySuffix_ release];
 	[iPadSuffix_ release];
 	[iPadRetinaDisplaySuffix_ release];
-#endif // __CC_PLATFORM_IOS
+#elif __CC_PLATFORM_MAC
+    [macSuffix_ release];
+#endif
 	
     [super dealloc];
 }
@@ -271,8 +275,10 @@ NSInteger ccLoadFileIntoMemory(const char *filename, unsigned char **out)
 
 	*resolutionType = kCCResolutionMac;
 
-	ret = [self getPath:relPath forSuffix:@""];
-
+	ret = [self getPath:relPath forSuffix:macSuffix_];
+	if( (enableFallbackSuffixes_ && !ret) ) {
+		ret = [self getPath:relPath forSuffix:@""];
+	}
 #endif // __CC_PLATFORM_MAC
 	
 	if( ! ret ) {
