@@ -46,7 +46,9 @@
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
             [buttonWWW setPosition:CGPointMake(winSize.width /2, 155)];
         }else{
-            [buttonHome setPosition:CGPointMake(winSize.width -8, winSize.height -8)];
+            [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
+            [buttonHome setScale:0.9f];
+            
             [buttonWWW setPosition:CGPointMake(winSize.width /2, 70)];
         }
     }

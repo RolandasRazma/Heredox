@@ -49,6 +49,9 @@
 		F010640F15C71B44003BB881 /* RRPlayerColor1-points2-s2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F010640015C71B43003BB881 /* RRPlayerColor1-points2-s2.mp3 */; };
 		F010641015C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */; };
 		F010641115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */; };
+		F012ACF115CDBD130095190C /* RRBackgroundDifficulty.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */; };
+		F012ACF215CDBD130095190C /* RRBackgroundDifficulty.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */; };
+		F012ACF315CDBD130095190C /* RRBackgroundDifficulty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACF015CDBD130095190C /* RRBackgroundDifficulty@2x.png */; };
 		F01CD2C51530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F01CD2C61530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F023307915AF97DC00D7EF8F /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0232F8E15AF97DC00D7EF8F /* CCAction.m */; };
@@ -393,6 +396,8 @@
 		F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor1-points2-s1.mp3"; sourceTree = "<group>"; };
 		F010640015C71B43003BB881 /* RRPlayerColor1-points2-s2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor1-points2-s2.mp3"; sourceTree = "<group>"; };
 		F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RRPlayerColor1-points1-s1.mp3"; sourceTree = "<group>"; };
+		F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundDifficulty.png; sourceTree = "<group>"; };
+		F012ACF015CDBD130095190C /* RRBackgroundDifficulty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundDifficulty@2x.png"; sourceTree = "<group>"; };
 		F01CD2C31530241F000149C4 /* UDActionDestroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionDestroy.h; sourceTree = "<group>"; };
 		F01CD2C41530241F000149C4 /* UDActionDestroy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionDestroy.m; sourceTree = "<group>"; };
 		F0232F8D15AF97DC00D7EF8F /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
@@ -1412,6 +1417,8 @@
 				F0C1ECFC15CBB14300BB265F /* RRBackgroundRules@2x.png */,
 				F0C1ED0115CBB38700BB265F /* RRBackgroundPlayerColor.png */,
 				F0C1ED0215CBB38700BB265F /* RRBackgroundPlayerColor@2x.png */,
+				F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */,
+				F012ACF015CDBD130095190C /* RRBackgroundDifficulty@2x.png */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1680,6 +1687,8 @@
 				F0C1ECFF15CBB14400BB265F /* RRBackgroundRules@2x.png in Resources */,
 				F0C1ED0315CBB38700BB265F /* RRBackgroundPlayerColor.png in Resources */,
 				F0C1ED0515CBB38700BB265F /* RRBackgroundPlayerColor@2x.png in Resources */,
+				F012ACF115CDBD130095190C /* RRBackgroundDifficulty.png in Resources */,
+				F012ACF315CDBD130095190C /* RRBackgroundDifficulty@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1722,6 +1731,7 @@
 				F0C1ECFE15CBB14400BB265F /* RRBackgroundRules.png in Resources */,
 				F0C1ED0415CBB38700BB265F /* RRBackgroundPlayerColor.png in Resources */,
 				F0C1ED0615CBB38700BB265F /* RRBackgroundPlayerColor@2x.png in Resources */,
+				F012ACF215CDBD130095190C /* RRBackgroundDifficulty.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

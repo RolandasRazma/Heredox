@@ -152,7 +152,8 @@
         if( isDeviceIPad() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
         }else{
-
+            [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
+            [buttonHome setScale:0.9f];
         }
         
         // Reset deck

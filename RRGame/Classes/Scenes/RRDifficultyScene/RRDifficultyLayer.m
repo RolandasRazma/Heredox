@@ -83,7 +83,19 @@
             [_buttonDeacon setPosition:CGPointMake(winSize.width /2, 445)];
             [_buttonAbbot setPosition:CGPointMake(620, 445)];
         }else{
+            [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
+            [buttonHome setScale:0.9f];
             
+            [buttonStartGame setPosition:CGPointMake(winSize.width /2, 45)];
+            
+            [_buttonNovice setPosition:CGPointMake(75, 210)];
+            [_buttonNovice setScale:0.9f];
+            
+            [_buttonDeacon setPosition:CGPointMake(winSize.width /2, 205)];
+            [_buttonDeacon setScale:0.9f];
+            
+            [_buttonAbbot setPosition:CGPointMake(265, 205)];
+            [_buttonAbbot setScale:0.9f];
         }
     }
     return self;

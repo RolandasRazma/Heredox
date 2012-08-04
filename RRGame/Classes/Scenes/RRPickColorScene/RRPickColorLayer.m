@@ -161,7 +161,7 @@
         [self startGameWithFirstPlayerColor: RRPlayerColorBlack];
         return;
     }
-cd
+
     [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
     [_backgroundPlayerBlackSelectedSprite setVisible:NO];
 }
