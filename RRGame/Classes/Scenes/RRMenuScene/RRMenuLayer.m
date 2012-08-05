@@ -46,15 +46,19 @@
         
         // Device layout
         if( isDeviceIPad() || isDeviceMac() ){
-            [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 540)];
-            [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 465)];
+            [buttonPlayers1 setPosition:CGPointMake(460, 505)];
+            [buttonPlayers2 setPosition:CGPointMake(460, 400)];
             
-            [buttonRules setPosition:CGPointMake(winSize.width /2, 345)];
+            [buttonRules setPosition:CGPointMake(460, 240)];
         }else{
-            [buttonPlayers1 setPosition:CGPointMake(winSize.width /2, 250)];
-            [buttonPlayers2 setPosition:CGPointMake(winSize.width /2, 215)];
+            [buttonPlayers1 setPosition:CGPointMake(195, 240)];
+            [buttonPlayers1 setScale:0.8f];
             
-            [buttonRules setPosition:CGPointMake(winSize.width /2, 178)];
+            [buttonPlayers2 setPosition:CGPointMake(195, 185)];
+            [buttonPlayers2 setScale:0.8f];
+            
+            [buttonRules setPosition:CGPointMake(195, 115)];
+            [buttonRules setScale:0.8f];
         }
         
     }
