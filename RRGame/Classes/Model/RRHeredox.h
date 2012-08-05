@@ -36,8 +36,10 @@ extern const RRTileMove RRTileMoveZero;
 
 + (RRHeredox *)sharedInstance;
 
+- (void)playBackgroundMusic:(NSString *)filePath;
 - (ALuint)playEffect:(NSString *)filePath;
 - (ALuint)playEffect:(NSString *)filePath withoutStopingPrevious:(BOOL)withoutStopingPrevious;
 - (void)stopEffect:(NSString *)filePath;
+- (void)stopAllEffects;
 
 @end

@@ -59,13 +59,7 @@
 
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
-    
-    if( _deck.count ){
-        // Make first player move as it makes no sense
-        
-        [self takeNewTile];
-        [self endTurn];
-    }
+    [self resetGame];
 }
 
 
@@ -135,6 +129,7 @@
 
         // Add End Turn
         _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonDone.png"];
+        [_buttonEndTurn setOpacity:0];
         [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
         [_buttonEndTurn setPosition:CGPointMake(winSize.width -[RRTile tileSize] /1.5f, [RRTile tileSize] /1.5f)];
         [self addChild:_buttonEndTurn z:-2];
@@ -154,11 +149,7 @@
         }else{
             [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
             [buttonHome setScale:0.9f];
-        }
-        
-        // Reset deck
-        [self resetDeckForGameMode:gameMode];
-        
+        }        
     }
 	return self;
 }
@@ -258,6 +249,7 @@
 
 - (void)resetGame {
     [self resetDeckForGameMode:_gameMode];
+    
     @synchronized( self ){
         [_gameBoardLayer resetBoardForGameMode: _gameMode];
         
@@ -271,6 +263,8 @@
         
         // Make first player move as it makes no sense
         [_gameBoardLayer addTile:[self takeTopTile] animated:NO];
+        
+//        [self takeNewTile];
         [self endTurn];
     }
 }
@@ -332,6 +326,7 @@
             [self addChild:tile z:-1];
         }
         
+        [_buttonEndTurn stopAllActions];
         [_buttonEndTurn setPosition: [(RRTile *)[_deck objectAtIndex: _deck.count -1] position]];
         [_buttonEndTurn setOpacity:255];
     }

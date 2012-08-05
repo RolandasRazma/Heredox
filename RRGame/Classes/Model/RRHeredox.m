@@ -48,38 +48,60 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){CGFLOAT_MAX, CGFLOAT_M
 }
 
 
+- (void)playBackgroundMusic:(NSString *)filePath {
+    CGFloat soundLevel = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"];
+
+    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:1.0f *soundLevel];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filePath];
+}
+
+
 - (ALuint)playEffect:(NSString *)filePath {
     return [self playEffect: filePath withoutStopingPrevious:NO];
 }
 
 
 - (ALuint)playEffect:(NSString *)filePath withoutStopingPrevious:(BOOL)withoutStopingPrevious {
-    if( withoutStopingPrevious == NO ){
-        [self stopEffect:filePath];
-    }
-    
-    CGFloat levelSound = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"];
-    
-    ALuint effectID = [[SimpleAudioEngine sharedEngine] playEffect:filePath pitch:1.0f pan:0.0f gain:1.0f *levelSound];
-
-    [_effectsCache setObject:[NSNumber numberWithUnsignedInteger:effectID] forKey:filePath];
-    
-    if( effectID == CD_NO_SOURCE ){
+    @synchronized( _effectsCache ){
+        if( withoutStopingPrevious == NO ){
+            [self stopEffect:filePath];
+        }
+        
+        CGFloat soundLevel = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"];
+        
+        ALuint effectID = [[SimpleAudioEngine sharedEngine] playEffect:filePath pitch:1.0f pan:0.0f gain:1.0f *soundLevel];
+        
+        [_effectsCache setObject:[NSNumber numberWithUnsignedInteger:effectID] forKey:filePath];
+        
+        if( effectID == CD_NO_SOURCE ){
 #if TARGET_IPHONE_SIMULATOR
-        NSAssert1(NO, @"No source for sound file %@", filePath);
+            NSAssert1(NO, @"No source for sound file %@", filePath);
 #endif
-        NSLog(@"No source for sound file %@", filePath);
+            NSLog(@"No source for sound file %@", filePath);
+        }
+        
+        return effectID;
     }
-    
-    return effectID;
 }
 
 
 - (void)stopEffect:(NSString *)filePath {
-    NSNumber *effectID = nil;
-    if( (effectID = [_effectsCache objectForKey:filePath]) ){
-        [[SimpleAudioEngine sharedEngine] stopEffect:[effectID unsignedIntegerValue]];
-        [_effectsCache removeObjectForKey:filePath];
+    @synchronized( _effectsCache ){
+        NSNumber *effectID = nil;
+        if( (effectID = [_effectsCache objectForKey:filePath]) ){
+            [[SimpleAudioEngine sharedEngine] stopEffect: (ALuint)[effectID unsignedIntegerValue]];
+            [_effectsCache removeObjectForKey:filePath];
+        }
+    }
+}
+
+
+- (void)stopAllEffects {
+    @synchronized( _effectsCache ){
+        for( NSNumber *effect in [_effectsCache allValues] ){
+            [[SimpleAudioEngine sharedEngine] stopEffect: (ALuint)[effect unsignedIntegerValue]];
+        }
+        [_effectsCache removeAllObjects];
     }
 }
 

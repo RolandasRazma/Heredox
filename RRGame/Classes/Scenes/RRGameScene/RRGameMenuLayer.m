@@ -175,6 +175,9 @@
     CGFloat sliderValue = (_sliderSound.position.x -_sliderEdgeLeft) /_sliderWidth;
     [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSFXLevel"];
     [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSoundLevel"];
+    
+    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume: 1.0 *sliderValue];
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:         1.0 *sliderValue];
 }
 
 

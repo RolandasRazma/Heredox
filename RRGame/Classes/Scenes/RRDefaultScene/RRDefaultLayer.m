@@ -45,7 +45,7 @@
 - (void)loadAssets {
 
     // Load Sounds
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"ambience.mp3"];
+    [[RRHeredox sharedInstance] playBackgroundMusic:@"ambience.mp3"];
     
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"RRMenuScene.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"RRSceneTransition.mp3"];

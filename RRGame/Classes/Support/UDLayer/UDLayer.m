@@ -70,9 +70,7 @@
     while ( (parent = parent.parent) ) {
         priority += parent.zOrder;
     }
-    
-    NSLog(@"UDLayer priority: %i", priority);
-    
+
     return -priority;
 }
 

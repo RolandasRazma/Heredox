@@ -30,14 +30,15 @@
 - (void)onEnter {
     [super onEnter];
     
-    [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%i.mp3", _playerColorWictorious]];
+    [[RRHeredox sharedInstance] stopAllEffects];
+    [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%u.mp3", _playerColorWictorious]];
 }
 
 
 - (void)onExit {
     [super onExit];
     
-    [[RRHeredox sharedInstance] stopEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%i.mp3", _playerColorWictorious]];
+    [[RRHeredox sharedInstance] stopEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%u.mp3", _playerColorWictorious]];
 }
 
 

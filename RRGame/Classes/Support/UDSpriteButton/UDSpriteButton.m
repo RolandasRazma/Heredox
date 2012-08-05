@@ -225,9 +225,7 @@
     while ( (parent = parent.parent) ) {
         priority += parent.zOrder;
     }
-    
-    NSLog(@"UDSpriteButton priority: %i", priority);
-    
+
     return -priority;
 }
 
