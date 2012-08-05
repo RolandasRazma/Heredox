@@ -70,6 +70,7 @@
         
         CGFloat leftBottomY;    // From bottom
         CGFloat rightTopY;      // From top
+        CGFloat topTopY;        // Offset from top of upper rect
         
         // Device layout
         if( isDeviceIPad() || isDeviceMac() ){
@@ -81,6 +82,7 @@
             
             leftBottomY = 210;
             rightTopY   = 400;
+            topTopY     = 170;
         }else{
             [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
             [buttonHome setScale:0.9f];
@@ -92,9 +94,10 @@
             
             leftBottomY = 100;
             rightTopY   = 200;
+            topTopY     = 80;
         }
         
-        _upperRect     = CGRectMake(0, winSize.height -rightTopY, winSize.width, rightTopY);
+        _upperRect     = CGRectMake(0, winSize.height -rightTopY, winSize.width, rightTopY -topTopY);
         _upperTriangle = UDTriangleMake( CGPointMake(0, leftBottomY), CGPointMake(winSize.width, winSize.height -rightTopY), CGPointMake(0, winSize.height -rightTopY) );
         
         _lowerRect     = CGRectMake(0, 0, winSize.width, leftBottomY);
@@ -133,8 +136,15 @@
 
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
-    [self touchMovedToLocation:location];
-    return YES;
+    if( CGRectContainsPoint(_upperRect, location) || UDTriangleContainsPoint(_upperTriangle, location) ){
+        [self touchMovedToLocation:location];
+        return YES;
+    }else if( CGRectContainsPoint(_lowerRect, location) || UDTriangleContainsPoint(_lowerTriangle, location) ){
+        [self touchMovedToLocation:location];
+        return YES;
+    }
+    
+    return NO;
 }
 
 
