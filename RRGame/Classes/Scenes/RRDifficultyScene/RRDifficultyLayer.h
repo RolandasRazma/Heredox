@@ -8,8 +8,16 @@
 
 #import "CCLayer.h"
 
+@class UDSpriteButton;
 
-@interface RRDifficultyLayer : CCLayer
+@interface RRDifficultyLayer : CCLayer {
+    RRGameMode      _gameMode;
+    RRPlayerColor   _playerColor;
+    
+    UDSpriteButton  *_buttonNovice;
+    UDSpriteButton  *_buttonDeacon;
+    UDSpriteButton  *_buttonAbbot;
+}
 
 + (id)layerWithGameMode:(RRGameMode)gameMode playerColor:(RRPlayerColor)playerColor;
 - (id)initWithGameMode:(RRGameMode)gameMode playerColor:(RRPlayerColor)playerColor;

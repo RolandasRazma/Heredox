@@ -12,9 +12,7 @@
 const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NSIntegerMin };
 
 
-@implementation RRHeredox {
-    NSMutableDictionary *_effectsCache;
-}
+@implementation RRHeredox
 
 
 + (RRHeredox *)sharedInstance {

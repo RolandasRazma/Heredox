@@ -20,7 +20,12 @@ typedef enum RRPlayerColorWictorious : NSUInteger {
 } RRPlayerColorWictorious;
 
 
-@interface RRGameWictoryLayer : UDLayer
+@interface RRGameWictoryLayer : UDLayer {
+    id <RRPlayerColorWictoriousDelegate>_delegate;
+    CCLayerColor            *_colorBackground;
+    CCSprite                *_menu;
+    RRPlayerColorWictorious _playerColorWictorious;
+}
 
 @property (nonatomic, assign) id <RRPlayerColorWictoriousDelegate>delegate;
 

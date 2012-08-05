@@ -21,7 +21,16 @@ enum {
 typedef NSUInteger UDButtonEvents;
 
 
-@interface UDSpriteButton : CCSprite
+@interface UDSpriteButton : CCSprite {
+    BOOL                _touchActiveInside;
+    NSMutableDictionary *_allBlocks;
+    BOOL                _touchActive;
+    BOOL                _userInteractionEnabled;
+    BOOL                _selected;
+    
+    NSString            *_spriteFrameName;
+    NSString            *_highliteSpriteFrameName;
+}
 
 @property(nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
 @property(nonatomic, getter = isSelected) BOOL selected;

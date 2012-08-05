@@ -13,12 +13,7 @@
 static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictoriousNo;
 
 
-@implementation RRGameWictoryLayer {
-    id <RRPlayerColorWictoriousDelegate>_delegate;
-    CCLayerColor            *_colorBackground;
-    CCSprite                *_menu;
-    RRPlayerColorWictorious _playerColorWictorious;
-}
+@implementation RRGameWictoryLayer
 
 
 #pragma mark -

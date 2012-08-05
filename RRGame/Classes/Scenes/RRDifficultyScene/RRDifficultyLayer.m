@@ -13,14 +13,7 @@
 #import "RRGameScene.h"
 
 
-@implementation RRDifficultyLayer {
-    RRGameMode      _gameMode;
-    RRPlayerColor   _playerColor;
-    
-    UDSpriteButton  *_buttonNovice;
-    UDSpriteButton  *_buttonDeacon;
-    UDSpriteButton  *_buttonAbbot;
-}
+@implementation RRDifficultyLayer
 
 
 #pragma mark -

@@ -9,21 +9,7 @@
 #import "RRTile.h"
 
 
-@implementation RRTile {
-    BOOL        _backSideVisible;
-    
-    BOOL        _lookIs3D;
-    CCSprite    *_look3DSprite;
-    
-    RRTileEdge  _edgeTop;
-    RRTileEdge  _edgeLeft;
-    RRTileEdge  _edgeBottom;
-    RRTileEdge  _edgeRight;
-    
-    CCSprite    *_endTurnSprite;
-    
-    CCLabelTTF  *_debugLabel;
-}
+@implementation RRTile
 
 
 #pragma mark -

@@ -11,10 +11,27 @@
 #import "RRGameWictoryLayer.h"
 
 
-@class RRPlayer;
+@class RRPlayer, RRGameBoardLayer, UDSpriteButton, RRCrossfadeLayer, RRScoreLayer;
 
 
-@interface RRGameLayer : UDLayer <RRGameMenuDelegate, RRPlayerColorWictoriousDelegate>
+@interface RRGameLayer : UDLayer <RRGameMenuDelegate, RRPlayerColorWictoriousDelegate> {
+    RRGameMode          _gameMode;
+    
+    NSMutableArray      *_deck;
+    RRGameBoardLayer    *_gameBoardLayer;
+    
+    RRPlayerColor       _playerColor;
+    RRPlayerColor       _firstPlayerColor;
+    
+    UDSpriteButton      *_buttonEndTurn;
+    
+    RRPlayer            *_player1;
+    RRPlayer            *_player2;
+    
+    RRCrossfadeLayer    *_backgroundLayer;
+    RRScoreLayer        *_scoreLayer;
+    UDSpriteButton      *_resetGameButton;
+}
 
 @property (nonatomic, retain) RRPlayer *player1;
 @property (nonatomic, retain) RRPlayer *player2;

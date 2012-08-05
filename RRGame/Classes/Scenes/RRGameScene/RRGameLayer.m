@@ -16,24 +16,7 @@
 #import "RRScoreLayer.h"
 
 
-@implementation RRGameLayer {
-    RRGameMode          _gameMode;
-    
-    NSMutableArray      *_deck;
-    RRGameBoardLayer    *_gameBoardLayer;
-    
-    RRPlayerColor       _playerColor;
-    RRPlayerColor       _firstPlayerColor;
-
-    UDSpriteButton      *_buttonEndTurn;
-    
-    RRPlayer            *_player1;
-    RRPlayer            *_player2;
-    
-    RRCrossfadeLayer    *_backgroundLayer;
-    RRScoreLayer        *_scoreLayer;
-    UDSpriteButton      *_resetGameButton;
-}
+@implementation RRGameLayer
 
 
 #pragma mark -
@@ -439,13 +422,13 @@
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
     if( _deck.count == 0 ) return NO;
-    return CGRectContainsPoint([[_deck objectAtIndex:0] boundingBox], location);
+    return CGRectContainsPoint([(RRTile *)[_deck objectAtIndex:0] boundingBox], location);
 }
 
 
 - (void)touchEndedAtLocation:(CGPoint)location {
-    
-    if( CGRectContainsPoint([[_deck objectAtIndex:0] boundingBox], location) ){
+
+    if( CGRectContainsPoint([(RRTile *)[_deck objectAtIndex:0] boundingBox], location) ){
         [self endTurn];
     }
     

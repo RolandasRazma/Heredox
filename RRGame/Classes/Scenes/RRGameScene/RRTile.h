@@ -16,7 +16,21 @@ typedef enum RRTileEdge : NSUInteger {
 } RRTileEdge;
 
 
-@interface RRTile : CCSprite
+@interface RRTile : CCSprite {
+    BOOL        _backSideVisible;
+    
+    BOOL        _lookIs3D;
+    CCSprite    *_look3DSprite;
+    
+    RRTileEdge  _edgeTop;
+    RRTileEdge  _edgeLeft;
+    RRTileEdge  _edgeBottom;
+    RRTileEdge  _edgeRight;
+    
+    CCSprite    *_endTurnSprite;
+    
+    CCLabelTTF  *_debugLabel;
+}
 
 @property (nonatomic, assign, getter = isBackSideVisible) BOOL backSideVisible;
 @property (nonatomic, assign, getter = isLookIs3D) BOOL lookIs3D;

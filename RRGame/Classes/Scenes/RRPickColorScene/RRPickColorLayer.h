@@ -10,7 +10,17 @@
 #import "UDLayer.h"
 
 
-@interface RRPickColorLayer : UDLayer
+@interface RRPickColorLayer : UDLayer {
+    NSUInteger _numberOfPlayers;
+    
+    CGRect     _upperRect;
+    UDTriangle _upperTriangle;
+    CGRect     _lowerRect;
+    UDTriangle _lowerTriangle;
+    
+    CCSprite    *_backgroundPlayerWhiteSelectedSprite;
+    CCSprite    *_backgroundPlayerBlackSelectedSprite;
+}
 
 + (id)layerWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
 - (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers;

@@ -9,7 +9,10 @@
 #import "CCLayer.h"
 
 
-@interface RRScoreLayer : CCLayer
+@interface RRScoreLayer : CCLayer {
+    NSUInteger _scoreWhite;
+    NSUInteger _scoreBlack;
+}
 
 @property (nonatomic, assign) NSUInteger scoreWhite;
 @property (nonatomic, assign) NSUInteger scoreBlack;

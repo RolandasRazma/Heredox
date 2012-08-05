@@ -8,7 +8,9 @@
 #import "CCActionInterval.h"
 
 
-@interface UDActionDestroy : CCActionInterval <NSCopying>
+@interface UDActionDestroy : CCActionInterval <NSCopying> {
+    CCNode *otherTarget_;
+}
 
 /** creates the action */
 + (id)action;

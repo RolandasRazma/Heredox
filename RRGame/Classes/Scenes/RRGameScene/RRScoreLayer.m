@@ -9,10 +9,7 @@
 #import "RRScoreLayer.h"
 
 
-@implementation RRScoreLayer {
-    NSUInteger _scoreWhite;
-    NSUInteger _scoreBlack;
-}
+@implementation RRScoreLayer
 
 
 - (void)setScoreBlack:(NSUInteger)scoreBlack {

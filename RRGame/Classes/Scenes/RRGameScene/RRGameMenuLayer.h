@@ -13,7 +13,15 @@
 @protocol RRGameMenuDelegate;
 
 
-@interface RRGameMenuLayer : UDLayer
+@interface RRGameMenuLayer : UDLayer {
+    CCSprite    *_sliderSound;
+    CGFloat     _sliderEdgeLeft;
+    CGFloat     _sliderWidth;
+    
+    id <RRGameMenuDelegate> _delegate;
+    CCLayerColor            *_colorBackground;
+    CCSprite                *_menu;
+}
 
 @property (nonatomic, assign) id <RRGameMenuDelegate>delegate;
 

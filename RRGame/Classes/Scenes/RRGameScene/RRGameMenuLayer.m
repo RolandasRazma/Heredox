@@ -11,15 +11,7 @@
 #import "RRMenuScene.h"
 
 
-@implementation RRGameMenuLayer {
-    CCSprite    *_sliderSound;
-    CGFloat     _sliderEdgeLeft;
-    CGFloat     _sliderWidth;
-    
-    id <RRGameMenuDelegate> _delegate;
-    CCLayerColor            *_colorBackground;
-    CCSprite                *_menu;
-}
+@implementation RRGameMenuLayer
 
 
 #pragma mark -

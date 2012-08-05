@@ -9,9 +9,7 @@
 #import "RRPlayer.h"
 
 
-@implementation RRPlayer {
-    RRPlayerColor _playerColor;
-}
+@implementation RRPlayer
 
 
 #pragma mark -

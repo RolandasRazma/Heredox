@@ -19,7 +19,9 @@ typedef enum RRAILevel : NSInteger {
 } RRAILevel;
 
 
-@interface RRAIPlayer : RRPlayer
+@interface RRAIPlayer : RRPlayer {
+    RRAILevel _dificultyLevel;
+}
 
 @property (nonatomic, assign) RRAILevel dificultyLevel;
 

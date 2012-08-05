@@ -36,10 +36,9 @@
 	NSMutableDictionary *fullPathCache_;
 	NSMutableDictionary *removeSuffixCache_;
 	
-	
-#ifdef __CC_PLATFORM_IOS
 	BOOL	enableFallbackSuffixes_;
 	
+#ifdef __CC_PLATFORM_IOS
 	NSString *iPhoneRetinaDisplaySuffix_;
 	NSString *iPadSuffix_;
 	NSString *iPadRetinaDisplaySuffix_;

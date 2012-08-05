@@ -9,7 +9,9 @@
 #import "CCScene.h"
 
 
-@interface RRGameScene : CCScene
+@interface RRGameScene : CCScene {
+    NSUInteger _numberOfPlayers;
+}
 
 + (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers playerColor:(RRPlayerColor)playerColor;

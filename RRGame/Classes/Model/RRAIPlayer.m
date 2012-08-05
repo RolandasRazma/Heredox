@@ -11,9 +11,7 @@
 #import "RRTile.h"
 
 
-@implementation RRAIPlayer {
-    RRAILevel _dificultyLevel;
-}
+@implementation RRAIPlayer
 
 
 #pragma mark -

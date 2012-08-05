@@ -13,7 +13,21 @@
 NSString * const RRGameBoardLayerTileMovedToValidLocationNotification;
 
 
-@interface RRGameBoardLayer : UDLayer
+@interface RRGameBoardLayer : UDLayer {
+    RRGameMode          _gameMode;
+    
+    NSUInteger          _symbolsBlack;
+    NSUInteger          _symbolsWhite;
+    
+    CGPoint             _activeTileLastPosition;
+    
+    RRTile              *_activeTile;
+    CGPoint             _activeTileTouchOffset;
+    BOOL                _activeTileMoved;
+    
+    CGRect              _gridBounds;
+    RRTile              *_emptyTile;
+}
 
 @property (nonatomic, readonly) RRTile *activeTile;
 @property (nonatomic, readonly) NSUInteger symbolsBlack;

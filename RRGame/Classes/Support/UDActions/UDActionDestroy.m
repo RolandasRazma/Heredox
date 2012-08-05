@@ -8,9 +8,11 @@
 #import "UDActionDestroy.h"
 
 
-@implementation UDActionDestroy {
-    CCNode *otherTarget_;
-}
+@implementation UDActionDestroy
+
+
+#pragma mark -
+#pragma mark CCActionInterval
 
 
 + (id)action {

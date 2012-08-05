@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
-@interface RRPlayer : NSObject
+@interface RRPlayer : NSObject {
+    RRPlayerColor _playerColor;
+}
 
 @property (nonatomic, readonly) RRPlayerColor playerColor;
 

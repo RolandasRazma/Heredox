@@ -13,17 +13,7 @@
 #import "RRDifficultyScene.h"
 
 
-@implementation RRPickColorLayer {
-    NSUInteger _numberOfPlayers;
-    
-    CGRect     _upperRect;
-    UDTriangle _upperTriangle;
-    CGRect     _lowerRect;
-    UDTriangle _lowerTriangle;
-    
-    CCSprite    *_backgroundPlayerWhiteSelectedSprite;
-    CCSprite    *_backgroundPlayerBlackSelectedSprite;
-}
+@implementation RRPickColorLayer
 
 
 #pragma mark -

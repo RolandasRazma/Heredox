@@ -66,6 +66,9 @@
     
     // Push First Scene
     [_director runWithScene: [RRDefaultScene node]];
+    
+    // Show windows
+    [_window makeKeyAndOrderFront:nil];
 }
 
 

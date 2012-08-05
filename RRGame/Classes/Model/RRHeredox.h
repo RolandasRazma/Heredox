@@ -32,7 +32,9 @@ typedef struct RRTileMove {
 extern const RRTileMove RRTileMoveZero;
 
 
-@interface RRHeredox : NSObject
+@interface RRHeredox : NSObject {
+    NSMutableDictionary *_effectsCache;
+}
 
 + (RRHeredox *)sharedInstance;
 

@@ -18,16 +18,7 @@
 @end
 
 
-@implementation UDSpriteButton {
-    BOOL                _touchActiveInside;
-    NSMutableDictionary *_allBlocks;
-    BOOL                _touchActive;
-    BOOL                _userInteractionEnabled;
-    BOOL                _selected;
-    
-    NSString            *_spriteFrameName;
-    NSString            *_highliteSpriteFrameName;
-}
+@implementation UDSpriteButton
 
 
 #pragma mark NSObject
