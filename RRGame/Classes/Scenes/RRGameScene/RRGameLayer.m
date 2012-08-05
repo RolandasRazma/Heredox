@@ -333,6 +333,7 @@
         }
         
         [_buttonEndTurn setPosition: [(RRTile *)[_deck objectAtIndex: _deck.count -1] position]];
+        [_buttonEndTurn setOpacity:255];
     }
 }
 
