@@ -10,6 +10,9 @@
 #import "UDSpriteButton.h"
 
 
+static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictoriousNo;
+
+
 @implementation RRGameWictoryLayer {
     id <RRPlayerColorWictoriousDelegate>_delegate;
     CCLayerColor            *_colorBackground;
@@ -78,6 +81,7 @@
         
         
         CCSprite *winningBanner;
+        CCSprite *winningBanner2 = nil;
         switch ( playerColorWictorious ) {
             case RRPlayerColorWictoriousNo: {
                 winningBanner = [CCSprite spriteWithSpriteFrameName:@"RRBannerWinNo.png"];
@@ -85,22 +89,42 @@
             }
             case RRPlayerColorWictoriousWhite: {
                 winningBanner = [CCSprite spriteWithSpriteFrameName:@"RRBannerWinWhite.png"];
+                if( lastPlayerColorWictorious == playerColorWictorious ){
+                    winningBanner2 = [CCSprite spriteWithSpriteFrameName:@"RRTextWinWhiteConsecutively.png"];
+                }
                 break;
             }
             case RRPlayerColorWictoriousBlack: {
                 winningBanner = [CCSprite spriteWithSpriteFrameName:@"RRBannerWinBlack.png"];
+                if( lastPlayerColorWictorious == playerColorWictorious ){
+                    winningBanner2 = [CCSprite spriteWithSpriteFrameName:@"RRTextWinBlackConsecutively.png"];
+                }
                 break;
             }
         }
         [_menu addChild:winningBanner];
         
+        lastPlayerColorWictorious = playerColorWictorious;
+        
         
         // Device layout
         if( isDeviceIPad() || isDeviceMac() ){
-            [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width  /2, _menu.boundingBox.size.height /2 +20)];
+            [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width  /2, _menu.boundingBox.size.height /2 +80)];
+            if( winningBanner2 ){
+                [_menu addChild:winningBanner2];
+                [winningBanner2 setAnchorPoint:CGPointMake(0.5, 1)];
+                [winningBanner2 setPosition:CGPointMake(winningBanner.position.x, winningBanner.position.y -winningBanner.boundingBox.size.height /2 +40)];
+            }
+            
             [buttonContinue setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 80)];
         }else{
-            [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width  /2, _menu.boundingBox.size.height /2 +20)];
+            [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width  /2, _menu.boundingBox.size.height /2 +40)];
+            if( winningBanner2 ){
+                [_menu addChild:winningBanner2];
+                [winningBanner2 setAnchorPoint:CGPointMake(0.5, 1)];
+                [winningBanner2 setPosition:CGPointMake(winningBanner.position.x, winningBanner.position.y -winningBanner.boundingBox.size.height /2 +15)];
+            }
+            
             [buttonContinue setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 45)];
         }
 
