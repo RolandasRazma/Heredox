@@ -71,9 +71,8 @@
         [self addChild:_buttonAbbot];
         
         [self setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
-        
-        
 
+        
         // Device layout
         if( isDeviceIPad() || isDeviceMac() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
@@ -121,7 +120,7 @@
     
     [_buttonNovice setSelected:(dificultyLevel==RRAILevelNovice)];
     [_buttonDeacon setSelected:(dificultyLevel==RRAILevelDeacon)];
-    [_buttonAbbot setSelected:(dificultyLevel==RRAILevelAbbot)];
+    [_buttonAbbot setSelected: (dificultyLevel==RRAILevelAbbot)];
     
     [[NSUserDefaults standardUserDefaults] setInteger:dificultyLevel forKey:@"RRHeredoxAILevel"];
 }
@@ -129,7 +128,7 @@
 
 - (void)startGame {
 
-    RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:1 firstPlayerColor:_playerColor];
+    RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:1 playerColor:_playerColor];
     [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:gameScene]];
     [gameScene release];
     
