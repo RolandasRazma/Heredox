@@ -251,8 +251,6 @@
     [self resetDeckForGameMode:_gameMode];
     
     @synchronized( self ){
-        [_gameBoardLayer resetBoardForGameMode: _gameMode];
-        
         _playerColor = _firstPlayerColor;
         
         [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
@@ -261,12 +259,11 @@
         [_resetGameButton runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.3f], [UDActionDestroy action], nil]];
         _resetGameButton = nil;
         
-        // Make first player move as it makes no sense
-        [_gameBoardLayer addTile:[self takeTopTile] animated:NO];
-        
-//        [self takeNewTile];
-        [self endTurn];
+        [_gameBoardLayer resetBoardForGameMode: _gameMode];
     }
+    
+    [self takeNewTile];
+    [self newTurn];
 }
 
 

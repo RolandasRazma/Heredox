@@ -9,7 +9,7 @@
 #import "RRHeredox.h"
 #import "RRAIPlayer.h"
 
-const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){CGFLOAT_MAX, CGFLOAT_MAX}, 0.0f, (float)NSIntegerMin };
+const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NSIntegerMin };
 
 
 @implementation RRHeredox {

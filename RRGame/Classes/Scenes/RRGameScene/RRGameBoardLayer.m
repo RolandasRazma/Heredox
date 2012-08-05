@@ -167,6 +167,8 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
     [self didChangeValueForKey: @"symbolsBlack"];
     
     _gridBounds = CGRectNull;
+    
+    [self centerBoardAnimated:NO];
 }
 
 
@@ -192,7 +194,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
         _activeTile = nil;
         _gridBounds = newGridBounds;
         
-        [self centerBoardAnimated:(self.children.count >1)];        
+        [self centerBoardAnimated:YES];
         
         return YES;
     }
@@ -286,10 +288,11 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     CGPoint newPosition;
     
+    CGRect tileBounds;
     if( self.children.count == 0 ) {
-        newPosition = CGPointMake(winSize.width /2, winSize.height /2);
+        tileBounds = CGRectMake(0, 0, [RRTile tileSize], [RRTile tileSize]);
     }else{
-        CGRect tileBounds = CGRectMake(CGFLOAT_MAX, CGFLOAT_MAX, CGFLOAT_MIN, CGFLOAT_MIN);
+        tileBounds = CGRectMake(CGFLOAT_MAX, CGFLOAT_MAX, CGFLOAT_MIN, CGFLOAT_MIN);
         
         for( RRTile *tile in self.children ){
             if ( [tile isEqual:_activeTile] ) continue;
@@ -300,19 +303,19 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
             tileBounds.size.width   = MAX(tileBounds.size.width,  tile.position.x +tile.boundingBox.size.width  /2);
             tileBounds.size.height  = MAX(tileBounds.size.height, tile.position.y +tile.boundingBox.size.height /2);
         }
-        
-        tileBounds.size.width  -= tileBounds.origin.x;
-        tileBounds.size.height -= tileBounds.origin.y;
-        
-        newPosition = CGPointMake((winSize.width  -tileBounds.size.width)  /2 -tileBounds.origin.x, 
-                                  (winSize.height -tileBounds.size.height) /2 -tileBounds.origin.y);
     }
+    
+    tileBounds.size.width  -= tileBounds.origin.x;
+    tileBounds.size.height -= tileBounds.origin.y;
+    
+    newPosition = CGPointMake((winSize.width  -tileBounds.size.width)  /2 -tileBounds.origin.x,
+                              (winSize.height -tileBounds.size.height) /2 -tileBounds.origin.y);
 
     // Offset
     newPosition.y += ((isDeviceIPad()||isDeviceMac())?60:30);
     
+    [self stopAllActions];
     if( animated ){
-        [self stopAllActions];
         [self runAction: [CCMoveTo actionWithDuration:0.3f position:newPosition]];
     }else{
         [self setPosition:newPosition];

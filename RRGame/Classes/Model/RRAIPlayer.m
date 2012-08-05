@@ -34,10 +34,9 @@
 
 - (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard {
     RRTileMove tileMove = RRTileMoveZero;
-    RRTile *activeTile = gameBoard.activeTile;
+    RRTile *activeTile  = gameBoard.activeTile;
     CGPoint activeTilePosition = activeTile.position;
-    
-    
+
     for ( RRTile *tile in gameBoard.children ) {
         if( [tile isEqual:activeTile] ) continue;
         
