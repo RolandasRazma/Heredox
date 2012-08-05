@@ -75,7 +75,7 @@
 
 
 + (const CGFloat)tileSize {
-    return ((isDeviceIPad())?76.0f *2.0f:76.0f);
+    return ((isDeviceIPad()||isDeviceMac())?76.0f *2.0f:76.0f);
 }
 
 

@@ -31,11 +31,6 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-#if !DEBUG
-    // [TestFlight setDeviceIdentifier:[UDDevice UUID]];
-    // [TestFlight takeOff:@"44bb611ef55983c0e351fd6535fc314a_NzgxNDkyMDEyLTA0LTA1IDAyOjExOjU5LjMzNjY5Mw"];
-#endif
-    
     _director = (CCDirectorMac *)[CCDirector sharedDirector];
 
 	// enable FPS and SPF
@@ -43,6 +38,7 @@
 	
 	// connect the OpenGL view with the director
 	[_director setView:_glView];
+    [_director setOriginalWinSize:CGSizeMake(768, 1024)];
 
 	// EXPERIMENTAL stuff.
 	// 'Effects' don't work correctly when autoscale is turned on.
@@ -55,12 +51,15 @@
 	// Enable "moving" mouse event. Default no.
 	[_window setAcceptsMouseMovedEvents:NO];
     
+    // Lock resizing
+    [_window setContentAspectRatio:NSSizeFromCGSize(_director.originalWinSize)];
+    
 	// Center main window
 	[_window center];
 
 	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
-	[sharedFileUtils setEnableFallbackSuffixes:NO];				// Default: NO. No fallback suffixes are going to be used
-	[sharedFileUtils setMacSuffix:@""];                         // Default on iMac is ""
+	[sharedFileUtils setEnableFallbackSuffixes:YES];                // Default: NO. No fallback suffixes are going to be used
+	[sharedFileUtils setMacSuffix:@"-hd"];                          // Default on iMac is ""
 
     // Init RRHeredox
     [RRHeredox sharedInstance];

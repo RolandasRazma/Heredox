@@ -65,28 +65,5 @@
 }
 
 
-
-/*
- _symbolsBlackLabel = [CCLabelTTF labelWithString:@"Black: 0" fontName:@"Courier" fontSize: (isDeviceIPad()?40:20)];
- [_symbolsBlackLabel setAnchorPoint:CGPointMake(0, 1)];
- [_symbolsBlackLabel setPosition:CGPointMake(5, winSize.height)];
- [_symbolsBlackLabel setColor:ccBLACK];
- [self addChild:_symbolsBlackLabel];
- 
- _symbolsWhiteLabel = [CCLabelTTF labelWithString:@"White: 0" fontName:@"Courier" fontSize: (isDeviceIPad()?40:20)];
- [_symbolsWhiteLabel setAnchorPoint:CGPointMake(1, 1)];
- [_symbolsWhiteLabel setPosition:CGPointMake(winSize.width -5, winSize.height)];
- [_symbolsWhiteLabel setColor:ccBLACK];
- [self addChild:_symbolsWhiteLabel];
- 
- [_symbolsBlackLabel setString:[NSString stringWithFormat:@"Black: %i", _gameBoardLayer.symbolsBlack]];
- 
- [_symbolsBlackLabel runAction: [CCSequence actions:
- [CCScaleTo actionWithDuration:0.3f scale:1.1f],
- [CCScaleTo actionWithDuration:0.3f scale:1.0f], nil]];
- */
-
-
-
 @synthesize scoreWhite=_scoreWhite, scoreBlack=_scoreBlack;
 @end

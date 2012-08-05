@@ -44,7 +44,7 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundPlayerColor~ipad.png":@"RRBackgroundPlayerColor.png")];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((isDeviceIPad()||isDeviceMac())?@"RRBackgroundPlayerColor~ipad.png":@"RRBackgroundPlayerColor.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite];
 
@@ -72,7 +72,7 @@
         CGFloat rightTopY;      // From top
         
         // Device layout
-        if( isDeviceIPad() ){
+        if( isDeviceIPad() || isDeviceMac() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
             [titleTextSprite setPosition:CGPointMake(315, 920)];
 
@@ -106,7 +106,7 @@
 
 - (void)startGameWithFirstPlayerColor:(RRPlayerColor)playerColor {
 
-    [[RRHeredox sharedInstance] playEffect: [NSString stringWithFormat:@"RRPlayerColor%i.mp3", playerColor]];
+    [[RRHeredox sharedInstance] playEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", playerColor]];
     
     if( _numberOfPlayers == 1 ){
         RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];

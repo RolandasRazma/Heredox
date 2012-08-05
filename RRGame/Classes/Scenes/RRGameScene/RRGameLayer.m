@@ -115,11 +115,11 @@
         _backgroundLayer = [RRCrossfadeLayer node];
         [self addChild:_backgroundLayer z:-10];
         
-        CCSprite *backgroundBlackSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundBlack~ipad.png":@"RRBackgroundBlack.png")];
+        CCSprite *backgroundBlackSprite = [CCSprite spriteWithFile:((isDeviceIPad()||isDeviceMac())?@"RRBackgroundBlack~ipad.png":@"RRBackgroundBlack.png")];
         [backgroundBlackSprite setAnchorPoint:CGPointZero];
         [_backgroundLayer addChild:backgroundBlackSprite z:0 tag:RRPlayerColorBlack];
 
-        CCSprite *backgroundWhiteSprite = [CCSprite spriteWithFile:(isDeviceIPad()?@"RRBackgroundWhite~ipad.png":@"RRBackgroundWhite.png")];
+        CCSprite *backgroundWhiteSprite = [CCSprite spriteWithFile:((isDeviceIPad()||isDeviceMac())?@"RRBackgroundWhite~ipad.png":@"RRBackgroundWhite.png")];
         [backgroundWhiteSprite setAnchorPoint:CGPointZero];
         [_backgroundLayer addChild:backgroundWhiteSprite z:0 tag:RRPlayerColorWhite];
         
@@ -149,7 +149,7 @@
         [_gameBoardLayer release];
         
         // Device layout
-        if( isDeviceIPad() ){
+        if( isDeviceIPad() || isDeviceMac() ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
         }else{
             [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
@@ -324,7 +324,7 @@
             [tile setRotation:0];
             [tile setBackSideVisible: (gameMode == RRGameModeClosed)];
             
-            offsetY += (isDeviceIPad()?6.0f:3.0f);
+            offsetY += ((isDeviceIPad()||isDeviceMac())?6.0f:3.0f);
             [tile setRotation: CC_RADIANS_TO_DEGREES(sinf(++angle)) /20.0f];
             
             [tile setPosition:CGPointMake(winSize.width /2,

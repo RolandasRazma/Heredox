@@ -309,7 +309,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
     }
 
     // Offset
-    newPosition.y += (isDeviceIPad()?60:30);
+    newPosition.y += ((isDeviceIPad()||isDeviceMac())?60:30);
     
     if( animated ){
         [self stopAllActions];

@@ -54,13 +54,13 @@
     [super onExitTransitionDidStart];
     
     [[RRHeredox sharedInstance] playEffect:@"RRSceneTransition.mp3"];
-    [[RRHeredox sharedInstance] stopEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%i.mp3", _numberOfPlayers]];
+    [[RRHeredox sharedInstance] stopEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
 }
 
 
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
-    [[RRHeredox sharedInstance] playEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%i.mp3", _numberOfPlayers]];
+    [[RRHeredox sharedInstance] playEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
 }
 
 

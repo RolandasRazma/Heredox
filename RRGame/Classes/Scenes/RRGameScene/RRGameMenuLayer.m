@@ -80,7 +80,7 @@
         [_menu addChild:_sliderSound];
         
         // Device layout
-        if( isDeviceIPad() ){
+        if( isDeviceIPad() || isDeviceMac() ){
             [buttonResume setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 570)];
             [buttonRestart setPosition:CGPointMake(_menu.boundingBox.size.width /2, 450)];
             [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width /2, 330)];

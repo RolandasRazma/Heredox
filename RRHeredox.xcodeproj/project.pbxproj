@@ -56,14 +56,6 @@
 		F012ACFE15CDBFF10095190C /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */; };
 		F012AD0015CDBFF10095190C /* RRBackgroundWhite-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFD15CDBFF10095190C /* RRBackgroundWhite-hd.png */; };
 		F012AD0B15CDD2A60095190C /* RRBackgroundMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F515CA5EDD00293ED4 /* RRBackgroundMenu.png */; };
-		F012AD0C15CDD2A60095190C /* RRBackgroundMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F515CA5EDD00293ED4 /* RRBackgroundMenu.png */; };
-		F012AD0D15CDD2AC0095190C /* RRBackgroundRules.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ECFB15CBB14300BB265F /* RRBackgroundRules.png */; };
-		F012AD0E15CDD2B20095190C /* RRBackgroundPlayerColor.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ED0115CBB38700BB265F /* RRBackgroundPlayerColor.png */; };
-		F012AD0F15CDD2B80095190C /* RRBackgroundDifficulty.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACEF15CDBD130095190C /* RRBackgroundDifficulty.png */; };
-		F012AD1015CDD2C10095190C /* RRBackgroundBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACF615CDBF810095190C /* RRBackgroundBlack.png */; };
-		F012AD1115CDD2C90095190C /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */; };
-		F012AD1215CDD2D20095190C /* textures.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74215B042E80085E637 /* textures.plist */; };
-		F012AD1315CDD2D20095190C /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
 		F01CD2C51530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F01CD2C61530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F023307915AF97DC00D7EF8F /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0232F8E15AF97DC00D7EF8F /* CCAction.m */; };
@@ -312,6 +304,21 @@
 		F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
 		F07E8BBC15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */; };
 		F07E8BBD15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */; };
+		F0849BDE15CE5897008AC65F /* textures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74015B042E80085E637 /* textures-hd.plist */; };
+		F0849BDF15CE5897008AC65F /* textures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74115B042E80085E637 /* textures-hd.png */; };
+		F0849BE115CE58A9008AC65F /* RRBackgroundMenu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */; };
+		F0849BE215CE58A9008AC65F /* RRBackgroundRules-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ECFC15CBB14300BB265F /* RRBackgroundRules-hd.png */; };
+		F0849BE315CE58A9008AC65F /* RRBackgroundPlayerColor-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ED0215CBB38700BB265F /* RRBackgroundPlayerColor-hd.png */; };
+		F0849BE415CE58A9008AC65F /* RRBackgroundDifficulty-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACF015CDBD130095190C /* RRBackgroundDifficulty-hd.png */; };
+		F0849BE515CE58A9008AC65F /* RRBackgroundBlack-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACF715CDBF810095190C /* RRBackgroundBlack-hd.png */; };
+		F0849BE615CE58A9008AC65F /* RRBackgroundWhite-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFD15CDBFF10095190C /* RRBackgroundWhite-hd.png */; };
+		F0849BE715CE58B4008AC65F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */; };
+		F0849BE815CE58B4008AC65F /* RRBackgroundMenu~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6C15C0622A008085F1 /* RRBackgroundMenu~ipad.png */; };
+		F0849BE915CE58B4008AC65F /* RRBackgroundRules~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6E15C062D0008085F1 /* RRBackgroundRules~ipad.png */; };
+		F0849BEA15CE58B4008AC65F /* RRBackgroundPlayerColor~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF7015C066E0008085F1 /* RRBackgroundPlayerColor~ipad.png */; };
+		F0849BEC15CE58B4008AC65F /* RRBackgroundDifficulty~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */; };
+		F0849BEE15CE58B4008AC65F /* RRBackgroundBlack~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */; };
+		F0849BEF15CE58B4008AC65F /* RRBackgroundWhite~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */; };
 		F08FBF6915C05E83008085F1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */; };
 		F08FBF6A15C05E83008085F1 /* Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6715C05E83008085F1 /* Icon@2x~ipad.png */; };
 		F08FBF6B15C05E83008085F1 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6815C05E83008085F1 /* Icon~ipad.png */; };
@@ -325,7 +332,6 @@
 		F08FBF7C15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */; };
 		F08FBF8415C07952008085F1 /* RRBackgroundBlack~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */; };
 		F08FBF8515C07952008085F1 /* RRBackgroundWhite~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */; };
-		F092AD2015B9E93300172704 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
 		F09E95F915CA5EDD00293ED4 /* RRBackgroundMenu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */; };
 		F0A18E6815C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
 		F0A18E6915C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
@@ -1720,7 +1726,6 @@
 				F035877315B2FEE500BBAB82 /* fps_images-hd.png in Resources */,
 				F035877515B2FEE500BBAB82 /* fps_images-ipadhd.png in Resources */,
 				F035877715B2FEE500BBAB82 /* fps_images.png in Resources */,
-				F092AD2015B9E93300172704 /* Default.png in Resources */,
 				F01063CF15C707D0003BB881 /* ambience.mp3 in Resources */,
 				F01063D215C70885003BB881 /* RRDefaultScene.mp3 in Resources */,
 				F01063D515C709C8003BB881 /* RRSceneTransition.mp3 in Resources */,
@@ -1742,14 +1747,21 @@
 				F010640D15C71B44003BB881 /* RRPlayerColor1-points2-s1.mp3 in Resources */,
 				F010640F15C71B44003BB881 /* RRPlayerColor1-points2-s2.mp3 in Resources */,
 				F010641115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 in Resources */,
-				F012AD0C15CDD2A60095190C /* RRBackgroundMenu.png in Resources */,
-				F012AD0D15CDD2AC0095190C /* RRBackgroundRules.png in Resources */,
-				F012AD0E15CDD2B20095190C /* RRBackgroundPlayerColor.png in Resources */,
-				F012AD0F15CDD2B80095190C /* RRBackgroundDifficulty.png in Resources */,
-				F012AD1015CDD2C10095190C /* RRBackgroundBlack.png in Resources */,
-				F012AD1115CDD2C90095190C /* RRBackgroundWhite.png in Resources */,
-				F012AD1215CDD2D20095190C /* textures.plist in Resources */,
-				F012AD1315CDD2D20095190C /* textures.png in Resources */,
+				F0849BDE15CE5897008AC65F /* textures-hd.plist in Resources */,
+				F0849BDF15CE5897008AC65F /* textures-hd.png in Resources */,
+				F0849BE115CE58A9008AC65F /* RRBackgroundMenu-hd.png in Resources */,
+				F0849BE215CE58A9008AC65F /* RRBackgroundRules-hd.png in Resources */,
+				F0849BE315CE58A9008AC65F /* RRBackgroundPlayerColor-hd.png in Resources */,
+				F0849BE415CE58A9008AC65F /* RRBackgroundDifficulty-hd.png in Resources */,
+				F0849BE515CE58A9008AC65F /* RRBackgroundBlack-hd.png in Resources */,
+				F0849BE615CE58A9008AC65F /* RRBackgroundWhite-hd.png in Resources */,
+				F0849BE715CE58B4008AC65F /* Default-Portrait~ipad.png in Resources */,
+				F0849BE815CE58B4008AC65F /* RRBackgroundMenu~ipad.png in Resources */,
+				F0849BE915CE58B4008AC65F /* RRBackgroundRules~ipad.png in Resources */,
+				F0849BEA15CE58B4008AC65F /* RRBackgroundPlayerColor~ipad.png in Resources */,
+				F0849BEC15CE58B4008AC65F /* RRBackgroundDifficulty~ipad.png in Resources */,
+				F0849BEE15CE58B4008AC65F /* RRBackgroundBlack~ipad.png in Resources */,
+				F0849BEF15CE58B4008AC65F /* RRBackgroundWhite~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
