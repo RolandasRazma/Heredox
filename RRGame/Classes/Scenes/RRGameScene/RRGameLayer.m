@@ -106,7 +106,7 @@
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
         [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
-        [buttonHome addBlock: ^{ [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonHome addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonHome];
         
 
@@ -205,6 +205,7 @@
         
         for( NSUInteger rotation=0; rotation<tileMove.rotation; rotation += 90 ){
             [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
+            [actions addObject:[CCCallBlock actionWithBlock:^{ [[RRHeredox sharedInstance] playEffect:@"RRTileTurn.mp3"]; }]];
             [actions addObject: [CCRotateBy actionWithDuration:0.2f angle:90]];
             [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
             [actions addObject: [CCDelayTime actionWithDuration:0.2f]];

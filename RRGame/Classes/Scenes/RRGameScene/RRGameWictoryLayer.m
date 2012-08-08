@@ -71,7 +71,7 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
         
         // RRButtonQuit
         UDSpriteButton *buttonContinue = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonContinue.png" highliteSpriteFrameName:@"RRButtonContinueSelected.png"];
-        [buttonContinue addBlock: ^{ [_delegate gameWictoryLayer:self didSelectButtonAtIndex:0];  } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonContinue addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [_delegate gameWictoryLayer:self didSelectButtonAtIndex:0];  } forControlEvents: UDButtonEventTouchUpInside];
         [_menu addChild:buttonContinue];
         
         
@@ -136,7 +136,7 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
     [layer addChild:self z:1000];
     
     [_colorBackground setOpacity:0];
-    [_colorBackground runAction:[CCFadeTo actionWithDuration:0.31f opacity:180]];
+    [_colorBackground runAction:[CCFadeTo actionWithDuration:0.27f opacity:190]];
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];

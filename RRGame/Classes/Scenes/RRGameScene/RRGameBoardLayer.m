@@ -369,6 +369,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
     
     if( !_activeTileMoved ){
         NSMutableArray *actions = [NSMutableArray arrayWithCapacity:3];
+        [actions addObject:[CCCallBlock actionWithBlock:^{ [[RRHeredox sharedInstance] playEffect:@"RRTileTurn.mp3"]; }]];
         [actions addObject:[CCRotateBy actionWithDuration:0.2f angle:90]];
         if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
             [actions addObject:[UDActionCallFunc actionWithSelector:@selector(placeTile)]];

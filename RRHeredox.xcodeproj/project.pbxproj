@@ -326,6 +326,14 @@
 		F08FBF7C15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */; };
 		F08FBF8415C07952008085F1 /* RRBackgroundBlack~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */; };
 		F08FBF8515C07952008085F1 /* RRBackgroundWhite~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */; };
+		F09843D915D2DB1D0096F468 /* RRTileTurn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843D815D2DB1D0096F468 /* RRTileTurn.mp3 */; };
+		F09843DA15D2DB1D0096F468 /* RRTileTurn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843D815D2DB1D0096F468 /* RRTileTurn.mp3 */; };
+		F09843DE15D2DCE90096F468 /* RRPlaceTile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843DC15D2DCE90096F468 /* RRPlaceTile.mp3 */; };
+		F09843DF15D2DCE90096F468 /* RRPlaceTile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843DC15D2DCE90096F468 /* RRPlaceTile.mp3 */; };
+		F09843E015D2DCE90096F468 /* RRLiftTile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */; };
+		F09843E115D2DCE90096F468 /* RRLiftTile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */; };
+		F09843E315D2E16E0096F468 /* RRButtonClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */; };
+		F09843E415D2E16E0096F468 /* RRButtonClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */; };
 		F09E95F915CA5EDD00293ED4 /* RRBackgroundMenu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */; };
 		F0A18E6815C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
 		F0A18E6915C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
@@ -697,6 +705,10 @@
 		F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundDifficulty~ipad.png"; sourceTree = "<group>"; };
 		F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack~ipad.png"; sourceTree = "<group>"; };
 		F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite~ipad.png"; sourceTree = "<group>"; };
+		F09843D815D2DB1D0096F468 /* RRTileTurn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRTileTurn.mp3; sourceTree = "<group>"; };
+		F09843DC15D2DCE90096F468 /* RRPlaceTile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlaceTile.mp3; sourceTree = "<group>"; };
+		F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRLiftTile.mp3; sourceTree = "<group>"; };
+		F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRButtonClick.mp3; sourceTree = "<group>"; };
 		F09E95F515CA5EDD00293ED4 /* RRBackgroundMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundMenu.png; sourceTree = "<group>"; };
 		F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundMenu-hd.png"; sourceTree = "<group>"; };
 		F0A18E6615C353DA00E09D46 /* RRGameWictoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameWictoryLayer.h; sourceTree = "<group>"; };
@@ -789,6 +801,10 @@
 		F01063CC15C70524003BB881 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */,
+				F09843DC15D2DCE90096F468 /* RRPlaceTile.mp3 */,
+				F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */,
+				F09843D815D2DB1D0096F468 /* RRTileTurn.mp3 */,
 				F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */,
 				F01063FA15C71B42003BB881 /* RRPlayerColor1-points1-s2.mp3 */,
 				F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */,
@@ -1706,6 +1722,10 @@
 				F012ACFE15CDBFF10095190C /* RRBackgroundWhite.png in Resources */,
 				F012AD0015CDBFF10095190C /* RRBackgroundWhite-hd.png in Resources */,
 				F012AD0B15CDD2A60095190C /* RRBackgroundMenu.png in Resources */,
+				F09843D915D2DB1D0096F468 /* RRTileTurn.mp3 in Resources */,
+				F09843DE15D2DCE90096F468 /* RRPlaceTile.mp3 in Resources */,
+				F09843E015D2DCE90096F468 /* RRLiftTile.mp3 in Resources */,
+				F09843E315D2E16E0096F468 /* RRButtonClick.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1750,6 +1770,10 @@
 				F0849BEC15CE58B4008AC65F /* RRBackgroundDifficulty~ipad.png in Resources */,
 				F0849BEE15CE58B4008AC65F /* RRBackgroundBlack~ipad.png in Resources */,
 				F0849BEF15CE58B4008AC65F /* RRBackgroundWhite~ipad.png in Resources */,
+				F09843DA15D2DB1D0096F468 /* RRTileTurn.mp3 in Resources */,
+				F09843DF15D2DCE90096F468 /* RRPlaceTile.mp3 in Resources */,
+				F09843E115D2DCE90096F468 /* RRLiftTile.mp3 in Resources */,
+				F09843E415D2E16E0096F468 /* RRButtonClick.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
