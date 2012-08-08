@@ -11,6 +11,7 @@
 #import "RRGameScene.h"
 #import "RRMenuScene.h"
 #import "RRDifficultyScene.h"
+#import "RRTransitionGame.h"
 
 
 @implementation RRPickColorLayer
@@ -103,11 +104,11 @@
     
     if( _numberOfPlayers == 1 ){
         RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
-        [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:difficultyScene]];
+        [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:difficultyScene]];
         [difficultyScene release];
     }else{
         RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:playerColor];
-        [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:gameScene]];
+        [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:gameScene]];
         [gameScene release];
     }
     
@@ -116,7 +117,7 @@
 
 - (void)showMenu {
     
-	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
     
 }
 

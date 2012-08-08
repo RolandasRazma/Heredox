@@ -10,6 +10,7 @@
 #import "UDSpriteButton.h"
 #import "RRPickColorScene.h"
 #import "RRRulesScene.h"
+#import "RRTransitionGame.h"
 
 
 @implementation RRMenuLayer
@@ -22,8 +23,6 @@
 - (id)init {
     if( (self = [super init]) ){
 
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
-        
         // Add background
         CCSprite *backgroundSprite = [CCSprite spriteWithFile:((isDeviceIPad()||isDeviceMac())?@"RRBackgroundMenu~ipad.png":@"RRBackgroundMenu.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
@@ -73,7 +72,7 @@
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
 
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
-	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:pickColorScene]];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:pickColorScene]];
     [pickColorScene release];
     
 }
@@ -81,7 +80,7 @@
 
 - (void)showRules {
     
-	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRRulesScene node]]];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRRulesScene node]]];
 
 }
 

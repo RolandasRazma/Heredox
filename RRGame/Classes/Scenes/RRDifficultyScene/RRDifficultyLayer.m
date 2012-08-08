@@ -11,6 +11,7 @@
 #import "RRPickColorScene.h"
 #import "RRAIPlayer.h"
 #import "RRGameScene.h"
+#import "RRTransitionGame.h"
 
 
 @implementation RRDifficultyLayer
@@ -97,7 +98,7 @@
 - (void)showMenu {
 
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:1];
-	[[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:pickColorScene backwards:YES]];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:pickColorScene backwards:YES]];
     [pickColorScene release];
 
 }
@@ -122,7 +123,7 @@
 - (void)startGame {
 
     RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:1 playerColor:_playerColor];
-    [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:gameScene]];
+    [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:gameScene]];
     [gameScene release];
     
 }

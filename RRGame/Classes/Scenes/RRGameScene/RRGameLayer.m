@@ -14,6 +14,7 @@
 #import "RRMenuScene.h"
 #import "RRCrossfadeLayer.h"
 #import "RRScoreLayer.h"
+#import "RRTransitionGame.h"
 
 
 @implementation RRGameLayer
@@ -398,7 +399,7 @@
             break;
         }
         case 2: {
-            [[CCDirector sharedDirector] replaceScene: [CCTransitionPageTurn transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+            [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
             break;
         }
     }
