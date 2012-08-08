@@ -334,6 +334,8 @@
 		F09843E115D2DCE90096F468 /* RRLiftTile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */; };
 		F09843E315D2E16E0096F468 /* RRButtonClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */; };
 		F09843E415D2E16E0096F468 /* RRButtonClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */; };
+		F09843E615D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */; };
+		F09843E715D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */; };
 		F09E95F915CA5EDD00293ED4 /* RRBackgroundMenu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */; };
 		F0A18E6815C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
 		F0A18E6915C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
@@ -709,6 +711,7 @@
 		F09843DC15D2DCE90096F468 /* RRPlaceTile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlaceTile.mp3; sourceTree = "<group>"; };
 		F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRLiftTile.mp3; sourceTree = "<group>"; };
 		F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRButtonClick.mp3; sourceTree = "<group>"; };
+		F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRGameMenuIn.mp3; sourceTree = "<group>"; };
 		F09E95F515CA5EDD00293ED4 /* RRBackgroundMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundMenu.png; sourceTree = "<group>"; };
 		F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundMenu-hd.png"; sourceTree = "<group>"; };
 		F0A18E6615C353DA00E09D46 /* RRGameWictoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameWictoryLayer.h; sourceTree = "<group>"; };
@@ -801,6 +804,7 @@
 		F01063CC15C70524003BB881 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */,
 				F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */,
 				F09843DC15D2DCE90096F468 /* RRPlaceTile.mp3 */,
 				F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */,
@@ -1726,6 +1730,7 @@
 				F09843DE15D2DCE90096F468 /* RRPlaceTile.mp3 in Resources */,
 				F09843E015D2DCE90096F468 /* RRLiftTile.mp3 in Resources */,
 				F09843E315D2E16E0096F468 /* RRButtonClick.mp3 in Resources */,
+				F09843E615D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1774,6 +1779,7 @@
 				F09843DF15D2DCE90096F468 /* RRPlaceTile.mp3 in Resources */,
 				F09843E115D2DCE90096F468 /* RRLiftTile.mp3 in Resources */,
 				F09843E415D2E16E0096F468 /* RRButtonClick.mp3 in Resources */,
+				F09843E715D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

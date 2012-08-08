@@ -109,6 +109,8 @@
 
 
 - (void)showInLayer:(CCLayer *)layer {
+    [[RRHeredox sharedInstance] playEffect:@"RRGameMenuIn.mp3"];
+    
     [layer addChild:self z:1000];
     
     [_colorBackground setOpacity:0];
