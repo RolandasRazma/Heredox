@@ -18,16 +18,6 @@
 
 
 #pragma mark -
-#pragma mark NSObject
-
-
-- (void)dealloc {
-    [_match release];
-    [super dealloc];
-}
-
-
-#pragma mark -
 #pragma mark UDPickColorLayer
 
 
@@ -103,18 +93,12 @@
         
         _lowerRect     = CGRectMake(0, 0, winSize.width, leftBottomY);
         _lowerTriangle = UDTriangleMake( CGPointMake(0, leftBottomY), CGPointMake(winSize.width, leftBottomY), CGPointMake(winSize.width, winSize.height -rightTopY) );
-    }
-    return self;
-}
-
-
-- (id)initWithMatch:(GKTurnBasedMatch *)match {
-    if( (self = [self initWithNumberOfPlayers:match.participants.count]) ){
-        _match = [match retain];
         
-        if ( ![_match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID] ) {
+        
+        if( [[UDGKManager sharedManager] match] ){
             [self setUserInteractionEnabled:NO];
-            #warning TODO: add "wait til host picks color"
+            #warning TODO: add "waiting for players"
+            NSLog(@"waiting for players scene 2");
         }
     }
     return self;
@@ -125,8 +109,13 @@
 
     [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", playerColor]];
     
-    if( _match ){
-        RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed match:_match playerColor:playerColor];
+    if( [[UDGKManager sharedManager] match] ){
+        
+        UDGKPacketPickColor packet = UDGKPacketPickColorMake( playerColor );
+        [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
+                                                     length: sizeof(UDGKPacketPickColor)];
+        
+        RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:playerColor];
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:gameScene]];
         [gameScene release];
     }else{
@@ -147,6 +136,30 @@
     
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
     
+}
+
+
+- (void)onEnter {
+    [super onEnter];
+    
+    [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypePickColor];
+    [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
+}
+
+
+- (void)onEnterTransitionDidFinish {
+    [super onEnterTransitionDidFinish];
+    
+    UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 2 );
+    [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
+                                                 length: sizeof(UDGKPacketEnterScene)];
+}
+
+
+- (void)onExit {
+    [super onExit];
+    
+    [[UDGKManager sharedManager] removePacketObserver:self];
 }
 
 
@@ -193,6 +206,40 @@
 
     [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
     [_backgroundPlayerBlackSelectedSprite setVisible:NO];
+}
+
+
+#pragma mark -
+#pragma mark UDGKManagerPacketObserving
+
+
+- (void)observePacket:(const void *)packet fromPlayer:(UDGKPlayer *)player {
+    if( [player.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ) return;
+
+    UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
+    
+    if ( packetType == UDGKPacketTypePickColor ) {
+        UDGKPacketPickColor newPacket = *(UDGKPacketPickColor *)packet;
+
+        RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:((newPacket.color==RRPlayerColorWhite)?RRPlayerColorBlack:RRPlayerColorWhite)];
+        [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:gameScene]];
+        [gameScene release];
+    } else if( packetType == UDGKPacketTypeEnterScene && !_allPlayersInScene ){
+        _allPlayersInScene = YES;
+        
+        UDGKPacketEnterScene newPacket = *(UDGKPacketEnterScene *)packet;
+        
+        if( newPacket.sceneID == 2 ){
+            [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
+                                                         length: sizeof(UDGKPacketEnterScene)];
+        }
+        
+        if( [[UDGKManager sharedManager] isHost] ){
+#warning show waiting for host to pick color
+            NSLog(@"waiting for host to pick color");
+            [self setUserInteractionEnabled:YES];
+        }
+    }
 }
 
 

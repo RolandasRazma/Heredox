@@ -29,46 +29,43 @@
         _numberOfPlayers = numberOfPlayers;
         
         RRGameLayer *gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:(( _numberOfPlayers == 1 )?RRPlayerColorWhite:playerColor)];
-        [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
-
-        if( numberOfPlayers == 1 ){
-            RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
-            [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
-            
-            [gameLayer setPlayer2: player];
-        }
-
-        [self addChild: gameLayer];
-    }
-    return self;
-}
-
-
-- (id)initWithGameMode:(RRGameMode)gameMode match:(GKTurnBasedMatch *)match playerColor:(RRPlayerColor)playerColor {
-    if( (self = [self init]) ){
-        _numberOfPlayers= match.participants.count;
-
-        RRGameLayer *gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:playerColor];
-        [gameLayer setMatch:match];
         
-        for( GKTurnBasedParticipant *turnBasedParticipant in match.participants ){
-            if( [turnBasedParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID] ){
-                RRPlayer *player = [RRPlayer playerWithPlayerColor: playerColor];
-                [player setPlayerID:turnBasedParticipant.playerID];
+        if( [[UDGKManager sharedManager] match] ){
+            // Host is player1
+            if( [[UDGKManager sharedManager] isHost] ){
+                RRPlayer *player1 = [RRPlayer playerWithPlayerColor: playerColor];
+                [gameLayer setPlayer1:player1];
                 
-                [gameLayer setPlayer1: player];
+                RRPlayer *player2 = [RRPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
+                [gameLayer setPlayer2:player2];
             }else{
-                RRPlayer *player = [RRPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
-                [player setPlayerID:turnBasedParticipant.playerID];
+                RRPlayer *player1 = [RRPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
+                [gameLayer setPlayer1:player1];
+                
+                RRPlayer *player2 = [RRPlayer playerWithPlayerColor: playerColor];
+                [gameLayer setPlayer2:player2];
+            }
+            
+            // Update ID's for player
+            for( UDGKPlayer *player in [[[UDGKManager sharedManager] players] allValues] ){
+                if( [player.playerID isEqualToString:[[UDGKManager sharedManager] hostPlayerID]] ){
+                    [gameLayer.player1 setPlayerID: player.playerID];
+                }else{
+                    [gameLayer.player2 setPlayerID: player.playerID];
+                }
+            }
+        }else{
+            [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
+            
+            if( numberOfPlayers == 1 ){
+                RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
+                [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
                 
                 [gameLayer setPlayer2: player];
             }
         }
 
         [self addChild: gameLayer];
-        [gameLayer release];
-        
-        [[GKTurnBasedEventHandler sharedTurnBasedEventHandler] setDelegate:self];
     }
     return self;
 }
@@ -87,31 +84,6 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
     [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
-}
-
-
-#pragma mark -
-#pragma mark GKTurnBasedEventHandlerDelegate
-
-
-// If Game Center initiates a match the developer should create a GKTurnBasedMatch from playersToInvite and present a GKTurnbasedMatchmakerViewController.
-- (void)handleInviteFromGameCenter:(NSArray *)playersToInvite {
-    NSLog(@"handleInviteFromGameCenter");
-}
-
-// handleTurnEventForMatch is called when a turn is passed to another participant.  Note this may arise from one of the following events:
-//      The local participant has accepted an invite to a new match
-//      The local participant has been passed the turn for an existing match
-//      Another participant has made a turn in an existing match
-// The application needs to be prepared to handle this even while the participant might be engaged in a different match
-- (void)handleTurnEventForMatch:(GKTurnBasedMatch *)match {
-    NSLog(@"handleTurnEventForMatch");
-}
-
-
-// handleMatchEnded is called when the match has ended.
-- (void)handleMatchEnded:(GKTurnBasedMatch *)match {
-    NSLog(@"handleMatchEnded");
 }
 
 

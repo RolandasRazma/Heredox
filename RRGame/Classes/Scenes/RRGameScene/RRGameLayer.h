@@ -14,7 +14,7 @@
 @class RRPlayer, RRGameBoardLayer, UDSpriteButton, RRCrossfadeLayer, RRScoreLayer;
 
 
-@interface RRGameLayer : UDLayer <RRGameMenuDelegate, RRPlayerColorWictoriousDelegate> {
+@interface RRGameLayer : UDLayer <RRGameMenuDelegate, RRPlayerColorWictoriousDelegate, UDGKManagerPacketObserving> {
     RRGameMode          _gameMode;
     
     NSMutableArray      *_deck;
@@ -32,12 +32,11 @@
     RRScoreLayer        *_scoreLayer;
     UDSpriteButton      *_resetGameButton;
     
-    GKTurnBasedMatch    *_match;
+    BOOL                _allPlayersInScene;
 }
 
 @property (nonatomic, retain) RRPlayer *player1;
 @property (nonatomic, retain) RRPlayer *player2;
-@property (nonatomic, retain) GKTurnBasedMatch *match;
 
 + (id)layerWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor;

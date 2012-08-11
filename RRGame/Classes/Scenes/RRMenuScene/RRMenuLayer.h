@@ -10,6 +10,8 @@
 #import "RRMenuMultiplayerLayer.h"
 
 
-@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, GKTurnBasedMatchmakerViewControllerDelegate, GKTurnBasedEventHandlerDelegate>
+@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, GKMatchmakerViewControllerDelegate> {
+    GKMatch *_match;
+}
 
 @end

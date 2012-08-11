@@ -349,6 +349,10 @@
 		F0A35DD115D6701900B2BDCF /* RRAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A35DCF15D6701800B2BDCF /* RRAudioEngine.m */; };
 		F0A35DD315D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0A35DD215D681AF00B2BDCF /* RRPlaceTileError.mp3 */; };
 		F0A35DD415D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0A35DD215D681AF00B2BDCF /* RRPlaceTileError.mp3 */; };
+		F0B1559C15D6C3F8001E089B /* UDGKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B1559B15D6C3F8001E089B /* UDGKManager.m */; };
+		F0B1559D15D6C3F8001E089B /* UDGKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B1559B15D6C3F8001E089B /* UDGKManager.m */; };
+		F0B155A115D6D138001E089B /* UDGKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B155A015D6D138001E089B /* UDGKPlayer.m */; };
+		F0B155A215D6D138001E089B /* UDGKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B155A015D6D138001E089B /* UDGKPlayer.m */; };
 		F0C1ECFD15CBB14400BB265F /* RRBackgroundRules.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ECFB15CBB14300BB265F /* RRBackgroundRules.png */; };
 		F0C1ECFF15CBB14400BB265F /* RRBackgroundRules-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ECFC15CBB14300BB265F /* RRBackgroundRules-hd.png */; };
 		F0C1ED0315CBB38700BB265F /* RRBackgroundPlayerColor.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ED0115CBB38700BB265F /* RRBackgroundPlayerColor.png */; };
@@ -727,6 +731,11 @@
 		F0A35DCE15D6701800B2BDCF /* RRAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAudioEngine.h; sourceTree = "<group>"; };
 		F0A35DCF15D6701800B2BDCF /* RRAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAudioEngine.m; sourceTree = "<group>"; };
 		F0A35DD215D681AF00B2BDCF /* RRPlaceTileError.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlaceTileError.mp3; sourceTree = "<group>"; };
+		F0B1559A15D6C3F8001E089B /* UDGKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDGKManager.h; sourceTree = "<group>"; };
+		F0B1559B15D6C3F8001E089B /* UDGKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDGKManager.m; sourceTree = "<group>"; };
+		F0B1559E15D6C4B6001E089B /* UDGKPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDGKPacket.h; sourceTree = "<group>"; };
+		F0B1559F15D6D138001E089B /* UDGKPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDGKPlayer.h; sourceTree = "<group>"; };
+		F0B155A015D6D138001E089B /* UDGKPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDGKPlayer.m; sourceTree = "<group>"; };
 		F0C1ECFB15CBB14300BB265F /* RRBackgroundRules.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundRules.png; sourceTree = "<group>"; };
 		F0C1ECFC15CBB14300BB265F /* RRBackgroundRules-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundRules-hd.png"; sourceTree = "<group>"; };
 		F0C1ED0115CBB38700BB265F /* RRBackgroundPlayerColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundPlayerColor.png; sourceTree = "<group>"; };
@@ -1212,6 +1221,7 @@
 		F043C4EF14CAF07300BF47DE /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				F0B1559815D6C3E8001E089B /* UDGKManager */,
 				F03C983615B6E0660091FEEE /* RRCrossfadeLayer */,
 				F03EF75B15B059F30085E637 /* UDSpriteButton */,
 				F03EF72F15B03E380085E637 /* NSMutableArrayAdditions */,
@@ -1413,6 +1423,18 @@
 				F0A35DCF15D6701800B2BDCF /* RRAudioEngine.m */,
 			);
 			path = RRAudioEngine;
+			sourceTree = "<group>";
+		};
+		F0B1559815D6C3E8001E089B /* UDGKManager */ = {
+			isa = PBXGroup;
+			children = (
+				F0B1559E15D6C4B6001E089B /* UDGKPacket.h */,
+				F0B1559A15D6C3F8001E089B /* UDGKManager.h */,
+				F0B1559B15D6C3F8001E089B /* UDGKManager.m */,
+				F0B1559F15D6D138001E089B /* UDGKPlayer.h */,
+				F0B155A015D6D138001E089B /* UDGKPlayer.m */,
+			);
+			path = UDGKManager;
 			sourceTree = "<group>";
 		};
 		F0CD5FDB14CA92F000665366 /* RRGameMacOS */ = {
@@ -1924,6 +1946,8 @@
 				F01AC59115D2EEC500541D96 /* RRTransitionGame.m in Sources */,
 				F0A35DCA15D6691F00B2BDCF /* RRMenuMultiplayerLayer.m in Sources */,
 				F0A35DD015D6701900B2BDCF /* RRAudioEngine.m in Sources */,
+				F0B1559C15D6C3F8001E089B /* UDGKManager.m in Sources */,
+				F0B155A115D6D138001E089B /* UDGKPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2063,6 +2087,8 @@
 				F01AC59215D2EEC500541D96 /* RRTransitionGame.m in Sources */,
 				F0A35DCB15D6691F00B2BDCF /* RRMenuMultiplayerLayer.m in Sources */,
 				F0A35DD115D6701900B2BDCF /* RRAudioEngine.m in Sources */,
+				F0B1559D15D6C3F8001E089B /* UDGKManager.m in Sources */,
+				F0B155A215D6D138001E089B /* UDGKPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

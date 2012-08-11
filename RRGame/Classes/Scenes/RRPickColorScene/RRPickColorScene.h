@@ -13,6 +13,5 @@
 
 + (id)sceneWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
 - (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
-- (id)initWithMatch:(GKTurnBasedMatch *)match;
     
 @end

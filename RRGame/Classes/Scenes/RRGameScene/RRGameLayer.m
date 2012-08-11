@@ -29,8 +29,7 @@
     
     [_player1 release];
     [_player2 release];
-    [_match release];
-    
+
     [super dealloc];
 }
 
@@ -46,6 +45,17 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
     [self resetGame];
+
+    if( [[UDGKManager sharedManager] match] ){
+        [self setUserInteractionEnabled:NO];
+#warning TODO: add "waiting for players"
+        NSLog(@"waiting for players scene 3");
+        
+        UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 3 );
+        [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
+                                                     length: sizeof(UDGKPacketEnterScene)];
+    }
+
 }
 
 
@@ -59,6 +69,9 @@
                                              selector: @selector(tileMovedToValidLocation) 
                                                  name: RRGameBoardLayerTileMovedToValidLocationNotification 
                                                object: nil];
+    
+    [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
+    [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeTileMove];
 }
 
 
@@ -67,6 +80,8 @@
     [_gameBoardLayer removeObserver:self forKeyPath:@"symbolsWhite"];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:RRGameBoardLayerTileMovedToValidLocationNotification object:nil];
+    
+    [[UDGKManager sharedManager] removePacketObserver:self];
     
     [super onExit];
 }
@@ -135,137 +150,12 @@
         }else{
             [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
             [buttonHome setScale:0.9f];
-        }        
+        }
+        
+        // Do we need to wait for players?
+        _allPlayersInScene = ([[UDGKManager sharedManager] match] == nil);
     }
 	return self;
-}
-
-
-- (void)showMenu {
-
-    RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
-    [gameMenuLayer setDelegate:self];
-    [self addChild:gameMenuLayer z:1000];
-    
-}
-
-
-- (void)endTurn {
-
-    if(   [_gameBoardLayer canPlaceTileAtGridLocation:CGPointRound(_gameBoardLayer.activeTile.positionInGrid)]
-       && [_gameBoardLayer haltTilePlaces] ){
-
-        if( _deck.count > 0 ){
-            if( _playerColor == RRPlayerColorBlack ){
-                _playerColor = RRPlayerColorWhite;
-
-                [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorWhite duration:0.7f];
-            }else{
-                _playerColor = RRPlayerColorBlack;
-                
-                [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorBlack duration:0.7f];
-            }
-
-            [self newTurn];
-        }else{
-            [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
-
-            RRGameWictoryLayer *gameWictoryLayer;
-            if( _scoreLayer.scoreBlack == _scoreLayer.scoreWhite ){
-                gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousNo];
-            }else if( _scoreLayer.scoreBlack > _scoreLayer.scoreWhite ){
-                gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousBlack];
-            }else{
-                gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousWhite];
-            }
-            [gameWictoryLayer setDelegate:self];
-            [self addChild:gameWictoryLayer z:1000];
-        }
-        
-    }else{
-        [[RRAudioEngine sharedEngine] replayEffect:@"RRPlaceTileError.mp3"];
-    }
-    
-}
-
-
-- (RRPlayer *)currentPlayer {
-    return ((_player1.playerColor == _playerColor)?_player1:_player2);
-}
-
-
-- (void)newTurn {
-    [self takeNewTile];
-    
-    RRPlayer *currentPlayer = [self currentPlayer];
-    
-    if( [currentPlayer isKindOfClass:[RRAIPlayer class]] ){
-        
-        [_gameBoardLayer setUserInteractionEnabled:NO];
-
-        RRTileMove tileMove = [(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer];
-
-        
-        NSMutableArray *actions = [NSMutableArray array];
-        [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
-        [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
-        [actions addObject: [CCMoveTo actionWithDuration:0.4f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2,
-                                                                                   tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)]];
-        [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
-        [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
-
-        
-        for( NSUInteger rotation=0; rotation<tileMove.rotation; rotation += 90 ){
-            [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
-            [actions addObject:[CCCallBlock actionWithBlock:^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRTileTurn.mp3"]; }]];
-            [actions addObject: [CCRotateBy actionWithDuration:0.2f angle:90]];
-            [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
-            [actions addObject: [CCDelayTime actionWithDuration:0.2f]];
-        }
-        
-        [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
-        [actions addObject: [CCCallBlock actionWithBlock:^{
-            [_gameBoardLayer setUserInteractionEnabled:YES];
-        }]];
-        [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
-        
-        [_gameBoardLayer.activeTile runAction:[CCSequence actionsWithArray: actions]];
-        
-    }else if ( !_match || (_match && [currentPlayer isEqual: _match.currentParticipant]) ){
-        [self setUserInteractionEnabled:YES];
-        
-    }else{
-        [self setUserInteractionEnabled:NO];
-    }
-    
-}
-
-
-- (RRTile *)takeNewTile {
-    if( _deck.count == 0 ) return nil;
-    
-    RRTile *tile = [[_deck objectAtIndex:0] retain];
-    [tile stopAllActions];
-    [tile setOpacity:255];
-    [tile setRotation:0.0f];
-    [tile setBackSideVisible:NO];
-    
-    [_deck removeObject:tile];
-    [self removeChild:tile cleanup:NO];
-    
-    [tile setPosition:CGPointMake(tile.position.x -_gameBoardLayer.position.x, tile.position.y -_gameBoardLayer.position.y)];
-    
-    [_gameBoardLayer addTile:tile animated:YES];
-    [tile release];
-    
-    if( _deck.count ){
-        [(RRTile *)[_deck objectAtIndex:0] showEndTurnTextAnimated:YES];
-    }else{
-        [_buttonEndTurn stopAllActions];
-        [_buttonEndTurn setOpacity:255];
-    }
-    
-    return tile;
 }
 
 
@@ -350,6 +240,151 @@
         [_buttonEndTurn setPosition: [(RRTile *)[_deck objectAtIndex: _deck.count -1] position]];
         [_buttonEndTurn setOpacity:0];
     }
+}
+
+
+- (void)showMenu {
+
+    RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
+    [gameMenuLayer setDelegate:self];
+    [self addChild:gameMenuLayer z:1000];
+    
+}
+
+
+- (RRPlayer *)currentPlayer {
+    return ((_player1.playerColor == _playerColor)?_player1:_player2);
+}
+
+
+- (RRPlayer *)nextPlayer {
+    return ((_player1.playerColor == _playerColor)?_player2:_player1);
+}
+
+
+- (void)endTurn {
+
+    if( ![_gameBoardLayer canPlaceTileAtGridLocation:CGPointRound(_gameBoardLayer.activeTile.positionInGrid)] ){
+        [[RRAudioEngine sharedEngine] replayEffect:@"RRPlaceTileError.mp3"];
+    }else {
+        RRTileMove tileMove;
+        tileMove.positionInGrid = _gameBoardLayer.activeTile.positionInGrid;
+        tileMove.rotation       = _gameBoardLayer.activeTile.rotation;
+        tileMove.score          = 1;
+        
+        if( [_gameBoardLayer haltTilePlaces] ){
+            
+            if( [[UDGKManager sharedManager] match] ){
+                NSLog(@"send tileMove to location: %@", NSStringFromCGPoint(tileMove.positionInGrid));
+                UDGKPacketTileMove packet = UDGKPacketTileMoveMake( tileMove );
+                [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
+                                                             length: sizeof(UDGKPacketTileMove)];
+            }
+            
+            if( _deck.count > 0 ){
+                if( _playerColor == RRPlayerColorBlack ){
+                    _playerColor = RRPlayerColorWhite;
+                    
+                    [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorWhite duration:0.7f];
+                }else{
+                    _playerColor = RRPlayerColorBlack;
+                    
+                    [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorBlack duration:0.7f];
+                }
+                
+                [self newTurn];
+            }else{
+                [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
+                
+                RRGameWictoryLayer *gameWictoryLayer;
+                if( _scoreLayer.scoreBlack == _scoreLayer.scoreWhite ){
+                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousNo];
+                }else if( _scoreLayer.scoreBlack > _scoreLayer.scoreWhite ){
+                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousBlack];
+                }else{
+                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousWhite];
+                }
+                [gameWictoryLayer setDelegate:self];
+                [self addChild:gameWictoryLayer z:1000];
+            }
+        }
+        
+    }
+    
+}
+
+
+- (void)newTurn {
+    [self takeNewTile];
+    
+    RRPlayer *currentPlayer = [self currentPlayer];
+    
+    if( [currentPlayer isKindOfClass:[RRAIPlayer class]] ){
+        [self makeMove:[(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer]];
+    }else if( _allPlayersInScene && [[UDGKManager sharedManager] match] ){
+
+    }else{
+        [self setUserInteractionEnabled:NO];
+    }
+    
+}
+
+
+- (void)makeMove:(RRTileMove)tileMove {
+    [_gameBoardLayer setUserInteractionEnabled:NO];
+    
+    NSMutableArray *actions = [NSMutableArray array];
+    [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
+    [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
+    [actions addObject: [CCMoveTo actionWithDuration:0.4f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2,
+                                                                               tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)]];
+    [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
+    [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
+    
+    
+    for( NSUInteger rotation=0; rotation<tileMove.rotation; rotation += 90 ){
+        [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
+        [actions addObject:[CCCallBlock actionWithBlock:^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRTileTurn.mp3"]; }]];
+        [actions addObject: [CCRotateBy actionWithDuration:0.2f angle:90]];
+        [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
+        [actions addObject: [CCDelayTime actionWithDuration:0.2f]];
+    }
+    
+    [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
+    [actions addObject: [CCCallBlock actionWithBlock:^{
+        [_gameBoardLayer setUserInteractionEnabled:YES];
+    }]];
+    [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
+    
+    [_gameBoardLayer.activeTile runAction:[CCSequence actionsWithArray: actions]];
+}
+
+
+- (RRTile *)takeNewTile {
+    if( _deck.count == 0 ) return nil;
+    
+    RRTile *tile = [[_deck objectAtIndex:0] retain];
+    [tile stopAllActions];
+    [tile setOpacity:255];
+    [tile setRotation:0.0f];
+    [tile setBackSideVisible:NO];
+    
+    [_deck removeObject:tile];
+    [self removeChild:tile cleanup:NO];
+    
+    [tile setPosition:CGPointMake(tile.position.x -_gameBoardLayer.position.x, tile.position.y -_gameBoardLayer.position.y)];
+    
+    [_gameBoardLayer addTile:tile animated:YES];
+    [tile release];
+    
+    if( _deck.count ){
+        [(RRTile *)[_deck objectAtIndex:0] showEndTurnTextAnimated:YES];
+    }else{
+        [_buttonEndTurn stopAllActions];
+        [_buttonEndTurn setOpacity:255];
+    }
+    
+    return tile;
 }
 
 
@@ -453,7 +488,9 @@
 
 - (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
     [super setUserInteractionEnabled:userInteractionEnabled];
+
     [_buttonEndTurn setUserInteractionEnabled:userInteractionEnabled];
+    [_gameBoardLayer setUserInteractionEnabled:userInteractionEnabled];
 }
 
 
@@ -467,6 +504,35 @@
 
     if( CGRectContainsPoint([(RRTile *)[_deck objectAtIndex:0] boundingBox], location) ){
         [self endTurn];
+    }
+    
+}
+
+
+#pragma mark -
+#pragma mark UDGKManagerPacketObserving
+
+
+- (void)observePacket:(const void *)packet fromPlayer:(UDGKPlayer *)player {
+    if( [player.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ) return;
+    
+    UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
+    
+    if( packetType == UDGKPacketTypeEnterScene && !_allPlayersInScene ){
+        NSLog(@"UDGKPacketTypeEnterScene");
+        
+        _allPlayersInScene = YES;
+        
+        UDGKPacketEnterScene newPacket = *(UDGKPacketEnterScene *)packet;
+        
+        if( newPacket.sceneID == 3 ){
+            [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
+                                                         length: sizeof(UDGKPacketEnterScene)];
+        }
+    }else if ( packetType == UDGKPacketTypeTileMove ){
+        NSLog(@"UDGKPacketTypeTileMove");
+        
+        [self makeMove: (*(UDGKPacketTileMove *)packet).move];
     }
     
 }

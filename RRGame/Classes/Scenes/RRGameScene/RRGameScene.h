@@ -9,12 +9,11 @@
 #import "CCScene.h"
 
 
-@interface RRGameScene : CCScene <GKTurnBasedEventHandlerDelegate> {
+@interface RRGameScene : CCScene {
     NSUInteger  _numberOfPlayers;
 }
 
 + (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers playerColor:(RRPlayerColor)playerColor;
-- (id)initWithGameMode:(RRGameMode)gameMode match:(GKTurnBasedMatch *)match playerColor:(RRPlayerColor)playerColor;
 
 @end

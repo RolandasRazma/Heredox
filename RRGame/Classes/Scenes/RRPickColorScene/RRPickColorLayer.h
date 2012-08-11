@@ -10,21 +10,21 @@
 #import "UDLayer.h"
 
 
-@interface RRPickColorLayer : UDLayer {
-    NSUInteger          _numberOfPlayers;
-    GKTurnBasedMatch    *_match;
+@interface RRPickColorLayer : UDLayer <UDGKManagerPacketObserving> {
+    NSUInteger  _numberOfPlayers;
+
+    CGRect      _upperRect;
+    UDTriangle  _upperTriangle;
+    CGRect      _lowerRect;
+    UDTriangle  _lowerTriangle;
     
-    CGRect              _upperRect;
-    UDTriangle          _upperTriangle;
-    CGRect              _lowerRect;
-    UDTriangle          _lowerTriangle;
+    CCSprite    *_backgroundPlayerWhiteSelectedSprite;
+    CCSprite    *_backgroundPlayerBlackSelectedSprite;
     
-    CCSprite            *_backgroundPlayerWhiteSelectedSprite;
-    CCSprite            *_backgroundPlayerBlackSelectedSprite;
+    BOOL        _allPlayersInScene;
 }
 
 + (id)layerWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
 - (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
-- (id)initWithMatch:(GKTurnBasedMatch *)match;
 
 @end
