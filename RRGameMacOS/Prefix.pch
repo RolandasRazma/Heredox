@@ -5,6 +5,7 @@
 __asm__(".weak_reference _OBJC_CLASS_$_GKMatchmakerViewControllerDelegate");
 __asm__(".weak_reference _OBJC_CLASS_$_GKMatchDelegate");
 __asm__(".weak_reference _OBJC_CLASS_$_GKMatch");
+__asm__(".weak_reference _OBJC_CLASS_$_GKPlayer");
 
 
 #ifdef __OBJC__

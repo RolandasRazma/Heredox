@@ -6,7 +6,6 @@
 //
 
 #import "UDGKPacket.h"
-#import "UDGKPlayer.h"
 
 
 extern NSString * const UDGKManagerGotInviteNotification;
@@ -16,7 +15,7 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @protocol UDGKManagerPacketObserving <NSObject>
 @required
 
-- (void)observePacket:(const void *)packet fromPlayer:(UDGKPlayer *)player;
+- (void)observePacket:(const void *)packet fromPlayer:(GKPlayer *)player;
 
 @end
 

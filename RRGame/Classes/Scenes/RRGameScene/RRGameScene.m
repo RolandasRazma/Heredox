@@ -48,7 +48,7 @@
             }
             
             // Update ID's for player
-            for( UDGKPlayer *player in [[[UDGKManager sharedManager] players] allValues] ){
+            for( GKPlayer *player in [[[UDGKManager sharedManager] players] allValues] ){
                 if( [player.playerID isEqualToString:[[UDGKManager sharedManager] hostPlayerID]] ){
                     [gameLayer.player1 setPlayerID: player.playerID];
                 }else{

@@ -213,7 +213,7 @@
 #pragma mark UDGKManagerPacketObserving
 
 
-- (void)observePacket:(const void *)packet fromPlayer:(UDGKPlayer *)player {
+- (void)observePacket:(const void *)packet fromPlayer:(GKPlayer *)player {
     if( [player.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ) return;
 
     UDGKPacketType packetType = (*(UDGKPacket *)packet).type;

@@ -32,8 +32,10 @@
     RRScoreLayer        *_scoreLayer;
     UDSpriteButton      *_resetGameButton;
     
-    BOOL                _allPlayersInScene;
     NSUInteger          _gameSeed;
+    
+    BOOL                _allPlayersInScene;
+    CCLabelTTF          *_playerNameLabel;
 }
 
 @property (nonatomic, retain) RRPlayer *player1;

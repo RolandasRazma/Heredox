@@ -53,6 +53,41 @@
         UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 3 );
         [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
                                                      length: sizeof(UDGKPacketEnterScene)];
+        /*
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        for( GKPlayer *player in [[[UDGKManager sharedManager] players] allValues] ){
+
+            [player loadPhotoForSize: GKPhotoSizeSmall
+               withCompletionHandler: ^(UIImage *photo, NSError *error) {
+                   if( !error ){
+                       CCSprite *playerPhoto = [CCSprite spriteWithCGImage:photo.CGImage key:player.playerID];
+                       [playerPhoto setScale: [RRTile tileSize] /2.0f /playerPhoto.boundingBox.size.width];
+                       [self addChild:playerPhoto];
+                       
+                       if( [player.playerID isEqualToString:_player1.playerID] ){
+                           if( _player1.playerColor == RRPlayerColorWhite ){
+                               [playerPhoto setAnchorPoint:CGPointZero];
+                               [playerPhoto setPosition:CGPointMake(20, 20)];
+                           }else{
+                               [playerPhoto setAnchorPoint:CGPointMake(1, 0)];
+                               [playerPhoto setPosition:CGPointMake(winSize.width -20, 20)];
+                           }
+                       }else if( [player.playerID isEqualToString:_player2.playerID] ){
+                           if( _player2.playerColor == RRPlayerColorWhite ){
+                               [playerPhoto setAnchorPoint:CGPointZero];
+                               [playerPhoto setPosition:CGPointMake(20, 20)];
+                           }else{
+                               [playerPhoto setAnchorPoint:CGPointMake(1, 0)];
+                               [playerPhoto setPosition:CGPointMake(winSize.width -20, 20)];
+                           }
+                       }
+                       
+                   }
+               }];
+
+        }
+        */
     }else{
         [self resetGame];
     }
@@ -304,6 +339,7 @@
                 [self newTurn];
             }else{
                 [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
+                [_playerNameLabel runAction: [CCFadeOut actionWithDuration:0.3f]];
                 
                 RRGameWictoryLayer *gameWictoryLayer;
                 if( _scoreLayer.scoreBlack == _scoreLayer.scoreWhite ){
@@ -332,6 +368,20 @@
         [self makeMove:[(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer]];
     }else if( [[UDGKManager sharedManager] match] ){
         [self setUserInteractionEnabled: (_allPlayersInScene && [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]])];
+        
+        if( !_playerNameLabel ){
+            _playerNameLabel = [CCLabelTTF labelWithString:@"" fontName:@"Papyrus" fontSize:20];
+            [_playerNameLabel setAnchorPoint:CGPointMake(0.5f, 0)];
+            [self addChild:_playerNameLabel z:10];
+        }
+        
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        GKPlayer *player = [[[UDGKManager sharedManager] players] objectForKey:self.currentPlayer.playerID];
+        
+        [_playerNameLabel stopAllActions];
+        [_playerNameLabel setString:player.alias];
+        [_playerNameLabel setPosition:CGPointMake(winSize.width /2, 5)];
+        [_playerNameLabel setOpacity:255];
     }else{
         [self setUserInteractionEnabled:YES];
     }
@@ -516,7 +566,7 @@
 #pragma mark UDGKManagerPacketObserving
 
 
-- (void)observePacket:(const void *)packet fromPlayer:(UDGKPlayer *)player {
+- (void)observePacket:(const void *)packet fromPlayer:(GKPlayer *)player {
     if( [player.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ) return;
     
     UDGKPacketType packetType = (*(UDGKPacket *)packet).type;

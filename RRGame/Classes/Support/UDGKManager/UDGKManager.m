@@ -69,6 +69,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
             [self playerID:player.playerID didChangeState:GKPlayerStateDisconnected];
         }
         [_players removeAllObjects];
+            
         
         // Set new match
         if( match ){
@@ -87,7 +88,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 
 - (void)packet:(const void *)packet fromPlayerID:(NSString *)playerID {
-    UDGKPlayer *player = [_players valueForKey:playerID];
+    GKPlayer *player = [_players valueForKey:playerID];
     
     NSAssert1(player, @"No player for playerID: %@", playerID);
     
@@ -125,35 +126,36 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 - (void)playerID:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {
     NSAssert(playerID, @"Player Without ID");
-    
-    UDGKPlayer *player = nil;
-    
-    switch ( state ) {
-        case GKPlayerStateConnected: {
-            if( !(player = [_players objectForKey:playerID]) ){
-                player = [[UDGKPlayer alloc] init];
-                [player setPlayerID:playerID];
-                [_players setObject:player forKey:playerID];
-                [player release];
-                
-                if( [playerID isEqualToString: [self playerID]] ){
-                    [player setAlias: [[GKLocalPlayer localPlayer] alias]];
+
+    GKPlayer *player = nil;
+
+    @synchronized( self ){
+        switch ( state ) {
+            case GKPlayerStateConnected: {
+                if( !(player = [_players objectForKey:playerID]) ){
+                    if( [playerID isEqualToString:self.playerID] ){
+                        player = [GKLocalPlayer localPlayer];
+                    }else{
+                        player = (GKPlayer *)[[UDGKPlayer alloc] init];
+                        [(UDGKPlayer *)player setPlayerID:playerID];
+                    }
+                    
+                    [_players setObject:player forKey:playerID];
+                    [player release];
                 }
+                break;
             }
-            break;
-        }
-        case GKPlayerStateDisconnected: {
-            if( (player = [_players objectForKey:playerID]) ){
-                [[player retain] autorelease];
-                [_players removeObjectForKey:playerID];
+            case GKPlayerStateDisconnected: {
+                if( (player = [_players objectForKey:playerID]) ){
+                    [_players removeObjectForKey:playerID];
+                }
+                break;
             }
-            break;
         }
     }
 
     // Do we expect any more players?
     if( state == GKPlayerStateConnected && [_match expectedPlayerCount] == 0 && ![playerID isEqualToString: [self playerID]] ){
-        [[_players objectForKey:[self playerID]] setAlias: [[GKLocalPlayer localPlayer] alias]];
         
         [GKPlayer loadPlayersForIdentifiers: [_match playerIDs]
                       withCompletionHandler: ^(NSArray *players, NSError *error){
@@ -161,7 +163,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
                               if( !error ){
                                   // Set Aliases
                                   for( GKPlayer *player in players ){
-                                      [(UDGKPlayer *)[_players objectForKey:[player playerID]] setAlias:[player alias]];
+                                      [_players setObject:player forKey:[player playerID]];
                                   }
                               }
                               
@@ -183,8 +185,10 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
     }
 }
 
+
 - (void)allPlayersConnected {
 }
+
 
 #pragma mark -
 #pragma mark Packet Observing
@@ -223,7 +227,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 #pragma mark UDGKManagerPacketObserving
 
 
-- (void)observePacket:(const void *)packet fromPlayer:(UDGKPlayer *)player {
+- (void)observePacket:(const void *)packet fromPlayer:(GKPlayer *)player {
     UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
 
     if ( packetType == UDGKPacketTypePickHost ) {
@@ -239,7 +243,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
             // Check if all pears got aliases
             BOOL playersHasAliases = YES;
-            for( UDGKPlayer *player in [_players allValues] ){
+            for( GKPlayer *player in [_players allValues] ){
                 if( !player.alias ){
                     playersHasAliases = NO;
                     break;

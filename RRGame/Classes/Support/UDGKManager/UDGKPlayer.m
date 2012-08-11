@@ -18,9 +18,18 @@
 
 - (void)dealloc {
     [_playerID release];
-    [_alias release];
     
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark UDGKPlayer
+
+
+- (void)setPlayerID:(NSString *)playerID {
+    [_playerID release];
+    _playerID = [playerID copy];
 }
 
 

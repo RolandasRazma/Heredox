@@ -6,15 +6,13 @@
 //  Copyright (c) 2012 UD7. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <GameKit/GameKit.h>
 
 
-@interface UDGKPlayer : NSObject {
+@interface UDGKPlayer : GKPlayer {
     NSString *_playerID;
-    NSString *_alias;
 }
 
-@property(nonatomic, copy)  NSString *playerID;
-@property(nonatomic, copy)  NSString *alias;
+- (void)setPlayerID:(NSString *)playerID;
 
 @end
