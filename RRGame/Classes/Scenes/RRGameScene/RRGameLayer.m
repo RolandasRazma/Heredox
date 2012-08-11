@@ -150,7 +150,8 @@
 
 - (void)endTurn {
 
-    if( [_gameBoardLayer haltTilePlaces] ){
+    if(   [_gameBoardLayer canPlaceTileAtGridLocation:CGPointRound(_gameBoardLayer.activeTile.positionInGrid)]
+       && [_gameBoardLayer haltTilePlaces] ){
 
         if( _deck.count > 0 ){
             if( _playerColor == RRPlayerColorBlack ){
@@ -162,8 +163,7 @@
                 
                 [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorBlack duration:0.7f];
             }
-            
-            [self takeNewTile];
+
             [self newTurn];
         }else{
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
@@ -186,13 +186,13 @@
 
 
 - (void)newTurn {
-
+    [self takeNewTile];
+    
     if(   (_player1.playerColor == _playerColor && [_player1 isKindOfClass:[RRAIPlayer class]])
        || (_player2.playerColor == _playerColor && [_player2 isKindOfClass:[RRAIPlayer class]]) ){
         
         [_gameBoardLayer setUserInteractionEnabled:NO];
-        [_buttonEndTurn setUserInteractionEnabled:NO];
-        
+
         RRTileMove tileMove = [(RRAIPlayer *)((_player1.playerColor == _playerColor)?_player1:_player2) bestMoveOnBoard:_gameBoardLayer];
 
         
@@ -216,23 +216,43 @@
         [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
         [actions addObject: [CCCallBlock actionWithBlock:^{
             [_gameBoardLayer setUserInteractionEnabled:YES];
-            [_buttonEndTurn setUserInteractionEnabled:YES];
         }]];
         [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
         
         [_gameBoardLayer.activeTile runAction:[CCSequence actionsWithArray: actions]];
+    }else{
+        if( _deck.count == 0 ){
+            [_buttonEndTurn stopAllActions];
+            [_buttonEndTurn setOpacity:255];
+            [_buttonEndTurn setUserInteractionEnabled:YES];
+        }
     }
     
 }
 
 
-- (void)takeNewTile {
+- (RRTile *)takeNewTile {
+    if( _deck.count == 0 ) return nil;
     
-    RRTile *newTile = [self takeTopTile];
-    [newTile setPosition:CGPointMake(newTile.position.x -_gameBoardLayer.position.x, newTile.position.y -_gameBoardLayer.position.y)];
+    RRTile *tile = [[_deck objectAtIndex:0] retain];
+    [tile stopAllActions];
+    [tile setOpacity:255];
+    [tile setRotation:0.0f];
+    [tile setBackSideVisible:NO];
     
-    [_gameBoardLayer addTile:newTile animated:YES];
+    [_deck removeObject:tile];
+    [self removeChild:tile cleanup:NO];
     
+    [tile setPosition:CGPointMake(tile.position.x -_gameBoardLayer.position.x, tile.position.y -_gameBoardLayer.position.y)];
+    
+    [_gameBoardLayer addTile:tile animated:YES];
+    [tile release];
+    
+    if( _deck.count ){
+        [(RRTile *)[_deck objectAtIndex:0] showEndTurnTextAnimated:YES];
+    }
+    
+    return tile;
 }
 
 
@@ -245,13 +265,14 @@
         [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
         
         [_resetGameButton stopAllActions];
-        [_resetGameButton runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.2f], [UDActionDestroy action], nil]];
+        [_resetGameButton removeAllChildrenWithCleanup:YES];
         _resetGameButton = nil;
         
         [_gameBoardLayer resetBoardForGameMode: _gameMode];
+        
+        [_gameBoardLayer setUserInteractionEnabled:YES];
     }
     
-    [self takeNewTile];
     [self newTurn];
 }
 
@@ -315,27 +336,8 @@
         [_buttonEndTurn stopAllActions];
         [_buttonEndTurn setPosition: [(RRTile *)[_deck objectAtIndex: _deck.count -1] position]];
         [_buttonEndTurn setOpacity:255];
+        [_buttonEndTurn setUserInteractionEnabled:NO];
     }
-}
-
-
-- (RRTile *)takeTopTile {
-    if( _deck.count == 0 ) return nil;
-    
-    RRTile *tile = [[_deck objectAtIndex:0] retain];
-    [tile stopAllActions];
-    [tile setOpacity:255];
-    [tile setRotation:0.0f];
-    [tile setBackSideVisible:NO];
-    
-    [_deck removeObject:tile];
-    [self removeChild:tile cleanup:NO];
-
-    if( _deck.count ){
-        [(RRTile *)[_deck objectAtIndex:0] showEndTurnTextAnimated:YES];
-    }
-    
-    return [tile autorelease];
 }
 
 
