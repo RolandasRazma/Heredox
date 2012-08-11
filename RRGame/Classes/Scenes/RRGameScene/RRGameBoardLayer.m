@@ -36,7 +36,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
     
     [super setPosition:position];
     
-    if( _activeTile ){
+    if( _activeTile && (_activeTile.isPlaced == NO || _activeTile.wasLifted == NO) ){
         [_activeTile setPosition:CGPointMake(_activeTile.position.x +oldPosition.x -position.x, 
                                              _activeTile.position.y +oldPosition.y -position.y)];
     }
@@ -156,7 +156,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
     
     _gridBounds = CGRectNull;
     
-    [self centerBoardAnimated:NO];
+    [self centerBoardAnimated:NO includeActive:NO];
 }
 
 
@@ -182,7 +182,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
         _activeTile = nil;
         _gridBounds = newGridBounds;
         
-        [self centerBoardAnimated:YES];
+        [self centerBoardAnimated:YES includeActive:NO];
         
         return YES;
     }
@@ -272,7 +272,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
 }
 
 
-- (void)centerBoardAnimated:(BOOL)animated {
+- (void)centerBoardAnimated:(BOOL)animated includeActive:(BOOL)includeActive {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     CGPoint newPosition;
     
@@ -283,7 +283,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
         tileBounds = CGRectMake(CGFLOAT_MAX, CGFLOAT_MAX, CGFLOAT_MIN, CGFLOAT_MIN);
         
         for( RRTile *tile in self.children ){
-            if ( [tile isEqual:_activeTile] ) continue;
+            if ( [tile isEqual:_activeTile] && includeActive == NO ) continue;
             
             tileBounds.origin.x     = MIN(tileBounds.origin.x, tile.position.x -tile.boundingBox.size.width  /2);
             tileBounds.origin.y     = MIN(tileBounds.origin.y, tile.position.y -tile.boundingBox.size.height /2);
@@ -333,29 +333,31 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
 
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
-    if( !_activeTile || [_activeTile numberOfRunningActions] || !CGRectContainsPoint(_activeTile.boundingBox, [self convertToNodeSpace:location])) return NO;
+    CGPoint locationInLayerSpace = [self convertToNodeSpace:location];
+    
+    if( !_activeTile || [_activeTile numberOfRunningActions] || !CGRectContainsPoint(_activeTile.boundingBox, locationInLayerSpace)) return NO;
     
     [_activeTile liftTile];
     
     _activeTileMoved        = NO;
     _activeTileTouchOffset  = ccpRotateByAngle([_activeTile convertToNodeSpaceAR:location], CGPointZero, -CC_DEGREES_TO_RADIANS(_activeTile.rotation));
-    _activeTileLastPosition = CGPointMake(location.x -_activeTileTouchOffset.x *_activeTile.scaleX, 
-                                          location.y -_activeTileTouchOffset.y *_activeTile.scaleY);
-    
+    _activeTileLastPosition = CGPointMake(locationInLayerSpace.x -_activeTileTouchOffset.x *_activeTile.scaleX, 
+                                          locationInLayerSpace.y -_activeTileTouchOffset.y *_activeTile.scaleY);
+
     return YES;
 }
 
 
 - (void)touchMovedToLocation:(CGPoint)location {
-    location = [self convertToNodeSpace:location];
+    CGPoint locationInLayerSpace = [self convertToNodeSpace:location];
     
-    CGPoint newPosition = CGPointMake(location.x -_activeTileTouchOffset.x *_activeTile.scaleX, 
-                                      location.y -_activeTileTouchOffset.y *_activeTile.scaleY);
+    CGPoint newPosition = CGPointMake(locationInLayerSpace.x -_activeTileTouchOffset.x *_activeTile.scaleX, 
+                                      locationInLayerSpace.y -_activeTileTouchOffset.y *_activeTile.scaleY);
     
     if( ccpDistance(_activeTileLastPosition, newPosition) >= 10 ){
         _activeTileMoved = YES;
     }
-    
+
     if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
         newPosition = [self snapPoint: newPosition toGridWithTolerance: 10];
     }
@@ -380,7 +382,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
         CGPoint snapPosition = [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width];
         [_activeTile setPosition: snapPosition];
         [_activeTile placeTile];
-        
+
         [[NSNotificationCenter defaultCenter] postNotificationName:RRGameBoardLayerTileMovedToValidLocationNotification object:self];
     }
     

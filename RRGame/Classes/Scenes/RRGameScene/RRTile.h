@@ -18,7 +18,7 @@ typedef enum RRTileEdge : NSUInteger {
 
 @interface RRTile : CCSprite {
     BOOL        _backSideVisible;
-    
+    BOOL        _wasLifted;
     BOOL        _lookIs3D;
     CCSprite    *_look3DSprite;
     
@@ -39,6 +39,8 @@ typedef enum RRTileEdge : NSUInteger {
 @property (nonatomic, readonly) RRTileEdge edgeLeft;
 @property (nonatomic, readonly) RRTileEdge edgeBottom;
 @property (nonatomic, readonly) RRTileEdge edgeRight;
+@property (nonatomic, readonly) BOOL isPlaced;
+@property (nonatomic, readonly) BOOL wasLifted;
 
 + (const CGFloat)tileSize;
 + (id)tileWithEdgeTop:(RRTileEdge)top left:(RRTileEdge)left bottom:(RRTileEdge)bottom right:(RRTileEdge)right;

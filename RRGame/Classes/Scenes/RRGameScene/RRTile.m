@@ -250,22 +250,29 @@
 
 
 - (void)liftTile {
-    if( self.scale == 1.1f ) return;
-    
+    if( !self.isPlaced ) return;
+
     [self setScale:1.1f];
     [self setZOrder:NSIntegerMax];
     
     [[RRHeredox sharedInstance] playEffect:@"RRLiftTile.mp3"];
+    
+    _wasLifted = YES;
 }
 
 
 - (void)placeTile {
-    if( self.scale == 1.0f ) return;
+    if( self.isPlaced ) return;
     
     [self setScale:1.0f];
     [self setZOrder: 1000 +(int)roundf(-self.position.y)];
     
     [[RRHeredox sharedInstance] playEffect:@"RRPlaceTile.mp3"];
+}
+
+
+- (BOOL)isPlaced {
+    return ( self.scale == 1.0f );
 }
 
 
