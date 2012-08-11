@@ -31,6 +31,9 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NS
             [self initUserDefaults];
         }
         _effectsCache = [[NSMutableDictionary alloc] init];
+        
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume: [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"]];
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:         [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSFXLevel"]];
     }
     return self;
 }
@@ -38,8 +41,8 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NS
 
 - (void)initUserDefaults {
     [[NSUserDefaults standardUserDefaults] setBool:YES                  forKey:@"RRHeredoxOptionsSet"];
-    [[NSUserDefaults standardUserDefaults] setFloat:0.5f                forKey:@"RRHeredoxSFXLevel"];
     [[NSUserDefaults standardUserDefaults] setFloat:0.5f                forKey:@"RRHeredoxSoundLevel"];
+    [[NSUserDefaults standardUserDefaults] setFloat:0.5f                forKey:@"RRHeredoxSFXLevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:RRAILevelDeacon   forKey:@"RRHeredoxAILevel"];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -47,9 +50,6 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NS
 
 
 - (void)playBackgroundMusic:(NSString *)filePath {
-    CGFloat soundLevel = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"];
-
-    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:1.0f *soundLevel];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filePath];
 }
 
@@ -65,9 +65,7 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NS
             [self stopEffect:filePath];
         }
         
-        CGFloat soundLevel = [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"];
-        
-        ALuint effectID = [[SimpleAudioEngine sharedEngine] playEffect:filePath pitch:1.0f pan:0.0f gain:1.0f *soundLevel];
+        ALuint effectID = [[SimpleAudioEngine sharedEngine] playEffect:filePath];
         
         [_effectsCache setObject:[NSNumber numberWithUnsignedInteger:effectID] forKey:filePath];
         
