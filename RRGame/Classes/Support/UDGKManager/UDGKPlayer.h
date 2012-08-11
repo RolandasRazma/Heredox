@@ -13,6 +13,6 @@
     NSString *_playerID;
 }
 
-- (void)setPlayerID:(NSString *)playerID;
+- (id)initWithPlayerID:(NSString *)playerID;
 
 @end

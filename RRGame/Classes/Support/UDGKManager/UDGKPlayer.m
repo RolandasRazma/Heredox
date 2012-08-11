@@ -27,9 +27,11 @@
 #pragma mark UDGKPlayer
 
 
-- (void)setPlayerID:(NSString *)playerID {
-    [_playerID release];
-    _playerID = [playerID copy];
+- (id)initWithPlayerID:(NSString *)playerID {
+    if( (self = [super init]) ){
+        _playerID = [playerID copy];
+    }
+    return self;
 }
 
 
