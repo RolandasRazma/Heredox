@@ -166,8 +166,7 @@
             [self newTurn];
         }else{
             [_buttonEndTurn runAction: [CCFadeOut actionWithDuration:0.3f]];
-            
-            
+
             RRGameWictoryLayer *gameWictoryLayer;
             if( _scoreLayer.scoreBlack == _scoreLayer.scoreWhite ){
                 gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousNo];
@@ -241,7 +240,7 @@
         [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
         
         [_resetGameButton stopAllActions];
-        [_resetGameButton runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.3f], [UDActionDestroy action], nil]];
+        [_resetGameButton runAction:[CCSequence actions:[CCFadeOut actionWithDuration:0.2f], [UDActionDestroy action], nil]];
         _resetGameButton = nil;
         
         [_gameBoardLayer resetBoardForGameMode: _gameMode];
@@ -353,27 +352,20 @@
     NSString *soundEffext = nil;
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
+        if( _gameBoardLayer.symbolsBlack ){
+            NSInteger pointsGained = MIN(2, _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack);
+            soundEffext = [NSString stringWithFormat: @"RRPlayerColor1-points%i-s%i.mp3", pointsGained, (UDTrueWithPossibility(0.5f)?1:2)];
+        }
+        
         [_scoreLayer setScoreBlack: _gameBoardLayer.symbolsBlack];
-        
-        if( _scoreLayer.scoreBlack ){
-            if( _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack == 1 ){
-                soundEffext = [NSString stringWithFormat: @"RRPlayerColor1-points1-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)];
-            }else{
-                soundEffext = [NSString stringWithFormat:@"RRPlayerColor1-points2-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)];
-            }
-        }
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
-        [_scoreLayer setScoreWhite: _gameBoardLayer.symbolsWhite];
-        
-        if( _scoreLayer.scoreWhite ){
-            if( _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite == 1 ){
-                soundEffext = [NSString stringWithFormat: @"RRPlayerColor2-points1-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)];
-            }else{
-                soundEffext = [NSString stringWithFormat:@"RRPlayerColor2-points2-s%i.mp3", (UDTrueWithPossibility(0.5f)?1:2)];
-            }
+        if( _gameBoardLayer.symbolsWhite ){
+            NSInteger pointsGained = MIN(2, _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite);
+            soundEffext = [NSString stringWithFormat: @"RRPlayerColor2-points%i-s%i.mp3", pointsGained, (UDTrueWithPossibility(0.5f)?1:2)];
         }
+        
+        [_scoreLayer setScoreWhite: _gameBoardLayer.symbolsWhite];
     }
-    
     
     if( soundEffext ){
         [[RRHeredox sharedInstance] playEffect:soundEffext withoutStopingPrevious:YES];
@@ -414,7 +406,14 @@
 - (void)gameWictoryLayer:(RRGameWictoryLayer *)gameMenuLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex {
     [gameMenuLayer dismiss];
     
-    [self resetGame];
+    _resetGameButton = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonReplay.png" highliteSpriteFrameName:@"RRButtonReplaySelected.png"];
+    [_resetGameButton setPosition:_buttonEndTurn.position];
+    [_resetGameButton addBlock: ^{
+        [[RRHeredox sharedInstance] stopAllEffects];
+        [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"];
+        [self resetGame];
+    } forControlEvents: UDButtonEventTouchUpInside];
+    [self addChild:_resetGameButton z:-2];
 }
 
 

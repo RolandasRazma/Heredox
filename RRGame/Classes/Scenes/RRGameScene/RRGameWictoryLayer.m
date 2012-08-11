@@ -33,10 +33,8 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
 }
 
 
-- (void)onExit {
-    [super onExit];
-    
-    [[RRHeredox sharedInstance] stopEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%u.mp3", _playerColorWictorious]];
++ (RRPlayerColorWictorious)lastPlayerColorWictorious {
+    return lastPlayerColorWictorious;
 }
 
 
