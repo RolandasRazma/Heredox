@@ -105,8 +105,7 @@
         [self setUserInteractionEnabled:YES];
         
         _gameMode           = gameMode;
-        _firstPlayerColor   = playerColor;
-        _playerColor        = RRPlayerColorWhite;
+        _firstPlayerColor   = _playerColor = playerColor;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
@@ -170,7 +169,7 @@
 
 - (void)resetGameWithSeed:(NSUInteger)gameSeed {
     
-    if( [[UDGKManager sharedManager] match] && [[UDGKManager sharedManager] isHost] ){
+    if( [[UDGKManager sharedManager] isHost] ){
         UDGKPacketResetGame newPacket = UDGKPacketResetGameMake( gameSeed );
         [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
                                                      length: sizeof(UDGKPacketResetGame)];
@@ -182,9 +181,9 @@
         _playerColor = _firstPlayerColor;
         
         [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
-        
+
         [_resetGameButton stopAllActions];
-        [_resetGameButton removeAllChildrenWithCleanup:YES];
+        [_resetGameButton removeFromParentAndCleanup:YES];
         _resetGameButton = nil;
         
         [_gameBoardLayer resetBoardForGameMode: _gameMode];
@@ -272,11 +271,6 @@
 }
 
 
-- (RRPlayer *)nextPlayer {
-    return ((_player1.playerColor == _playerColor)?_player2:_player1);
-}
-
-
 - (void)endTurn {
 
     if( ![_gameBoardLayer canPlaceTileAtGridLocation:CGPointRound(_gameBoardLayer.activeTile.positionInGrid)] ){
@@ -291,8 +285,6 @@
             
             if(     [[UDGKManager sharedManager] match]
                &&   [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ){
-                NSLog(@"send tileMove to location: %@", NSStringFromCGPoint(tileMove.positionInGrid));
-                
                 UDGKPacketTileMove packet = UDGKPacketTileMoveMake( tileMove );
                 [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
                                                              length: sizeof(UDGKPacketTileMove)];
@@ -337,12 +329,11 @@
     RRPlayer *currentPlayer = [self currentPlayer];
     
     if( [currentPlayer isKindOfClass:[RRAIPlayer class]] ){
-        NSLog(@"AI PLAYER?");
         [self makeMove:[(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer]];
-    }else if( _allPlayersInScene && [[UDGKManager sharedManager] match] ){
-        [self setUserInteractionEnabled: [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]]];
+    }else if( [[UDGKManager sharedManager] match] ){
+        [self setUserInteractionEnabled: (_allPlayersInScene && [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]])];
     }else{
-        [self setUserInteractionEnabled:NO];
+        [self setUserInteractionEnabled:YES];
     }
     
 }
@@ -464,17 +455,6 @@
         }
         case 2: {
             [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
-            
-            /*
-             // Ends the current participant's turn by quitting the match.  The caller must indicate the next participant and pass in updated matchData (if used)
-             [_match participantQuitInTurnWithOutcome:GKTurnBasedMatchOutcomeLost nextParticipant:(GKTurnBasedParticipant *)nextParticipant matchData:(NSData*)matchData completionHandler:(void(^)(NSError *error))completionHandler;
-             
-             // Abandon the match when it is not the current participant's turn.  In this there is no update to matchData and no need to set nextParticipant.
-             [_match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeLost withCompletionHandler:^(NSError *error) {
-                 
-             }];
-            */
-            
             break;
         }
     }
@@ -489,14 +469,19 @@
 - (void)gameWictoryLayer:(RRGameWictoryLayer *)gameMenuLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex {
     [gameMenuLayer dismiss];
     
-    _resetGameButton = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonReplay.png" highliteSpriteFrameName:@"RRButtonReplaySelected.png"];
-    [_resetGameButton setPosition:_buttonEndTurn.position];
-    [_resetGameButton addBlock: ^{
-        [[RRAudioEngine sharedEngine] stopAllEffects];
-        [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-        [self resetGame];
-    } forControlEvents: UDButtonEventTouchUpInside];
-    [self addChild:_resetGameButton z:-2];
+    if( [[UDGKManager sharedManager] isHost] ){
+        if( !_resetGameButton ){
+            _resetGameButton = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonReplay.png" highliteSpriteFrameName:@"RRButtonReplaySelected.png"];
+            [_resetGameButton setPosition:_buttonEndTurn.position];
+            [_resetGameButton addBlock: ^{
+                [[RRAudioEngine sharedEngine] stopAllEffects];
+                [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
+                
+                [self resetGame];
+            } forControlEvents: UDButtonEventTouchUpInside];
+            [self addChild:_resetGameButton z:-2];
+        }
+    }
 }
 
 
@@ -537,8 +522,6 @@
     UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
     
     if( packetType == UDGKPacketTypeEnterScene && !_allPlayersInScene ){
-        NSLog(@"UDGKPacketTypeEnterScene");
-        
         _allPlayersInScene = YES;
         
         UDGKPacketEnterScene newPacket = *(UDGKPacketEnterScene *)packet;
@@ -548,14 +531,12 @@
                                                          length: sizeof(UDGKPacketEnterScene)];
         }
 
-        [self resetGame];
+        if( [[UDGKManager sharedManager] isHost] ){
+            [self resetGame];
+        }
     }else if ( packetType == UDGKPacketTypeResetGame ){
-        NSLog(@"UDGKPacketTypeResetGame");
-        
         [self resetGameWithSeed:(*(UDGKPacketResetGame *)packet).seed];
     }else if ( packetType == UDGKPacketTypeTileMove ){
-        NSLog(@"UDGKPacketTypeTileMove");
-        
         [self makeMove: (*(UDGKPacketTileMove *)packet).move];
     }
     

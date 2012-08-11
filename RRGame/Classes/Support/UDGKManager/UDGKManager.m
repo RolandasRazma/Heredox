@@ -99,6 +99,8 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 
 - (BOOL)sendPacketToAllPlayers:(const void *)packet length:(NSUInteger)length {
+    if( !_match ) return NO;
+    
     [self packet:packet fromPlayerID: [self playerID]];
 
     return [_match sendDataToAllPlayers: [NSData dataWithBytes:packet length:length]
@@ -108,6 +110,8 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 
 - (BOOL)sendPacket:(const void *)packet length:(NSUInteger)length toPlayers:(NSArray *)playerIDs {
+    if( !_match ) return NO;
+    
     if ( [playerIDs containsObject: [self playerID]] ) {
         [self packet:packet fromPlayerID: [self playerID]];
     }

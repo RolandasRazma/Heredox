@@ -22,15 +22,6 @@
 }
 
 
-- (BOOL)isEqual:(id)object {
-    if( [object isKindOfClass:[GKTurnBasedParticipant class]] && [[(GKTurnBasedParticipant *)object playerID] isEqualToString:_playerID] ) return YES;
-    if( [object isKindOfClass:[RRPlayer class]] && [[(RRPlayer *)object playerID] isEqualToString:_playerID] ) return YES;
-    if( [object isKindOfClass:[GKLocalPlayer class]] && [[(GKLocalPlayer *)object playerID] isEqualToString:_playerID] ) return YES;
-
-    return (self == object);
-}
-
-
 #pragma mark -
 #pragma mark RRPlayer
 

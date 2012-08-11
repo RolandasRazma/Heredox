@@ -30,7 +30,7 @@
         RRGameLayer *gameLayer;
         
         if( [[UDGKManager sharedManager] match] ){
-            gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:(( [[UDGKManager sharedManager] isHost] )?playerColor:((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack))];
+            gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:RRPlayerColorWhite];
             
             // Host is player1
             if( [[UDGKManager sharedManager] isHost] ){
