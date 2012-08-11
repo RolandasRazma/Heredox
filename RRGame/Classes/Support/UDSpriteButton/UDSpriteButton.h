@@ -40,6 +40,6 @@ typedef NSUInteger UDButtonEvents;
 - (id)initWithSpriteFile:(NSString *)fileName;
 - (id)initWithSpriteFrameName:(NSString *)spriteFrameName highliteSpriteFrameName:(NSString *)highliteSpriteFrameName;
 
-- (void)addBlock:(BasicBlock)block forControlEvents:(UDButtonEvents)controlEvents;
+- (void)addBlock:(void (^)(void))block forControlEvents:(UDButtonEvents)controlEvents;
 
 @end

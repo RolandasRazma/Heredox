@@ -8,7 +8,6 @@
 #import "UDSpriteButton.h"
 #import "CCTouchDispatcher.h"
 #import "cocos2d.h"
-#import "BlocksAdditions.h"
 
 
 @interface UDSpriteButton ()
@@ -73,7 +72,7 @@
 }
 
 
-- (void)addBlock:(BasicBlock)block forControlEvents:(UDButtonEvents)controlEvents {
+- (void)addBlock:(void (^)(void))block forControlEvents:(UDButtonEvents)controlEvents {
     if( !_allBlocks ){
         _allBlocks = [[NSMutableDictionary alloc] initWithCapacity:2];
     }
@@ -98,8 +97,9 @@
 
 - (void)invokeControlEvent:(UDButtonEvents)controlEvent {
     NSMutableArray *blocks = [_allBlocks objectForKey:[NSNumber numberWithInt:controlEvent]];
-    for( BasicBlock block in blocks ){
-        block();
+    for( id block in blocks ){
+        void (^callbackBlock)(void) = block;
+        callbackBlock();
     }
 }
 

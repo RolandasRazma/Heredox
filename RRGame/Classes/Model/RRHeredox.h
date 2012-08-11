@@ -32,16 +32,8 @@ typedef struct RRTileMove {
 extern const RRTileMove RRTileMoveZero;
 
 
-@interface RRHeredox : NSObject {
-    NSMutableDictionary *_effectsCache;
-}
+@interface RRHeredox : NSObject
 
 + (RRHeredox *)sharedInstance;
-
-- (void)playBackgroundMusic:(NSString *)filePath;
-- (ALuint)playEffect:(NSString *)filePath;
-- (ALuint)playEffect:(NSString *)filePath withoutStopingPrevious:(BOOL)withoutStopingPrevious;
-- (void)stopEffect:(NSString *)filePath;
-- (void)stopAllEffects;
 
 @end

@@ -13,9 +13,9 @@
 
 - (void)onEnter {
 	if( back_ ){
-        [[RRHeredox sharedInstance] playEffect:@"RRSceneTransitionBack.mp3"];
+        [[RRAudioEngine sharedEngine] replayEffect:@"RRSceneTransitionBack.mp3"];
     }else{
-        [[RRHeredox sharedInstance] playEffect:@"RRSceneTransition.mp3"];
+        [[RRAudioEngine sharedEngine] replayEffect:@"RRSceneTransition.mp3"];
     }
     
 	[super onEnter];

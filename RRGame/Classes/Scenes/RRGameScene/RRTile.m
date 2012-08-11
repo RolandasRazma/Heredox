@@ -255,7 +255,7 @@
     [self setScale:1.1f];
     [self setZOrder:NSIntegerMax];
     
-    [[RRHeredox sharedInstance] playEffect:@"RRLiftTile.mp3"];
+    [[RRAudioEngine sharedEngine] replayEffect:@"RRLiftTile.mp3"];
     
     _wasLifted = YES;
 }
@@ -267,7 +267,7 @@
     [self setScale:1.0f];
     [self setZOrder: 1000 +(int)roundf(-self.position.y)];
     
-    [[RRHeredox sharedInstance] playEffect:@"RRPlaceTile.mp3"];
+    [[RRAudioEngine sharedEngine] replayEffect:@"RRPlaceTile.mp3"];
 }
 
 

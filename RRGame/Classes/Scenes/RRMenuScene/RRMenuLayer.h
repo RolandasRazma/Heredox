@@ -7,8 +7,9 @@
 //
 
 #import "CCLayer.h"
+#import "RRMenuMultiplayerLayer.h"
 
 
-@interface RRMenuLayer : CCLayer
+@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate>
 
 @end

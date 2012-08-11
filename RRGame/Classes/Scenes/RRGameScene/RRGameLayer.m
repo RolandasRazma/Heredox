@@ -107,7 +107,7 @@
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
         [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
-        [buttonHome addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonHome addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonHome];
         
 
@@ -206,7 +206,7 @@
         
         for( NSUInteger rotation=0; rotation<tileMove.rotation; rotation += 90 ){
             [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
-            [actions addObject:[CCCallBlock actionWithBlock:^{ [[RRHeredox sharedInstance] playEffect:@"RRTileTurn.mp3"]; }]];
+            [actions addObject:[CCCallBlock actionWithBlock:^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRTileTurn.mp3"]; }]];
             [actions addObject: [CCRotateBy actionWithDuration:0.2f angle:90]];
             [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
             [actions addObject: [CCDelayTime actionWithDuration:0.2f]];
@@ -369,7 +369,7 @@
     }
     
     if( soundEffext ){
-        [[RRHeredox sharedInstance] playEffect:soundEffext withoutStopingPrevious:YES];
+        [[RRAudioEngine sharedEngine] playEffect:soundEffext];
     }
 }
 
@@ -410,8 +410,8 @@
     _resetGameButton = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonReplay.png" highliteSpriteFrameName:@"RRButtonReplaySelected.png"];
     [_resetGameButton setPosition:_buttonEndTurn.position];
     [_resetGameButton addBlock: ^{
-        [[RRHeredox sharedInstance] stopAllEffects];
-        [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"];
+        [[RRAudioEngine sharedEngine] stopAllEffects];
+        [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
         [self resetGame];
     } forControlEvents: UDButtonEventTouchUpInside];
     [self addChild:_resetGameButton z:-2];

@@ -9,6 +9,7 @@
 #import "RRHeredox.h"
 #import "RRAIPlayer.h"
 
+
 const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NSIntegerMin };
 
 
@@ -30,10 +31,9 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NS
         if( ![[NSUserDefaults standardUserDefaults] boolForKey:@"RRHeredoxOptionsSet"] ){
             [self initUserDefaults];
         }
-        _effectsCache = [[NSMutableDictionary alloc] init];
-        
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume: [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"]];
-        [[SimpleAudioEngine sharedEngine] setEffectsVolume:         [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSFXLevel"]];
+
+        [[RRAudioEngine sharedEngine] setBackgroundMusicVolume: [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSoundLevel"]];
+        [[RRAudioEngine sharedEngine] setEffectsVolume:         [[NSUserDefaults standardUserDefaults] floatForKey:@"RRHeredoxSFXLevel"]];
     }
     return self;
 }
@@ -46,59 +46,6 @@ const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NS
     [[NSUserDefaults standardUserDefaults] setInteger:RRAILevelDeacon   forKey:@"RRHeredoxAILevel"];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-- (void)playBackgroundMusic:(NSString *)filePath {
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filePath];
-}
-
-
-- (ALuint)playEffect:(NSString *)filePath {
-    return [self playEffect: filePath withoutStopingPrevious:NO];
-}
-
-
-- (ALuint)playEffect:(NSString *)filePath withoutStopingPrevious:(BOOL)withoutStopingPrevious {
-    @synchronized( _effectsCache ){
-        if( withoutStopingPrevious == NO ){
-            [self stopEffect:filePath];
-        }
-        
-        ALuint effectID = [[SimpleAudioEngine sharedEngine] playEffect:filePath];
-        
-        [_effectsCache setObject:[NSNumber numberWithUnsignedInteger:effectID] forKey:filePath];
-        
-        if( effectID == CD_NO_SOURCE ){
-#if TARGET_IPHONE_SIMULATOR
-            NSAssert1(NO, @"No source for sound file %@", filePath);
-#endif
-            NSLog(@"No source for sound file %@", filePath);
-        }
-        
-        return effectID;
-    }
-}
-
-
-- (void)stopEffect:(NSString *)filePath {
-    @synchronized( _effectsCache ){
-        NSNumber *effectID = nil;
-        if( (effectID = [_effectsCache objectForKey:filePath]) ){
-            [[SimpleAudioEngine sharedEngine] stopEffect: (ALuint)[effectID unsignedIntegerValue]];
-            [_effectsCache removeObjectForKey:filePath];
-        }
-    }
-}
-
-
-- (void)stopAllEffects {
-    @synchronized( _effectsCache ){
-        for( NSNumber *effect in [_effectsCache allValues] ){
-            [[SimpleAudioEngine sharedEngine] stopEffect: (ALuint)[effect unsignedIntegerValue]];
-        }
-        [_effectsCache removeAllObjects];
-    }
 }
 
 

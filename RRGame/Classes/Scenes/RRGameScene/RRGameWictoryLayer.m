@@ -41,8 +41,8 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
                       nil]];
     
     
-    [[RRHeredox sharedInstance] stopAllEffects];
-    [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%u.mp3", _playerColorWictorious]];
+    [[RRAudioEngine sharedEngine] stopAllEffects];
+    [[RRAudioEngine sharedEngine] replayEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%u.mp3", _playerColorWictorious]];
 }
 
 
@@ -82,7 +82,7 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
         
         // RRButtonQuit
         UDSpriteButton *buttonContinue = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonContinue.png" highliteSpriteFrameName:@"RRButtonContinueSelected.png"];
-        [buttonContinue addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [_delegate gameWictoryLayer:self didSelectButtonAtIndex:0];  } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonContinue addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameWictoryLayer:self didSelectButtonAtIndex:0];  } forControlEvents: UDButtonEventTouchUpInside];
         [_menu addChild:buttonContinue];
         
         

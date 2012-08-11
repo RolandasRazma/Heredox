@@ -26,7 +26,7 @@
 - (void)onEnter {
     [super onEnter];
     
-    [[RRHeredox sharedInstance] playEffect:@"RRGameMenuIn.mp3"];
+    [[RRAudioEngine sharedEngine] replayEffect:@"RRGameMenuIn.mp3"];
 
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];
@@ -65,19 +65,19 @@
         
         // RRButtonResume
         UDSpriteButton *buttonResume = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonResume.png" highliteSpriteFrameName:@"RRButtonResumeSelected.png"];
-        [buttonResume addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonResume addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInside];
         [_menu addChild:buttonResume];
         
         
         // RRButtonRestart
         UDSpriteButton *buttonRestart = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonRestart.png" highliteSpriteFrameName:@"RRButtonRestartSelected.png"];
-        [buttonRestart addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonRestart addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInside];
         [_menu addChild:buttonRestart];
         
         
         // RRButtonQuit
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];
-        [buttonQuit addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonQuit addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInside];
         [_menu addChild:buttonQuit];
         
         CCSprite *textVolume = [CCSprite spriteWithSpriteFrameName:@"RRTextVolume.png"];
@@ -171,8 +171,8 @@
     [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSFXLevel"];
     [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSoundLevel"];
     
-    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume: sliderValue];
-    [[SimpleAudioEngine sharedEngine] setEffectsVolume:         sliderValue];
+    [[RRAudioEngine sharedEngine] setBackgroundMusicVolume: sliderValue];
+    [[RRAudioEngine sharedEngine] setEffectsVolume:         sliderValue];
 }
 
 

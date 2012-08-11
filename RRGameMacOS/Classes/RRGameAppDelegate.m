@@ -20,7 +20,7 @@
 
 - (void)dealloc {
     CC_DIRECTOR_END();
-    
+
 	[_window release];
 	[super dealloc];
 }

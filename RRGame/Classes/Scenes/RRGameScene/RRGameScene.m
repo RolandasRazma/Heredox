@@ -51,13 +51,13 @@
 - (void)onExitTransitionDidStart {
     [super onExitTransitionDidStart];
     
-    [[RRHeredox sharedInstance] stopEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
+    [[RRAudioEngine sharedEngine] stopEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
 }
 
 
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
-    [[RRHeredox sharedInstance] playEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
+    [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
 }
 
 

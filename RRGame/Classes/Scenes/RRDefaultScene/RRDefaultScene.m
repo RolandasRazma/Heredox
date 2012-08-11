@@ -32,7 +32,7 @@
 - (void)onEnter {
     [super onEnter];
 
-    [[RRHeredox sharedInstance] playEffect:@"RRDefaultScene.mp3"];
+    [[RRAudioEngine sharedEngine] replayEffect:@"RRDefaultScene.mp3"];
 }
 
 

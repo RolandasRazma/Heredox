@@ -18,7 +18,7 @@
 		<string>Icon@2x~ipad.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.ud7.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.ud7.testapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

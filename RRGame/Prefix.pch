@@ -6,11 +6,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <GameKit/GameKit.h>
 
-    #import "TestFlight.h"
     #import "cocos2d.h"
 
-    #import "BlocksAdditions.h"
     #import "UDMath.h"
     #import "UDLog.h"
     #import "UDMacros.h"
@@ -19,7 +18,8 @@
     #import "UDActionScaleTo.h"
     #import "UDActionCallFunc.h"
     #import "UDActionDestroy.h"
-    #import "SimpleAudioEngine.h"
 
+    #import "RRAudioEngine.h"
     #import "RRHeredox.h"
+
 #endif

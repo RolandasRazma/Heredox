@@ -41,13 +41,13 @@
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonBack.png" highliteSpriteFrameName:@"RRButtonBackSelected.png"];
         [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
-        [buttonHome addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonHome addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonHome];
         
         
         // Add start game button
         UDSpriteButton *buttonStartGame = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonStartGame.png" highliteSpriteFrameName:@"RRButtonStartGameSelected.png"];
-        [buttonStartGame addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [self startGame]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonStartGame addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self startGame]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonStartGame];
      
         
@@ -108,8 +108,8 @@
     NSUInteger oldDificultyLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"];
 
     if( oldDificultyLevel != dificultyLevel ){
-        [[RRHeredox sharedInstance] stopEffect:[NSString stringWithFormat:@"RRAILevel%i.mp3", oldDificultyLevel]];
-        [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRAILevel%i.mp3", dificultyLevel]];
+        [[RRAudioEngine sharedEngine] stopEffect:[NSString stringWithFormat:@"RRAILevel%i.mp3", oldDificultyLevel]];
+        [[RRAudioEngine sharedEngine] replayEffect:[NSString stringWithFormat:@"RRAILevel%i.mp3", dificultyLevel]];
     }
     
     [_buttonNovice setSelected:(dificultyLevel==RRAILevelNovice)];

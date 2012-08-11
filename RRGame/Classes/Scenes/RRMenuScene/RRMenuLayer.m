@@ -30,16 +30,16 @@
         
         // Add buttons
         UDSpriteButton *buttonPlayers1 = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonPlayers1.png" highliteSpriteFrameName:@"RRButtonPlayers1Selected.png"];
-        [buttonPlayers1 addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [self startGameWithNumberOfPlayers:1]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonPlayers1 addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self startGameWithNumberOfPlayers:1]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonPlayers1];
 
         UDSpriteButton *buttonPlayers2 = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonPlayers2.png" highliteSpriteFrameName:@"RRButtonPlayers2Selected.png"];
-        [buttonPlayers2 addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [self startGameWithNumberOfPlayers:2]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonPlayers2 addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self pickMultiplayerType]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonPlayers2];
         
         
         UDSpriteButton *buttonRules = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonHowToPlay.png" highliteSpriteFrameName:@"RRButtonHowToPlaySelected.png"];
-        [buttonRules addBlock: ^{ [[RRHeredox sharedInstance] playEffect:@"RRButtonClick.mp3"]; [self showRules]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonRules addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self showRules]; } forControlEvents: UDButtonEventTouchUpInside];
         [self addChild:buttonRules];
         
         
@@ -66,7 +66,31 @@
 
 
 #pragma mark -
+#pragma mark CCNode
+
+
+- (void)onEnterTransitionDidFinish {
+    [super onEnterTransitionDidFinish];
+    
+    if( isGameCenterAvailable() ){
+        if ( [[GKLocalPlayer localPlayer] isAuthenticated] == NO ) {
+            [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:NULL];
+        }
+    }
+}
+
+
+#pragma mark -
 #pragma mark UDMenuLayer
+
+
+- (void)pickMultiplayerType {
+    RRMenuMultiplayerLayer *menuMultiplayerLayer = [RRMenuMultiplayerLayer node];
+    [menuMultiplayerLayer setDelegate: self];
+    [self addChild:menuMultiplayerLayer];
+    
+    [self startGameWithNumberOfPlayers:2];
+}
 
 
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
