@@ -144,6 +144,8 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
 
 
 - (void)resetBoardForGameMode:(RRGameMode)gameMode {
+    [_activeTile stopAllActions];
+    
     _activeTile = nil;
     
     [self removeAllChildrenWithCleanup:YES];
