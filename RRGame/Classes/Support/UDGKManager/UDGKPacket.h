@@ -13,7 +13,8 @@ typedef enum UDGKPacketType : NSUInteger {
     UDGKPacketTypePickHost,
     UDGKPacketTypeEnterScene,
     UDGKPacketTypePickColor,
-    UDGKPacketTypeTileMove
+    UDGKPacketTypeTileMove,
+    UDGKPacketTypeResetGame,
 } UDGKPacketType;
 
 
@@ -39,11 +40,17 @@ typedef struct UDGKPacketPickColor {
     RRPlayerColor   color;
 } UDGKPacketPickColor;
 
+
 typedef struct UDGKPacketTileMove {
 	UDGKPacketType  type;
     RRTileMove      move;
 } UDGKPacketTileMove;
 
+
+typedef struct UDGKPacketResetGame {
+	UDGKPacketType  type;
+    NSUInteger      seed;
+} UDGKPacketResetGame;
 
 
 
@@ -77,5 +84,14 @@ static UDGKPacketTileMove UDGKPacketTileMoveMake( RRTileMove move ) {
         move
     };
 }
+
+
+static UDGKPacketResetGame UDGKPacketResetGameMake( NSUInteger seed ) {
+    return (UDGKPacketResetGame){
+        UDGKPacketTypeResetGame,
+        seed
+    };
+}
+
 
 

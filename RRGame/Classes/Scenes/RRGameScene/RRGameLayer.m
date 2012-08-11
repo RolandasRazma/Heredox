@@ -44,7 +44,6 @@
 
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
-    [self resetGame];
 
     if( [[UDGKManager sharedManager] match] ){
         [self setUserInteractionEnabled:NO];
@@ -54,6 +53,8 @@
         UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 3 );
         [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
                                                      length: sizeof(UDGKPacketEnterScene)];
+    }else{
+        [self resetGame];
     }
 
 }
@@ -69,9 +70,12 @@
                                              selector: @selector(tileMovedToValidLocation) 
                                                  name: RRGameBoardLayerTileMovedToValidLocationNotification 
                                                object: nil];
-    
-    [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
-    [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeTileMove];
+    // If its a network multiplayer
+    if( [[UDGKManager sharedManager] match] ){
+        [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
+        [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeTileMove];
+        [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeResetGame];
+    }
 }
 
 
@@ -160,7 +164,19 @@
 
 
 - (void)resetGame {
-    [self resetDeckForGameMode:_gameMode];
+    [self resetGameWithSeed:time(NULL)];
+}
+
+
+- (void)resetGameWithSeed:(NSUInteger)gameSeed {
+    
+    if( [[UDGKManager sharedManager] match] && [[UDGKManager sharedManager] isHost] ){
+        UDGKPacketResetGame newPacket = UDGKPacketResetGameMake( gameSeed );
+        [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
+                                                     length: sizeof(UDGKPacketResetGame)];
+    }
+
+    [self resetDeckForGameMode:_gameMode withSeed:gameSeed];
     
     @synchronized( self ){
         _playerColor = _firstPlayerColor;
@@ -173,15 +189,17 @@
         
         [_gameBoardLayer resetBoardForGameMode: _gameMode];
         
-        [_gameBoardLayer setUserInteractionEnabled:YES];
+        [self setUserInteractionEnabled:YES];
     }
     
     [self newTurn];
 }
 
 
-- (void)resetDeckForGameMode:(RRGameMode)gameMode {
+- (void)resetDeckForGameMode:(RRGameMode)gameMode withSeed:(NSUInteger)gameSeed {
     @synchronized( self ){
+        _gameSeed = gameSeed;
+        
         for( RRTile *tile in _deck ){
             [self removeChild:tile cleanup:YES];
         }
@@ -214,12 +232,9 @@
         [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
         [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
         [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
-        
-        NSUInteger seed = time(NULL);
-        [_deck shuffleWithSeed:seed];
-        
-        NSLog(@"Game Seed: %u", seed);
-        
+
+        [_deck shuffleWithSeed:_gameSeed];
+
         // Place tiles on game board
         CGFloat angle   = 0;
         CGFloat offsetY = 0;
@@ -274,8 +289,10 @@
         
         if( [_gameBoardLayer haltTilePlaces] ){
             
-            if( [[UDGKManager sharedManager] match] ){
+            if(     [[UDGKManager sharedManager] match]
+               &&   [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ){
                 NSLog(@"send tileMove to location: %@", NSStringFromCGPoint(tileMove.positionInGrid));
+                
                 UDGKPacketTileMove packet = UDGKPacketTileMoveMake( tileMove );
                 [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
                                                              length: sizeof(UDGKPacketTileMove)];
@@ -320,9 +337,10 @@
     RRPlayer *currentPlayer = [self currentPlayer];
     
     if( [currentPlayer isKindOfClass:[RRAIPlayer class]] ){
+        NSLog(@"AI PLAYER?");
         [self makeMove:[(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer]];
     }else if( _allPlayersInScene && [[UDGKManager sharedManager] match] ){
-
+        [self setUserInteractionEnabled: [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]]];
     }else{
         [self setUserInteractionEnabled:NO];
     }
@@ -331,7 +349,7 @@
 
 
 - (void)makeMove:(RRTileMove)tileMove {
-    [_gameBoardLayer setUserInteractionEnabled:NO];
+    [self setUserInteractionEnabled:NO];
     
     NSMutableArray *actions = [NSMutableArray array];
     [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
@@ -352,7 +370,7 @@
     
     [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
     [actions addObject: [CCCallBlock actionWithBlock:^{
-        [_gameBoardLayer setUserInteractionEnabled:YES];
+        [self setUserInteractionEnabled:YES];
     }]];
     [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
     
@@ -529,6 +547,12 @@
             [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
                                                          length: sizeof(UDGKPacketEnterScene)];
         }
+
+        [self resetGame];
+    }else if ( packetType == UDGKPacketTypeResetGame ){
+        NSLog(@"UDGKPacketTypeResetGame");
+        
+        [self resetGameWithSeed:(*(UDGKPacketResetGame *)packet).seed];
     }else if ( packetType == UDGKPacketTypeTileMove ){
         NSLog(@"UDGKPacketTypeTileMove");
         

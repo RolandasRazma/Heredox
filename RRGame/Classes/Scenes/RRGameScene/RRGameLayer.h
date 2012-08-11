@@ -33,6 +33,7 @@
     UDSpriteButton      *_resetGameButton;
     
     BOOL                _allPlayersInScene;
+    NSUInteger          _gameSeed;
 }
 
 @property (nonatomic, retain) RRPlayer *player1;

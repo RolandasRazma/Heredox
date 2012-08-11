@@ -27,10 +27,11 @@
 - (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers playerColor:(RRPlayerColor)playerColor {
     if( (self = [self init]) ){
         _numberOfPlayers = numberOfPlayers;
-        
-        RRGameLayer *gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:(( _numberOfPlayers == 1 )?RRPlayerColorWhite:playerColor)];
+        RRGameLayer *gameLayer;
         
         if( [[UDGKManager sharedManager] match] ){
+            gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:(( [[UDGKManager sharedManager] isHost] )?playerColor:((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack))];
+            
             // Host is player1
             if( [[UDGKManager sharedManager] isHost] ){
                 RRPlayer *player1 = [RRPlayer playerWithPlayerColor: playerColor];
@@ -55,6 +56,7 @@
                 }
             }
         }else{
+            gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:(( _numberOfPlayers == 1 )?RRPlayerColorWhite:playerColor)];
             [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
             
             if( numberOfPlayers == 1 ){
@@ -64,7 +66,7 @@
                 [gameLayer setPlayer2: player];
             }
         }
-
+        
         [self addChild: gameLayer];
     }
     return self;
