@@ -180,6 +180,8 @@
             [self addChild:gameWictoryLayer z:1000];
         }
         
+    }else{
+        [[RRAudioEngine sharedEngine] replayEffect:@"RRPlaceTileError.mp3"];
     }
     
 }

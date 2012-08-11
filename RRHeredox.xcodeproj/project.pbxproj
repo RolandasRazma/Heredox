@@ -347,6 +347,8 @@
 		F0A35DCB15D6691F00B2BDCF /* RRMenuMultiplayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A35DC915D6691F00B2BDCF /* RRMenuMultiplayerLayer.m */; };
 		F0A35DD015D6701900B2BDCF /* RRAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A35DCF15D6701800B2BDCF /* RRAudioEngine.m */; };
 		F0A35DD115D6701900B2BDCF /* RRAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A35DCF15D6701800B2BDCF /* RRAudioEngine.m */; };
+		F0A35DD315D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0A35DD215D681AF00B2BDCF /* RRPlaceTileError.mp3 */; };
+		F0A35DD415D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0A35DD215D681AF00B2BDCF /* RRPlaceTileError.mp3 */; };
 		F0C1ECFD15CBB14400BB265F /* RRBackgroundRules.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ECFB15CBB14300BB265F /* RRBackgroundRules.png */; };
 		F0C1ECFF15CBB14400BB265F /* RRBackgroundRules-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ECFC15CBB14300BB265F /* RRBackgroundRules-hd.png */; };
 		F0C1ED0315CBB38700BB265F /* RRBackgroundPlayerColor.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C1ED0115CBB38700BB265F /* RRBackgroundPlayerColor.png */; };
@@ -724,6 +726,7 @@
 		F0A35DC915D6691F00B2BDCF /* RRMenuMultiplayerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRMenuMultiplayerLayer.m; sourceTree = "<group>"; };
 		F0A35DCE15D6701800B2BDCF /* RRAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAudioEngine.h; sourceTree = "<group>"; };
 		F0A35DCF15D6701800B2BDCF /* RRAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAudioEngine.m; sourceTree = "<group>"; };
+		F0A35DD215D681AF00B2BDCF /* RRPlaceTileError.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRPlaceTileError.mp3; sourceTree = "<group>"; };
 		F0C1ECFB15CBB14300BB265F /* RRBackgroundRules.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundRules.png; sourceTree = "<group>"; };
 		F0C1ECFC15CBB14300BB265F /* RRBackgroundRules-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundRules-hd.png"; sourceTree = "<group>"; };
 		F0C1ED0115CBB38700BB265F /* RRBackgroundPlayerColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundPlayerColor.png; sourceTree = "<group>"; };
@@ -814,6 +817,7 @@
 				F09843DC15D2DCE90096F468 /* RRPlaceTile.mp3 */,
 				F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */,
 				F09843D815D2DB1D0096F468 /* RRTileTurn.mp3 */,
+				F0A35DD215D681AF00B2BDCF /* RRPlaceTileError.mp3 */,
 				F010640115C71B44003BB881 /* RRPlayerColor1-points1-s1.mp3 */,
 				F01063FA15C71B42003BB881 /* RRPlayerColor1-points1-s2.mp3 */,
 				F01063FF15C71B43003BB881 /* RRPlayerColor1-points2-s1.mp3 */,
@@ -1727,6 +1731,7 @@
 				F09843E315D2E16E0096F468 /* RRButtonClick.mp3 in Resources */,
 				F09843E615D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */,
 				F01AC58C15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 in Resources */,
+				F0A35DD315D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1777,6 +1782,7 @@
 				F09843E415D2E16E0096F468 /* RRButtonClick.mp3 in Resources */,
 				F09843E715D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */,
 				F01AC58D15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 in Resources */,
+				F0A35DD415D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
