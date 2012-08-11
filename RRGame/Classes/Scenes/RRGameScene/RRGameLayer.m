@@ -189,15 +189,21 @@
 }
 
 
+- (RRPlayer *)currentPlayer {
+    return ((_player1.playerColor == _playerColor)?_player1:_player2);
+}
+
+
 - (void)newTurn {
     [self takeNewTile];
     
-    if(   (_player1.playerColor == _playerColor && [_player1 isKindOfClass:[RRAIPlayer class]])
-       || (_player2.playerColor == _playerColor && [_player2 isKindOfClass:[RRAIPlayer class]]) ){
+    RRPlayer *currentPlayer = [self currentPlayer];
+    
+    if( [currentPlayer isKindOfClass:[RRAIPlayer class]] ){
         
         [_gameBoardLayer setUserInteractionEnabled:NO];
 
-        RRTileMove tileMove = [(RRAIPlayer *)((_player1.playerColor == _playerColor)?_player1:_player2) bestMoveOnBoard:_gameBoardLayer];
+        RRTileMove tileMove = [(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer];
 
         
         NSMutableArray *actions = [NSMutableArray array];
@@ -224,12 +230,12 @@
         [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
         
         [_gameBoardLayer.activeTile runAction:[CCSequence actionsWithArray: actions]];
+        
+    }else if ( !_match || (_match && [currentPlayer isEqual: _match.currentParticipant]) ){
+        [self setUserInteractionEnabled:YES];
+        
     }else{
-        if( _deck.count == 0 ){
-            [_buttonEndTurn stopAllActions];
-            [_buttonEndTurn setOpacity:255];
-            [_buttonEndTurn setUserInteractionEnabled:YES];
-        }
+        [self setUserInteractionEnabled:NO];
     }
     
 }
@@ -254,6 +260,9 @@
     
     if( _deck.count ){
         [(RRTile *)[_deck objectAtIndex:0] showEndTurnTextAnimated:YES];
+    }else{
+        [_buttonEndTurn stopAllActions];
+        [_buttonEndTurn setOpacity:255];
     }
     
     return tile;
@@ -339,8 +348,7 @@
         
         [_buttonEndTurn stopAllActions];
         [_buttonEndTurn setPosition: [(RRTile *)[_deck objectAtIndex: _deck.count -1] position]];
-        [_buttonEndTurn setOpacity:255];
-        [_buttonEndTurn setUserInteractionEnabled:NO];
+        [_buttonEndTurn setOpacity:0];
     }
 }
 
@@ -441,6 +449,12 @@
 
 #pragma mark -
 #pragma mark UDLayer
+
+
+- (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
+    [super setUserInteractionEnabled:userInteractionEnabled];
+    [_buttonEndTurn setUserInteractionEnabled:userInteractionEnabled];
+}
 
 
 - (BOOL)touchBeganAtLocation:(CGPoint)location {
