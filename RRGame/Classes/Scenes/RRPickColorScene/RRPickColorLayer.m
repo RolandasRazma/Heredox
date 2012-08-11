@@ -18,6 +18,16 @@
 
 
 #pragma mark -
+#pragma mark NSObject
+
+
+- (void)dealloc {
+    [_match release];
+    [super dealloc];
+}
+
+
+#pragma mark -
 #pragma mark UDPickColorLayer
 
 
@@ -98,20 +108,38 @@
 }
 
 
+- (id)initWithMatch:(GKTurnBasedMatch *)match {
+    if( (self = [self initWithNumberOfPlayers:match.participants.count]) ){
+        _match = [match retain];
+        
+        if ( ![_match.currentParticipant.playerID isEqualToString:[GKLocalPlayer localPlayer].playerID] ) {
+            [self setUserInteractionEnabled:NO];
+            #warning TODO: add "wait til host picks color"
+        }
+    }
+    return self;
+}
+
+
 - (void)startGameWithFirstPlayerColor:(RRPlayerColor)playerColor {
 
     [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", playerColor]];
     
-    if( _numberOfPlayers == 1 ){
-        RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
-        [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:difficultyScene]];
-        [difficultyScene release];
-    }else{
-        RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:playerColor];
+    if( _match ){
+        RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed match:_match playerColor:playerColor];
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:gameScene]];
         [gameScene release];
+    }else{
+        if( _numberOfPlayers == 1 ){
+            RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
+            [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:difficultyScene]];
+            [difficultyScene release];
+        }else{
+            RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:playerColor];
+            [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:gameScene]];
+            [gameScene release];
+        }
     }
-    
 }
 
 

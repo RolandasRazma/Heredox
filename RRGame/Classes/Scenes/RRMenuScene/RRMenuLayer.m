@@ -72,11 +72,15 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
     
+#if TARGET_IPHONE_SIMULATOR
     if( isGameCenterAvailable() ){
+        [[GKTurnBasedEventHandler sharedTurnBasedEventHandler] setDelegate:self];
+        
         if ( [[GKLocalPlayer localPlayer] isAuthenticated] == NO ) {
             [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:NULL];
         }
     }
+#endif
 }
 
 
@@ -85,11 +89,13 @@
 
 
 - (void)pickMultiplayerType {
+#if TARGET_IPHONE_SIMULATOR
     RRMenuMultiplayerLayer *menuMultiplayerLayer = [RRMenuMultiplayerLayer node];
     [menuMultiplayerLayer setDelegate: self];
     [self addChild:menuMultiplayerLayer];
-    
+#else
     [self startGameWithNumberOfPlayers:2];
+#endif
 }
 
 
@@ -106,6 +112,86 @@
     
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRRulesScene node]]];
 
+}
+
+
+#pragma mark -
+#pragma mark RRMenuMultiplayerLayerDelegate
+
+
+- (void)menuMultiplayerLayer:(RRMenuMultiplayerLayer *)menuMultiplayerLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex {
+    if( buttonIndex == 0 ){
+        [self startGameWithNumberOfPlayers:2];
+        return;
+    }else if( buttonIndex == 1 ){
+        GKMatchRequest *request = [[GKMatchRequest alloc] init];
+        [request setMinPlayers: 2];
+        [request setMaxPlayers: 2];
+        
+        GKTurnBasedMatchmakerViewController *turnBasedMatchmakerViewController = [[GKTurnBasedMatchmakerViewController alloc] initWithMatchRequest:request];
+        [turnBasedMatchmakerViewController setTurnBasedMatchmakerDelegate: self];
+        [turnBasedMatchmakerViewController setShowExistingMatches: YES];
+
+        [[CCDirector sharedDirector] presentModalViewController:turnBasedMatchmakerViewController animated:YES];
+
+        [turnBasedMatchmakerViewController release];
+        [request release];
+    }
+    
+    [menuMultiplayerLayer dismiss];
+}
+
+
+#pragma mark -
+#pragma mark GKTurnBasedMatchmakerViewControllerDelegate
+
+
+// The user has cancelled
+- (void)turnBasedMatchmakerViewControllerWasCancelled:(GKTurnBasedMatchmakerViewController *)viewController {
+    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+}
+
+
+// Matchmaking has failed with an error
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
+    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+}
+
+
+// A turned-based match has been found, the game should start
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match {
+    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+    
+    RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithMatch:match];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:pickColorScene]];
+    [pickColorScene release];
+}
+
+
+// Called when a users chooses to quit a match and that player has the current turn.
+// The developer should call playerQuitInTurnWithOutcome:nextPlayer:matchData:completionHandler: on the match passing in appropriate values.
+// They can also update matchOutcome for other players as appropriate.
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match {
+    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark -
+#pragma mark GKTurnBasedEventHandlerDelegate
+
+
+// If Game Center initiates a match the developer should create a GKTurnBasedMatch from playersToInvite and present a GKTurnbasedMatchmakerViewController.
+- (void)handleInviteFromGameCenter:(NSArray *)playersToInvite {
+    NSLog(@"handleInviteFromGameCenter");
+}
+
+// handleTurnEventForMatch is called when a turn is passed to another participant.  Note this may arise from one of the following events:
+//      The local participant has accepted an invite to a new match
+//      The local participant has been passed the turn for an existing match
+//      Another participant has made a turn in an existing match
+// The application needs to be prepared to handle this even while the participant might be engaged in a different match
+- (void)handleTurnEventForMatch:(GKTurnBasedMatch *)match {
+    NSLog(@"handleTurnEventForMatch");
 }
 
 

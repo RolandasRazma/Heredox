@@ -10,10 +10,12 @@
 
 
 @interface RRPlayer : NSObject {
-    RRPlayerColor _playerColor;
+    RRPlayerColor   _playerColor;
+    NSString        *_playerID;
 }
 
 @property (nonatomic, readonly) RRPlayerColor playerColor;
+@property (nonatomic, retain) NSString *playerID;
 
 + (id)playerWithPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithPlayerColor:(RRPlayerColor)playerColor;

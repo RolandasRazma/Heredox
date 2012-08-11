@@ -11,18 +11,20 @@
 
 
 @interface RRPickColorLayer : UDLayer {
-    NSUInteger _numberOfPlayers;
+    NSUInteger          _numberOfPlayers;
+    GKTurnBasedMatch    *_match;
     
-    CGRect     _upperRect;
-    UDTriangle _upperTriangle;
-    CGRect     _lowerRect;
-    UDTriangle _lowerTriangle;
+    CGRect              _upperRect;
+    UDTriangle          _upperTriangle;
+    CGRect              _lowerRect;
+    UDTriangle          _lowerTriangle;
     
-    CCSprite    *_backgroundPlayerWhiteSelectedSprite;
-    CCSprite    *_backgroundPlayerBlackSelectedSprite;
+    CCSprite            *_backgroundPlayerWhiteSelectedSprite;
+    CCSprite            *_backgroundPlayerBlackSelectedSprite;
 }
 
 + (id)layerWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
 - (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
+- (id)initWithMatch:(GKTurnBasedMatch *)match;
 
 @end

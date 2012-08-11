@@ -2,6 +2,10 @@
 // Prefix header for all source files of the 'Test' target in the 'Test' project
 //
 
+__asm__(".weak_reference _OBJC_CLASS_$_GKTurnBasedMatchmakerViewControllerDelegate");
+__asm__(".weak_reference _OBJC_CLASS_$_GKTurnBasedMatch");
+__asm__(".weak_reference _OBJC_CLASS_$_GKTurnBasedEventHandlerDelegate");
+
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
@@ -18,6 +22,7 @@
     #import "UDActionScaleTo.h"
     #import "UDActionCallFunc.h"
     #import "UDActionDestroy.h"
+    #import "UDSpriteButton.h"
 
     #import "RRAudioEngine.h"
     #import "RRHeredox.h"

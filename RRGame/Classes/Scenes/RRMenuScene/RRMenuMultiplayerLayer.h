@@ -14,13 +14,20 @@
 
 @interface RRMenuMultiplayerLayer : UDLayer {
     id <RRMenuMultiplayerLayerDelegate> _delegate;
+    
+    CCLayerColor            *_colorBackground;
+    CCSprite                *_menu;
 }
 
 @property (nonatomic, assign) id <RRMenuMultiplayerLayerDelegate>delegate;
+
+- (void)dismiss;
 
 @end
 
 
 @protocol RRMenuMultiplayerLayerDelegate <NSObject>
+
+- (void)menuMultiplayerLayer:(RRMenuMultiplayerLayer *)menuMultiplayerLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex;
 
 @end

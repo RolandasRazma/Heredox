@@ -26,8 +26,10 @@
 
 - (void)dealloc {
     [_deck release];
+    
     [_player1 release];
     [_player2 release];
+    [_match release];
     
     [super dealloc];
 }
@@ -401,6 +403,17 @@
         }
         case 2: {
             [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+            
+            /*
+             // Ends the current participant's turn by quitting the match.  The caller must indicate the next participant and pass in updated matchData (if used)
+             [_match participantQuitInTurnWithOutcome:GKTurnBasedMatchOutcomeLost nextParticipant:(GKTurnBasedParticipant *)nextParticipant matchData:(NSData*)matchData completionHandler:(void(^)(NSError *error))completionHandler;
+             
+             // Abandon the match when it is not the current participant's turn.  In this there is no update to matchData and no need to set nextParticipant.
+             [_match participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeLost withCompletionHandler:^(NSError *error) {
+                 
+             }];
+            */
+            
             break;
         }
     }
@@ -445,5 +458,4 @@
 }
 
 
-@synthesize player1=_player1, player2=_player2;
 @end

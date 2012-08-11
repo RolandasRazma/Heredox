@@ -30,4 +30,14 @@
 }
 
 
+- (id)initWithMatch:(GKTurnBasedMatch *)match {
+    if( (self = [self init]) ){
+        RRPickColorLayer *pickColorLayer = [[RRPickColorLayer alloc] initWithMatch:match];
+        [self addChild: pickColorLayer];
+        [pickColorLayer release];
+    }
+    return self;
+}
+
+
 @end
