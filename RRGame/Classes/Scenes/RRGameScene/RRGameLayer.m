@@ -191,6 +191,7 @@
        || (_player2.playerColor == _playerColor && [_player2 isKindOfClass:[RRAIPlayer class]]) ){
         
         [_gameBoardLayer setUserInteractionEnabled:NO];
+        [_buttonEndTurn setUserInteractionEnabled:NO];
         
         RRTileMove tileMove = [(RRAIPlayer *)((_player1.playerColor == _playerColor)?_player1:_player2) bestMoveOnBoard:_gameBoardLayer];
 
@@ -213,7 +214,10 @@
         }
         
         [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
-        [actions addObject: [CCCallBlock actionWithBlock:^{ [_gameBoardLayer setUserInteractionEnabled:YES]; }]];
+        [actions addObject: [CCCallBlock actionWithBlock:^{
+            [_gameBoardLayer setUserInteractionEnabled:YES];
+            [_buttonEndTurn setUserInteractionEnabled:YES];
+        }]];
         [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
         
         [_gameBoardLayer.activeTile runAction:[CCSequence actionsWithArray: actions]];
