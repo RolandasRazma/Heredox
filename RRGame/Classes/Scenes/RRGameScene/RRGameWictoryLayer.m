@@ -27,6 +27,19 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
 
 - (void)onEnter {
     [super onEnter];
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];
+    
+    [_colorBackground setOpacity:0];
+
+    
+    [_colorBackground runAction: [CCFadeTo actionWithDuration:0.27f opacity:190]];
+    [_menu runAction:[CCSequence actions:
+                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2 -_menu.boundingBox.size.height *0.1f)],
+                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2)],
+                      nil]];
+    
     
     [[RRHeredox sharedInstance] stopAllEffects];
     [[RRHeredox sharedInstance] playEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%u.mp3", _playerColorWictorious]];
@@ -128,22 +141,6 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
 
 #pragma mark -
 #pragma mark RRGameWictoryLayer
-
-
-- (void)showInLayer:(CCLayer *)layer {
-    [layer addChild:self z:1000];
-    
-    [_colorBackground setOpacity:0];
-    [_colorBackground runAction:[CCFadeTo actionWithDuration:0.27f opacity:190]];
-    
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];
-    
-    [_menu runAction:[CCSequence actions:
-                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2 -_menu.boundingBox.size.height *0.1f)],
-                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2)],
-                      nil]];
-}
 
 
 - (void)dismiss {

@@ -23,6 +23,25 @@
 }
 
 
+- (void)onEnter {
+    [super onEnter];
+    
+    [[RRHeredox sharedInstance] playEffect:@"RRGameMenuIn.mp3"];
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];
+
+    [_colorBackground setOpacity:0];
+    
+    
+    [_colorBackground runAction: [CCFadeTo actionWithDuration:0.27f opacity:190]];
+    [_menu runAction:[CCSequence actions:
+                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2 -_menu.boundingBox.size.height *0.1f)],
+                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2)],
+                      nil]];
+}
+
+
 #pragma mark -
 #pragma mark CCLayerColor
 
@@ -106,24 +125,6 @@
 
 #pragma mark -
 #pragma mark RRGameMenuLayer
-
-
-- (void)showInLayer:(CCLayer *)layer {
-    [[RRHeredox sharedInstance] playEffect:@"RRGameMenuIn.mp3"];
-    
-    [layer addChild:self z:1000];
-    
-    [_colorBackground setOpacity:0];
-    [_colorBackground runAction:[CCFadeTo actionWithDuration:0.27f opacity:190]];
-    
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];
-    
-    [_menu runAction:[CCSequence actions:
-                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2 -_menu.boundingBox.size.height *0.1f)],
-                      [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2)],
-                      nil]];
-}
 
 
 - (void)dismiss {

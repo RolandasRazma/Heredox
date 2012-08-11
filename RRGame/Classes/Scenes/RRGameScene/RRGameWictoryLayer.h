@@ -33,7 +33,6 @@ typedef enum RRPlayerColorWictorious : NSUInteger {
 + (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious;
 - (id)initWithColor:(RRPlayerColorWictorious)playerColorWictorious;
 
-- (void)showInLayer:(CCLayer *)layer;
 - (void)dismiss;
 
 @end

@@ -143,7 +143,8 @@
 
     RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
     [gameMenuLayer setDelegate:self];
-    [gameMenuLayer showInLayer:self];
+    [self addChild:gameMenuLayer z:1000];
+    
 }
 
 
@@ -176,7 +177,7 @@
                 gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousWhite];
             }
             [gameWictoryLayer setDelegate:self];
-            [gameWictoryLayer showInLayer:self];
+            [self addChild:gameWictoryLayer z:1000];
         }
         
     }
