@@ -27,12 +27,14 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
         _playerObservers= [[NSMutableDictionary alloc] initWithCapacity:5];
         
         [self addPacketObserver:self forType:UDGKPacketTypePickHost];
-        
-        [[NSNotificationCenter defaultCenter] addObserver: self
-                                                 selector: @selector(applicationWillTerminateNotification)
-                                                     name: UIApplicationWillTerminateNotification
-                                                   object: nil];
-        
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
+            [[NSNotificationCenter defaultCenter] addObserver: self
+                                                     selector: @selector(applicationWillTerminateNotification)
+                                                         name: UIApplicationWillTerminateNotification
+                                                       object: nil];
+#endif
+    
         [[NSNotificationCenter defaultCenter] addObserver: self
                                                  selector: @selector(playerAuthenticationDidChangeNotification)
                                                      name: GKPlayerAuthenticationDidChangeNotificationName
@@ -81,9 +83,11 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
     if ( ![[GKLocalPlayer localPlayer] isAuthenticated] ) {
         if( !completionHandler ){
             completionHandler = ^(NSError *error){
-                [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
-                                                  message: nil
-                                        completionHandler: NULL];
+                if( error ){
+                    [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
+                                                      message: nil
+                                            completionHandler: NULL];
+                }
             };
         }
         [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler: completionHandler];
@@ -476,14 +480,13 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 #pragma mark -
 #pragma mark GKSessionDelegate
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
 
-// The session received data sent from the player.
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
     [self packet:[data bytes] fromPlayerID:peer];
 }
 
 
-// Indicates a state change for the given peer.
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
     UDLog(@"session:didChangeState:");
     switch ( state ) {
@@ -512,7 +515,6 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 }
 
 
-// Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
     UDLog(@"session:connectionWithPlayerFailed:withError:%@", error);
     
@@ -522,7 +524,6 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 }
 
 
-// Indicates an error occurred with the session such as failing to make available.
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error {
     UDLog(@"session:didFailWithError: %@", error);
     
@@ -530,6 +531,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
                                       message: nil
                             completionHandler: NULL];
 }
+#endif
 
 
 @end

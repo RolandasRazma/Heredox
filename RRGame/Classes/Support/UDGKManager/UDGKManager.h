@@ -29,6 +29,23 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @end
 
 
+#if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+
+@protocol GKSessionDelegate <NSObject>
+@end
+
+@interface GKSession : NSObject
+@end
+
+@interface GKPeerPickerController : NSObject
+@end
+
+@protocol GKPeerPickerControllerDelegate <NSObject>
+@end
+
+#endif
+
+
 @interface UDGKManager : NSObject <GKMatchDelegate, GKSessionDelegate, UDGKManagerPacketObserving> {
     GKMatch             *_match;
     NSString            *_hostPlayerID;

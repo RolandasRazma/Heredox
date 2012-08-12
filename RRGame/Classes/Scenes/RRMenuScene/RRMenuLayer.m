@@ -125,17 +125,22 @@
 
 
 - (void)allPlayersConnectedNotification {
-    
+#if __CC_PLATFORM_IOS
     [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
+#elif defined(__CC_PLATFORM_MAC)
+#warning TODO
+#endif
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:2];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
     [pickColorScene release];
     
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
     if( _peerPickerController ){
         [_peerPickerController setDelegate:nil];
         [_peerPickerController dismiss];
     }
+#endif
 }
 
 
@@ -146,7 +151,11 @@
 
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithInvite: [notification.userInfo objectForKey:@"acceptedInvite"]];
         [matchmakerViewController setMatchmakerDelegate:self];
+#if __CC_PLATFORM_IOS
         [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
+#elif defined(__CC_PLATFORM_MAC)
+#warning TODO
+#endif
         [matchmakerViewController release];
         
     } else if ( [notification.userInfo objectForKey:@"playersToInvite"] ) {
@@ -157,7 +166,11 @@
         
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
         [matchmakerViewController setMatchmakerDelegate:self];
+#if __CC_PLATFORM_IOS
         [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
+#elif defined(__CC_PLATFORM_MAC)
+#warning TODO
+#endif
         [matchmakerViewController release];
         
         [request release];
@@ -183,10 +196,12 @@
         [self startGameWithNumberOfPlayers:2];
         return;
     }else if( buttonIndex == 1 ){
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
         _peerPickerController = [[GKPeerPickerController alloc] init];
         [_peerPickerController setDelegate:self];
         [_peerPickerController setConnectionTypesMask:GKPeerPickerConnectionTypeNearby];
         [_peerPickerController show];
+#endif
     }else if( buttonIndex == 2 ){
         GKMatchRequest *request = [[GKMatchRequest alloc] init];
         [request setMinPlayers: 2];
@@ -194,7 +209,11 @@
         
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
         [matchmakerViewController setMatchmakerDelegate:self];
+#if __CC_PLATFORM_IOS
         [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
+#elif defined(__CC_PLATFORM_MAC)
+#warning TODO
+#endif
         [matchmakerViewController release];
         
         [request release];
@@ -209,13 +228,18 @@
 
 
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
+#if __CC_PLATFORM_IOS
     [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
+#elif defined(__CC_PLATFORM_MAC)
+#warning TODO
+#endif
 }
 
 
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
+#if __CC_PLATFORM_IOS
     [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
-    
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Error"
                                                         message: [error localizedDescription]
                                                        delegate: nil
@@ -223,6 +247,14 @@
                                               otherButtonTitles: nil];
     [alertView show];
     [alertView release];
+#elif defined(__CC_PLATFORM_MAC)
+#warning TODO: dismiss
+    NSAlert *alertView = [NSAlert alertWithMessageText:@"Remote player disconnected" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+    [alertView beginSheetModalForWindow: [[NSApplication sharedApplication] mainWindow]
+                          modalDelegate: nil
+                         didEndSelector: nil
+                            contextInfo: nil];
+#endif
 }
 
 
@@ -235,6 +267,7 @@
 #pragma mark GKPeerPickerControllerDelegate
 
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
 - (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
 	GKSession *session = [[GKSession alloc] initWithSessionID: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
                                                   displayName: [[UIDevice currentDevice] name]
@@ -254,6 +287,7 @@
     
     [[UDGKManager sharedManager] setSession: nil];
 }
+#endif
 
 
 @end

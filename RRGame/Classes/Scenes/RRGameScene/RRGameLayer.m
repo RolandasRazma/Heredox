@@ -572,7 +572,7 @@
 - (void)observePlayer:(id <UDGKPlayerProtocol>)player state:(GKPlayerConnectionState)state {
     
     if( state == GKPlayerStateDisconnected ){
-        
+#if __CC_PLATFORM_IOS
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Remote player disconnected"
                                                             message: nil
                                                            delegate: self
@@ -580,6 +580,13 @@
                                                   otherButtonTitles: nil];
         [alertView show];
         [alertView release];
+#elif defined(__CC_PLATFORM_MAC)
+        NSAlert *alertView = [NSAlert alertWithMessageText:@"Remote player disconnected" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+        [alertView beginSheetModalForWindow: [[NSApplication sharedApplication] mainWindow]
+                              modalDelegate: self
+                             didEndSelector: @selector(alertDidEnd:returnCode:contextInfo:)
+                                contextInfo: nil];
+#endif
     }
     
 }
@@ -588,10 +595,14 @@
 #pragma mark -
 #pragma mark UIAlertViewDelegate
 
-
+#if __CC_PLATFORM_IOS
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:[RRMenuScene node] backwards:YES]];
 }
-
+#elif defined(__CC_PLATFORM_MAC)
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo {
+    [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:[RRMenuScene node] backwards:YES]];
+}
+#endif
 
 @end

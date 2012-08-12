@@ -59,6 +59,11 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
             [buttonGameCenter setPosition:CGPointMake(_menu.boundingBox.size.width /2, 330)];
             
             [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 80)];
+            
+            if( isDeviceMac() ){
+                [buttonGameCenter setPosition:buttonBluetooth.position];
+                [buttonBluetooth removeFromParentAndCleanup:YES];
+            }
         } else {
             [buttonLocal setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 260)];
             [buttonBluetooth setPosition:CGPointMake(_menu.boundingBox.size.width /2, 205)];
