@@ -346,9 +346,11 @@
         [_playerNameLabel setPosition:CGPointMake(winSize.width /2, 5)];
         [_playerNameLabel setOpacity:255];
         
+        if( _allPlayersInScene ) {
         [GKNotificationBanner showBannerWithTitle: @"New turn"
-                                          message: [NSString stringWithFormat:@"%@'s turn", player.alias]
+                                          message: (self.userInteractionEnabled?@"Your turn":[NSString stringWithFormat:@"%@'s turn", player.alias])
                                 completionHandler: NULL];
+        }
     }else{
         [self setUserInteractionEnabled:YES];
     }
