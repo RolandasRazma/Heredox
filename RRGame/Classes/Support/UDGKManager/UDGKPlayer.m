@@ -27,6 +27,11 @@
 #pragma mark UDGKPlayer
 
 
++ (id)playerWithPlayerID:(NSString *)playerID {
+    return [[self alloc] initWithPlayerID:playerID];
+}
+
+
 - (id)initWithPlayerID:(NSString *)playerID {
     if( (self = [super init]) ){
         _playerID = [playerID copy];

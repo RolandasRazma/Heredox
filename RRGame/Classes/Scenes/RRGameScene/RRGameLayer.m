@@ -47,47 +47,10 @@
 
     if( [[UDGKManager sharedManager] match] ){
         [self setUserInteractionEnabled:NO];
-#warning TODO: add "waiting for players"
-        NSLog(@"waiting for players scene 3");
-        
+
         UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 3 );
         [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
                                                      length: sizeof(UDGKPacketEnterScene)];
-        /*
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
-        
-        for( GKPlayer *player in [[[UDGKManager sharedManager] players] allValues] ){
-
-            [player loadPhotoForSize: GKPhotoSizeSmall
-               withCompletionHandler: ^(UIImage *photo, NSError *error) {
-                   if( !error ){
-                       CCSprite *playerPhoto = [CCSprite spriteWithCGImage:photo.CGImage key:player.playerID];
-                       [playerPhoto setScale: [RRTile tileSize] /2.0f /playerPhoto.boundingBox.size.width];
-                       [self addChild:playerPhoto];
-                       
-                       if( [player.playerID isEqualToString:_player1.playerID] ){
-                           if( _player1.playerColor == RRPlayerColorWhite ){
-                               [playerPhoto setAnchorPoint:CGPointZero];
-                               [playerPhoto setPosition:CGPointMake(20, 20)];
-                           }else{
-                               [playerPhoto setAnchorPoint:CGPointMake(1, 0)];
-                               [playerPhoto setPosition:CGPointMake(winSize.width -20, 20)];
-                           }
-                       }else if( [player.playerID isEqualToString:_player2.playerID] ){
-                           if( _player2.playerColor == RRPlayerColorWhite ){
-                               [playerPhoto setAnchorPoint:CGPointZero];
-                               [playerPhoto setPosition:CGPointMake(20, 20)];
-                           }else{
-                               [playerPhoto setAnchorPoint:CGPointMake(1, 0)];
-                               [playerPhoto setPosition:CGPointMake(winSize.width -20, 20)];
-                           }
-                       }
-                       
-                   }
-               }];
-
-        }
-        */
     }else{
         [self resetGame];
     }
@@ -192,6 +155,14 @@
         
         // Do we need to wait for players?
         _allPlayersInScene = ([[UDGKManager sharedManager] match] == nil);
+        
+        if( !_allPlayersInScene ){
+            [self setUserInteractionEnabled:NO];
+            
+            _bannerWaitingForPlayer = [CCSprite spriteWithSpriteFrameName:@"RRBannerWaitingForPlayer.png"];
+            [_bannerWaitingForPlayer setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
+            [self addChild:_bannerWaitingForPlayer z: 100];
+        }
     }
 	return self;
 }
@@ -572,17 +543,20 @@
     UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
     
     if( packetType == UDGKPacketTypeEnterScene && !_allPlayersInScene ){
-        _allPlayersInScene = YES;
-        
         UDGKPacketEnterScene newPacket = *(UDGKPacketEnterScene *)packet;
         
         if( newPacket.sceneID == 3 ){
+            _allPlayersInScene = YES;
+            
             [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
                                                          length: sizeof(UDGKPacketEnterScene)];
-        }
 
-        if( [[UDGKManager sharedManager] isHost] ){
-            [self resetGame];
+            [_bannerWaitingForPlayer removeFromParentAndCleanup:YES];
+            _bannerWaitingForPlayer = nil;
+            
+            if( [[UDGKManager sharedManager] isHost] ){
+                [self resetGame];
+            }
         }
     }else if ( packetType == UDGKPacketTypeResetGame ){
         [self resetGameWithSeed:(*(UDGKPacketResetGame *)packet).seed];

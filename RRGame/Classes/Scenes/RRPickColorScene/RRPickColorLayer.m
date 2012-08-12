@@ -97,8 +97,10 @@
         
         if( [[UDGKManager sharedManager] match] ){
             [self setUserInteractionEnabled:NO];
-            #warning TODO: add "waiting for players"
-            NSLog(@"waiting for players scene 2");
+
+            _bannerWaitingForPlayer = [CCSprite spriteWithSpriteFrameName:@"RRBannerWaitingForPlayer.png"];
+            [_bannerWaitingForPlayer setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
+            [self addChild:_bannerWaitingForPlayer z: 100];
         }
     }
     return self;
@@ -225,19 +227,20 @@
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:gameScene]];
         [gameScene release];
     } else if( packetType == UDGKPacketTypeEnterScene && !_allPlayersInScene ){
-        _allPlayersInScene = YES;
-        
         UDGKPacketEnterScene newPacket = *(UDGKPacketEnterScene *)packet;
         
         if( newPacket.sceneID == 2 ){
+            _allPlayersInScene = YES;
+
             [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
                                                          length: sizeof(UDGKPacketEnterScene)];
-        }
-        
-        if( [[UDGKManager sharedManager] isHost] ){
-#warning show waiting for host to pick color
-            NSLog(@"waiting for host to pick color");
-            [self setUserInteractionEnabled:YES];
+
+            if( [[UDGKManager sharedManager] isHost] ){
+                [_bannerWaitingForPlayer removeFromParentAndCleanup:YES];
+                _bannerWaitingForPlayer = nil;
+                
+                [self setUserInteractionEnabled:YES];
+            }
         }
     }
 }

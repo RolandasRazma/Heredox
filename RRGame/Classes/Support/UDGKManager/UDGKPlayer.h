@@ -13,6 +13,7 @@
     NSString *_playerID;
 }
 
++ (id)playerWithPlayerID:(NSString *)playerID;
 - (id)initWithPlayerID:(NSString *)playerID;
 
 @end

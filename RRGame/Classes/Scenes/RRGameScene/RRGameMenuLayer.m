@@ -74,6 +74,11 @@
         [buttonRestart addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInside];
         [_menu addChild:buttonRestart];
         
+        if( ![[UDGKManager sharedManager] isHost] ){
+            [buttonRestart setUserInteractionEnabled:NO];
+            [buttonRestart setOpacity:100];
+        }
+        
         
         // RRButtonQuit
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];

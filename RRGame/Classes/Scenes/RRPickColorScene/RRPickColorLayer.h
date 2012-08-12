@@ -22,6 +22,7 @@
     CCSprite    *_backgroundPlayerBlackSelectedSprite;
     
     BOOL        _allPlayersInScene;
+    CCSprite    *_bannerWaitingForPlayer;
 }
 
 + (id)layerWithNumberOfPlayers:(NSUInteger)numberOfPlayers;

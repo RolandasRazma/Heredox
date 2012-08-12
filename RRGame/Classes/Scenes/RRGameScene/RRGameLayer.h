@@ -36,6 +36,7 @@
     
     BOOL                _allPlayersInScene;
     CCLabelTTF          *_playerNameLabel;
+    CCSprite            *_bannerWaitingForPlayer;
 }
 
 @property (nonatomic, retain) RRPlayer *player1;
