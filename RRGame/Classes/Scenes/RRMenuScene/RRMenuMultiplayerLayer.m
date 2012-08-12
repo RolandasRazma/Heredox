@@ -8,6 +8,7 @@
 
 #import "RRMenuMultiplayerLayer.h"
 
+static BOOL RRMenuMultiplayerLayerVisible = NO;
 
 @implementation RRMenuMultiplayerLayer
 
@@ -84,6 +85,14 @@
 - (void)onEnter {
     [super onEnter];
 
+    if( RRMenuMultiplayerLayerVisible ){
+        [self setVisible:NO];
+        [self removeFromParentAndCleanup:YES];
+        return;
+    }
+    
+    RRMenuMultiplayerLayerVisible = YES;
+    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];
     
@@ -95,6 +104,13 @@
                       [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2 -_menu.boundingBox.size.height *0.1f)],
                       [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2)],
                       nil]];
+}
+
+
+- (void)onExit {
+    [super onExit];
+    
+    RRMenuMultiplayerLayerVisible = NO;
 }
 
 

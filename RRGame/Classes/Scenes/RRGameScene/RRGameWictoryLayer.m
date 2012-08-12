@@ -12,6 +12,7 @@
 
 static RRPlayerColorWictorious lastPlayerWictoriousColor = RRPlayerColorWictoriousNo;
 static NSUInteger lastPlayerWictoriousTimes = 1;
+static BOOL RRGameWictoryLayerVisible = NO;
 
 
 @implementation RRGameWictoryLayer
@@ -29,6 +30,14 @@ static NSUInteger lastPlayerWictoriousTimes = 1;
 - (void)onEnter {
     [super onEnter];
 
+    RRGameWictoryLayerVisible = YES;
+    
+    if( RRGameWictoryLayerVisible ){
+        [self setVisible:NO];
+        [self removeFromParentAndCleanup:YES];
+        return;
+    }
+    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];
     
@@ -44,6 +53,13 @@ static NSUInteger lastPlayerWictoriousTimes = 1;
     
     [[RRAudioEngine sharedEngine] stopAllEffects];
     [[RRAudioEngine sharedEngine] replayEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%u.mp3", _playerColorWictorious]];
+}
+
+
+- (void)onExit {
+    [super onExit];
+    
+    RRGameWictoryLayerVisible = NO;
 }
 
 
