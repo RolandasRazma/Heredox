@@ -267,7 +267,7 @@
         [alertView show];
         [alertView release];
 #elif defined(__CC_PLATFORM_MAC)
-        NSAlert *alertView = [NSAlert alertWithMessageText:@"Remote player disconnected" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+        NSAlert *alertView = [NSAlert alertWithMessageText:@"Remote player disconnected" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
         [alertView beginSheetModalForWindow: [[NSApplication sharedApplication] mainWindow]
                               modalDelegate: self
                              didEndSelector: @selector(alertDidEnd:returnCode:contextInfo:)

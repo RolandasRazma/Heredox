@@ -123,11 +123,7 @@
 
 
 - (void)allPlayersConnectedNotification {
-#if __CC_PLATFORM_IOS
-    [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
-#elif defined(__CC_PLATFORM_MAC)
-#warning TODO
-#endif
+    [self dismissMatchmakerViewController];
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:2];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
@@ -146,14 +142,9 @@
     NSLog(@"playerGotInviteNotification");
     
     if ( [notification.userInfo objectForKey:@"acceptedInvite"] ) {
-
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithInvite: [notification.userInfo objectForKey:@"acceptedInvite"]];
         [matchmakerViewController setMatchmakerDelegate:self];
-#if __CC_PLATFORM_IOS
-        [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
-#elif defined(__CC_PLATFORM_MAC)
-#warning TODO
-#endif
+        [self presentMatchmakerViewController:matchmakerViewController];
         [matchmakerViewController release];
         
     } else if ( [notification.userInfo objectForKey:@"playersToInvite"] ) {
@@ -164,11 +155,7 @@
         
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
         [matchmakerViewController setMatchmakerDelegate:self];
-#if __CC_PLATFORM_IOS
-        [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
-#elif defined(__CC_PLATFORM_MAC)
-#warning TODO
-#endif
+        [self presentMatchmakerViewController:matchmakerViewController];
         [matchmakerViewController release];
         
         [request release];
@@ -181,6 +168,32 @@
     
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:[RRRulesScene node]]];
 
+}
+
+
+- (void)presentMatchmakerViewController:(GKMatchmakerViewController *)matchmakerViewController {
+#if __CC_PLATFORM_IOS
+    [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
+#elif defined(__CC_PLATFORM_MAC)
+    _dialogController = [[GKDialogController alloc] init];
+    [_dialogController setParentWindow: [[NSApplication sharedApplication] mainWindow]];
+    [_dialogController presentViewController:matchmakerViewController];
+#endif
+    
+    _matchmakerViewController = matchmakerViewController;
+}
+
+
+- (void)dismissMatchmakerViewController {
+#if __CC_PLATFORM_IOS
+    [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
+#elif defined(__CC_PLATFORM_MAC)
+    [_dialogController dismiss:_matchmakerViewController];
+    [_dialogController release];
+    _dialogController = nil;
+#endif
+    
+    _matchmakerViewController = nil;
 }
 
 
@@ -207,11 +220,7 @@
         
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
         [matchmakerViewController setMatchmakerDelegate:self];
-#if __CC_PLATFORM_IOS
-        [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
-#elif defined(__CC_PLATFORM_MAC)
-#warning TODO
-#endif
+        [self presentMatchmakerViewController:matchmakerViewController];
         [matchmakerViewController release];
         
         [request release];
@@ -226,18 +235,14 @@
 
 
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
-#if __CC_PLATFORM_IOS
-    [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
-#elif defined(__CC_PLATFORM_MAC)
-#warning TODO
-#endif
+    [self dismissMatchmakerViewController];
 }
 
 
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
+    [self dismissMatchmakerViewController];
+    
 #if __CC_PLATFORM_IOS
-    [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
-
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Error"
                                                         message: [error localizedDescription]
                                                        delegate: nil
@@ -246,8 +251,7 @@
     [alertView show];
     [alertView release];
 #elif defined(__CC_PLATFORM_MAC)
-#warning TODO: dismiss
-    NSAlert *alertView = [NSAlert alertWithMessageText:@"Remote player disconnected" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+    NSAlert *alertView = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", [error localizedDescription]];
     [alertView beginSheetModalForWindow: [[NSApplication sharedApplication] mainWindow]
                           modalDelegate: nil
                          didEndSelector: nil

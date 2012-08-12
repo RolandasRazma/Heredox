@@ -18,8 +18,11 @@
 
 
 @interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, RRMenuLayerGKDelegates> {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED
-    GKPeerPickerController *_peerPickerController;
+    GKMatchmakerViewController  *_matchmakerViewController;
+#ifdef __CC_PLATFORM_IOS
+    GKPeerPickerController      *_peerPickerController;
+#elif defined(__CC_PLATFORM_MAC)
+    GKDialogController          *_dialogController;
 #endif
 }
 
