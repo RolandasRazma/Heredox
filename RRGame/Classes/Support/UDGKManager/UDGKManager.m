@@ -107,8 +107,10 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
     if( _match && [[GKLocalPlayer localPlayer] isAuthenticated] ){
         return [[GKLocalPlayer localPlayer] playerID];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
     }else if( _session ){
         return [_session peerID];
+#endif
     }else{
         return nil;
     }
@@ -151,6 +153,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 }
 
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
 - (void)setSession:(GKSession *)session {
     
     if ( ![_session isEqual:session] ) {
@@ -183,6 +186,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
     }
     
 }
+#endif
 
 
 - (void)packet:(const void *)packet fromPlayerID:(NSString *)playerID {
@@ -208,10 +212,12 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
         return [_match sendDataToAllPlayers: [NSData dataWithBytes:packet length:length]
                                withDataMode: GKMatchSendDataReliable
                                       error: NULL];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
     }else if( _session ){
         return [_session sendDataToAllPeers: [NSData dataWithBytes:packet length:length]
                                withDataMode: GKMatchSendDataReliable
                                       error: NULL];
+#endif
     }
     
     return NO;
@@ -233,11 +239,13 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
                       toPlayers: playerIDs
                    withDataMode: GKMatchSendDataReliable
                           error: NULL];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
     }else if( _session ){
         return [_session sendData: [NSData dataWithBytes:packet length:length]
                           toPeers: playerIDs
                      withDataMode: GKMatchSendDataReliable
                             error: NULL];
+#endif
     }
     return NO;
 }
@@ -259,8 +267,10 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
                         }else{
                             player = [UDGKPlayer playerWithPlayerID:playerID alias:nil];
                         }
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
                     }else if( _session ){
                         player = [UDGKPlayer playerWithPlayerID:playerID alias:[_session displayNameForPeer:playerID]];
+#endif
                     }
 
                     [_players setObject:player forKey:playerID];

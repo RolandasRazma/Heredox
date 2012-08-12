@@ -29,24 +29,14 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @end
 
 
-#if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
-
-@protocol GKSessionDelegate <NSObject>
-@end
-
-@interface GKSession : NSObject
-@end
-
-@interface GKPeerPickerController : NSObject
-@end
-
-@protocol GKPeerPickerControllerDelegate <NSObject>
-@end
-
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
+    #define UDGKManagerGKDelegates GKMatchDelegate, GKSessionDelegate
+#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+    #define UDGKManagerGKDelegates GKMatchDelegate
 #endif
 
 
-@interface UDGKManager : NSObject <GKMatchDelegate, GKSessionDelegate, UDGKManagerPacketObserving> {
+@interface UDGKManager : NSObject <UDGKManagerPacketObserving, UDGKManagerGKDelegates> {
     GKMatch             *_match;
     NSString            *_hostPlayerID;
     NSMutableDictionary *_players;
@@ -60,8 +50,12 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @property (nonatomic, readonly) BOOL            isNetworkPlayActive;
 @property (nonatomic, readonly) NSDictionary    *players;
 @property (nonatomic, retain)   GKMatch         *match;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
 @property (nonatomic, retain)   GKSession       *session;
-
+#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+@property (nonatomic, retain)   id              session;
+#endif
+    
 + (UDGKManager *)sharedManager;
 
 - (void)authenticateInGameCenterWithCompletionHandler:(void(^)(NSError *error))completionHandler;
