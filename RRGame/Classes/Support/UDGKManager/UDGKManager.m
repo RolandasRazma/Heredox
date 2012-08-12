@@ -178,9 +178,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
     id <UDGKPlayerProtocol>player = [_players valueForKey:playerID];
     
     NSAssert1(player, @"No player for playerID: %@", playerID);
-    
-    NSLog(@"packet:fromPlayerID: %@", playerID);
-    
+
     NSSet *observers = [_packetObservers objectForKey: @((*(UDGKPacket *)packet).type)];
     @synchronized( observers ){
         for( id <UDGKManagerPacketObserving>observer in observers ){
@@ -237,8 +235,6 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 - (void)playerID:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {
     NSAssert(playerID, @"Player Without ID");
 
-    NSLog(@"playerID: %@ didChangeState: %i", playerID, state);
-    
     id <UDGKPlayerProtocol>player = nil;
     
     @synchronized( _players ){
