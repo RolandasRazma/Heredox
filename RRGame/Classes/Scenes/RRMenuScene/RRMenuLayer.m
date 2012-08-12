@@ -7,10 +7,8 @@
 //
 
 #import "RRMenuLayer.h"
-#import "UDSpriteButton.h"
 #import "RRPickColorScene.h"
 #import "RRRulesScene.h"
-#import "RRTransitionGame.h"
 
 
 @implementation RRMenuLayer
@@ -128,7 +126,7 @@
     [[UDGKManager sharedManager] setMatch:nil];
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
-	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:pickColorScene]];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
     [pickColorScene release];
     
 }
@@ -139,7 +137,7 @@
     [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:2];
-	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:pickColorScene]];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
     [pickColorScene release];
     
 }
@@ -148,7 +146,7 @@
 
 - (void)showRules {
     
-	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRRulesScene node]]];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:[RRRulesScene node]]];
 
 }
 

@@ -11,4 +11,7 @@
 
 @interface RRTransitionGame : CCTransitionPageTurn
 
++ (id)transitionToScene:(CCScene *)scene;
++ (id)transitionToScene:(CCScene *)scene backwards:(BOOL)backwards;
+
 @end

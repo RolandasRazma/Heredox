@@ -24,6 +24,7 @@ __asm__(".weak_reference _OBJC_CLASS_$_GKPlayer");
     #import "UDActionCallFunc.h"
     #import "UDActionDestroy.h"
     #import "UDSpriteButton.h"
+    #import "RRTransitionGame.h"
 
     #import "RRAudioEngine.h"
     #import "RRHeredox.h"

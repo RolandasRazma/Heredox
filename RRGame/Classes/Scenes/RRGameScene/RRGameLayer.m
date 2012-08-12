@@ -8,13 +8,11 @@
 
 #import "RRGameLayer.h"
 #import "RRTile.h"
-#import "UDSpriteButton.h"
 #import "RRGameBoardLayer.h"
 #import "RRAIPlayer.h"
 #import "RRMenuScene.h"
 #import "RRCrossfadeLayer.h"
 #import "RRScoreLayer.h"
-#import "RRTransitionGame.h"
 
 
 @implementation RRGameLayer
@@ -476,7 +474,7 @@
             break;
         }
         case 2: {
-            [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+            [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:[RRMenuScene node] backwards:YES]];
             break;
         }
     }
@@ -593,7 +591,7 @@
 
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+    [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:[RRMenuScene node] backwards:YES]];
 }
 
 

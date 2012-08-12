@@ -7,9 +7,7 @@
 //
 
 #import "RRRulesLayer.h"
-#import "UDSpriteButton.h"
 #import "RRMenuScene.h"
-#import "RRTransitionGame.h"
 
 
 @implementation RRRulesLayer
@@ -63,7 +61,7 @@
 
 
 - (void)showMenu {
-	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
+	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:[RRMenuScene node] backwards:YES]];
 }
 
 
