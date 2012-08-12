@@ -160,8 +160,8 @@
 }
 
 
-- (void)onExit {
-    [super onExit];
+- (void)onExitTransitionDidStart {
+    [super onExitTransitionDidStart];
     
     [[UDGKManager sharedManager] removePacketObserver:self];
     [[UDGKManager sharedManager] removePlayerObserver:self];
@@ -226,6 +226,11 @@
     if ( packetType == UDGKPacketTypePickColor ) {
         UDGKPacketPickColor newPacket = *(UDGKPacketPickColor *)packet;
 
+        // Show what color player selected
+        [_backgroundPlayerWhiteSelectedSprite setVisible:(newPacket.color == RRPlayerColorWhite)];
+        [_backgroundPlayerBlackSelectedSprite setVisible:(newPacket.color == RRPlayerColorBlack)];
+        
+        // Push game scene
         RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:((newPacket.color==RRPlayerColorWhite)?RRPlayerColorBlack:RRPlayerColorWhite)];
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:gameScene]];
         [gameScene release];

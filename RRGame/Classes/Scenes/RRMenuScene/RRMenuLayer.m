@@ -80,6 +80,8 @@
     
 #ifdef DEBUG
     if( isGameCenterAvailable() ){
+        [[UDGKManager sharedManager] setMatch:nil];
+        
         if ( [[GKLocalPlayer localPlayer] isAuthenticated] == NO ) {
             [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:NULL];
         }
@@ -90,7 +92,7 @@
 
 - (void)onEnter {
     [super onEnter];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(allPlayersConnectedNotification)
                                                  name: UDGKManagerAllPlayersConnectedNotification

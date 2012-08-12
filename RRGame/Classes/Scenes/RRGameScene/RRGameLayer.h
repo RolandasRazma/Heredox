@@ -14,7 +14,7 @@
 @class RRPlayer, RRGameBoardLayer, UDSpriteButton, RRCrossfadeLayer, RRScoreLayer;
 
 
-@interface RRGameLayer : UDLayer <RRGameMenuDelegate, RRPlayerColorWictoriousDelegate, UDGKManagerPacketObserving> {
+@interface RRGameLayer : UDLayer <RRGameMenuDelegate, RRPlayerColorWictoriousDelegate, UDGKManagerPacketObserving, UDGKManagerPlayerObserving> {
     RRGameMode          _gameMode;
     
     NSMutableArray      *_deck;

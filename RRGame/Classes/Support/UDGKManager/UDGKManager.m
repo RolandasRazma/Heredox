@@ -27,6 +27,11 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
         _playerObservers= [[NSMutableDictionary alloc] initWithCapacity:5];
         
         [self addPacketObserver:self forType:UDGKPacketTypePickHost];
+        
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(applicationWillTerminateNotification)
+                                                     name: UIApplicationWillTerminateNotification
+                                                   object: nil];
     }
     return self;
 }
@@ -43,6 +48,11 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
         _sharedManager = [[UDGKManager alloc] init];
     });
     return _sharedManager;
+}
+
+
+- (void)applicationWillTerminateNotification {
+    [self setMatch:nil];
 }
 
 

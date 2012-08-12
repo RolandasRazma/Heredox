@@ -42,20 +42,6 @@
 }
 
 
-- (void)onEnterTransitionDidFinish {
-    [super onEnterTransitionDidFinish];
-
-    if( [[UDGKManager sharedManager] match] ){
-        UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 3 );
-        [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
-                                                     length: sizeof(UDGKPacketEnterScene)];
-    }else{
-        [self resetGame];
-    }
-
-}
-
-
 - (void)onEnter {
     [super onEnter];
     
@@ -71,19 +57,36 @@
         [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
         [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeTileMove];
         [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeResetGame];
+        
+        [[UDGKManager sharedManager] addPlayerObserver:self forConnectionState:GKPlayerStateDisconnected];
     }
 }
 
 
-- (void)onExit {
+- (void)onEnterTransitionDidFinish {
+    [super onEnterTransitionDidFinish];
+    
+    if( [[UDGKManager sharedManager] match] ){
+        UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 3 );
+        [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
+                                                     length: sizeof(UDGKPacketEnterScene)];
+    }else{
+        [self resetGame];
+    }
+    
+}
+
+
+- (void)onExitTransitionDidStart {
+    [super onExitTransitionDidStart];
+    
     [_gameBoardLayer removeObserver:self forKeyPath:@"symbolsBlack"];
     [_gameBoardLayer removeObserver:self forKeyPath:@"symbolsWhite"];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:RRGameBoardLayerTileMovedToValidLocationNotification object:nil];
-    
+
     [[UDGKManager sharedManager] removePacketObserver:self];
-    
-    [super onExit];
+    [[UDGKManager sharedManager] removePlayerObserver:self];
 }
 
 
@@ -260,7 +263,8 @@
 
 
 - (void)showMenu {
-
+    [self setUserInteractionEnabled:NO];
+    
     RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
     [gameMenuLayer setDelegate:self];
     [self addChild:gameMenuLayer z:1000];
@@ -561,6 +565,35 @@
         [self makeMove: (*(UDGKPacketTileMove *)packet).move];
     }
     
+}
+
+
+#pragma mark -
+#pragma mark UDGKManagerPlayerObserving
+
+
+- (void)observePlayer:(GKPlayer *)player state:(GKPlayerConnectionState)state {
+    
+    if( state == GKPlayerStateDisconnected ){
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Remote player disconnected"
+                                                            message: nil
+                                                           delegate: self
+                                                  cancelButtonTitle: @"OK"
+                                                  otherButtonTitles: nil];
+        [alertView show];
+        [alertView release];
+    }
+    
+}
+
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionWithDuration:0.7f scene:[RRMenuScene node] backwards:YES]];
 }
 
 
