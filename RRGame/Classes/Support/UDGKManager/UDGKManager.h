@@ -6,6 +6,7 @@
 //
 
 #import "UDGKPacket.h"
+#import "UDGKPlayer.h"
 
 
 extern NSString * const UDGKManagerPlayerGotInviteNotification;
@@ -15,7 +16,7 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @protocol UDGKManagerPacketObserving <NSObject>
 @required
 
-- (void)observePacket:(const void *)packet fromPlayer:(GKPlayer *)player;
+- (void)observePacket:(const void *)packet fromPlayer:(id <UDGKPlayerProtocol>)player;
 
 @end
 
@@ -23,12 +24,12 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @protocol UDGKManagerPlayerObserving <NSObject>
 @required
 
-- (void)observePlayer:(GKPlayer *)player state:(GKPlayerConnectionState)state;
+- (void)observePlayer:(id <UDGKPlayerProtocol>)player state:(GKPlayerConnectionState)state;
 
 @end
 
 
-@interface UDGKManager : NSObject <GKMatchDelegate, UDGKManagerPacketObserving> {
+@interface UDGKManager : NSObject <GKMatchDelegate, GKSessionDelegate, UDGKManagerPacketObserving> {
     GKMatch             *_match;
     NSString            *_hostPlayerID;
     NSMutableDictionary *_players;
@@ -39,8 +40,10 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @property (nonatomic, readonly) NSString        *playerID;
 @property (nonatomic, readonly) NSString        *hostPlayerID;
 @property (nonatomic, readonly) BOOL            isHost;
+@property (nonatomic, readonly) BOOL            isNetworkPlayActive;
 @property (nonatomic, readonly) NSDictionary    *players;
 @property (nonatomic, retain)   GKMatch         *match;
+@property (nonatomic, retain)   GKSession       *session;
 
 + (UDGKManager *)sharedManager;
 

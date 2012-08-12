@@ -18,6 +18,7 @@
 
 - (void)dealloc {
     [_playerID release];
+    [_alias release];
     
     [super dealloc];
 }
@@ -27,14 +28,17 @@
 #pragma mark UDGKPlayer
 
 
-+ (id)playerWithPlayerID:(NSString *)playerID {
-    return [[self alloc] initWithPlayerID:playerID];
++ (id)playerWithPlayerID:(NSString *)playerID alias:(NSString *)alias {
+    return [[self alloc] initWithPlayerID:playerID alias:alias];
 }
 
 
-- (id)initWithPlayerID:(NSString *)playerID {
+- (id)initWithPlayerID:(NSString *)playerID alias:(NSString *)alias {
     if( (self = [super init]) ){
-        _playerID = [playerID copy];
+        NSAssert(playerID, @"No playerID");
+        
+        _playerID = [playerID retain];
+        _alias    = [alias copy];
     }
     return self;
 }

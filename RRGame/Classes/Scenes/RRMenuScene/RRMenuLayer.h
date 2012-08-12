@@ -10,8 +10,8 @@
 #import "RRMenuMultiplayerLayer.h"
 
 
-@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, GKMatchmakerViewControllerDelegate> {
-    GKMatch *_match;
+@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, GKMatchmakerViewControllerDelegate, GKPeerPickerControllerDelegate> {
+    GKPeerPickerController  *_peerPickerController;
 }
 
 @end

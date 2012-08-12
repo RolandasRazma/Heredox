@@ -51,7 +51,7 @@
                                                  name: RRGameBoardLayerTileMovedToValidLocationNotification 
                                                object: nil];
     // If its a network multiplayer
-    if( [[UDGKManager sharedManager] match] ){
+    if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
         [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
         [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeTileMove];
         [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeResetGame];
@@ -64,7 +64,7 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
     
-    if( [[UDGKManager sharedManager] match] ){
+    if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
         UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 3 );
         [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
                                                      length: sizeof(UDGKPacketEnterScene)];
@@ -153,7 +153,7 @@
         }
         
         // Do we need to wait for players?
-        _allPlayersInScene = ([[UDGKManager sharedManager] match] == nil);
+        _allPlayersInScene = ![[UDGKManager sharedManager] isNetworkPlayActive];
         [self setUserInteractionEnabled:_allPlayersInScene];
         
         if( !_allPlayersInScene ){
@@ -287,7 +287,7 @@
         
         if( [_gameBoardLayer haltTilePlaces] ){
             
-            if(     [[UDGKManager sharedManager] match]
+            if(     [[UDGKManager sharedManager] isNetworkPlayActive]
                &&   [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ){
                 UDGKPacketTileMove packet = UDGKPacketTileMoveMake( tileMove );
                 [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
@@ -335,7 +335,7 @@
     
     if( [currentPlayer isKindOfClass:[RRAIPlayer class]] ){
         [self makeMove:[(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer]];
-    }else if( [[UDGKManager sharedManager] match] ){
+    }else if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
         [self setUserInteractionEnabled: (_allPlayersInScene && [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]])];
         
         if( !_playerNameLabel ){
@@ -536,9 +536,9 @@
 #pragma mark UDGKManagerPacketObserving
 
 
-- (void)observePacket:(const void *)packet fromPlayer:(GKPlayer *)player {
+- (void)observePacket:(const void *)packet fromPlayer:(id <UDGKPlayerProtocol>)player {
     if( [player.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ) return;
-    
+
     UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
     
     if( packetType == UDGKPacketTypeEnterScene && !_allPlayersInScene ){
@@ -570,7 +570,7 @@
 #pragma mark UDGKManagerPlayerObserving
 
 
-- (void)observePlayer:(GKPlayer *)player state:(GKPlayerConnectionState)state {
+- (void)observePlayer:(id <UDGKPlayerProtocol>)player state:(GKPlayerConnectionState)state {
     
     if( state == GKPlayerStateDisconnected ){
         

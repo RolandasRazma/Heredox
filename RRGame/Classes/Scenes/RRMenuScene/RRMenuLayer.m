@@ -63,12 +63,6 @@
 }
 
 
-- (void)dealloc {
-    [_match release];
-    [super dealloc];
-}
-
-
 #pragma mark -
 #pragma mark CCNode
 
@@ -76,8 +70,11 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
 
+    [[UDGKManager sharedManager] setSession:nil];
+    
     if( isGameCenterAvailable() ){
         [[UDGKManager sharedManager] setMatch:nil];
+
         [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:^(NSError *error) {
             NSLog(@"authenticateInGameCenterWithCompletionHandlerError: %@", error);
         }];
@@ -121,6 +118,7 @@
 
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
     [[UDGKManager sharedManager] setMatch:nil];
+    [[UDGKManager sharedManager] setSession:nil];
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
@@ -137,6 +135,11 @@
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
     [pickColorScene release];
     
+    
+    if( _peerPickerController ){
+        [_peerPickerController setDelegate:nil];
+        [_peerPickerController dismiss];
+    }
 }
 
 
@@ -179,14 +182,20 @@
 
 
 - (void)menuMultiplayerLayer:(RRMenuMultiplayerLayer *)menuMultiplayerLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex {
+    
     if( buttonIndex == 0 ){
         [self startGameWithNumberOfPlayers:2];
         return;
     }else if( buttonIndex == 1 ){
+        _peerPickerController = [[GKPeerPickerController alloc] init];
+        [_peerPickerController setDelegate:self];
+        [_peerPickerController setConnectionTypesMask:GKPeerPickerConnectionTypeNearby];
+        [_peerPickerController show];
+    }else if( buttonIndex == 2 ){
         GKMatchRequest *request = [[GKMatchRequest alloc] init];
         [request setMinPlayers: 2];
         [request setMaxPlayers: 2];
-
+        
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
         [matchmakerViewController setMatchmakerDelegate:self];
         [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
@@ -223,6 +232,36 @@
 
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match {
     [[UDGKManager sharedManager] setMatch:match];
+}
+
+
+#pragma mark -
+#pragma mark GKPeerPickerControllerDelegate
+
+
+/* Notifies delegate that the connection type is requesting a GKSession object.
+ You should return a valid GKSession object for use by the picker. If this method is not implemented or returns 'nil', a default GKSession is created on the delegate's behalf.
+ */
+- (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
+	GKSession *session = [[GKSession alloc] initWithSessionID: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
+                                                  displayName: [[UIDevice currentDevice] name]
+                                                  sessionMode: GKSessionModePeer];
+	return [session autorelease];
+}
+
+
+// Notifies delegate that the peer was connected to a GKSession.
+- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
+    [[UDGKManager sharedManager] setSession: session];
+}
+
+
+// Notifies delegate that the user cancelled the picker.
+- (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
+    [_peerPickerController setDelegate:nil];
+    [_peerPickerController release];
+    
+    [[UDGKManager sharedManager] setSession: nil];
 }
 
 

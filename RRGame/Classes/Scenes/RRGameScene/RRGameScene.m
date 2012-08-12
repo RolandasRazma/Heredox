@@ -29,7 +29,7 @@
         _numberOfPlayers = numberOfPlayers;
         RRGameLayer *gameLayer;
         
-        if( [[UDGKManager sharedManager] match] ){
+        if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
             gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:RRPlayerColorWhite];
             
             // Host is player1

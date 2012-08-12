@@ -93,7 +93,7 @@
         _lowerTriangle = UDTriangleMake( CGPointMake(0, leftBottomY), CGPointMake(winSize.width, leftBottomY), CGPointMake(winSize.width, winSize.height -rightTopY) );
         
         
-        if( [[UDGKManager sharedManager] match] ){
+        if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
             [self setUserInteractionEnabled:NO];
 
             _bannerWaitingForPlayer = [CCSprite spriteWithSpriteFrameName:@"RRBannerWaitingForPlayer.png"];
@@ -109,7 +109,7 @@
 
     [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", playerColor]];
     
-    if( [[UDGKManager sharedManager] match] ){
+    if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
         
         UDGKPacketPickColor packet = UDGKPacketPickColorMake( playerColor );
         [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
@@ -216,7 +216,7 @@
 #pragma mark UDGKManagerPacketObserving
 
 
-- (void)observePacket:(const void *)packet fromPlayer:(GKPlayer *)player {
+- (void)observePacket:(const void *)packet fromPlayer:(id <UDGKPlayerProtocol>)player {
     if( [player.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ) return;
 
     UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
@@ -256,7 +256,7 @@
 #pragma mark UDGKManagerPlayerObserving
 
 
-- (void)observePlayer:(GKPlayer *)player state:(GKPlayerConnectionState)state {
+- (void)observePlayer:(id <UDGKPlayerProtocol>)player state:(GKPlayerConnectionState)state {
     
     if( state == GKPlayerStateDisconnected ){
         

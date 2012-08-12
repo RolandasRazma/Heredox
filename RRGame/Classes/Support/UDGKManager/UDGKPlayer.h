@@ -9,11 +9,24 @@
 #import <GameKit/GameKit.h>
 
 
-@interface UDGKPlayer : GKPlayer {
-    NSString *_playerID;
+@protocol UDGKPlayerProtocol <NSObject>
+@required
+
+@property(nonatomic, readonly, retain)  NSString    *playerID;
+@property(nonatomic, readonly, copy)    NSString    *alias;
+
+@end
+
+
+@interface UDGKPlayer : NSObject <UDGKPlayerProtocol> {
+    NSString    *_playerID;
+    NSString    *_alias;
 }
 
-+ (id)playerWithPlayerID:(NSString *)playerID;
-- (id)initWithPlayerID:(NSString *)playerID;
+@property(nonatomic, readonly, retain)  NSString    *playerID;
+@property(nonatomic, readonly, copy)    NSString    *alias;
+
++ (id)playerWithPlayerID:(NSString *)playerID alias:(NSString *)alias;
+- (id)initWithPlayerID:(NSString *)playerID alias:(NSString *)alias;
 
 @end

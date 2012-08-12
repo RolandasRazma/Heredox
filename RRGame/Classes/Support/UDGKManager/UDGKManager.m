@@ -88,22 +88,28 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
 
 - (BOOL)isHost {
-    return (!_match || [self.playerID isEqualToString:self.hostPlayerID]);
+    return ((!_match && !_session) || [self.playerID isEqualToString:self.hostPlayerID]);
 }
 
 
 - (NSString *)playerID {
-    if( [[GKLocalPlayer localPlayer] isAuthenticated] ){
+
+    if( _match && [[GKLocalPlayer localPlayer] isAuthenticated] ){
         return [[GKLocalPlayer localPlayer] playerID];
+    }else if( _session ){
+        return [_session peerID];
     }else{
         return nil;
     }
+    
 }
 
 
 - (void)setMatch:(GKMatch *)match {
     
     if ( ![_match isEqual:match] ) {
+        if( match && _session ) [self setSession:nil];
+        
         // Disconnect players
         for( NSString *playerID in [[_players allKeys] reverseObjectEnumerator] ){
             [self playerID:playerID didChangeState:GKPlayerStateDisconnected];
@@ -134,10 +140,46 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 }
 
 
+- (void)setSession:(GKSession *)session {
+    
+    if ( ![_session isEqual:session] ) {
+        if( session && _match ) [self setMatch:nil];
+        
+        // Disconnect players
+        for( NSString *playerID in [[_players allKeys] reverseObjectEnumerator] ){
+            [self playerID:playerID didChangeState:GKPlayerStateDisconnected];
+        }
+        
+        // Remove host
+        [_hostPlayerID release], _hostPlayerID = nil;
+        
+        // Destroy session
+        [_session setDelegate:nil];
+        [_session disconnectFromAllPeers];
+        [_session setAvailable:NO];
+        [_session setDataReceiveHandler:nil withContext:NULL];
+        [_session release], _session = nil;
+
+        if( session ){
+            _session = [session retain];
+
+            // Session already have connected players
+            [self playerID:[self playerID] didChangeState:GKPlayerStateConnected];
+            
+            [_session setDataReceiveHandler:self withContext:NULL];
+            [_session setDelegate:self];
+        }
+    }
+    
+}
+
+
 - (void)packet:(const void *)packet fromPlayerID:(NSString *)playerID {
-    GKPlayer *player = [_players valueForKey:playerID];
+    id <UDGKPlayerProtocol>player = [_players valueForKey:playerID];
     
     NSAssert1(player, @"No player for playerID: %@", playerID);
+    
+    NSLog(@"packet:fromPlayerID: %@", playerID);
     
     NSSet *observers = [_packetObservers objectForKey: @((*(UDGKPacket *)packet).type)];
     @synchronized( observers ){
@@ -149,18 +191,26 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
 
 - (BOOL)sendPacketToAllPlayers:(const void *)packet length:(NSUInteger)length {
-    if( !_match ) return NO;
+    if( !_match && !_session ) return NO;
     
     [self packet:packet fromPlayerID: [self playerID]];
     
-    return [_match sendDataToAllPlayers: [NSData dataWithBytes:packet length:length]
-                           withDataMode: GKMatchSendDataReliable
-                                  error: NULL];
+    if( _match ){
+        return [_match sendDataToAllPlayers: [NSData dataWithBytes:packet length:length]
+                               withDataMode: GKMatchSendDataReliable
+                                      error: NULL];
+    }else if( _session ){
+        return [_session sendDataToAllPeers: [NSData dataWithBytes:packet length:length]
+                               withDataMode: GKMatchSendDataReliable
+                                      error: NULL];
+    }
+    
+    return NO;
 }
 
 
 - (BOOL)sendPacket:(const void *)packet length:(NSUInteger)length toPlayers:(NSArray *)playerIDs {
-    if( !_match ) return NO;
+    if( !_match && !_session ) return NO;
     
     if ( [playerIDs containsObject: self.playerID] ) {
         [self packet:packet fromPlayerID: self.playerID];
@@ -168,30 +218,44 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
         playerIDs = [playerIDs mutableCopy];
         [(NSMutableArray *)playerIDs removeObject:self.playerID];
     }
-
-    return [_match sendData: [NSData dataWithBytes:packet length:length]
-                  toPlayers: playerIDs
-               withDataMode: GKMatchSendDataReliable
-                      error: NULL];
+    
+    if( _match ){
+        return [_match sendData: [NSData dataWithBytes:packet length:length]
+                      toPlayers: playerIDs
+                   withDataMode: GKMatchSendDataReliable
+                          error: NULL];
+    }else if( _session ){
+        return [_session sendData: [NSData dataWithBytes:packet length:length]
+                          toPeers: playerIDs
+                     withDataMode: GKMatchSendDataReliable
+                            error: NULL];
+    }
+    return NO;
 }
 
 
 - (void)playerID:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {
     NSAssert(playerID, @"Player Without ID");
 
-    GKPlayer *player = nil;
+    NSLog(@"playerID: %@ didChangeState: %i", playerID, state);
+    
+    id <UDGKPlayerProtocol>player = nil;
     
     @synchronized( _players ){
         
         switch ( state ) {
             case GKPlayerStateConnected: {
                 if( !(player = [_players objectForKey:playerID]) ){
-                    if( [playerID isEqualToString:self.playerID] ){
-                        player = [GKLocalPlayer localPlayer];
-                    }else{
-                        player = [UDGKPlayer playerWithPlayerID:playerID];
+                    if( _match ){
+                        if( [playerID isEqualToString:self.playerID] ){
+                            player = (id <UDGKPlayerProtocol>)[GKLocalPlayer localPlayer];
+                        }else{
+                            player = [UDGKPlayer playerWithPlayerID:playerID alias:nil];
+                        }
+                    }else if( _session ){
+                        player = [UDGKPlayer playerWithPlayerID:playerID alias:[_session displayNameForPeer:playerID]];
                     }
-                    
+
                     [_players setObject:player forKey:playerID];
                 }
                 break;
@@ -223,21 +287,24 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
 
 - (void)allPlayersConnected {
-    // Load GKPlayers
-    [GKPlayer loadPlayersForIdentifiers: [_match playerIDs]
-                  withCompletionHandler: ^(NSArray *players, NSError *error){
-                      @synchronized( _players ){
-                          for( GKPlayer *player in players ){
-                              [_players setObject:player forKey:[player playerID]];
+    
+    if( _match ){
+        // Load GKPlayers
+        [GKPlayer loadPlayersForIdentifiers: [_match playerIDs]
+                      withCompletionHandler: ^(NSArray *players, NSError *error){
+                          @synchronized( _players ){
+                              for( GKPlayer *player in players ){
+                                  [_players setObject:player forKey:[player playerID]];
+                              }
                           }
-                      }
-
-                      @synchronized( _hostPlayerID ){
-                          if( _hostPlayerID ){
-                              [[NSNotificationCenter defaultCenter] postNotificationName:UDGKManagerAllPlayersConnectedNotification object:self];
+                          
+                          @synchronized( _hostPlayerID ){
+                              if( _hostPlayerID ){
+                                  [[NSNotificationCenter defaultCenter] postNotificationName:UDGKManagerAllPlayersConnectedNotification object:self];
+                              }
                           }
-                      }
-                  }];
+                      }];
+    }
     
     // Negotiate host
     NSArray *allPlayers = [[_players allKeys] sortedArrayUsingSelector:@selector(compare:)];
@@ -248,6 +315,11 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
                                                      length: sizeof(UDGKPacketPickHost)];
         
     }
+}
+
+
+- (BOOL)isNetworkPlayActive {
+    return (_match != nil || _session != nil);
 }
 
 
@@ -335,14 +407,14 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 #pragma mark UDGKManagerPacketObserving
 
 
-- (void)observePacket:(const void *)packet fromPlayer:(GKPlayer *)player {
+- (void)observePacket:(const void *)packet fromPlayer:(id <UDGKPlayerProtocol>)player {
     UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
 
     if ( packetType == UDGKPacketTypePickHost ) {
         UDGKPacketPickHost newPacket = *(UDGKPacketPickHost *)packet;
-
-        NSArray *allPlayers = [[_players allKeys] sortedArrayUsingSelector:@selector(compare:)];
         
+        NSArray *allPlayers = [[_players allKeys] sortedArrayUsingSelector:@selector(compare:)];
+
         @synchronized( _hostPlayerID ){
             [_hostPlayerID release];
             _hostPlayerID = [[allPlayers objectAtIndex:newPacket.hostIndex] copy];
@@ -350,11 +422,13 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
         
         // Check if all pears got aliases
         BOOL playersWasUpdated = YES;
-        @synchronized( _players ){
-            for( id player in [_players allValues] ){
-                if( ![player isKindOfClass: [GKPlayer class]] ){
-                    playersWasUpdated = NO;
-                    break;
+        if( _match ){
+            @synchronized( _players ){
+                for( id player in [_players allValues] ){
+                    if( ![player isKindOfClass: [GKPlayer class]] ){
+                        playersWasUpdated = NO;
+                        break;
+                    }
                 }
             }
         }
