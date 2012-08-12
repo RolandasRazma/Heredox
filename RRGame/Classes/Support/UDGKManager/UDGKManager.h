@@ -8,7 +8,7 @@
 #import "UDGKPacket.h"
 
 
-extern NSString * const UDGKManagerGotInviteNotification;
+extern NSString * const UDGKManagerPlayerGotInviteNotification;
 extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 
 
@@ -43,6 +43,8 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @property (nonatomic, retain)   GKMatch         *match;
 
 + (UDGKManager *)sharedManager;
+
+- (void)authenticateInGameCenterWithCompletionHandler:(void(^)(NSError *error))completionHandler;
 
 - (BOOL)sendPacketToAllPlayers:(const void *)packet length:(NSUInteger)length;
 - (BOOL)sendPacket:(const void *)packet length:(NSUInteger)length toPlayers:(NSArray *)playerIDs;

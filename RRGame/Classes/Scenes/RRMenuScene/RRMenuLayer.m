@@ -75,16 +75,13 @@
 
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
-    
-#ifdef DEBUG
+
     if( isGameCenterAvailable() ){
         [[UDGKManager sharedManager] setMatch:nil];
-        
-        if ( [[GKLocalPlayer localPlayer] isAuthenticated] == NO ) {
-            [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:NULL];
-        }
+        [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:^(NSError *error) {
+            NSLog(@"authenticateInGameCenterWithCompletionHandlerError: %@", error);
+        }];
     }
-#endif
 }
 
 
@@ -94,16 +91,18 @@
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(allPlayersConnectedNotification)
                                                  name: UDGKManagerAllPlayersConnectedNotification
-                                               object: nil];    
+                                               object: nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(playerGotInviteNotification:)
+                                                 name: UDGKManagerPlayerGotInviteNotification
+                                               object: nil];
 }
 
 
 - (void)onExit {
     [super onExit];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver: self
-                                                    name: UDGKManagerAllPlayersConnectedNotification
-                                                  object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -112,13 +111,11 @@
 
 
 - (void)pickMultiplayerType {
-#ifdef DEBUG
+    
     RRMenuMultiplayerLayer *menuMultiplayerLayer = [RRMenuMultiplayerLayer node];
     [menuMultiplayerLayer setDelegate: self];
     [self addChild:menuMultiplayerLayer];
-#else
-    [self startGameWithNumberOfPlayers:2];
-#endif
+    
 }
 
 
@@ -134,7 +131,7 @@
 
 - (void)allPlayersConnectedNotification {
     
-    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+    [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:2];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
@@ -142,6 +139,32 @@
     
 }
 
+
+- (void)playerGotInviteNotification:(NSNotification *)notification {
+    NSLog(@"playerGotInviteNotification");
+    
+    if ( [notification.userInfo objectForKey:@"acceptedInvite"] ) {
+
+        GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithInvite: [notification.userInfo objectForKey:@"acceptedInvite"]];
+        [matchmakerViewController setMatchmakerDelegate:self];
+        [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
+        [matchmakerViewController release];
+        
+    } else if ( [notification.userInfo objectForKey:@"playersToInvite"] ) {
+        GKMatchRequest *request = [[GKMatchRequest alloc] init];
+        [request setMinPlayers: 2];
+        [request setMaxPlayers: 2];
+        [request setPlayersToInvite: [notification.userInfo objectForKey:@"playersToInvite"]];
+        
+        GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
+        [matchmakerViewController setMatchmakerDelegate:self];
+        [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
+        [matchmakerViewController release];
+        
+        [request release];
+    }
+    
+}
 
 
 - (void)showRules {
@@ -166,7 +189,7 @@
 
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
         [matchmakerViewController setMatchmakerDelegate:self];
-        [[CCDirector sharedDirector] presentModalViewController:matchmakerViewController animated:YES];
+        [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
         [matchmakerViewController release];
         
         [request release];
@@ -181,12 +204,12 @@
 
 
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
-    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+    [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
 }
 
 
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
-    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+    [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Error"
                                                         message: [error localizedDescription]

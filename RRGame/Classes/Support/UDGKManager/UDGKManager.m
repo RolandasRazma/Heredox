@@ -9,8 +9,8 @@
 #import "UDGKPlayer.h"
 
 
-NSString * const UDGKManagerGotInviteNotification            = @"UDGKManagerGotInviteNotification";
-NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllPlayersConnectedNotification";
+NSString * const UDGKManagerPlayerGotInviteNotification     = @"UDGKManagerPlayerGotInviteNotification";
+NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPlayersConnectedNotification";
 
 
 @implementation UDGKManager
@@ -31,6 +31,11 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
         [[NSNotificationCenter defaultCenter] addObserver: self
                                                  selector: @selector(applicationWillTerminateNotification)
                                                      name: UIApplicationWillTerminateNotification
+                                                   object: nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(playerAuthenticationDidChangeNotification)
+                                                     name: GKPlayerAuthenticationDidChangeNotificationName
                                                    object: nil];
     }
     return self;
@@ -53,6 +58,32 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 - (void)applicationWillTerminateNotification {
     [self setMatch:nil];
+}
+
+
+- (void)playerAuthenticationDidChangeNotification {
+    if ( [[GKLocalPlayer localPlayer] isAuthenticated] ) {
+        [[GKMatchmaker sharedMatchmaker] setInviteHandler: ^(GKInvite *acceptedInvite, NSArray *playersToInvite) {
+
+            [[NSNotificationCenter defaultCenter] postNotificationName: UDGKManagerPlayerGotInviteNotification
+                                                                object: self
+                                                              userInfo: @{ @"acceptedInvite": acceptedInvite, @"playersToInvite": playersToInvite}];
+            
+        }];
+    }else{
+        [[GKMatchmaker sharedMatchmaker] setInviteHandler: NULL];
+    }
+}
+
+
+- (void)authenticateInGameCenterWithCompletionHandler:(void(^)(NSError *error))completionHandler {
+
+    if ( ![[GKLocalPlayer localPlayer] isAuthenticated] ) {
+        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler: completionHandler];
+    }else if( completionHandler ){
+        completionHandler(nil);
+    }
+    
 }
 
 
@@ -358,6 +389,57 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 - (BOOL)match:(GKMatch *)match shouldReinvitePlayer:(NSString *)playerID {
     return NO;
+}
+
+
+#pragma mark -
+#pragma mark GKSessionDelegate
+
+
+// The session received data sent from the player.
+- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
+    [self packet:[data bytes] fromPlayerID:peer];
+}
+
+
+// Indicates a state change for the given peer.
+- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
+    UDLog(@"session:didChangeState:");
+    switch ( state ) {
+        case GKPeerStateAvailable: {    // not connected to session, but available for connectToPeer:withTimeout:
+            
+            break;
+        }
+        case GKPeerStateUnavailable: {  // no longer available
+            
+            break;
+        }
+        case GKPeerStateConnected: {    // connected to the session
+            [self playerID:peerID didChangeState:GKPlayerStateConnected];
+            break;
+        }
+        case GKPeerStateDisconnected: { // disconnected from the session
+            [self playerID:peerID didChangeState:GKPlayerStateDisconnected];
+            break;
+        }
+        case GKPeerStateConnecting: { // waiting for accept, or deny response
+            
+            break;
+        }
+    }
+    
+}
+
+
+// Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
+- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+    UDLog(@"session:connectionWithPlayerFailed:withError:%@", error);
+}
+
+
+// Indicates an error occurred with the session such as failing to make available.
+- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
+    UDLog(@"session:didFailWithError: %@", error);
 }
 
 
