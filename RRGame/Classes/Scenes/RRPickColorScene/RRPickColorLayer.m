@@ -37,8 +37,7 @@
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite];
 
-        
-        CCSprite *titleTextSprite = [CCSprite spriteWithSpriteFrameName:((numberOfPlayers==1)?@"RRTextChooseYourAllegiance.png":@"RRTextWhoMakesTheFirstMove.png")];
+        CCSprite *titleTextSprite = [CCSprite spriteWithSpriteFrameName:((numberOfPlayers==1 || [[UDGKManager sharedManager] isNetworkPlayActive])?@"RRTextChooseYourAllegiance.png":@"RRTextWhoMakesTheFirstMove.png")];
         [self addChild:titleTextSprite];
         
         // Add menu button
