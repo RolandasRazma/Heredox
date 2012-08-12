@@ -108,7 +108,7 @@
     
     RRMenuMultiplayerLayer *menuMultiplayerLayer = [RRMenuMultiplayerLayer node];
     [menuMultiplayerLayer setDelegate: self];
-    [self addChild:menuMultiplayerLayer];
+    [self addChild:menuMultiplayerLayer z:1000];
     
 }
 

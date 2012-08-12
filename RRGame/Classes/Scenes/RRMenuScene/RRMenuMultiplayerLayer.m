@@ -19,7 +19,6 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
 
 - (id)init {
     if( (self = [super init]) ){
-        
         [self setUserInteractionEnabled:YES];
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -131,6 +130,15 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
                       [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)],
                       [UDActionDestroy actionWithTarget:self],
                       nil]];
+}
+
+
+#pragma mark -
+#pragma mark UDLayer
+
+
+- (BOOL)touchBeganAtLocation:(CGPoint)location {
+    return YES;
 }
 
 
