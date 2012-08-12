@@ -24,6 +24,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
     if( (self = [super init]) ){
         _players        = [[NSMutableDictionary alloc] initWithCapacity:5];
         _packetObservers= [[NSMutableDictionary alloc] initWithCapacity:5];
+        _playerObservers= [[NSMutableDictionary alloc] initWithCapacity:5];
         
         [self addPacketObserver:self forType:UDGKPacketTypePickHost];
     }
@@ -137,28 +138,40 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 - (void)playerID:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {
     NSAssert(playerID, @"Player Without ID");
 
+    GKPlayer *player = nil;
+    
     @synchronized( _players ){
         
         switch ( state ) {
             case GKPlayerStateConnected: {
-                if( ![_players objectForKey:playerID] ){
+                if( !(player = [_players objectForKey:playerID]) ){
                     if( [playerID isEqualToString:self.playerID] ){
-                        [_players setObject:[GKLocalPlayer localPlayer]                 forKey:playerID];
+                        player = [GKLocalPlayer localPlayer];
                     }else{
-                        [_players setObject:[UDGKPlayer playerWithPlayerID:playerID]    forKey:playerID];
+                        player = [UDGKPlayer playerWithPlayerID:playerID];
                     }
+                    
+                    [_players setObject:player forKey:playerID];
                 }
                 break;
             }
             case GKPlayerStateDisconnected: {
-                GKPlayer *player;
                 if( (player = [_players objectForKey:playerID]) ){
+                    [[player retain] autorelease];
                     [_players removeObjectForKey:playerID];
                 }
                 break;
             }
         }
         
+    }
+    
+    // Push to observers
+    NSSet *observers = [_playerObservers objectForKey:@(state)];
+    @synchronized( observers ){
+        for( id <UDGKManagerPlayerObserving>observer in observers ){
+            [observer observePlayer:player state:state];
+        }
     }
 
     // Do we expect any more players?
@@ -202,7 +215,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 
 - (void)addPacketObserver:(id <UDGKManagerPacketObserving>)observer forType:(UDGKPacketType)packetType {
-    NSNumber *packetTypeToObserver = [NSNumber numberWithInt:packetType];
+    id packetTypeToObserver = @(packetType);
     
     NSMutableSet *observers = [_packetObservers objectForKey:packetTypeToObserver];
     
@@ -217,23 +230,62 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 
 - (void)removePacketObserver:(id <UDGKManagerPacketObserving>)observer forType:(UDGKPacketType)packetType {
-    NSNumber *packetTypeToObserver = [NSNumber numberWithInt:packetType];
+    id packetTypeToObserver = @(packetType);
     
     NSMutableSet *observers = [_packetObservers objectForKey:packetTypeToObserver];
     
     @synchronized( observers ){
         [observers removeObject:observer];
-    }
-    
-    if( ![[_packetObservers objectForKey:packetTypeToObserver] count] ){
-        [_packetObservers removeObjectForKey:packetTypeToObserver];
+        if( ![observers count] ){
+            [_packetObservers removeObjectForKey:packetTypeToObserver];
+        }
     }
 }
 
 
 - (void)removePacketObserver:(id <UDGKManagerPacketObserving>)observer {
-    for ( NSNumber *packetType in [[_packetObservers allKeys] reverseObjectEnumerator] ) {
+    for ( id packetType in [[_packetObservers allKeys] reverseObjectEnumerator] ) {
         [self removePacketObserver:observer forType: [packetType intValue]];
+    }
+}
+
+
+#pragma mark -
+#pragma mark Player Observing
+
+
+- (void)addPlayerObserver:(id <UDGKManagerPlayerObserving>)observer forConnectionState:(GKPlayerConnectionState)connectionState {
+    id connectionStateToObserver = @(connectionState);
+    
+    NSMutableSet *observers = [_playerObservers objectForKey:connectionStateToObserver];
+    
+    if( observers ){
+        @synchronized( observers ){
+            [observers addObject:observer];
+        }
+    }else{
+        [_playerObservers setObject:[NSMutableSet setWithObject:observer] forKey:connectionStateToObserver];
+    }
+}
+
+
+- (void)removePlayerObserver:(id <UDGKManagerPlayerObserving>)observer forConnectionState:(GKPlayerConnectionState)connectionState {
+    id connectionStateToObserver = @(connectionState);
+    
+    NSMutableSet *observers = [_playerObservers objectForKey:connectionStateToObserver];
+    
+    @synchronized( observers ){
+        [observers removeObject:observer];
+        if( ![observers count] ){
+            [_playerObservers removeObjectForKey:connectionStateToObserver];
+        }
+    }
+}
+
+
+- (void)removePlayerObserver:(id <UDGKManagerPlayerObserving>)observer {
+    for ( id state in [[_playerObservers allKeys] reverseObjectEnumerator] ) {
+        [self removePlayerObserver:observer forConnectionState: [state intValue]];
     }
 }
 
@@ -295,7 +347,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification  = @"UDGKManagerAllP
 
 
 - (BOOL)match:(GKMatch *)match shouldReinvitePlayer:(NSString *)playerID {
-    return YES;
+    return NO;
 }
 
 

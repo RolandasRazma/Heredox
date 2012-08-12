@@ -10,7 +10,7 @@
 #import "UDLayer.h"
 
 
-@interface RRPickColorLayer : UDLayer <UDGKManagerPacketObserving> {
+@interface RRPickColorLayer : UDLayer <UDGKManagerPacketObserving, UDGKManagerPlayerObserving> {
     NSUInteger  _numberOfPlayers;
 
     CGRect      _upperRect;

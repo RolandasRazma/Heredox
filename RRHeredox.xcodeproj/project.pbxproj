@@ -1665,7 +1665,7 @@
 		F06582B214CA7BE20033B4F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = UD7;
 			};
 			buildConfigurationList = F06582B514CA7BE20033B4F5 /* Build configuration list for PBXProject "RRHeredox" */;

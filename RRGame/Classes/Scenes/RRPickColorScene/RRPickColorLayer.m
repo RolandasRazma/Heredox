@@ -146,6 +146,8 @@
     
     [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypePickColor];
     [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
+    
+    [[UDGKManager sharedManager] addPlayerObserver:self forConnectionState:GKPlayerStateDisconnected];
 }
 
 
@@ -162,6 +164,7 @@
     [super onExit];
     
     [[UDGKManager sharedManager] removePacketObserver:self];
+    [[UDGKManager sharedManager] removePlayerObserver:self];
 }
 
 
@@ -243,6 +246,35 @@
             }
         }
     }
+}
+
+
+#pragma mark -
+#pragma mark UDGKManagerPlayerObserving
+
+
+- (void)observePlayer:(GKPlayer *)player state:(GKPlayerConnectionState)state {
+    
+    if( state == GKPlayerStateDisconnected ){
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Remote player disconnected"
+                                                            message: nil
+                                                           delegate: self
+                                                  cancelButtonTitle: @"OK"
+                                                  otherButtonTitles: nil];
+        [alertView show];
+        [alertView release];
+    }
+    
+}
+
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [self showMenu];
 }
 
 

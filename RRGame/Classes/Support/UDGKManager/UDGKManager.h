@@ -20,11 +20,20 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @end
 
 
+@protocol UDGKManagerPlayerObserving <NSObject>
+@required
+
+- (void)observePlayer:(GKPlayer *)player state:(GKPlayerConnectionState)state;
+
+@end
+
+
 @interface UDGKManager : NSObject <GKMatchDelegate, UDGKManagerPacketObserving> {
     GKMatch             *_match;
     NSString            *_hostPlayerID;
     NSMutableDictionary *_players;
     NSMutableDictionary *_packetObservers;
+    NSMutableDictionary *_playerObservers;
 }
 
 @property (nonatomic, readonly) NSString        *playerID;
@@ -41,5 +50,9 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 - (void)addPacketObserver:(id <UDGKManagerPacketObserving>)observer forType:(UDGKPacketType)packetType;
 - (void)removePacketObserver:(id <UDGKManagerPacketObserving>)observer forType:(UDGKPacketType)packetType;
 - (void)removePacketObserver:(id <UDGKManagerPacketObserving>)observer;
+
+- (void)addPlayerObserver:(id <UDGKManagerPlayerObserving>)observer forConnectionState:(GKPlayerConnectionState)connectionState;
+- (void)removePlayerObserver:(id <UDGKManagerPlayerObserving>)observer forConnectionState:(GKPlayerConnectionState)connectionState;
+- (void)removePlayerObserver:(id <UDGKManagerPlayerObserving>)observer;
 
 @end
