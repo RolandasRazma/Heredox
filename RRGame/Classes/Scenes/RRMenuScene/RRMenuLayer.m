@@ -74,10 +74,7 @@
     
     if( isGameCenterAvailable() ){
         [[UDGKManager sharedManager] setMatch:nil];
-
-        [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:^(NSError *error) {
-            NSLog(@"authenticateInGameCenterWithCompletionHandlerError: %@", error);
-        }];
+        [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:NULL];
     }
 }
 
@@ -134,7 +131,6 @@
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:2];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
     [pickColorScene release];
-    
     
     if( _peerPickerController ){
         [_peerPickerController setDelegate:nil];
@@ -239,9 +235,6 @@
 #pragma mark GKPeerPickerControllerDelegate
 
 
-/* Notifies delegate that the connection type is requesting a GKSession object.
- You should return a valid GKSession object for use by the picker. If this method is not implemented or returns 'nil', a default GKSession is created on the delegate's behalf.
- */
 - (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
 	GKSession *session = [[GKSession alloc] initWithSessionID: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
                                                   displayName: [[UIDevice currentDevice] name]
@@ -250,13 +243,11 @@
 }
 
 
-// Notifies delegate that the peer was connected to a GKSession.
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
     [[UDGKManager sharedManager] setSession: session];
 }
 
 
-// Notifies delegate that the user cancelled the picker.
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
     [_peerPickerController setDelegate:nil];
     [_peerPickerController release];

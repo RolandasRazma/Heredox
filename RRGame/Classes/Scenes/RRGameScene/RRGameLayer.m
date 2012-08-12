@@ -175,18 +175,15 @@
     [self setUserInteractionEnabled:NO];
     
     [self resetDeckForGameMode:_gameMode withSeed:gameSeed];
+    [_gameBoardLayer resetBoardForGameMode: _gameMode];
     
-    @synchronized( self ){
-        _playerColor = _firstPlayerColor;
-        
-        [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
-
-        [_resetGameButton stopAllActions];
-        [_resetGameButton removeFromParentAndCleanup:YES];
-        _resetGameButton = nil;
-        
-        [_gameBoardLayer resetBoardForGameMode: _gameMode];
-    }
+    _playerColor = _firstPlayerColor;
+    
+    [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
+    
+    [_resetGameButton stopAllActions];
+    [_resetGameButton removeFromParentAndCleanup:YES];
+    _resetGameButton = nil;
     
     if( [[UDGKManager sharedManager] isHost] ){
         UDGKPacketResetGame newPacket = UDGKPacketResetGameMake( gameSeed );
@@ -287,8 +284,7 @@
         
         if( [_gameBoardLayer haltTilePlaces] ){
             
-            if(     [[UDGKManager sharedManager] isNetworkPlayActive]
-               &&   [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ){
+            if( [[UDGKManager sharedManager] isNetworkPlayActive] && [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ){
                 UDGKPacketTileMove packet = UDGKPacketTileMoveMake( tileMove );
                 [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
                                                              length: sizeof(UDGKPacketTileMove)];
@@ -297,11 +293,9 @@
             if( _deck.count > 0 ){
                 if( _playerColor == RRPlayerColorBlack ){
                     _playerColor = RRPlayerColorWhite;
-                    
                     [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorWhite duration:0.7f];
                 }else{
                     _playerColor = RRPlayerColorBlack;
-                    
                     [_backgroundLayer fadeToSpriteWithTag: RRPlayerColorBlack duration:0.7f];
                 }
                 
@@ -352,6 +346,9 @@
         [_playerNameLabel setPosition:CGPointMake(winSize.width /2, 5)];
         [_playerNameLabel setOpacity:255];
         
+        [GKNotificationBanner showBannerWithTitle: @"New turn"
+                                          message: [NSString stringWithFormat:@"%@'s turn", player.alias]
+                                completionHandler: NULL];
     }else{
         [self setUserInteractionEnabled:YES];
     }
@@ -491,12 +488,14 @@
     
     if( [[UDGKManager sharedManager] isHost] ){
         if( !_resetGameButton ){
+            [self setUserInteractionEnabled:NO];
+            
             _resetGameButton = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonReplay.png" highliteSpriteFrameName:@"RRButtonReplaySelected.png"];
             [_resetGameButton setPosition:_buttonEndTurn.position];
             [_resetGameButton addBlock: ^{
                 [[RRAudioEngine sharedEngine] stopAllEffects];
                 [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-                
+
                 [self resetGame];
             } forControlEvents: UDButtonEventTouchUpInside];
             [self addChild:_resetGameButton z:-2];

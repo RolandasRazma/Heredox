@@ -30,13 +30,13 @@ static BOOL RRGameWictoryLayerVisible = NO;
 - (void)onEnter {
     [super onEnter];
 
-    RRGameWictoryLayerVisible = YES;
-    
     if( RRGameWictoryLayerVisible ){
         [self setVisible:NO];
         [self removeFromParentAndCleanup:YES];
         return;
     }
+    
+    RRGameWictoryLayerVisible = YES;
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     [_menu setPosition:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)];

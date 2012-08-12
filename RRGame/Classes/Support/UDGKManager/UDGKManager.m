@@ -79,6 +79,13 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 - (void)authenticateInGameCenterWithCompletionHandler:(void(^)(NSError *error))completionHandler {
 
     if ( ![[GKLocalPlayer localPlayer] isAuthenticated] ) {
+        if( !completionHandler ){
+            completionHandler = ^(NSError *error){
+                [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
+                                                  message: nil
+                                        completionHandler: NULL];
+            };
+        }
         [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler: completionHandler];
     }else if( completionHandler ){
         completionHandler(nil);
@@ -454,6 +461,10 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
 - (void)match:(GKMatch *)match didFailWithError:(NSError *)error {
     UDLog(@"match:didFailWithError: %@", error);
+    
+    [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
+                                      message: nil
+                            completionHandler: NULL];
 }
 
 
@@ -504,12 +515,20 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 // Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
     UDLog(@"session:connectionWithPlayerFailed:withError:%@", error);
+    
+    [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
+                                      message: nil
+                            completionHandler: NULL];
 }
 
 
 // Indicates an error occurred with the session such as failing to make available.
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error {
     UDLog(@"session:didFailWithError: %@", error);
+    
+    [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
+                                      message: nil
+                            completionHandler: NULL];
 }
 
 
