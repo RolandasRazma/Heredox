@@ -46,8 +46,6 @@
     [super onEnterTransitionDidFinish];
 
     if( [[UDGKManager sharedManager] match] ){
-        [self setUserInteractionEnabled:NO];
-
         UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 3 );
         [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
                                                      length: sizeof(UDGKPacketEnterScene)];
@@ -155,10 +153,9 @@
         
         // Do we need to wait for players?
         _allPlayersInScene = ([[UDGKManager sharedManager] match] == nil);
+        [self setUserInteractionEnabled:_allPlayersInScene];
         
         if( !_allPlayersInScene ){
-            [self setUserInteractionEnabled:NO];
-            
             _bannerWaitingForPlayer = [CCSprite spriteWithSpriteFrameName:@"RRBannerWaitingForPlayer.png"];
             [_bannerWaitingForPlayer setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
             [self addChild:_bannerWaitingForPlayer z: 100];
@@ -174,13 +171,8 @@
 
 
 - (void)resetGameWithSeed:(NSUInteger)gameSeed {
+    [self setUserInteractionEnabled:NO];
     
-    if( [[UDGKManager sharedManager] isHost] ){
-        UDGKPacketResetGame newPacket = UDGKPacketResetGameMake( gameSeed );
-        [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
-                                                     length: sizeof(UDGKPacketResetGame)];
-    }
-
     [self resetDeckForGameMode:_gameMode withSeed:gameSeed];
     
     @synchronized( self ){
@@ -193,8 +185,12 @@
         _resetGameButton = nil;
         
         [_gameBoardLayer resetBoardForGameMode: _gameMode];
-        
-        [self setUserInteractionEnabled:YES];
+    }
+    
+    if( [[UDGKManager sharedManager] isHost] ){
+        UDGKPacketResetGame newPacket = UDGKPacketResetGameMake( gameSeed );
+        [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
+                                                     length: sizeof(UDGKPacketResetGame)];
     }
     
     [self newTurn];
@@ -331,7 +327,7 @@
 
 
 - (void)newTurn {
-    [self takeNewTile];
+    [self flipTopTileFromDeck];
     
     RRPlayer *currentPlayer = [self currentPlayer];
     
@@ -353,6 +349,7 @@
         [_playerNameLabel setString:player.alias];
         [_playerNameLabel setPosition:CGPointMake(winSize.width /2, 5)];
         [_playerNameLabel setOpacity:255];
+        
     }else{
         [self setUserInteractionEnabled:YES];
     }
@@ -390,7 +387,7 @@
 }
 
 
-- (RRTile *)takeNewTile {
+- (RRTile *)flipTopTileFromDeck {
     if( _deck.count == 0 ) return nil;
     
     RRTile *tile = [[_deck objectAtIndex:0] retain];
