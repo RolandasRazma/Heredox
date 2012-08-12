@@ -70,10 +70,9 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
 
-    [[UDGKManager sharedManager] setSession:nil];
+    [[UDGKManager sharedManager] setSessionProvider:nil];
     
     if( isGameCenterAvailable() ){
-        [[UDGKManager sharedManager] setMatch:nil];
         [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:NULL];
     }
 }
@@ -114,8 +113,7 @@
 
 
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
-    [[UDGKManager sharedManager] setMatch:nil];
-    [[UDGKManager sharedManager] setSession:nil];
+    [[UDGKManager sharedManager] setSessionProvider:nil];
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
@@ -259,7 +257,7 @@
 
 
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match {
-    [[UDGKManager sharedManager] setMatch:match];
+    [[UDGKManager sharedManager] setSessionProvider:match];
 }
 
 
@@ -277,7 +275,7 @@
 
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
-    [[UDGKManager sharedManager] setSession: session];
+    [[UDGKManager sharedManager] setSessionProvider: session];
 }
 
 
@@ -285,7 +283,7 @@
     [_peerPickerController setDelegate:nil];
     [_peerPickerController release];
     
-    [[UDGKManager sharedManager] setSession: nil];
+    [[UDGKManager sharedManager] setSessionProvider: nil];
 }
 #endif
 

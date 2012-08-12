@@ -276,5 +276,5 @@
 }
 
 
-@synthesize backSideVisible=_backSideVisible, lookIs3D=_lookIs3D;
+@synthesize backSideVisible=_backSideVisible, lookIs3D=_lookIs3D, wasLifted=_wasLifted;
 @end

@@ -44,4 +44,5 @@
 }
 
 
+@synthesize playerID=_playerID, alias=_alias;
 @end

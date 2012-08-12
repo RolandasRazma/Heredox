@@ -38,6 +38,11 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 
 @interface UDGKManager : NSObject <UDGKManagerPacketObserving, UDGKManagerGKDelegates> {
     GKMatch             *_match;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
+    GKSession           *_session;
+#else
+    id                  _session;
+#endif
     NSString            *_hostPlayerID;
     NSMutableDictionary *_players;
     NSMutableDictionary *_packetObservers;
@@ -49,12 +54,7 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @property (nonatomic, readonly) BOOL            isHost;
 @property (nonatomic, readonly) BOOL            isNetworkPlayActive;
 @property (nonatomic, readonly) NSDictionary    *players;
-@property (nonatomic, retain)   GKMatch         *match;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED
-@property (nonatomic, retain)   GKSession       *session;
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
-@property (nonatomic, retain)   id              session;
-#endif
+@property (nonatomic, retain)   id              sessionProvider;    // GKMatch or GKSession
     
 + (UDGKManager *)sharedManager;
 

@@ -607,4 +607,6 @@
 }
 #endif
 
+
+@synthesize player1=_player1, player2=_player2;
 @end

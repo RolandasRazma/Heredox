@@ -39,5 +39,5 @@
 }
 
 
-@synthesize playerColor=_playerColor;
+@synthesize playerColor=_playerColor, playerID=_playerID;
 @end

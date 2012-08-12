@@ -118,11 +118,30 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 }
 
 
+- (void)setSessionProvider:(id)sessionProvider {
+    if( [sessionProvider isKindOfClass:[GKMatch class]] ){
+        [self setMatch:sessionProvider];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
+    }else if( [sessionProvider isKindOfClass:[GKSession class]] ){
+        [self setSession:sessionProvider];
+#endif
+    }else{
+        NSAssert(NO, @"Only GKMatch and GKSession are supported as session provider");
+    }
+}
+
+
+- (id)sessionProvider {
+    return (_match?_match:_session);
+}
+
+
 - (void)setMatch:(GKMatch *)match {
     
     if ( ![_match isEqual:match] ) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
         if( match && _session ) [self setSession:nil];
-        
+#endif
         // Disconnect players
         for( NSString *playerID in [[_players allKeys] reverseObjectEnumerator] ){
             [self playerID:playerID didChangeState:GKPlayerStateDisconnected];
@@ -544,4 +563,5 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 #endif
 
 
+@synthesize players=_players, hostPlayerID=_hostPlayerID;
 @end
