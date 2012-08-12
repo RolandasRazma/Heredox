@@ -10,7 +10,8 @@
 #import "UDSpriteButton.h"
 
 
-static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictoriousNo;
+static RRPlayerColorWictorious lastPlayerWictoriousColor = RRPlayerColorWictoriousNo;
+static NSUInteger lastPlayerWictoriousTimes = 1;
 
 
 @implementation RRGameWictoryLayer
@@ -43,11 +44,6 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
     
     [[RRAudioEngine sharedEngine] stopAllEffects];
     [[RRAudioEngine sharedEngine] replayEffect:[NSString stringWithFormat:@"RRPlayerColorWictorious%u.mp3", _playerColorWictorious]];
-}
-
-
-+ (RRPlayerColorWictorious)lastPlayerColorWictorious {
-    return lastPlayerColorWictorious;
 }
 
 
@@ -95,31 +91,35 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
             }
             case RRPlayerColorWictoriousWhite: {
                 winningBanner = [CCSprite spriteWithSpriteFrameName:@"RRBannerWinWhite.png"];
-                if( lastPlayerColorWictorious == playerColorWictorious ){
-                    winningBanner2 = [CCSprite spriteWithSpriteFrameName:@"RRTextWinWhiteConsecutively.png"];
+                if( lastPlayerWictoriousColor == playerColorWictorious ){
+                    winningBanner2 = [self spriteForConsecutivelyWin:lastPlayerWictoriousTimes ofColor:playerColorWictorious];
+                }else{
+                    lastPlayerWictoriousTimes = 1;
                 }
                 break;
             }
             case RRPlayerColorWictoriousBlack: {
                 winningBanner = [CCSprite spriteWithSpriteFrameName:@"RRBannerWinBlack.png"];
-                if( lastPlayerColorWictorious == playerColorWictorious ){
-                    winningBanner2 = [CCSprite spriteWithSpriteFrameName:@"RRTextWinBlackConsecutively.png"];
+                if( lastPlayerWictoriousColor == playerColorWictorious ){
+                    winningBanner2 = [self spriteForConsecutivelyWin:lastPlayerWictoriousTimes ofColor:playerColorWictorious];
+                }else{
+                    lastPlayerWictoriousTimes = 1;
                 }
                 break;
             }
         }
         [_menu addChild:winningBanner];
         
-        lastPlayerColorWictorious = playerColorWictorious;
-        
+        lastPlayerWictoriousColor = playerColorWictorious;
+        lastPlayerWictoriousTimes++;
         
         // Device layout
         if( isDeviceIPad() || isDeviceMac() ){
-            [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width  /2, _menu.boundingBox.size.height /2 +80)];
+            [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width /2, _menu.boundingBox.size.height /2 +80)];
             if( winningBanner2 ){
                 [_menu addChild:winningBanner2];
-                [winningBanner2 setAnchorPoint:CGPointMake(0.5, 1)];
-                [winningBanner2 setPosition:CGPointMake(winningBanner.position.x, winningBanner.position.y -winningBanner.boundingBox.size.height /2 +40)];
+                [winningBanner2 setAnchorPoint:CGPointMake(0.5f, 0.5f)];
+                [winningBanner2 setPosition:CGPointMake(winningBanner.position.x, winningBanner.position.y -winningBanner.boundingBox.size.height /2 -60)];
             }
             
             [buttonContinue setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 80)];
@@ -127,8 +127,8 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
             [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width  /2, _menu.boundingBox.size.height /2 +40)];
             if( winningBanner2 ){
                 [_menu addChild:winningBanner2];
-                [winningBanner2 setAnchorPoint:CGPointMake(0.5, 1)];
-                [winningBanner2 setPosition:CGPointMake(winningBanner.position.x, winningBanner.position.y -winningBanner.boundingBox.size.height /2 +15)];
+                [winningBanner2 setAnchorPoint:CGPointMake(0.5f, 0.5f)];
+                [winningBanner2 setPosition:CGPointMake(winningBanner.position.x, winningBanner.position.y -winningBanner.boundingBox.size.height /2 -30)];
             }
             
             [buttonContinue setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 45)];
@@ -141,6 +141,37 @@ static RRPlayerColorWictorious lastPlayerColorWictorious = RRPlayerColorWictorio
 
 #pragma mark -
 #pragma mark RRGameWictoryLayer
+
+
+- (CCSprite *)spriteForConsecutivelyWin:(NSUInteger)winTimes ofColor:(RRPlayerColorWictorious)color {
+
+    NSString *colorKey = ((color == RRPlayerColorWictoriousBlack)?@"B":@"W");
+    NSString *text = [NSString stringWithFormat:@"%u", winTimes];
+    CCSprite *numbersSprite = nil;
+    CGFloat offsetX = 0;
+    CCSprite *characterSprite = nil;
+
+    for( NSUInteger charIndex = 0; charIndex<text.length; charIndex++ ){
+        characterSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"RRChar%@%@.png", colorKey, [text substringWithRange:NSMakeRange(charIndex, 1)]]];
+        if( numbersSprite ){
+            [numbersSprite addChild:characterSprite];
+            [characterSprite setAnchorPoint:CGPointZero];
+            [characterSprite setPosition:CGPointMake(offsetX, 0)];
+        }else{
+            numbersSprite = characterSprite;
+        }
+
+        offsetX += characterSprite.textureRect.size.width *0.5f;
+    }
+
+    CCSprite *sprite = [CCSprite spriteWithSpriteFrameName: [NSString stringWithFormat:@"RRTextWinConsecutively%@.png", colorKey]];
+    [numbersSprite setAnchorPoint:CGPointZero];
+    [numbersSprite setPosition:CGPointMake((sprite.boundingBox.size.width -(offsetX +characterSprite.textureRect.size.width *0.5f)) /2,
+                                           characterSprite.boundingBox.size.height -characterSprite.boundingBox.size.height *0.2f)];
+    [sprite addChild:numbersSprite];
+
+    return sprite;
+}
 
 
 - (void)dismiss {
