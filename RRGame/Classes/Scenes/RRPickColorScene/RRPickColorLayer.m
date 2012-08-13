@@ -96,7 +96,7 @@
         if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
             [self setUserInteractionEnabled:NO];
 
-            _bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"waiting for other player..."];
+            _bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"RRTextWaitingForOtherPlayer"];
             [self addChild:_bannerWaitingForPlayer z:1000];
         }
     }

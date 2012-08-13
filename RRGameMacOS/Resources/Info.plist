@@ -30,9 +30,5 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>WashingtonText.ttf</string>
-	</array>
 </dict>
 </plist>

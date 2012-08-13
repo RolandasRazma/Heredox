@@ -57,7 +57,7 @@
 
 
 #pragma mark -
-#pragma mark RRMenuMultiplayerLayer
+#pragma mark RRPopupLayer
 
 
 + (id)layerWithMessage:(NSString *)message {
@@ -72,8 +72,7 @@
 
 - (id)initWithMessage:(NSString *)message cancelButtonName:(NSString *)cancelButtonName cancelButtonAction:(void (^)(void))block {
     if( (self = [self init]) ){
-        CCLabelTTF *messageLabel = [CCLabelTTF labelWithString:message fontName:@"Washington Text" fontSize:((isDeviceIPad()||isDeviceMac())?45:22)];
-        [messageLabel setColor:ccBLACK];
+        CCSprite *messageLabel = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@.png", message]];
         [_menu addChild:messageLabel];
         
         if( cancelButtonName ){
@@ -81,7 +80,7 @@
             [messageLabel setPosition:CGPointMake(_menu.boundingBox.size.width /2, _menu.boundingBox.size.height /2)];
             
             UDSpriteButton *cancelButton = [UDSpriteButton buttonWithSpriteFrameName:[NSString stringWithFormat:@"%@.png", cancelButtonName] highliteSpriteFrameName:[NSString stringWithFormat:@"%@Selected.png", cancelButtonName]];
-            [cancelButton setAnchorPoint:CGPointMake(0.5f, -0.3f)];
+            [cancelButton setAnchorPoint:CGPointMake(0.5f, -0.4f)];
             [cancelButton setPosition:CGPointMake(_menu.boundingBox.size.width /2, 0)];
             if( block ){
                 [cancelButton addBlock:block forControlEvents:UDButtonEventTouchUpInside];

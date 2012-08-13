@@ -242,7 +242,7 @@
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
     [self dismissMatchmakerViewController];
     
-    RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"Game Center error"
+    RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
                                              cancelButtonName: @"RRButtonContinue"
                                            cancelButtonAction: nil];
     [self addChild:popupLayer z:1000];

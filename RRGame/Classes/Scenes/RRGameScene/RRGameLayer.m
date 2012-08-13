@@ -158,7 +158,7 @@
         [self setUserInteractionEnabled:_allPlayersInScene];
         
         if( !_allPlayersInScene ){
-            _bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"waiting for other player..."];
+            _bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"RRTextWaitingForOtherPlayer"];
             [self addChild:_bannerWaitingForPlayer z:1000];
         }
     }
@@ -577,7 +577,7 @@
         [_bannerWaitingForPlayer removeFromParentAndCleanup:YES];
         _bannerWaitingForPlayer = nil;
         
-        RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"player disconnected..."
+        RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextPlayerDisconnected"
                                                  cancelButtonName: @"RRButtonEndGame"
                                                cancelButtonAction: ^{
                                                    [self showMenu];
