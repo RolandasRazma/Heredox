@@ -10,6 +10,7 @@
 #import "RRGameScene.h"
 #import "RRMenuScene.h"
 #import "RRDifficultyScene.h"
+#import "RRPopupLayer.h"
 
 
 @implementation RRPickColorLayer
@@ -95,9 +96,8 @@
         if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
             [self setUserInteractionEnabled:NO];
 
-            _bannerWaitingForPlayer = [CCSprite spriteWithSpriteFrameName:@"RRBannerWaitingForPlayer.png"];
-            [_bannerWaitingForPlayer setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
-            [self addChild:_bannerWaitingForPlayer z: 100];
+            _bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"waiting for other player..."];
+            [self addChild:_bannerWaitingForPlayer z:1000];
         }
     }
     return self;
@@ -256,40 +256,21 @@
 
 
 - (void)observePlayer:(id <UDGKPlayerProtocol>)player state:(GKPlayerConnectionState)state {
-    
+
     if( state == GKPlayerStateDisconnected ){
-#if __CC_PLATFORM_IOS
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Remote player disconnected"
-                                                            message: nil
-                                                           delegate: self
-                                                  cancelButtonTitle: @"OK"
-                                                  otherButtonTitles: nil];
-        [alertView show];
-        [alertView release];
-#elif defined(__CC_PLATFORM_MAC)
-        NSAlert *alertView = [NSAlert alertWithMessageText:@"Remote player disconnected" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
-        [alertView beginSheetModalForWindow: [[NSApplication sharedApplication] mainWindow]
-                              modalDelegate: self
-                             didEndSelector: @selector(alertDidEnd:returnCode:contextInfo:)
-                                contextInfo: nil];
-#endif
+        [_bannerWaitingForPlayer removeFromParentAndCleanup:YES];
+        _bannerWaitingForPlayer = nil;
+        
+        RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"player disconnected..."
+                                                 cancelButtonName: @"RRButtonEndGame"
+                                               cancelButtonAction: ^{
+                                                   [self showMenu];
+                                               }];
+        [self addChild:popupLayer z:1000];
     }
     
 }
 
-
-#pragma mark -
-#pragma mark UIAlertViewDelegate
-
-#if __CC_PLATFORM_IOS
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    [self showMenu];
-}
-#elif defined(__CC_PLATFORM_MAC)
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo {
-    [self showMenu];
-}
-#endif
 
 
 @end

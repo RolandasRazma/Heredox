@@ -9,6 +9,7 @@
 #import "RRMenuLayer.h"
 #import "RRPickColorScene.h"
 #import "RRRulesScene.h"
+#import "RRPopupLayer.h"
 
 
 @implementation RRMenuLayer
@@ -57,7 +58,6 @@
             [buttonRules setPosition:CGPointMake(195, 115)];
             [buttonRules setScale:0.8f];
         }
-        
     }
     return self;
 }
@@ -242,21 +242,11 @@
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
     [self dismissMatchmakerViewController];
     
-#if __CC_PLATFORM_IOS
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Error"
-                                                        message: [error localizedDescription]
-                                                       delegate: nil
-                                              cancelButtonTitle: @"Close"
-                                              otherButtonTitles: nil];
-    [alertView show];
-    [alertView release];
-#elif defined(__CC_PLATFORM_MAC)
-    NSAlert *alertView = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", [error localizedDescription]];
-    [alertView beginSheetModalForWindow: [[NSApplication sharedApplication] mainWindow]
-                          modalDelegate: nil
-                         didEndSelector: nil
-                            contextInfo: nil];
-#endif
+    RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"Game Center error"
+                                             cancelButtonName: @"RRButtonContinue"
+                                           cancelButtonAction: nil];
+    [self addChild:popupLayer z:1000];
+
 }
 
 

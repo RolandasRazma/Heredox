@@ -47,8 +47,8 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
         [buttonGameCenter addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInside];
         [_menu addChild:buttonGameCenter];
         
-        // RRButtonQuit
-        UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];
+        // RRButtonBack2
+        UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonBack2.png" highliteSpriteFrameName:@"RRButtonBack2Selected.png"];
         [buttonQuit addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:3]; } forControlEvents: UDButtonEventTouchUpInside];
         [_menu addChild:buttonQuit];
         
@@ -58,7 +58,7 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
             [buttonBluetooth setPosition:CGPointMake(_menu.boundingBox.size.width /2, 450)];
             [buttonGameCenter setPosition:CGPointMake(_menu.boundingBox.size.width /2, 330)];
             
-            [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 80)];
+            [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 100)];
             
             if( isDeviceMac() ){
                 [buttonGameCenter setPosition:buttonBluetooth.position];
@@ -69,7 +69,7 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
             [buttonBluetooth setPosition:CGPointMake(_menu.boundingBox.size.width /2, 205)];
             [buttonGameCenter setPosition:CGPointMake(_menu.boundingBox.size.width /2, 150)];
             
-            [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 45)];
+            [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 55)];
         }
     }
     

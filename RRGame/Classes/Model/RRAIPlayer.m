@@ -35,11 +35,29 @@
     RRTile *activeTile  = gameBoard.activeTile;
     CGPoint activeTilePosition = activeTile.position;
 
+    
+    /*
+        Wonder if it would make more sense to build kind of C matrix here
+        board[x][y] = TRLB
+     
+        so you could query like board[x][y][0] = T
+                                board[x][y][1] = R
+                                board[x][y][2] = L
+                                board[x][y][3] = B
+     
+        so if tile[x][y][T] == tile[x][y+1][B]
+        
+     
+        or even TopWhie  | LeftBlack
+                TopBlack | LeftWhite
+     
+        so if tile[x][y] & TopWhie == tile[x][y+1] & BottomWhie
+     */
+    
+    
     for ( RRTile *tile in gameBoard.children ) {
         if( [tile isEqual:activeTile] ) continue;
-        
-        [tile setColor:ccWHITE];
-        
+
         CGPoint positionInGrid = tile.positionInGrid;
 
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x +1, positionInGrid.y)] ){
