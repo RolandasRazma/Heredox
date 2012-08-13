@@ -221,6 +221,12 @@
 }
 
 
+- (void)cleanup {
+    [super cleanup];
+    [_allBlocks removeAllObjects];
+}
+
+
 #ifdef __CC_PLATFORM_IOS
 
 
