@@ -192,6 +192,11 @@
                                                      length: sizeof(UDGKPacketResetGame)];
     }
     
+    // AI vs AI
+    if( [_player1 isKindOfClass:[RRAIPlayer class]] && [_player2 isKindOfClass:[RRAIPlayer class]] ){
+        [_backgroundLayer setVisible:NO];
+    }
+    
     [self newTurn];
 }
 
@@ -208,30 +213,30 @@
         _deck = [[NSMutableArray alloc] initWithCapacity:16];
         
         // 2x RRTileEdgeWhite RRTileEdgeNone RRTileEdgeBlack RRTileEdgeNone
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeBlack right:RRTileEdgeNone]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeBlack right:RRTileEdgeNone]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWNBN]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWNBN]];
         
         // 3x RRTileEdgeWhite RRTileEdgeNone RRTileEdgeNone RRTileEdgeBlack
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWNNB]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWNNB]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWNNB]];
         
         // 3x RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeNone RRTileEdgeNone
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeNone right:RRTileEdgeNone]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWBNN]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWBNN]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWBNN]];
         
         // 4x RRTileEdgeWhite RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeBlack
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeWhite bottom:RRTileEdgeBlack right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWWBB]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWWBB]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWWBB]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWWBB]];
         
         // 4x RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeWhite RRTileEdgeBlack
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
-        [_deck addObject: [RRTile tileWithEdgeTop:RRTileEdgeWhite left:RRTileEdgeBlack bottom:RRTileEdgeWhite right:RRTileEdgeBlack]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWBWB]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWBWB]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWBWB]];
+        [_deck addObject: [RRTile tileWithType:RRTileTypeWBWB]];
 
         [_deck shuffleWithSeed:_gameSeed];
 
@@ -317,6 +322,14 @@
                 }
                 [gameWictoryLayer setDelegate:self];
                 [self addChild:gameWictoryLayer z:1000];
+                
+                // AI vs AI
+                if( [_player1 isKindOfClass:[RRAIPlayer class]] && [_player2 isKindOfClass:[RRAIPlayer class]] ){
+                    if( _winsDraw +_winsBlack +_winsWhite < 100 ){
+                        [self gameWictoryLayer:gameWictoryLayer didSelectButtonAtIndex:0];
+                        [self resetGame];
+                    }
+                }
             }
         }
         
@@ -331,7 +344,12 @@
     RRPlayer *currentPlayer = [self currentPlayer];
     
     if( [currentPlayer isKindOfClass:[RRAIPlayer class]] ){
-        [self makeMove:[(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer]];
+        // Non AI players can count what tiles left by looking at board.
+        // This is just conveniant method to pass left tiles list so AI wouldn't need to count by looking at deck
+        // Order of tiles is not used to not let AI cheat
+        [(RRAIPlayer *)currentPlayer setTilesInDeck: [NSSet setWithArray:_deck]];
+        
+        [self makeMove: [(RRAIPlayer *)currentPlayer bestMoveOnBoard:_gameBoardLayer]];
     }else if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
         [self setUserInteractionEnabled: (_allPlayersInScene && [self.currentPlayer.playerID isEqualToString: [[UDGKManager sharedManager] playerID]])];
         
@@ -386,6 +404,13 @@
         [self setUserInteractionEnabled:YES];
     }]];
     [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
+    
+    // AI vs AI
+    if( [_player1 isKindOfClass:[RRAIPlayer class]] && [_player2 isKindOfClass:[RRAIPlayer class]] ){
+        for( CCActionInstant *action in actions ){
+            [action setDuration:0.0f];
+        }
+    }
     
     [_gameBoardLayer.activeTile runAction:[CCSequence actionsWithArray: actions]];
 }

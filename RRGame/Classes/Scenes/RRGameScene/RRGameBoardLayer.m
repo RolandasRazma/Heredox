@@ -57,7 +57,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
         [self setUserInteractionEnabled:YES];
                                       
         _gameMode   = gameMode;
-        _emptyTile = [[RRTile tileWithEdgeTop:RRTileEdgeNone left:RRTileEdgeNone bottom:RRTileEdgeNone right:RRTileEdgeNone] retain];
+        _emptyTile  = [[RRTile tileWithType:RRTileTypeNNNN] retain];
         
         // Reset board
         [self resetBoardForGameMode:gameMode];

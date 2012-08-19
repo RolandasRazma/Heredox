@@ -55,6 +55,21 @@
                     [gameLayer.player2 setPlayerID: player.playerID];
                 }
             }
+        }else if( NO ){ // AI vs AI
+            gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor: RRPlayerColorWhite];
+            [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
+            
+            {
+                RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: RRPlayerColorWhite];
+                [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
+                [gameLayer setPlayer1: player];
+            }
+            
+            {
+                RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: RRPlayerColorBlack];
+                [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
+                [gameLayer setPlayer2: player];
+            }
         }else{
             gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:(( _numberOfPlayers == 1 )?RRPlayerColorWhite:playerColor)];
             [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
@@ -62,7 +77,6 @@
             if( numberOfPlayers == 1 ){
                 RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
                 [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
-                
                 [gameLayer setPlayer2: player];
             }
         }
