@@ -258,8 +258,7 @@
 
 
 - (void)showMenu {
-    [self setUserInteractionEnabled:NO];
-    
+
     RRGameMenuLayer *gameMenuLayer = [RRGameMenuLayer node];
     [gameMenuLayer setDelegate:self];
     [self addChild:gameMenuLayer z:1000];
