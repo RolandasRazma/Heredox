@@ -44,7 +44,6 @@ static BOOL RRGameMenuLayerVisible = NO;
 
     [_colorBackground setOpacity:0];
     
-    
     [_colorBackground runAction: [CCFadeTo actionWithDuration:0.27f opacity:190]];
     [_menu runAction:[CCSequence actions:
                       [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height /2 -_menu.boundingBox.size.height *0.1f)],
@@ -178,6 +177,8 @@ static BOOL RRGameMenuLayerVisible = NO;
         
         [_sliderSound setTexture:spriteFrame.texture];
         [_sliderSound setTextureRect:spriteFrame.rect];
+        
+        _sliderActive = YES;
     }
 
     return YES;
@@ -185,6 +186,8 @@ static BOOL RRGameMenuLayerVisible = NO;
 
 
 - (void)touchMovedToLocation:(CGPoint)location {
+    if( !_sliderActive ) return;
+    
     location = [_sliderSound.parent convertToNodeSpace:location];
     
     location.x = MIN(MAX(_sliderEdgeLeft, location.x), _sliderWidth +_sliderEdgeLeft);
@@ -206,6 +209,8 @@ static BOOL RRGameMenuLayerVisible = NO;
     [_sliderSound setTexture:spriteFrame.texture];
     [_sliderSound setTextureRect:spriteFrame.rect];
     
+    
+    _sliderActive = NO;
 }
 
 

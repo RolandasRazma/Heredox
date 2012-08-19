@@ -21,6 +21,7 @@
     id <RRGameMenuDelegate> _delegate;
     CCLayerColor            *_colorBackground;
     CCSprite                *_menu;
+    BOOL                    _sliderActive;
 }
 
 @property (nonatomic, assign) id <RRGameMenuDelegate>delegate;
