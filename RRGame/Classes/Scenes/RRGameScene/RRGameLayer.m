@@ -104,6 +104,7 @@
         
         _gameMode           = gameMode;
         _firstPlayerColor   = _playerColor = playerColor;
+        _winsBlack = _winsWhite = _winsDraw = 0;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
@@ -182,7 +183,7 @@
     [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:0.0f];
     
     [_resetGameButton stopAllActions];
-    [_resetGameButton removeFromParentAndCleanup:YES];
+    [_resetGameButton runAction:[UDActionDestroy action]];
     _resetGameButton = nil;
     
     if( [[UDGKManager sharedManager] isHost] ){
@@ -305,11 +306,14 @@
                 
                 RRGameWictoryLayer *gameWictoryLayer;
                 if( _scoreLayer.scoreBlack == _scoreLayer.scoreWhite ){
-                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousNo];
+                    _winsDraw++;
+                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousNo    blackWins:_winsBlack whiteWins:_winsWhite draws:_winsDraw];
                 }else if( _scoreLayer.scoreBlack > _scoreLayer.scoreWhite ){
-                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousBlack];
+                    _winsBlack++;
+                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousBlack blackWins:_winsBlack whiteWins:_winsWhite draws:_winsDraw];
                 }else{
-                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousWhite];
+                    _winsWhite++;
+                    gameWictoryLayer = [RRGameWictoryLayer layerForColor:RRPlayerColorWictoriousWhite blackWins:_winsBlack whiteWins:_winsWhite draws:_winsDraw];
                 }
                 [gameWictoryLayer setDelegate:self];
                 [self addChild:gameWictoryLayer z:1000];

@@ -37,6 +37,10 @@
     BOOL                _allPlayersInScene;
     CCLabelTTF          *_playerNameLabel;
     CCSprite            *_bannerWaitingForPlayer;
+    
+    NSUInteger          _winsBlack;
+    NSUInteger          _winsWhite;
+    NSUInteger          _winsDraw;
 }
 
 @property (nonatomic, retain) RRPlayer *player1;

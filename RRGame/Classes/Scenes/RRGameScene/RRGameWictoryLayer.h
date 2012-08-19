@@ -29,8 +29,8 @@ typedef enum RRPlayerColorWictorious : NSUInteger {
 
 @property (nonatomic, assign) id <RRPlayerColorWictoriousDelegate>delegate;
 
-+ (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious;
-- (id)initWithColor:(RRPlayerColorWictorious)playerColorWictorious;
++ (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(NSUInteger)blackWins whiteWins:(NSUInteger)whiteWins draws:(NSUInteger)draws;
+- (id)initWithColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(NSUInteger)blackWins whiteWins:(NSUInteger)whiteWins draws:(NSUInteger)draws;
 
 - (void)dismiss;
 
