@@ -52,8 +52,10 @@
                 TopBlack | LeftWhite
      
         so if tile[x][y] & TopWhie == tile[x][y+1] & BottomWhie
+     
+        int (*boardRepresentation)[9] = calloc(9, sizeof(*boardRepresentation));
      */
-    
+
     
     for ( RRTile *tile in gameBoard.children ) {
         if( [tile isEqual:activeTile] ) continue;
@@ -63,7 +65,7 @@
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x +1, positionInGrid.y)] ){
 
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x +1, positionInGrid.y)];
-            if( bestMove.score >= tileMove.score ){
+            if( bestMove.score > tileMove.score ){
                 tileMove = bestMove;
             }
             
@@ -72,7 +74,7 @@
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x -1, positionInGrid.y)] ){
 
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x -1, positionInGrid.y)];
-            if( bestMove.score >= tileMove.score ){
+            if( bestMove.score > tileMove.score ){
                 tileMove = bestMove;
             }
             
@@ -81,7 +83,7 @@
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x, positionInGrid.y +1)] ){
 
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x, positionInGrid.y +1)];
-            if( bestMove.score >= tileMove.score ){
+            if( bestMove.score > tileMove.score ){
                 tileMove = bestMove;
             }
             
@@ -90,7 +92,7 @@
         if( [gameBoard canPlaceTileAtGridLocation:CGPointMake(positionInGrid.x, positionInGrid.y -1)] ){
 
             RRTileMove bestMove = [self bestMoveOnGameBoard:gameBoard positionInGrid:CGPointMake(positionInGrid.x, positionInGrid.y -1)];
-            if( bestMove.score >= tileMove.score ){
+            if( bestMove.score > tileMove.score ){
                 tileMove = bestMove;
             }
             
@@ -111,8 +113,6 @@
     
     [activeTile setPositionInGrid:positionInGrid];
 
-    // TODO: add left tile counting. Does it adds any benefits?
-    
     CGFloat edgeBlockModifyer = [self edgeBlockModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
     
     for( NSUInteger angle=0; angle<=270; angle += 90 ){
@@ -226,13 +226,12 @@
             }
         }
 
-        // TODO: calculate how much i will loose if next player end board size
-
         if( _dificultyLevel > RRAILevelNovice ){
             moveValue += [self activeTileEdgeBlockModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
             if( _dificultyLevel > RRAILevelDeacon ){
                 moveValue += edgeBlockModifyer;
-                moveValue += [self nextTrunEdgeBlockModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
+                moveValue += [self nextTurnEdgeBlockModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
+                moveValue += [self nextTurnPointsScoreModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
             }
         }
         
@@ -378,7 +377,7 @@
 }
 
 
-- (CGFloat)nextTrunEdgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+- (CGFloat)nextTurnEdgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
     CGFloat edgeBlockModifyer = 0.0f;
 
     if( gameBoard.gridBounds.size.height == 3 ){
@@ -455,6 +454,96 @@
     }
 
     return edgeBlockModifyer;
+}
+
+
+// What is possibility to gain 2 points next turn?
+- (CGFloat)nextTurnPointsScoreModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+    if( !_tilesInDeck || !_tilesInDeck.count ) return 0.0f;
+    
+    CGFloat pointsScoreModifyer = 0.0f;
+    
+    float (^possibilityToGetTileOfType)(RRTileType) = ^(RRTileType type) {
+        NSUInteger numberOfTiles = 0;
+        for( RRTile *tile in _tilesInDeck ){
+            if( tile.tileType & type ) numberOfTiles++;
+        }
+        return (float)numberOfTiles /(float)_tilesInDeck.count;
+    };
+    
+    
+    for ( RRTile *tile in gameBoard.children ) {
+        
+        if( tile.edgeRight == (RRTileEdge)self.oponentColor ){
+            
+            if( ![gameBoard tileAtGridPosition:CGPointMake(tile.positionInGrid.x +1, tile.positionInGrid.y)] ){
+                
+                // <->
+                RRTile *tileXX = [gameBoard tileAtGridPosition:CGPointMake(tile.positionInGrid.x +2, tile.positionInGrid.y)];
+                if( tileXX && tileXX.edgeLeft == (RRTileEdge)self.oponentColor ){
+                    if( possibilityToGetTileOfType(RRTileTypeWBWB) >= 0.5f ){
+                        pointsScoreModifyer = -0.5f;
+                    }
+                }
+                
+                // <_
+                RRTile *tileLY = [gameBoard tileAtGridPosition:CGPointMake(tile.positionInGrid.x +1, tile.positionInGrid.y -1)];
+                if( tileLY && tileLY.edgeTop == (RRTileEdge)self.oponentColor ){
+                    if( possibilityToGetTileOfType(RRTileTypeWWBB) >= 0.5f ){
+                        pointsScoreModifyer = -0.5f;
+                    }
+                }
+                
+                // <^
+                RRTile *tileUY = [gameBoard tileAtGridPosition:CGPointMake(tile.positionInGrid.x +1, tile.positionInGrid.y +1)];
+                if( tileUY && tileUY.edgeBottom == (RRTileEdge)self.oponentColor ){
+                    if( possibilityToGetTileOfType(RRTileTypeWWBB) >= 0.5f ){
+                        pointsScoreModifyer = -0.5f;
+                    }
+                }
+                
+            }
+
+        }else if( tile.edgeLeft == (RRTileEdge)self.oponentColor ){
+            
+            if( ![gameBoard tileAtGridPosition:CGPointMake(tile.positionInGrid.x -1, tile.positionInGrid.y)] ){
+                
+                // <->
+                RRTile *tileXX = [gameBoard tileAtGridPosition:CGPointMake(tile.positionInGrid.x -2, tile.positionInGrid.y)];
+                if( tileXX && tileXX.edgeRight == (RRTileEdge)self.oponentColor ){
+                    if( possibilityToGetTileOfType(RRTileTypeWBWB) >= 0.5f ){
+                        pointsScoreModifyer = -0.5f;
+                    }
+                }
+                
+                // _>
+                RRTile *tileLY = [gameBoard tileAtGridPosition:CGPointMake(tile.positionInGrid.x -1, tile.positionInGrid.y -1)];
+                if( tileLY && tileLY.edgeTop == (RRTileEdge)self.oponentColor ){
+                    if( possibilityToGetTileOfType(RRTileTypeWWBB) >= 0.5f ){
+                        pointsScoreModifyer = -0.5f;
+                    }
+                }
+                
+                // ^>
+                RRTile *tileUY = [gameBoard tileAtGridPosition:CGPointMake(tile.positionInGrid.x -1, tile.positionInGrid.y +1)];
+                if( tileUY && tileUY.edgeBottom == (RRTileEdge)self.oponentColor ){
+                    if( possibilityToGetTileOfType(RRTileTypeWWBB) >= 0.5f ){
+                        pointsScoreModifyer = -0.5f;
+                    }
+                }
+                
+            }
+            
+        }
+    }
+    
+    
+    return pointsScoreModifyer;
+}
+
+
+- (RRPlayerColor)oponentColor {
+    return ((self.playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack);
 }
 
 

@@ -20,10 +20,13 @@ typedef enum RRAILevel : NSInteger {
 
 
 @interface RRAIPlayer : RRPlayer {
-    RRAILevel _dificultyLevel;
+    RRAILevel   _dificultyLevel;
+    NSSet       *_tilesInDeck;
 }
 
 @property (nonatomic, assign) RRAILevel dificultyLevel;
+@property (nonatomic, assign) NSSet     *tilesInDeck;
+@property (nonatomic, readonly) RRPlayerColor oponentColor;
 
 - (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard;
 
