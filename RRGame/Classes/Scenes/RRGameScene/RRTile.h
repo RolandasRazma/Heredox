@@ -16,12 +16,23 @@ typedef enum RRTileEdge : NSUInteger {
 } RRTileEdge;
 
 
+typedef enum RRTileType : NSUInteger {
+    RRTileTypeNNNN  = 0,        // RRTileEdgeNone  RRTileEdgeNone  RRTileEdgeNone  RRTileEdgeNone
+    RRTileTypeWNBN  = 1 << 0,   // RRTileEdgeWhite RRTileEdgeNone  RRTileEdgeBlack RRTileEdgeNone
+    RRTileTypeWNNB  = 1 << 1,   // RRTileEdgeWhite RRTileEdgeNone  RRTileEdgeNone  RRTileEdgeBlack
+    RRTileTypeWBNN  = 1 << 2,   // RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeNone  RRTileEdgeNone
+    RRTileTypeWWBB  = 1 << 3,   // RRTileEdgeWhite RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeBlack
+    RRTileTypeWBWB  = 1 << 4,   // RRTileEdgeWhite RRTileEdgeBlack RRTileEdgeWhite RRTileEdgeBlack
+} RRTileType;
+
+
 @interface RRTile : CCSprite {
     BOOL        _backSideVisible;
     BOOL        _wasLifted;
     BOOL        _lookIs3D;
     CCSprite    *_look3DSprite;
     
+    RRTileType  _tileType;
     RRTileEdge  _edgeTop;
     RRTileEdge  _edgeLeft;
     RRTileEdge  _edgeBottom;
@@ -35,6 +46,7 @@ typedef enum RRTileEdge : NSUInteger {
 @property (nonatomic, assign, getter = isBackSideVisible) BOOL backSideVisible;
 @property (nonatomic, assign, getter = isLookIs3D) BOOL lookIs3D;
 @property (nonatomic, assign) CGPoint positionInGrid;
+@property (nonatomic, readonly) RRTileType tileType;
 @property (nonatomic, readonly) RRTileEdge edgeTop;
 @property (nonatomic, readonly) RRTileEdge edgeLeft;
 @property (nonatomic, readonly) RRTileEdge edgeBottom;
@@ -43,8 +55,8 @@ typedef enum RRTileEdge : NSUInteger {
 @property (nonatomic, readonly) BOOL wasLifted;
 
 + (const CGFloat)tileSize;
-+ (id)tileWithEdgeTop:(RRTileEdge)top left:(RRTileEdge)left bottom:(RRTileEdge)bottom right:(RRTileEdge)right;
-- (id)initWithEdgeTop:(RRTileEdge)top left:(RRTileEdge)left bottom:(RRTileEdge)bottom right:(RRTileEdge)right;
++ (id)tileWithType:(RRTileType)tileType;
+- (id)initWithType:(RRTileType)tileType;
 
 - (void)liftTile;
 - (void)placeTile;

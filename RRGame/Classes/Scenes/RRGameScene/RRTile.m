@@ -13,6 +13,19 @@
 
 
 #pragma mark -
+#pragma mark NSObject
+
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@ = %08X | rotation = %.f | positionInGrid = {%.f, %.f}>",
+            [self class],
+            self,
+            self.rotation,
+            self.positionInGrid.x, self.positionInGrid.y];
+}
+
+
+#pragma mark -
 #pragma mark CCSprite
 
 
@@ -65,43 +78,76 @@
 }
 
 
-+ (id)tileWithEdgeTop:(RRTileEdge)top left:(RRTileEdge)left bottom:(RRTileEdge)bottom right:(RRTileEdge)right {
-    return [[[self alloc] initWithEdgeTop:top left:left bottom:bottom right:right] autorelease];
++ (id)tileWithType:(RRTileType)tileType {
+    return [[[self alloc] initWithType:tileType] autorelease];
 }
 
 
-- (id)initWithEdgeTop:(RRTileEdge)top left:(RRTileEdge)left bottom:(RRTileEdge)bottom right:(RRTileEdge)right {
+- (id)initWithType:(RRTileType)tileType {
     if( (self = [self initWithSpriteFrameName:@"RREmptyTile.png"]) ){
 
-        _edgeTop    = top;
-        _edgeLeft   = left;
-        _edgeBottom = bottom;
-        _edgeRight  = right;
+        switch ( tileType ) {
+            case RRTileTypeNNNN: {
+                _edgeTop = _edgeLeft = _edgeBottom = _edgeRight = RRTileEdgeNone;
+                break;
+            }
+            case RRTileTypeWNBN: {
+                _edgeTop    = RRTileEdgeWhite;
+                _edgeLeft   = _edgeRight = RRTileEdgeNone;
+                _edgeBottom = RRTileEdgeBlack;
+                break;
+            }
+            case RRTileTypeWNNB: {
+                _edgeTop    = RRTileEdgeWhite;
+                _edgeLeft   = _edgeBottom = RRTileEdgeNone;
+                _edgeRight = RRTileEdgeBlack;
+                break;
+            }
+
+            case RRTileTypeWBNN: {
+                _edgeTop    = RRTileEdgeWhite;
+                _edgeLeft   = RRTileEdgeBlack;
+                _edgeBottom = _edgeRight = RRTileEdgeNone;
+                break;
+            }
+            case RRTileTypeWWBB: {
+                _edgeTop    = _edgeLeft = RRTileEdgeWhite;
+                _edgeBottom = _edgeRight= RRTileEdgeBlack;
+                break;
+            }
+            case RRTileTypeWBWB: {
+                _edgeTop  = _edgeBottom = RRTileEdgeWhite;
+                _edgeLeft = _edgeRight  = RRTileEdgeBlack;
+                break;
+            }
+        }
+        
+        _tileType   = tileType;
         _lookIs3D   = YES;
         
-        if( top != RRTileEdgeNone ){
-            CCSprite *topSprite = [CCSprite spriteWithSpriteFrameName: ((top == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
+        if( _edgeTop != RRTileEdgeNone ){
+            CCSprite *topSprite = [CCSprite spriteWithSpriteFrameName: ((_edgeTop == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
             [topSprite setRotation: -90];
             [topSprite setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height -topSprite.textureRect.size.width /2)];
             [self addChild:topSprite];
         }
         
-        if( left != RRTileEdgeNone ){
-            CCSprite *leftSprite = [CCSprite spriteWithSpriteFrameName: ((left == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
+        if( _edgeLeft != RRTileEdgeNone ){
+            CCSprite *leftSprite = [CCSprite spriteWithSpriteFrameName: ((_edgeLeft == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
             [leftSprite setRotation: 180];
             [leftSprite setPosition:CGPointMake(leftSprite.textureRect.size.width /2, self.textureRect.size.height /2)];
             [self addChild:leftSprite];
         }
         
-        if( bottom != RRTileEdgeNone ){
-            CCSprite *bottomSprite = [CCSprite spriteWithSpriteFrameName: ((bottom == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
+        if( _edgeBottom != RRTileEdgeNone ){
+            CCSprite *bottomSprite = [CCSprite spriteWithSpriteFrameName: ((_edgeBottom == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
             [bottomSprite setRotation: 90];
             [bottomSprite setPosition:CGPointMake(self.textureRect.size.width /2, bottomSprite.textureRect.size.width /2)];
             [self addChild:bottomSprite];
         }
         
-        if( right != RRTileEdgeNone ){
-            CCSprite *rightSprite = [CCSprite spriteWithSpriteFrameName: ((right == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
+        if( _edgeRight != RRTileEdgeNone ){
+            CCSprite *rightSprite = [CCSprite spriteWithSpriteFrameName: ((_edgeRight == RRTileEdgeBlack)?@"RRTileEdgeBlack.png":@"RRTileEdgeWhite.png")];
             [rightSprite setPosition:CGPointMake(self.textureRect.size.width -rightSprite.textureRect.size.width /2, self.textureRect.size.height /2)];
             [self addChild:rightSprite];
         }
@@ -171,6 +217,8 @@
 
 
 - (CGPoint)positionInGrid {
+    if( self.isBackSideVisible ) return CGPointMake(INT_MIN, INT_MIN);
+    
     return CGPointMake((self.position.x -self.textureRect.size.width  /2) /self.textureRect.size.width,
                        (self.position.y -self.textureRect.size.height /2) /self.textureRect.size.height);
 }
