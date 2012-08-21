@@ -103,7 +103,7 @@
 
 
 - (void)setDificultyLevel:(RRAILevel)dificultyLevel {
-    NSUInteger oldDificultyLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"];
+    int oldDificultyLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"];
 
     if( oldDificultyLevel != dificultyLevel ){
         [[RRAudioEngine sharedEngine] stopEffect:[NSString stringWithFormat:@"RRAILevel%i.mp3", oldDificultyLevel]];

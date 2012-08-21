@@ -12,7 +12,7 @@
 @implementation RRScoreLayer
 
 
-- (void)setScoreBlack:(NSUInteger)scoreBlack {
+- (void)setScoreBlack:(uint)scoreBlack {
     NSInteger pointsToAdd = scoreBlack -_scoreBlack;
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
@@ -38,7 +38,7 @@
 }
 
 
-- (void)setScoreWhite:(NSUInteger)scoreWhite {
+- (void)setScoreWhite:(uint)scoreWhite {
     NSInteger pointsToAdd = scoreWhite -_scoreWhite;
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     

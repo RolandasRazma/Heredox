@@ -32,15 +32,15 @@
     RRScoreLayer        *_scoreLayer;
     UDSpriteButton      *_resetGameButton;
     
-    NSUInteger          _gameSeed;
+    unsigned int        _gameSeed;
     
     BOOL                _allPlayersInScene;
     CCLabelTTF          *_playerNameLabel;
     CCSprite            *_bannerWaitingForPlayer;
     
-    NSUInteger          _winsBlack;
-    NSUInteger          _winsWhite;
-    NSUInteger          _winsDraw;
+    uint                _winsBlack;
+    uint                _winsWhite;
+    uint                _winsDraw;
 }
 
 @property (nonatomic, retain) RRPlayer *player1;

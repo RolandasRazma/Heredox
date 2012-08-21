@@ -13,10 +13,10 @@
 @protocol RRPlayerColorWictoriousDelegate;
 
 
-typedef enum RRPlayerColorWictorious : NSUInteger {
-    RRPlayerColorWictoriousNo       = 0,
-    RRPlayerColorWictoriousBlack    = 1,
-    RRPlayerColorWictoriousWhite    = 2,
+typedef enum RRPlayerColorWictorious : unsigned int {
+    RRPlayerColorWictoriousNo       = RRPlayerColorUndefined,
+    RRPlayerColorWictoriousBlack    = RRPlayerColorBlack,
+    RRPlayerColorWictoriousWhite    = RRPlayerColorWhite,
 } RRPlayerColorWictorious;
 
 
@@ -29,8 +29,8 @@ typedef enum RRPlayerColorWictorious : NSUInteger {
 
 @property (nonatomic, assign) id <RRPlayerColorWictoriousDelegate>delegate;
 
-+ (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(NSUInteger)blackWins whiteWins:(NSUInteger)whiteWins draws:(NSUInteger)draws;
-- (id)initWithColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(NSUInteger)blackWins whiteWins:(NSUInteger)whiteWins draws:(NSUInteger)draws;
++ (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(uint)blackWins whiteWins:(uint)whiteWins draws:(uint)draws;
+- (id)initWithColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(uint)blackWins whiteWins:(uint)whiteWins draws:(uint)draws;
 
 - (void)dismiss;
 

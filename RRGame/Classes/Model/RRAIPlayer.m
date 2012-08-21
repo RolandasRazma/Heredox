@@ -115,7 +115,7 @@
 
     CGFloat edgeBlockModifyer = [self edgeBlockModifyerForMoveOnGameBoard:gameBoard positionInGrid:positionInGrid];
     
-    for( NSUInteger angle=0; angle<=270; angle += 90 ){
+    for( int angle=0; angle<=270; angle += 90 ){
         [activeTile setRotation:angle];
 
         NSUInteger white, black;
@@ -238,7 +238,8 @@
         if( moveValue >= tileMove.score ){
             tileMove.score    = moveValue;
             tileMove.rotation = angle;
-            tileMove.positionInGrid = activeTile.positionInGrid;
+            tileMove.gridX    = activeTile.positionInGrid.x;
+            tileMove.gridY    = activeTile.positionInGrid.y;
         }
     }
     

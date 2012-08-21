@@ -80,9 +80,9 @@
     for (NSUInteger bit = 1; controlEvents >= bit; bit *= 2) {
         if ( controlEvents & bit ) {
             NSMutableArray *blocks;
-            if( !(blocks = [_allBlocks objectForKey:[NSNumber numberWithInt:bit]]) ){
+            if( !(blocks = [_allBlocks objectForKey:@(bit)]) ){
                 blocks = [NSMutableArray arrayWithCapacity:2];
-                [_allBlocks setObject:blocks forKey: [NSNumber numberWithInt:bit]];
+                [_allBlocks setObject:blocks forKey: @(bit)];
             }
             [blocks addObject: [[block copy] autorelease]];
         }
@@ -96,7 +96,7 @@
 
 
 - (void)invokeControlEvent:(UDButtonEvents)controlEvent {
-    NSMutableArray *blocks = [_allBlocks objectForKey:[NSNumber numberWithInt:controlEvent]];
+    NSMutableArray *blocks = [_allBlocks objectForKey:@(controlEvent)];
     for( id block in blocks ){
         void (^callbackBlock)(void) = block;
         callbackBlock();

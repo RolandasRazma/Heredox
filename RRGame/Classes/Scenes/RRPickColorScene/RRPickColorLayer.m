@@ -20,12 +20,12 @@
 #pragma mark UDPickColorLayer
 
 
-+ (id)layerWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
++ (id)layerWithNumberOfPlayers:(uint)numberOfPlayers {
     return [[[self alloc] initWithNumberOfPlayers:numberOfPlayers] autorelease];
 }
 
 
-- (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
+- (id)initWithNumberOfPlayers:(uint)numberOfPlayers {
     if( (self = [self init]) ){
         [self setUserInteractionEnabled:YES];
         

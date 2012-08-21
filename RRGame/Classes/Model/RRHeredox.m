@@ -10,7 +10,7 @@
 #import "RRAIPlayer.h"
 
 
-const RRTileMove RRTileMoveZero = (RRTileMove){ (CGPoint){0, 0}, 0.0f, (float)NSIntegerMin };
+const RRTileMove RRTileMoveZero = (RRTileMove){ 0, 0, 0, (float)NSIntegerMin };
 
 
 @implementation RRHeredox

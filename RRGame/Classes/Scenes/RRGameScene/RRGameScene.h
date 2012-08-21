@@ -10,10 +10,10 @@
 
 
 @interface RRGameScene : CCScene {
-    NSUInteger  _numberOfPlayers;
+    uint  _numberOfPlayers;
 }
 
-+ (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor;
-- (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers playerColor:(RRPlayerColor)playerColor;
++ (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(uint)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor;
+- (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(uint)numberOfPlayers playerColor:(RRPlayerColor)playerColor;
 
 @end

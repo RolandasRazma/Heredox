@@ -23,8 +23,9 @@ typedef enum RRPlayerColor : unsigned int {
 
 
 typedef struct RRTileMove {
-    CGPoint positionInGrid;
-    float rotation;
+    int gridX;
+    int gridY;
+    int rotation;
     float score;
 } RRTileMove;
 

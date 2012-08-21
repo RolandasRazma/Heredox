@@ -168,11 +168,11 @@
 
 
 - (void)resetGame {
-    [self resetGameWithSeed:time(NULL)];
+    [self resetGameWithSeed:(unsigned int)time(NULL)];
 }
 
 
-- (void)resetGameWithSeed:(NSUInteger)gameSeed {
+- (void)resetGameWithSeed:(unsigned int)gameSeed {
     [self setUserInteractionEnabled:NO];
     
     [self resetDeckForGameMode:_gameMode withSeed:gameSeed];
@@ -201,7 +201,7 @@
 }
 
 
-- (void)resetDeckForGameMode:(RRGameMode)gameMode withSeed:(NSUInteger)gameSeed {
+- (void)resetDeckForGameMode:(RRGameMode)gameMode withSeed:(unsigned int)gameSeed {
     @synchronized( self ){
         _gameSeed = gameSeed;
         
@@ -283,9 +283,10 @@
         [[RRAudioEngine sharedEngine] replayEffect:@"RRPlaceTileError.mp3"];
     }else {
         RRTileMove tileMove;
-        tileMove.positionInGrid = _gameBoardLayer.activeTile.positionInGrid;
-        tileMove.rotation       = _gameBoardLayer.activeTile.rotation;
-        tileMove.score          = 1;
+        tileMove.gridX      = _gameBoardLayer.activeTile.positionInGrid.x;
+        tileMove.gridY      = _gameBoardLayer.activeTile.positionInGrid.y;
+        tileMove.rotation   = _gameBoardLayer.activeTile.rotation;
+        tileMove.score      = 1;
         
         if( [_gameBoardLayer haltTilePlaces] ){
             
@@ -385,8 +386,8 @@
     NSMutableArray *actions = [NSMutableArray array];
     [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
     [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
-    [actions addObject: [CCMoveTo actionWithDuration:0.4f position:CGPointMake(tileMove.positionInGrid.x *[RRTile tileSize] +[RRTile tileSize] /2,
-                                                                               tileMove.positionInGrid.y *[RRTile tileSize] +[RRTile tileSize] /2)]];
+    [actions addObject: [CCMoveTo actionWithDuration:0.4f position:CGPointMake(tileMove.gridX *[RRTile tileSize] +[RRTile tileSize] /2,
+                                                                               tileMove.gridY *[RRTile tileSize] +[RRTile tileSize] /2)]];
     [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
     [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
     
@@ -463,14 +464,14 @@
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
         if( _gameBoardLayer.symbolsBlack ){
-            NSInteger pointsGained = MIN(2, _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack);
+            int pointsGained = MIN(2, _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack);
             soundEffext = [NSString stringWithFormat: @"RRPlayerColor1-points%i-s%i.mp3", pointsGained, (UDTrueWithPossibility(0.5f)?1:2)];
         }
         
         [_scoreLayer setScoreBlack: _gameBoardLayer.symbolsBlack];
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
         if( _gameBoardLayer.symbolsWhite ){
-            NSInteger pointsGained = MIN(2, _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite);
+            int pointsGained = MIN(2, _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite);
             soundEffext = [NSString stringWithFormat: @"RRPlayerColor2-points%i-s%i.mp3", pointsGained, (UDTrueWithPossibility(0.5f)?1:2)];
         }
         

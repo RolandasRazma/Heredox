@@ -10,11 +10,11 @@
 
 
 @interface RRScoreLayer : CCLayer {
-    NSUInteger _scoreWhite;
-    NSUInteger _scoreBlack;
+    uint _scoreWhite;
+    uint _scoreBlack;
 }
 
-@property (nonatomic, assign) NSUInteger scoreWhite;
-@property (nonatomic, assign) NSUInteger scoreBlack;
+@property (nonatomic, assign) uint scoreWhite;
+@property (nonatomic, assign) uint scoreBlack;
 
 @end

@@ -17,12 +17,12 @@
 #pragma mark UDPickColorScene
 
 
-+ (id)sceneWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
++ (id)sceneWithNumberOfPlayers:(uint)numberOfPlayers {
     return [[[self alloc] initWithNumberOfPlayers:numberOfPlayers] autorelease];
 }
 
 
-- (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
+- (id)initWithNumberOfPlayers:(uint)numberOfPlayers {
     if( (self = [self init]) ){
         [self addChild: [RRPickColorLayer layerWithNumberOfPlayers:numberOfPlayers]];
     }

@@ -12,7 +12,7 @@
 @class RRGameBoardLayer;
 
 
-typedef enum RRAILevel : NSInteger {
+typedef enum RRAILevel : int {
     RRAILevelNovice = -1,
     RRAILevelDeacon = 0,
     RRAILevelAbbot  = 1,

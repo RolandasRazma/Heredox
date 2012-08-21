@@ -16,8 +16,8 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification;
 @interface RRGameBoardLayer : UDLayer {
     RRGameMode          _gameMode;
     
-    NSUInteger          _symbolsBlack;
-    NSUInteger          _symbolsWhite;
+    uint                _symbolsBlack;
+    uint                _symbolsWhite;
     
     CGPoint             _activeTileLastPosition;
     
@@ -30,8 +30,8 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification;
 }
 
 @property (nonatomic, readonly) RRTile *activeTile;
-@property (nonatomic, readonly) NSUInteger symbolsBlack;
-@property (nonatomic, readonly) NSUInteger symbolsWhite;
+@property (nonatomic, readonly) uint symbolsBlack;
+@property (nonatomic, readonly) uint symbolsWhite;
 @property (nonatomic, readonly) CGRect gridBounds;
 
 - (id)initWithGameMode:(RRGameMode)gameMode;

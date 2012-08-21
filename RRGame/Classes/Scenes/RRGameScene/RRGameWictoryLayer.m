@@ -65,12 +65,12 @@ static BOOL RRGameWictoryLayerVisible = NO;
 #pragma mark CCLayer
 
 
-+ (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(NSUInteger)blackWins whiteWins:(NSUInteger)whiteWins draws:(NSUInteger)draws {
++ (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(uint)blackWins whiteWins:(uint)whiteWins draws:(uint)draws {
     return [[(RRGameWictoryLayer *)[self alloc] initWithColor: playerColorWictorious blackWins:blackWins whiteWins:whiteWins draws:draws] autorelease];
 }
 
 
-- (id)initWithColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(NSUInteger)blackWins whiteWins:(NSUInteger)whiteWins draws:(NSUInteger)draws {
+- (id)initWithColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(uint)blackWins whiteWins:(uint)whiteWins draws:(uint)draws {
 
     if( (self = [self init]) ){
         [self setUserInteractionEnabled:YES];
@@ -138,7 +138,7 @@ static BOOL RRGameWictoryLayerVisible = NO;
 #pragma mark RRGameWictoryLayer
 
 
-- (CCSprite *)spriteForConsecutivelyWin:(NSUInteger)winTimes ofColor:(RRPlayerColorWictorious)color textColor:(RRPlayerColorWictorious)textColor {
+- (CCSprite *)spriteForConsecutivelyWin:(uint)winTimes ofColor:(RRPlayerColorWictorious)color textColor:(RRPlayerColorWictorious)textColor {
 
     NSString *colorKey = ((textColor == RRPlayerColorWictoriousWhite)?@"W":@"B");
     NSString *text = [NSString stringWithFormat:@"%@%u", ((winTimes && winTimes < 10)?@"0":@""), winTimes];
@@ -159,7 +159,7 @@ static BOOL RRGameWictoryLayerVisible = NO;
         offsetX += characterSprite.textureRect.size.width *0.5f;
     }
 
-    CCSprite *sprite = [CCSprite spriteWithSpriteFrameName: [NSString stringWithFormat:@"RRScore%i.png", color]];
+    CCSprite *sprite = [CCSprite spriteWithSpriteFrameName: [NSString stringWithFormat:@"RRScore%u.png", color]];
     [numbersSprite setAnchorPoint:CGPointMake(0.25f, 0.5f)];
     [numbersSprite setPosition:CGPointMake(sprite.boundingBox.size.width, sprite.boundingBox.size.height /2)];
     [sprite addChild:numbersSprite];
