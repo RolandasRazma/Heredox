@@ -261,7 +261,7 @@
         [_bannerWaitingForPlayer removeFromParentAndCleanup:YES];
         _bannerWaitingForPlayer = nil;
         
-        RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"player disconnected..."
+        RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextPlayerDisconnected"
                                                  cancelButtonName: @"RRButtonEndGame"
                                                cancelButtonAction: ^{
                                                    [self showMenu];
