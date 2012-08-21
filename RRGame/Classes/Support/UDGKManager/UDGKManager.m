@@ -213,6 +213,8 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
     
     NSAssert1(player, @"No player for playerID: %@", playerID);
 
+    NSLog(@"GOT: %@ from: %@ (%@)", @((*(UDGKPacket *)packet).type), playerID, [self playerID]);
+    
     NSSet *observers = [_packetObservers objectForKey: @((*(UDGKPacket *)packet).type)];
     @synchronized( observers ){
         for( id <UDGKManagerPacketObserving>observer in observers ){

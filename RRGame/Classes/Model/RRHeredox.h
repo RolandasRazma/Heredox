@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-typedef enum RRGameMode : NSUInteger {
+typedef enum RRGameMode : unsigned int {
     RRGameModeClosed    = 0,
     RRGameModeOpen      = 1,
 } RRGameMode;
 
 
-typedef enum RRPlayerColor : NSUInteger {
+typedef enum RRPlayerColor : unsigned int {
     RRPlayerColorUndefined  = 0,
     RRPlayerColorBlack      = 1,
     RRPlayerColorWhite      = 2,
@@ -24,8 +24,8 @@ typedef enum RRPlayerColor : NSUInteger {
 
 typedef struct RRTileMove {
     CGPoint positionInGrid;
-    CGFloat rotation;
-    CGFloat score;
+    float rotation;
+    float score;
 } RRTileMove;
 
 

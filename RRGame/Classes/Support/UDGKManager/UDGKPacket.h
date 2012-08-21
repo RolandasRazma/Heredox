@@ -9,12 +9,12 @@
 #import "RRHeredox.h"
 
 
-typedef enum UDGKPacketType : NSUInteger {
-    UDGKPacketTypePickHost,
-    UDGKPacketTypeEnterScene,
-    UDGKPacketTypePickColor,
-    UDGKPacketTypeTileMove,
-    UDGKPacketTypeResetGame,
+typedef enum UDGKPacketType : unsigned int {
+    UDGKPacketTypePickHost  = 1,
+    UDGKPacketTypeEnterScene= 2,
+    UDGKPacketTypePickColor = 3,
+    UDGKPacketTypeTileMove  = 4,
+    UDGKPacketTypeResetGame = 5,
 } UDGKPacketType;
 
 
@@ -25,13 +25,13 @@ typedef struct UDGKPacket {
 
 typedef struct UDGKPacketPickHost {
 	UDGKPacketType  type;
-    NSUInteger      hostIndex;
+    unsigned int    hostIndex;
 } UDGKPacketPickHost;
 
 
 typedef struct UDGKPacketEnterScene {
 	UDGKPacketType  type;
-    NSUInteger      sceneID;
+    unsigned int    sceneID;
 } UDGKPacketEnterScene;
 
 
@@ -49,12 +49,12 @@ typedef struct UDGKPacketTileMove {
 
 typedef struct UDGKPacketResetGame {
 	UDGKPacketType  type;
-    NSUInteger      seed;
+    unsigned int    seed;
 } UDGKPacketResetGame;
 
 
 
-static UDGKPacketPickHost UDGKPacketPickHostMake( NSUInteger hostIndex ) {
+static UDGKPacketPickHost UDGKPacketPickHostMake( unsigned int hostIndex ) {
     return (UDGKPacketPickHost){
         UDGKPacketTypePickHost,
         hostIndex
@@ -70,7 +70,7 @@ static UDGKPacketPickColor UDGKPacketPickColorMake( RRPlayerColor color ) {
 }
 
 
-static UDGKPacketEnterScene UDGKPacketEnterSceneMake( NSUInteger sceneID ) {
+static UDGKPacketEnterScene UDGKPacketEnterSceneMake( unsigned int sceneID ) {
     return (UDGKPacketEnterScene){
         UDGKPacketTypeEnterScene,
         sceneID
@@ -86,12 +86,9 @@ static UDGKPacketTileMove UDGKPacketTileMoveMake( RRTileMove move ) {
 }
 
 
-static UDGKPacketResetGame UDGKPacketResetGameMake( NSUInteger seed ) {
+static UDGKPacketResetGame UDGKPacketResetGameMake( unsigned int seed ) {
     return (UDGKPacketResetGame){
         UDGKPacketTypeResetGame,
         seed
     };
 }
-
-
-
