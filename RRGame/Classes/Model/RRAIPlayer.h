@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RRPlayer.h"
 
-@class RRGameBoardLayer;
+@class RRBoardLayer;
 
 
 typedef enum RRAILevel : int {
@@ -28,6 +28,6 @@ typedef enum RRAILevel : int {
 @property (nonatomic, assign) NSSet     *tilesInDeck;
 @property (nonatomic, readonly) RRPlayerColor oponentColor;
 
-- (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard;
+- (RRTileMove)bestMoveOnBoard:(RRBoardLayer *)gameBoard;
 
 @end

@@ -323,6 +323,11 @@
     return ( self.scale == 1.0f );
 }
 
+- (RRTileMove)tileMove {
+    CGPoint positionInGrid = self.positionInGrid;
+    return RRTileMoveMake(roundf(positionInGrid.x), roundf(positionInGrid.y), roundf(self.rotation), 0.0f);
+}
+
 
 @synthesize backSideVisible=_backSideVisible, lookIs3D=_lookIs3D, wasLifted=_wasLifted;
 @end

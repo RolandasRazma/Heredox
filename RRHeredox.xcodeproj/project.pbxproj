@@ -388,8 +388,8 @@
 		F0E3F7A015B41FA900599E95 /* RRPickColorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F79C15B41FA900599E95 /* RRPickColorLayer.m */; };
 		F0E3F7A115B41FA900599E95 /* RRPickColorScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F79E15B41FA900599E95 /* RRPickColorScene.m */; };
 		F0E3F7A215B41FA900599E95 /* RRPickColorScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F79E15B41FA900599E95 /* RRPickColorScene.m */; };
-		F0E3F7AC15B41FBC00599E95 /* RRGameBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F7A515B41FBC00599E95 /* RRGameBoardLayer.m */; };
-		F0E3F7AD15B41FBC00599E95 /* RRGameBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F7A515B41FBC00599E95 /* RRGameBoardLayer.m */; };
+		F0E3F7AC15B41FBC00599E95 /* RRBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F7A515B41FBC00599E95 /* RRBoardLayer.m */; };
+		F0E3F7AD15B41FBC00599E95 /* RRBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F7A515B41FBC00599E95 /* RRBoardLayer.m */; };
 		F0E3F7AE15B41FBC00599E95 /* RRGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F7A715B41FBC00599E95 /* RRGameLayer.m */; };
 		F0E3F7AF15B41FBC00599E95 /* RRGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F7A715B41FBC00599E95 /* RRGameLayer.m */; };
 		F0E3F7B015B41FBC00599E95 /* RRGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E3F7A915B41FBC00599E95 /* RRGameScene.m */; };
@@ -775,8 +775,8 @@
 		F0E3F79C15B41FA900599E95 /* RRPickColorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRPickColorLayer.m; sourceTree = "<group>"; };
 		F0E3F79D15B41FA900599E95 /* RRPickColorScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRPickColorScene.h; sourceTree = "<group>"; };
 		F0E3F79E15B41FA900599E95 /* RRPickColorScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRPickColorScene.m; sourceTree = "<group>"; };
-		F0E3F7A415B41FBC00599E95 /* RRGameBoardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameBoardLayer.h; sourceTree = "<group>"; };
-		F0E3F7A515B41FBC00599E95 /* RRGameBoardLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameBoardLayer.m; sourceTree = "<group>"; };
+		F0E3F7A415B41FBC00599E95 /* RRBoardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRBoardLayer.h; sourceTree = "<group>"; };
+		F0E3F7A515B41FBC00599E95 /* RRBoardLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRBoardLayer.m; sourceTree = "<group>"; };
 		F0E3F7A615B41FBC00599E95 /* RRGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameLayer.h; sourceTree = "<group>"; };
 		F0E3F7A715B41FBC00599E95 /* RRGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameLayer.m; sourceTree = "<group>"; };
 		F0E3F7A815B41FBC00599E95 /* RRGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameScene.h; sourceTree = "<group>"; };
@@ -1607,8 +1607,8 @@
 				F0E3F7AB15B41FBC00599E95 /* RRTile.m */,
 				F0E3F7A615B41FBC00599E95 /* RRGameLayer.h */,
 				F0E3F7A715B41FBC00599E95 /* RRGameLayer.m */,
-				F0E3F7A415B41FBC00599E95 /* RRGameBoardLayer.h */,
-				F0E3F7A515B41FBC00599E95 /* RRGameBoardLayer.m */,
+				F0E3F7A415B41FBC00599E95 /* RRBoardLayer.h */,
+				F0E3F7A515B41FBC00599E95 /* RRBoardLayer.m */,
 				F03C983B15B6EA880091FEEE /* RRScoreLayer.h */,
 				F03C983C15B6EA880091FEEE /* RRScoreLayer.m */,
 				F07E8BBA15C33F1E0074F4E0 /* RRGameMenuLayer.h */,
@@ -1931,7 +1931,7 @@
 				F0E3F79815B41F9C00599E95 /* RRMenuScene.m in Sources */,
 				F0E3F79F15B41FA900599E95 /* RRPickColorLayer.m in Sources */,
 				F0E3F7A115B41FA900599E95 /* RRPickColorScene.m in Sources */,
-				F0E3F7AC15B41FBC00599E95 /* RRGameBoardLayer.m in Sources */,
+				F0E3F7AC15B41FBC00599E95 /* RRBoardLayer.m in Sources */,
 				F0E3F7AE15B41FBC00599E95 /* RRGameLayer.m in Sources */,
 				F0E3F7B015B41FBC00599E95 /* RRGameScene.m in Sources */,
 				F0E3F7B215B41FBC00599E95 /* RRTile.m in Sources */,
@@ -2073,7 +2073,7 @@
 				F0E3F79915B41F9C00599E95 /* RRMenuScene.m in Sources */,
 				F0E3F7A015B41FA900599E95 /* RRPickColorLayer.m in Sources */,
 				F0E3F7A215B41FA900599E95 /* RRPickColorScene.m in Sources */,
-				F0E3F7AD15B41FBC00599E95 /* RRGameBoardLayer.m in Sources */,
+				F0E3F7AD15B41FBC00599E95 /* RRBoardLayer.m in Sources */,
 				F0E3F7AF15B41FBC00599E95 /* RRGameLayer.m in Sources */,
 				F0E3F7B115B41FBC00599E95 /* RRGameScene.m in Sources */,
 				F0E3F7B315B41FBC00599E95 /* RRTile.m in Sources */,

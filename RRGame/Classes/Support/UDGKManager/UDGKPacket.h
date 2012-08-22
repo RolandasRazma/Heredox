@@ -44,6 +44,7 @@ typedef struct UDGKPacketPickColor {
 typedef struct UDGKPacketTileMove {
 	UDGKPacketType  type;
     RRTileMove      move;
+    bool            finite;
 } UDGKPacketTileMove;
 
 
@@ -78,10 +79,11 @@ static UDGKPacketEnterScene UDGKPacketEnterSceneMake( unsigned int sceneID ) {
 }
 
 
-static UDGKPacketTileMove UDGKPacketTileMoveMake( RRTileMove move ) {
+static UDGKPacketTileMove UDGKPacketTileMoveMake( RRTileMove move, bool finite ) {
     return (UDGKPacketTileMove){
         UDGKPacketTypeTileMove,
-        move
+        move,
+        finite
     };
 }
 

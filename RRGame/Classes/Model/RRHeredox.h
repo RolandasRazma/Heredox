@@ -32,6 +32,10 @@ typedef struct RRTileMove {
 
 extern const RRTileMove RRTileMoveZero;
 
+CG_INLINE RRTileMove RRTileMoveMake(int x, int y, int rotation, float score) {
+    return (RRTileMove){ x, y, rotation, score };
+}
+
 
 @interface RRHeredox : NSObject
 

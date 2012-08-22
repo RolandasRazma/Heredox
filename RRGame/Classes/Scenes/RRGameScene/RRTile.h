@@ -53,6 +53,7 @@ typedef enum RRTileType : NSUInteger {
 @property (nonatomic, readonly) RRTileEdge edgeRight;
 @property (nonatomic, readonly) BOOL isPlaced;
 @property (nonatomic, readonly) BOOL wasLifted;
+@property (nonatomic, readonly) RRTileMove tileMove;
 
 + (const CGFloat)tileSize;
 + (id)tileWithType:(RRTileType)tileType;

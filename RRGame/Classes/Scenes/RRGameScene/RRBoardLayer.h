@@ -1,5 +1,5 @@
 //
-//  UDGameBoardLayer.h
+//  RRBoardLayer.h
 //  RRHeredox
 //
 //  Created by Rolandas Razma on 7/14/12.
@@ -9,11 +9,12 @@
 #import "UDLayer.h"
 
 @class RRTile;
+@protocol RRBoardLayerDelegate;
 
-NSString * const RRGameBoardLayerTileMovedToValidLocationNotification;
 
-
-@interface RRGameBoardLayer : UDLayer {
+@interface RRBoardLayer : UDLayer {
+    id<RRBoardLayerDelegate>_delegate;
+    
     RRGameMode          _gameMode;
     
     uint                _symbolsBlack;
@@ -33,6 +34,7 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification;
 @property (nonatomic, readonly) uint symbolsBlack;
 @property (nonatomic, readonly) uint symbolsWhite;
 @property (nonatomic, readonly) CGRect gridBounds;
+@property (nonatomic, assign)   id <RRBoardLayerDelegate>delegate;
 
 - (id)initWithGameMode:(RRGameMode)gameMode;
 
@@ -42,5 +44,12 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification;
 - (void)countSymbolsAtTile:(RRTile *)tile white:(NSUInteger *)white black:(NSUInteger *)black;
 - (RRTile *)tileAtGridPosition:(CGPoint)gridPosition;
 - (void)resetBoardForGameMode:(RRGameMode)gameMode;
+
+@end
+
+
+@protocol RRBoardLayerDelegate <NSObject>
+
+- (void)boardLayer:(RRBoardLayer *)gameBoardLayer movedActiveTile:(RRTileMove)tileMove;
 
 @end

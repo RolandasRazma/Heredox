@@ -1,19 +1,16 @@
 //
-//  UDGameBoardLayer.m
+//  RRBoardLayer.m
 //  RRHeredox
 //
 //  Created by Rolandas Razma on 7/14/12.
 //  Copyright (c) 2012 UD7. All rights reserved.
 //
 
-#import "RRGameBoardLayer.h"
+#import "RRBoardLayer.h"
 #import "RRTile.h"
 
 
-NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGameBoardLayerTileMovedToValidLocationNotification";
-
-
-@implementation RRGameBoardLayer
+@implementation RRBoardLayer
 
 
 #pragma mark -
@@ -372,6 +369,13 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
 - (void)touchEndedAtLocation:(CGPoint)location {
     
     if( !_activeTileMoved ){
+        if( [_delegate respondsToSelector:@selector(boardLayer:movedActiveTile:)] ){
+            RRTileMove tileMove = _activeTile.tileMove;
+            tileMove.rotation += 90;
+            
+            [_delegate boardLayer:self movedActiveTile:tileMove];
+        }
+        
         NSMutableArray *actions = [NSMutableArray arrayWithCapacity:3];
         [actions addObject:[CCCallBlock actionWithBlock:^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRTileTurn.mp3"]; }]];
         [actions addObject:[CCRotateBy actionWithDuration:0.2f angle:90]];
@@ -385,7 +389,9 @@ NSString * const RRGameBoardLayerTileMovedToValidLocationNotification = @"RRGame
         [_activeTile setPosition: snapPosition];
         [_activeTile placeTile];
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:RRGameBoardLayerTileMovedToValidLocationNotification object:self];
+        if( [_delegate respondsToSelector:@selector(boardLayer:movedActiveTile:)] ){
+            [_delegate boardLayer:self movedActiveTile:_activeTile.tileMove];
+        }
     }
     
 }

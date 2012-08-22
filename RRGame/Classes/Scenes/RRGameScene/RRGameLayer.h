@@ -9,16 +9,17 @@
 #import "UDLayer.h"
 #import "RRGameMenuLayer.h"
 #import "RRGameWictoryLayer.h"
+#import "RRBoardLayer.h"
 
 
-@class RRPlayer, RRGameBoardLayer, UDSpriteButton, RRCrossfadeLayer, RRScoreLayer;
+@class RRPlayer, RRBoardLayer, UDSpriteButton, RRCrossfadeLayer, RRScoreLayer;
 
 
-@interface RRGameLayer : UDLayer <RRGameMenuDelegate, RRPlayerColorWictoriousDelegate, UDGKManagerPacketObserving, UDGKManagerPlayerObserving> {
+@interface RRGameLayer : UDLayer <RRBoardLayerDelegate, RRGameMenuDelegate, RRPlayerColorWictoriousDelegate, UDGKManagerPacketObserving, UDGKManagerPlayerObserving> {
     RRGameMode          _gameMode;
     
     NSMutableArray      *_deck;
-    RRGameBoardLayer    *_gameBoardLayer;
+    RRBoardLayer    *_gameBoardLayer;
     
     RRPlayerColor       _playerColor;
     RRPlayerColor       _firstPlayerColor;

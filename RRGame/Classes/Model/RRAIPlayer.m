@@ -7,7 +7,7 @@
 //
 
 #import "RRAIPlayer.h"
-#import "RRGameBoardLayer.h"
+#import "RRBoardLayer.h"
 #import "RRTile.h"
 
 
@@ -30,7 +30,7 @@
 #pragma mark RRAIPlayer
 
 
-- (RRTileMove)bestMoveOnBoard:(RRGameBoardLayer *)gameBoard {
+- (RRTileMove)bestMoveOnBoard:(RRBoardLayer *)gameBoard {
     RRTileMove tileMove = RRTileMoveZero;
     RRTile *activeTile  = gameBoard.activeTile;
     CGPoint activeTilePosition = activeTile.position;
@@ -107,7 +107,7 @@
 }
 
 
-- (RRTileMove)bestMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+- (RRTileMove)bestMoveOnGameBoard:(RRBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
     RRTileMove tileMove = RRTileMoveZero;
     RRTile *activeTile = gameBoard.activeTile;
     
@@ -236,10 +236,10 @@
         }
         
         if( moveValue >= tileMove.score ){
-            tileMove.score    = moveValue;
-            tileMove.rotation = angle;
-            tileMove.gridX    = activeTile.positionInGrid.x;
-            tileMove.gridY    = activeTile.positionInGrid.y;
+            tileMove = RRTileMoveMake(activeTile.positionInGrid.x,
+                                      activeTile.positionInGrid.y,
+                                      angle,
+                                      moveValue);
         }
     }
     
@@ -247,7 +247,7 @@
 }
 
 
-- (CGFloat)edgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+- (CGFloat)edgeBlockModifyerForMoveOnGameBoard:(RRBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
     CGFloat edgeBlockModifyer = 0.0f;
 
     if( gameBoard.gridBounds.size.height == 3 ){
@@ -318,7 +318,7 @@
 }
 
 
-- (CGFloat)activeTileEdgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+- (CGFloat)activeTileEdgeBlockModifyerForMoveOnGameBoard:(RRBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
     RRTile *activeTile = gameBoard.activeTile;
     CGFloat edgeBlockModifyer = 0.0f;
 
@@ -378,7 +378,7 @@
 }
 
 
-- (CGFloat)nextTurnEdgeBlockModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+- (CGFloat)nextTurnEdgeBlockModifyerForMoveOnGameBoard:(RRBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
     CGFloat edgeBlockModifyer = 0.0f;
 
     if( gameBoard.gridBounds.size.height == 3 ){
@@ -459,7 +459,7 @@
 
 
 // What is possibility to gain 2 points next turn?
-- (CGFloat)nextTurnPointsScoreModifyerForMoveOnGameBoard:(RRGameBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
+- (CGFloat)nextTurnPointsScoreModifyerForMoveOnGameBoard:(RRBoardLayer *)gameBoard positionInGrid:(CGPoint)positionInGrid {
     if( !_tilesInDeck || !_tilesInDeck.count ) return 0.0f;
     
     CGFloat pointsScoreModifyer = 0.0f;
