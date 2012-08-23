@@ -125,7 +125,12 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
     }else if( [sessionProvider isKindOfClass:[GKSession class]] ){
         [self setSession:sessionProvider];
 #endif
-    }else if( sessionProvider ){
+    }else if( !sessionProvider ){
+        [self setMatch:nil];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
+        [self setSession:nil];
+#endif
+    }else{
         NSAssert(NO, @"Only GKMatch and GKSession are supported as session provider");
     }
 }
