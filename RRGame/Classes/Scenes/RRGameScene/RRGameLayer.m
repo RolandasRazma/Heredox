@@ -375,8 +375,15 @@
 - (void)makeMove:(RRTileMove)tileMove andEndTurn:(BOOL)endTurn {
     [self setUserInteractionEnabled:NO];
 
+    const NSInteger RRTileMoveCCSequence = 27347;
+    
+    // Stop Old actions - this might happen if in multiplayer games
+    [_gameBoardLayer.activeTile stopActionByTag:RRTileMoveCCSequence];
+    
+    
     NSMutableArray *actions = [NSMutableArray array];
     
+    // Do we need to move tile?
     if( roundf(_gameBoardLayer.activeTile.positionInGrid.x) != tileMove.gridX || roundf(_gameBoardLayer.activeTile.positionInGrid.y) != tileMove.gridY ){
         [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
         [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
@@ -385,17 +392,25 @@
         [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
         [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
     }
-    
+
+    // Do we need to rotate tile?
     if( _gameBoardLayer.activeTile.rotation != tileMove.rotation ) {
-        for( float rotation=_gameBoardLayer.activeTile.rotation; rotation<=tileMove.rotation; rotation += 90 ){
+        NSUInteger nextRotationAngle = _gameBoardLayer.activeTile.rotation -((int)_gameBoardLayer.activeTile.rotation %90);
+
+        do{
+            nextRotationAngle += 90;
+            
             [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
             [actions addObject: [CCCallBlock actionWithBlock:^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRTileTurn.mp3"]; }]];
-            [actions addObject: [CCRotateTo actionWithDuration:0.2f angle:rotation]];
+            [actions addObject: [CCRotateTo actionWithDuration:0.2f angle:nextRotationAngle]];
             [actions addObject: [UDActionCallFunc actionWithSelector:@selector(placeTile)]];
             [actions addObject: [CCDelayTime actionWithDuration:0.2f]];
-        }
+            
+            if( nextRotationAngle >= 360 ) nextRotationAngle -= 360;
+        } while ( nextRotationAngle != (int)tileMove.rotation );
     }
     
+    // Is this the end of turn?
     if( endTurn ){
         [actions addObject: [CCCallFunc actionWithTarget: self selector:@selector(endTurn)]];
     }
@@ -407,9 +422,11 @@
         }
     }
 
+    // Start actions if we have those
     if( actions.count ){
-        [_gameBoardLayer.activeTile stopAllActions];
-        [_gameBoardLayer.activeTile runAction:[CCSequence actionsWithArray: actions]];
+        CCSequence *sequence = [CCSequence actionsWithArray: actions];
+        [sequence setTag: RRTileMoveCCSequence];
+        [_gameBoardLayer.activeTile runAction: sequence];
     }
 }
 
