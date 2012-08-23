@@ -375,6 +375,9 @@
 - (void)makeMove:(RRTileMove)tileMove andEndTurn:(BOOL)endTurn {
     [self setUserInteractionEnabled:NO];
 
+    // Normalize rotation
+    if( tileMove.rotation >= 360.0f ) tileMove.rotation -= 360.0f;
+    
     const NSInteger RRTileMoveCCSequence = 27347;
     
     // Stop Old actions - this might happen if in multiplayer games
