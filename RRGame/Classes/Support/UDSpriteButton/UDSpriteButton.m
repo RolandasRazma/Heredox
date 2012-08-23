@@ -188,7 +188,11 @@
     location = [self.parent convertToNodeSpace:location];
     
 	if ( CGRectContainsPoint(self.boundingBox, location) ) {
-        [self invokeControlEvent: UDButtonEventTouchUpInside];        
+        [self invokeControlEvent: UDButtonEventTouchUpInside];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01f *NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+            [self invokeControlEvent: UDButtonEventTouchUpInsideD];
+        });
     }else{
         [self invokeControlEvent: UDButtonEventTouchUpOutside];
     }

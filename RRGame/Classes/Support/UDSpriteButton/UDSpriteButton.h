@@ -17,6 +17,7 @@ enum {
     UDButtonEventTouchUpInside      = 1 <<  4,
     UDButtonEventTouchUpOutside     = 1 <<  5,
     UDButtonEventTouchHold          = 1 <<  6,
+    UDButtonEventTouchUpInsideD     = 1 <<  7
 };
 typedef NSUInteger UDButtonEvents;
 
