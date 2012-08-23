@@ -82,13 +82,13 @@ static BOOL RRGameMenuLayerVisible = NO;
         
         // RRButtonResume
         UDSpriteButton *buttonResume = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonResume.png" highliteSpriteFrameName:@"RRButtonResumeSelected.png"];
-        [buttonResume addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonResume addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonResume];
         
         
         // RRButtonRestart
         UDSpriteButton *buttonRestart = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonRestart.png" highliteSpriteFrameName:@"RRButtonRestartSelected.png"];
-        [buttonRestart addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonRestart addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonRestart];
         
         if( ![[UDGKManager sharedManager] isHost] ){
@@ -99,7 +99,7 @@ static BOOL RRGameMenuLayerVisible = NO;
         
         // RRButtonQuit
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];
-        [buttonQuit addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonQuit addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonQuit];
         
         CCSprite *textVolume = [CCSprite spriteWithSpriteFrameName:@"RRTextVolume.png"];

@@ -83,11 +83,11 @@
             [cancelButton setAnchorPoint:CGPointMake(0.5f, -0.4f)];
             [cancelButton setPosition:CGPointMake(_menu.boundingBox.size.width /2, 0)];
             if( block ){
-                [cancelButton addBlock:block forControlEvents:UDButtonEventTouchUpInside];
+                [cancelButton addBlock:block forControlEvents:UDButtonEventTouchUpInsideD];
             }else{
                 [cancelButton addBlock:^{
                     [self removeFromParentAndCleanup:YES];
-                } forControlEvents:UDButtonEventTouchUpInside];
+                } forControlEvents:UDButtonEventTouchUpInsideD];
             }
             [_menu addChild:cancelButton];
         }else{

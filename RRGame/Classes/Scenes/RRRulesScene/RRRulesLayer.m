@@ -31,12 +31,12 @@
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
         [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
-        [buttonHome addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonHome addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [self addChild:buttonHome];
         
         // Add WWW button
         UDSpriteButton *buttonWWW = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonWWW.png" highliteSpriteFrameName:@"RRButtonWWWSelected.png"];
-        [buttonWWW addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self goToWWW]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonWWW addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self goToWWW]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [self addChild:buttonWWW];
         
         

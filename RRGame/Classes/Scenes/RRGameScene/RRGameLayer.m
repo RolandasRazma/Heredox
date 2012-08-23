@@ -119,14 +119,14 @@
         // Add menu button
         UDSpriteButton *buttonHome = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMenu.png" highliteSpriteFrameName:@"RRButtonMenuSelected.png"];
         [buttonHome setAnchorPoint:CGPointMake(1.0f, 1.0f)];
-        [buttonHome addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonHome addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [self showMenu]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [self addChild:buttonHome];
         
 
         // Add End Turn
         _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonDone.png"];
         [_buttonEndTurn setOpacity:0];
-        [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInside];
+        [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_buttonEndTurn setPosition:CGPointMake(winSize.width -[RRTile tileSize] /1.5f, [RRTile tileSize] /1.5f)];
         [self addChild:_buttonEndTurn z:-2];
         
@@ -555,7 +555,7 @@
                 [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
 
                 [self resetGame];
-            } forControlEvents: UDButtonEventTouchUpInside];
+            } forControlEvents: UDButtonEventTouchUpInsideD];
             [self addChild:_resetGameButton z:-2];
         }
     }

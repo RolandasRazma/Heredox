@@ -92,7 +92,7 @@ static BOOL RRGameWictoryLayerVisible = NO;
         
         // RRButtonQuit
         UDSpriteButton *buttonContinue = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonContinue.png" highliteSpriteFrameName:@"RRButtonContinueSelected.png"];
-        [buttonContinue addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameWictoryLayer:self didSelectButtonAtIndex:0];  } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonContinue addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameWictoryLayer:self didSelectButtonAtIndex:0];  } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonContinue];
 
         // Winning banner

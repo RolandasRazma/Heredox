@@ -34,22 +34,22 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
 
         // Local
         UDSpriteButton *buttonLocal = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMultiplayerHotseat.png" highliteSpriteFrameName:@"RRButtonMultiplayerHotseatSelected.png"];
-        [buttonLocal addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonLocal addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonLocal];
         
         // Bluetooth
         UDSpriteButton *buttonBluetooth = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMultiplayerBluetooth.png" highliteSpriteFrameName:@"RRButtonMultiplayerBluetoothSelected.png"];
-        [buttonBluetooth addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonBluetooth addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonBluetooth];
         
         // GameCenter
         UDSpriteButton *buttonGameCenter = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonMultiplayerGameCenter.png" highliteSpriteFrameName:@"RRButtonMultiplayerGameCenterSelected.png"];
-        [buttonGameCenter addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonGameCenter addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonGameCenter];
         
         // RRButtonBack2
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonBack2.png" highliteSpriteFrameName:@"RRButtonBack2Selected.png"];
-        [buttonQuit addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:3]; } forControlEvents: UDButtonEventTouchUpInside];
+        [buttonQuit addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate menuMultiplayerLayer:self didSelectButtonAtIndex:3]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonQuit];
         
         // Device layout
