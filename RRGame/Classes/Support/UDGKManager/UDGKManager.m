@@ -60,6 +60,20 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 }
 
 
++ (const BOOL)isGameCenterAvailable {
+    return NO;
+    Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
+    NSString *reqSysVer = @"4.1";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    BOOL osVersionSupported = ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending);
+    return (gcClass && osVersionSupported);
+#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+    return gcClass != nil;
+#endif
+}
+
+
 - (void)applicationWillTerminateNotification {
     [self setMatch:nil];
 }
@@ -121,6 +135,8 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
 
 - (void)setSessionProvider:(id)sessionProvider {
+    if ( [UDGKManager isGameCenterAvailable] == NO ) return;
+    
     if( [sessionProvider isKindOfClass:[GKMatch class]] ){
         [self setMatch:sessionProvider];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED
@@ -144,7 +160,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
 
 - (void)setMatch:(GKMatch *)match {
-    
+
     if ( ![_match isEqual:match] ) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED
         if( match && _session ) [self setSession:nil];

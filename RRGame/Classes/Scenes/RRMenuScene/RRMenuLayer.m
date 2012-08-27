@@ -70,9 +70,8 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
 
-    [[UDGKManager sharedManager] setSessionProvider:nil];
-    
-    if( isGameCenterAvailable() ){
+    if( [UDGKManager isGameCenterAvailable] ){
+        [[UDGKManager sharedManager] setSessionProvider:nil];        
         [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:NULL];
     }
 }
@@ -113,7 +112,9 @@
 
 
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
-    [[UDGKManager sharedManager] setSessionProvider:nil];
+    if( [UDGKManager isGameCenterAvailable] ){
+        [[UDGKManager sharedManager] setSessionProvider:nil];
+    }
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];

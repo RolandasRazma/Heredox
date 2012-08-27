@@ -57,6 +57,7 @@ extern NSString * const UDGKManagerAllPlayersConnectedNotification;
 @property (nonatomic, retain)   id              sessionProvider;    // GKMatch or GKSession
     
 + (UDGKManager *)sharedManager;
++ (const BOOL)isGameCenterAvailable;
 
 - (void)authenticateInGameCenterWithCompletionHandler:(void(^)(NSError *error))completionHandler;
 

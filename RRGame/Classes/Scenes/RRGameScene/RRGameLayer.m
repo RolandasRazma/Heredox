@@ -180,7 +180,7 @@
     [_resetGameButton runAction:[UDActionDestroy action]];
     _resetGameButton = nil;
     
-    if( [[UDGKManager sharedManager] isHost] ){
+    if( [[UDGKManager sharedManager] isHost] && [[UDGKManager sharedManager] isNetworkPlayActive] ){
         UDGKPacketResetGame newPacket = UDGKPacketResetGameMake( gameSeed );
         [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
                                                      length: sizeof(UDGKPacketResetGame)];

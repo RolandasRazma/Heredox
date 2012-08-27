@@ -340,9 +340,9 @@
 		F09843E615D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */; };
 		F09843E715D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */; };
 		F09E95F915CA5EDD00293ED4 /* RRBackgroundMenu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */; };
+		F09EAD0B15EC07E000BA6F33 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A35DC615D6654800B2BDCF /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F0A18E6815C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
 		F0A18E6915C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
-		F0A35DC715D6654800B2BDCF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A35DC615D6654800B2BDCF /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F0A35DCA15D6691F00B2BDCF /* RRMenuMultiplayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A35DC915D6691F00B2BDCF /* RRMenuMultiplayerLayer.m */; };
 		F0A35DCB15D6691F00B2BDCF /* RRMenuMultiplayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A35DC915D6691F00B2BDCF /* RRMenuMultiplayerLayer.m */; };
 		F0A35DD015D6701900B2BDCF /* RRAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A35DCF15D6701800B2BDCF /* RRAudioEngine.m */; };
@@ -808,7 +808,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0A35DC715D6654800B2BDCF /* GameKit.framework in Frameworks */,
+				F09EAD0B15EC07E000BA6F33 /* GameKit.framework in Frameworks */,
 				F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */,
 				F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */,
 				F0CD646714CA991E00665366 /* QuartzCore.framework in Frameworks */,

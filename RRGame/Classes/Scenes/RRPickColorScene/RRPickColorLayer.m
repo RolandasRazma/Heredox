@@ -141,19 +141,23 @@
 - (void)onEnter {
     [super onEnter];
     
-    [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypePickColor];
-    [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
+    if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
+        [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypePickColor];
+        [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
     
-    [[UDGKManager sharedManager] addPlayerObserver:self forConnectionState:GKPlayerStateDisconnected];
+        [[UDGKManager sharedManager] addPlayerObserver:self forConnectionState:GKPlayerStateDisconnected];
+    }
 }
 
 
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
     
-    UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 2 );
-    [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
-                                                 length: sizeof(UDGKPacketEnterScene)];
+    if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
+        UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 2 );
+        [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
+                                                     length: sizeof(UDGKPacketEnterScene)];
+    }
 }
 
 
@@ -270,7 +274,6 @@
     }
     
 }
-
 
 
 @end
