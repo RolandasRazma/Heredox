@@ -34,11 +34,13 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
                                                          name: UIApplicationWillTerminateNotification
                                                        object: nil];
 #endif
-    
-        [[NSNotificationCenter defaultCenter] addObserver: self
-                                                 selector: @selector(playerAuthenticationDidChangeNotification)
-                                                     name: GKPlayerAuthenticationDidChangeNotificationName
-                                                   object: nil];
+        
+        if ( &GKPlayerAuthenticationDidChangeNotificationName != NULL ){
+            [[NSNotificationCenter defaultCenter] addObserver: self
+                                                     selector: @selector(playerAuthenticationDidChangeNotification)
+                                                         name: GKPlayerAuthenticationDidChangeNotificationName
+                                                       object: nil];
+        }
     }
     return self;
 }
