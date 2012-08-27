@@ -10,6 +10,12 @@ __asm__(".weak_reference _OBJC_CLASS_$_GKSession");
 __asm__(".weak_reference _OBJC_CLASS_$_GKSessionDelegate");
 __asm__(".weak_reference _OBJC_CLASS_$_GKPeerPickerController");
 __asm__(".weak_reference _OBJC_CLASS_$_GKPeerPickerControllerDelegate");
+__asm__(".weak_reference _OBJC_CLASS_$_GKDialogController");
+__asm__(".weak_reference _OBJC_CLASS_$_GKLocalPlayer");
+__asm__(".weak_reference _OBJC_CLASS_$_GKMatchRequest");
+__asm__(".weak_reference _OBJC_CLASS_$_GKMatchmaker");
+__asm__(".weak_reference _OBJC_CLASS_$_GKMatchmakerViewController");
+__asm__(".weak_reference _OBJC_CLASS_$_GKNotificationBanner");
 
 
 #ifdef __OBJC__
