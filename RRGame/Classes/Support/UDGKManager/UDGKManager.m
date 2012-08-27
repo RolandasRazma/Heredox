@@ -61,7 +61,6 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
 
 + (const BOOL)isGameCenterAvailable {
-    return NO;
     Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
 #if __IPHONE_OS_VERSION_MAX_ALLOWED
     NSString *reqSysVer = @"4.1";
