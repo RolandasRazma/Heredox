@@ -34,12 +34,7 @@
 #pragma mark UIApplicationDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-#if !DEBUG
-    [TestFlight setDeviceIdentifier:[UDDevice UUID]];
-    [TestFlight takeOff:@"44bb611ef55983c0e351fd6535fc314a_NzgxNDkyMDEyLTA0LTA1IDAyOjExOjU5LjMzNjY5Mw"];
-#endif
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	// Create the main window
 	_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

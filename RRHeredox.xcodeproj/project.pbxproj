@@ -2130,7 +2130,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"RRGame/Frameworks & Librarys/Cocos2D/kazmath/include\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Heredox;
 				SDKROOT = iphoneos;
@@ -2163,7 +2163,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"RRGame/Frameworks & Librarys/Cocos2D/kazmath/include\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = Heredox;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
