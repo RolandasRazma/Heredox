@@ -122,7 +122,7 @@
         [gameBoard countSymbolsAtTile:activeTile white:&white black:&black];
 
         // Count how much points you gain
-        CGFloat moveValue;
+        CGFloat moveValue = 0.0f;
         if( self.playerColor == RRPlayerColorBlack ){
             moveValue = (float)black -(float)white;
         }else if( self.playerColor == RRPlayerColorWhite ){

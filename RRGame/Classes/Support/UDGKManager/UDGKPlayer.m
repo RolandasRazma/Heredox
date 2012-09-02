@@ -29,7 +29,7 @@
 
 
 + (id)playerWithPlayerID:(NSString *)playerID alias:(NSString *)alias {
-    return [[self alloc] initWithPlayerID:playerID alias:alias];
+    return [[[self alloc] initWithPlayerID:playerID alias:alias] autorelease];
 }
 
 

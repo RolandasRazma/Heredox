@@ -271,7 +271,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
     if ( [playerIDs containsObject: self.playerID] ) {
         [self packet:packet fromPlayerID: self.playerID];
         
-        playerIDs = [playerIDs mutableCopy];
+        playerIDs = [[playerIDs mutableCopy] autorelease];
         [(NSMutableArray *)playerIDs removeObject:self.playerID];
     }
     
