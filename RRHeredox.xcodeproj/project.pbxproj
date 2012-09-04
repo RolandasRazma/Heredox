@@ -56,6 +56,7 @@
 		F012ACFE15CDBFF10095190C /* RRBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */; };
 		F012AD0015CDBFF10095190C /* RRBackgroundWhite-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F012ACFD15CDBFF10095190C /* RRBackgroundWhite-hd.png */; };
 		F012AD0B15CDD2A60095190C /* RRBackgroundMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F515CA5EDD00293ED4 /* RRBackgroundMenu.png */; };
+		F015A0F415F5FBC600A3B62B /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F015A0F315F5FBC600A3B62B /* icon.iconset */; };
 		F01AC58C15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01AC58B15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 */; };
 		F01AC58D15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01AC58B15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 */; };
 		F01AC59115D2EEC500541D96 /* RRTransitionGame.m in Sources */ = {isa = PBXBuildFile; fileRef = F01AC59015D2EEC500541D96 /* RRTransitionGame.m */; };
@@ -363,7 +364,6 @@
 		F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD5FD714CA92F000665366 /* AppKit.framework */; };
 		F0CD614914CA92F300665366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CD614814CA92F300665366 /* main.m */; };
 		F0CD645F14CA978500665366 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0CD645D14CA978500665366 /* MainMenu.xib */; };
-		F0CD646414CA983700665366 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0CD646314CA983700665366 /* icon.icns */; };
 		F0CD646714CA991E00665366 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582BF14CA7BE20033B4F5 /* QuartzCore.framework */; };
 		F0CD646814CA994500665366 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582C314CA7BE20033B4F5 /* OpenAL.framework */; };
 		F0CD646914CA995100665366 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582C514CA7BE20033B4F5 /* AudioToolbox.framework */; };
@@ -429,6 +429,7 @@
 		F012ACF715CDBF810095190C /* RRBackgroundBlack-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack-hd.png"; sourceTree = "<group>"; };
 		F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundWhite.png; sourceTree = "<group>"; };
 		F012ACFD15CDBFF10095190C /* RRBackgroundWhite-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite-hd.png"; sourceTree = "<group>"; };
+		F015A0F315F5FBC600A3B62B /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
 		F01AC58B15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRSceneTransitionBack.mp3; sourceTree = "<group>"; };
 		F01AC58F15D2EEC500541D96 /* RRTransitionGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRTransitionGame.h; sourceTree = "<group>"; };
 		F01AC59015D2EEC500541D96 /* RRTransitionGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRTransitionGame.m; sourceTree = "<group>"; };
@@ -751,7 +752,6 @@
 		F0CD614714CA92F300665366 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = RRGameMacOS/Prefix.pch; sourceTree = SOURCE_ROOT; };
 		F0CD614814CA92F300665366 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RRGameMacOS/main.m; sourceTree = SOURCE_ROOT; };
 		F0CD645D14CA978500665366 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Resources/MainMenu.xib; sourceTree = "<group>"; };
-		F0CD646314CA983700665366 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F0CD647F14CA9ACB00665366 /* RRGameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameAppDelegate.h; sourceTree = "<group>"; };
 		F0CD648014CA9ACB00665366 /* RRGameAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameAppDelegate.m; sourceTree = "<group>"; };
 		F0D2D3D615B8069E00F6001D /* UDActionCallFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionCallFunc.h; sourceTree = "<group>"; };
@@ -1462,7 +1462,7 @@
 		F0CD646214CA983700665366 /* MacOS */ = {
 			isa = PBXGroup;
 			children = (
-				F0CD646314CA983700665366 /* icon.icns */,
+				F015A0F315F5FBC600A3B62B /* icon.iconset */,
 			);
 			path = MacOS;
 			sourceTree = "<group>";
@@ -1768,7 +1768,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0CD645F14CA978500665366 /* MainMenu.xib in Resources */,
-				F0CD646414CA983700665366 /* icon.icns in Resources */,
 				F023312615AF97DC00D7EF8F /* ChangeLog in Resources */,
 				F023312815AF97DC00D7EF8F /* CMakeLists.txt in Resources */,
 				F035877315B2FEE500BBAB82 /* fps_images-hd.png in Resources */,
@@ -1811,6 +1810,7 @@
 				F09843E715D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */,
 				F01AC58D15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 in Resources */,
 				F0A35DD415D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
+				F015A0F415F5FBC600A3B62B /* icon.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2218,7 +2218,7 @@
 				GCC_PREFIX_HEADER = RRGameMacOS/Prefix.pch;
 				INFOPLIST_FILE = RRGameMacOS/Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-lz";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -2242,7 +2242,7 @@
 				GCC_PREFIX_HEADER = RRGameMacOS/Prefix.pch;
 				INFOPLIST_FILE = RRGameMacOS/Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-lz";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
