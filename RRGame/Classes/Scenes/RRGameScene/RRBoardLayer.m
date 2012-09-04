@@ -397,5 +397,5 @@
 }
 
 
-@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile, gridBounds=_gridBounds;
+@synthesize symbolsBlack=_symbolsBlack, symbolsWhite=_symbolsWhite, activeTile=_activeTile, gridBounds=_gridBounds, delegate=_delegate;
 @end

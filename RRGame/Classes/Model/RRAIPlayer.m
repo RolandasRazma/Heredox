@@ -548,5 +548,5 @@
 }
 
 
-@synthesize dificultyLevel=_dificultyLevel;
+@synthesize dificultyLevel=_dificultyLevel, tilesInDeck=_tilesInDeck;
 @end
