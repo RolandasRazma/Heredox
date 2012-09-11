@@ -340,6 +340,7 @@
 		F09843E415D2E16E0096F468 /* RRButtonClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */; };
 		F09843E615D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */; };
 		F09843E715D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */; };
+		F09B451915FCEC5300A8EC9D /* Heredox.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = F09B451815FCEC5300A8EC9D /* Heredox.entitlements */; };
 		F09E95F915CA5EDD00293ED4 /* RRBackgroundMenu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */; };
 		F09EAD0B15EC07E000BA6F33 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A35DC615D6654800B2BDCF /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F0A18E6815C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
@@ -724,6 +725,7 @@
 		F09843DD15D2DCE90096F468 /* RRLiftTile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRLiftTile.mp3; sourceTree = "<group>"; };
 		F09843E215D2E16E0096F468 /* RRButtonClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRButtonClick.mp3; sourceTree = "<group>"; };
 		F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRGameMenuIn.mp3; sourceTree = "<group>"; };
+		F09B451815FCEC5300A8EC9D /* Heredox.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Heredox.entitlements; path = Resources/Heredox.entitlements; sourceTree = "<group>"; };
 		F09E95F515CA5EDD00293ED4 /* RRBackgroundMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RRBackgroundMenu.png; sourceTree = "<group>"; };
 		F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundMenu-hd.png"; sourceTree = "<group>"; };
 		F0A18E6615C353DA00E09D46 /* RRGameWictoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameWictoryLayer.h; sourceTree = "<group>"; };
@@ -1453,6 +1455,7 @@
 		F0CD5FDC14CA92F000665366 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F09B451815FCEC5300A8EC9D /* Heredox.entitlements */,
 				F0CD645D14CA978500665366 /* MainMenu.xib */,
 				F0CD5FE814CA92F100665366 /* Info.plist */,
 			);
@@ -1811,6 +1814,7 @@
 				F01AC58D15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 in Resources */,
 				F0A35DD415D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
 				F015A0F415F5FBC600A3B62B /* icon.iconset in Resources */,
+				F09B451915FCEC5300A8EC9D /* Heredox.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2206,6 +2210,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = RRGameMacOS/Resources/Heredox.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2229,6 +2234,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = RRGameMacOS/Resources/Heredox.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

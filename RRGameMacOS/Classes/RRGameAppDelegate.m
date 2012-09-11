@@ -63,13 +63,13 @@
 
     // Init RRHeredox
     [RRHeredox sharedInstance];
-    
-    // Push First Scene
-    [_director pushScene: [RRDefaultScene node]];
-    
+
     // Show windows
     [_window makeKeyAndOrderFront:nil];
     
+    // Push First Scene
+    [_director pushScene: [RRDefaultScene node]];
+
     // Start animation
     [_director startAnimation];
 }

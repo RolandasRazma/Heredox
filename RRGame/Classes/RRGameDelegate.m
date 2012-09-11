@@ -67,7 +67,7 @@
 	[_director setProjection:kCCDirectorProjection2D];
 
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ![_director enableRetinaDisplay:YES] )
+	if( ![_director enableRetinaDisplay:!isDeviceIPad()] )
 		CCLOG(@"Retina Display Not supported");
 
 	// Create a Navigation Controller with the Director
@@ -91,10 +91,10 @@
 	// On iPad     : "-ipad", "-hd"
 	// On iPhone HD: "-hd"
 	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
-	[sharedFileUtils setEnableFallbackSuffixes:NO];				// Default: NO. No fallback suffixes are going to be used
+	[sharedFileUtils setEnableFallbackSuffixes:NO];             // Default: NO. No fallback suffixes are going to be used
 	[sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
 	[sharedFileUtils setiPadSuffix:@"-hd"];                     // Default on iPad is "ipad"
-	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
+	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-hd"];        // Default on iPad RetinaDisplay is "-ipadhd"
     
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
