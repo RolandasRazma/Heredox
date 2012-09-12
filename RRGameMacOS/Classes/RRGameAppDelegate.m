@@ -58,8 +58,9 @@
 	[_window center];
 
 	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
-	[sharedFileUtils setEnableFallbackSuffixes:YES];                // Default: NO. No fallback suffixes are going to be used
-	[sharedFileUtils setMacSuffix:@"-hd"];                          // Default on iMac is ""
+	[sharedFileUtils setEnableFallbackSuffixes:NO];     // Default: NO. No fallback suffixes are going to be used
+	[sharedFileUtils setMacSuffix:@"-hd"];              // Default on iMac is ""
+    [sharedFileUtils setMacRetinaDisplaySuffix:@"-hd"];
 
     // Init RRHeredox
     [RRHeredox sharedInstance];
