@@ -383,7 +383,7 @@
             [actions addObject:[UDActionCallFunc actionWithSelector:@selector(placeTile)]];
         }
         
-        [_activeTile runAction: [CCSequence actionsWithArray:actions]];
+        [_activeTile runAction: [CCSequence actionWithArray:actions]];
     }else if( [self canPlaceTileAtGridLocation:CGPointRound(_activeTile.positionInGrid)] ){
         CGPoint snapPosition = [self snapPoint: _activeTile.position toGridWithTolerance: _activeTile.boundingBox.size.width];
         [_activeTile setPosition: snapPosition];

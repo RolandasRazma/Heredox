@@ -56,7 +56,7 @@
     [super setRotation:rotation];
     
 #if TARGET_IPHONE_SIMULATOR
-    [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, rotation_]];
+    [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, self.rotation]];
 #endif
 }
 
@@ -64,7 +64,7 @@
 #if TARGET_IPHONE_SIMULATOR
 - (void)setPosition:(CGPoint)position {
     [super setPosition:position];
-    [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, rotation_]];
+    [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, self.rotation]];
 }
 #endif
 

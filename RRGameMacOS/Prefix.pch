@@ -23,6 +23,8 @@ __asm__(".weak_reference _OBJC_CLASS_$_GKNotificationBanner");
     #import <Foundation/Foundation.h>
     #import <GameKit/GameKit.h>
 
+    #define CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL 1
+    #define CC_ENABLE_DEPRECATED 0
     #import "cocos2d.h"
 
     #import "UDMath.h"

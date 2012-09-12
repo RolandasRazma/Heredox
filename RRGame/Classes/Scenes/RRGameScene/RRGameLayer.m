@@ -427,7 +427,7 @@
 
     // Start actions if we have those
     if( actions.count ){
-        CCSequence *sequence = [CCSequence actionsWithArray: actions];
+        CCSequence *sequence = [CCSequence actionWithArray: actions];
         [sequence setTag: RRTileMoveCCSequence];
         [_gameBoardLayer.activeTile runAction: sequence];
     }
