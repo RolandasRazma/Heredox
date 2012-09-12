@@ -981,7 +981,7 @@
 				F06586FD14CA7ED40033B4F5 /* Classes */,
 				F06582D214CA7BE20033B4F5 /* Resources */,
 				F065843E14CA7BE60033B4F5 /* Supporting Files */,
-				F06585BD14CA7CE30033B4F5 /* Library */,
+				F06585BD14CA7CE30033B4F5 /* Frameworks & Librarys */,
 				F0CD5FDB14CA92F000665366 /* RRGameMacOS */,
 				F06582BC14CA7BE20033B4F5 /* Products */,
 			);
@@ -1031,7 +1031,7 @@
 			path = Resources/Images;
 			sourceTree = "<group>";
 		};
-		F06585BD14CA7CE30033B4F5 /* Library */ = {
+		F06585BD14CA7CE30033B4F5 /* Frameworks & Librarys */ = {
 			isa = PBXGroup;
 			children = (
 				F0A2CAAB1600825F007CFDE3 /* Frameworks */,
@@ -1041,7 +1041,7 @@
 				F06582C514CA7BE20033B4F5 /* AudioToolbox.framework */,
 				F06582CB14CA7BE20033B4F5 /* Foundation.framework */,
 			);
-			name = Library;
+			name = "Frameworks & Librarys";
 			path = RRGame/Library;
 			sourceTree = "<group>";
 		};
