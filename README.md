@@ -1,6 +1,6 @@
 Heredox
 =========
-`iOS` and `MacOs` game.
+`iOS` and `MacOS` game.
 You can download it from <a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=555104623&mt=8">iOS App Store</a> or <a href="https://itunes.apple.com/app/heredox/id555110186?mt=12">Mac App Store</a>
 
 game written for iPhone/iPod Touch/iPad and MacOS in Objective-C using <a href="https://github.com/cocos2d/cocos2d-iphone">Cocos2D-iphone</a>. There is 2 build targets - iOS version and MacOS version. It has iOS <-> MacOS multiplayer, so it can be good learning resource.
