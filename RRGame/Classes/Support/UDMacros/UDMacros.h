@@ -1,7 +1,8 @@
 //
-//  UDGKPlayer.h
+//  UDMacros.h
+//  UDMacros
 //
-//  Created by Rolandas Razma on 11/08/2012.
+//  Created by Rolandas Razma on 11/14/09.
 //
 //  Copyright (c) 2012 Rolandas Razma <rolandas@razma.lt>
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,27 +24,33 @@
 //  SOFTWARE.
 //
 
-#import <GameKit/GameKit.h>
 
-
-@protocol UDGKPlayerProtocol <NSObject>
-@required
-
-@property(nonatomic, readonly, retain)  NSString    *playerID;
-@property(nonatomic, readonly, copy)    NSString    *alias;
-
-@end
-
-
-@interface UDGKPlayer : NSObject <UDGKPlayerProtocol> {
-    NSString    *_playerID;
-    NSString    *_alias;
+static BOOL isDeviceIPad(){
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
+        return YES;
+    }
+#endif
+    return NO;
 }
 
-@property(nonatomic, readonly, retain)  NSString    *playerID;
-@property(nonatomic, readonly, copy)    NSString    *alias;
 
-+ (id)playerWithPlayerID:(NSString *)playerID alias:(NSString *)alias;
-- (id)initWithPlayerID:(NSString *)playerID alias:(NSString *)alias;
+static BOOL isDeviceMac(){
+#if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+    return YES;
+#endif
+    return NO;
+}
 
-@end
+
+static BOOL isGameCenterAvailable() {
+    Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
+    NSString *reqSysVer = @"4.1";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    BOOL osVersionSupported = ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending);
+    return (gcClass && osVersionSupported);
+#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+    return gcClass != nil;
+#endif
+}

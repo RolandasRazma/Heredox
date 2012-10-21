@@ -1,7 +1,7 @@
 //
-//  UDGKPlayer.h
+//  UDLog.h
 //
-//  Created by Rolandas Razma on 11/08/2012.
+//  Created by Rolandas Razma on 7/13/12.
 //
 //  Copyright (c) 2012 Rolandas Razma <rolandas@razma.lt>
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,27 +23,28 @@
 //  SOFTWARE.
 //
 
-#import <GameKit/GameKit.h>
+#ifndef __OPTIMIZE__
+#import <mach/mach.h>
+#import <mach/mach_time.h>
 
-
-@protocol UDGKPlayerProtocol <NSObject>
-@required
-
-@property(nonatomic, readonly, retain)  NSString    *playerID;
-@property(nonatomic, readonly, copy)    NSString    *alias;
-
-@end
-
-
-@interface UDGKPlayer : NSObject <UDGKPlayerProtocol> {
-    NSString    *_playerID;
-    NSString    *_alias;
+uint64_t gbLastCall;
+inline static double UDTimeSinceLasstCall(){
+	if( !gbLastCall ){
+		gbLastCall = mach_absolute_time();
+		return 0;
+	}else{
+		uint64_t duration = mach_absolute_time() -gbLastCall;
+		gbLastCall = mach_absolute_time();
+		
+		mach_timebase_info_data_t info;
+		mach_timebase_info(&info);
+		
+		return duration * ((double)info.numer / ((double)info.denom *1000000.0));
+	}
 }
 
-@property(nonatomic, readonly, retain)  NSString    *playerID;
-@property(nonatomic, readonly, copy)    NSString    *alias;
+#define UDLog(format, ...) CFShow( [NSString stringWithFormat:@"^%7.1f | %@", UDTimeSinceLasstCall(), [NSString stringWithFormat:format, ##__VA_ARGS__], __PRETTY_FUNCTION__, __LINE__]);
 
-+ (id)playerWithPlayerID:(NSString *)playerID alias:(NSString *)alias;
-- (id)initWithPlayerID:(NSString *)playerID alias:(NSString *)alias;
-
-@end
+#else
+#define UDLog(format, ...)
+#endif

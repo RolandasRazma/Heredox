@@ -1,7 +1,7 @@
 //
-//  UDGKPlayer.h
+//  NSMutableArray+UDAdditions.h
 //
-//  Created by Rolandas Razma on 11/08/2012.
+//  Created by Rolandas Razma on 12/28/11.
 //
 //  Copyright (c) 2012 Rolandas Razma <rolandas@razma.lt>
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,27 +23,11 @@
 //  SOFTWARE.
 //
 
-#import <GameKit/GameKit.h>
+#import <Foundation/Foundation.h>
 
 
-@protocol UDGKPlayerProtocol <NSObject>
-@required
+@interface NSMutableArray (UDAdditions)
 
-@property(nonatomic, readonly, retain)  NSString    *playerID;
-@property(nonatomic, readonly, copy)    NSString    *alias;
-
-@end
-
-
-@interface UDGKPlayer : NSObject <UDGKPlayerProtocol> {
-    NSString    *_playerID;
-    NSString    *_alias;
-}
-
-@property(nonatomic, readonly, retain)  NSString    *playerID;
-@property(nonatomic, readonly, copy)    NSString    *alias;
-
-+ (id)playerWithPlayerID:(NSString *)playerID alias:(NSString *)alias;
-- (id)initWithPlayerID:(NSString *)playerID alias:(NSString *)alias;
+- (void)shuffleWithSeed:(unsigned int)seed;
 
 @end

@@ -1,21 +1,30 @@
 //
 //  CGGeometry+UDAdditions.h
-//  UDGame
 //
 //  Created by Rolandas Razma on 2/3/11.
-//  Copyright 2011 UD7. All rights reserved.
+//
+//  Copyright (c) 2012 Rolandas Razma <rolandas@razma.lt>
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
 //
 
 #import <Foundation/Foundation.h>
 
-
-static inline CGRect CGRectMakeFromCGPointAndCGSize(CGPoint origin, CGSize size){
-    return (CGRect){ origin, size };
-}
-
-static inline CGRect CGRectMakeWithSize(CGSize size){
-    return (CGRect){ CGPointZero, size };
-}
 
 static inline CGPoint CGPointRound(CGPoint point){
     point.x = roundf(point.x);
@@ -23,17 +32,6 @@ static inline CGPoint CGPointRound(CGPoint point){
     return point;
 }
 
-static inline CGSize CGSizeRound(CGSize size){
-    size.width = roundf(size.width);
-    size.height= roundf(size.height);
-    return size;
-}
-
-static inline CGPoint CGPointIntegral(CGPoint point) {
-    point.x = floorf(point.x);
-    point.y = floorf(point.y);
-    return point;
-}
 
 struct UDTriangle {
     CGPoint a;
@@ -48,6 +46,7 @@ static inline UDTriangle UDTriangleMake(CGPoint a, CGPoint b, CGPoint c) {
 
 
 static inline float sign(CGPoint p1, CGPoint p2, CGPoint p3) { return (p1.x -p3.x) *(p2.y -p3.y) -(p2.x - p3.x) *(p1.y -p3.y); }
+
 
 static inline bool UDTriangleContainsPoint(UDTriangle triangle, CGPoint point){
     bool b1, b2, b3;
