@@ -1,0 +1,4 @@
+Copyright (c) 2012 Hugo Sheppard <hugo.sheppard@gmail.com>
+
+Creative Commons Attribution-NonCommercial-NoDerivs ( CC BY-NC-ND )
+http://creativecommons.org/licenses/by-nc-nd/2.5/legalcode
