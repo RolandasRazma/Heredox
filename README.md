@@ -1,9 +1,9 @@
-iLabyrinth
+Heredox
 =========
-iOS and Mac game that still earns some money :) 
-You can download it from <a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=555104623&mt=8">iOS App Store</a> and <a href="https://itunes.apple.com/app/heredox/id555110186?mt=12">Mac App Store</a>
+iOS and Mac game.
+You can download it from <a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=555104623&mt=8">iOS App Store</a> or <a href="https://itunes.apple.com/app/heredox/id555110186?mt=12">Mac App Store</a>
 
-game written for iPhone/iPod Touch/iPad and MacOS in Objective-C using <a href="https://github.com/cocos2d/cocos2d-iphone">Cocos2D-iphone</a>. There is 2 build targets - iOS version and Mac version
+game written for iPhone/iPod Touch/iPad and MacOS in Objective-C using <a href="https://github.com/cocos2d/cocos2d-iphone">Cocos2D-iphone</a>. There is 2 build targets - iOS version and MacOS version
 
 Screenshots
 =========
@@ -13,12 +13,11 @@ Screenshots
 
 LICENSE
 =========
-for Cocos2D and CocosDenshion see their license<br>
+for Cocos2D and CocosDenshion and other third party libraries see their license<br>
 all code are licensed under MIT<br>
 all images and sounds are licensed under Creative Commons Attribution-NonCommercial-NoDerivs ( CC BY-NC-ND )<br>
 <br>
 please, don't steal. It's perfectly fine to use code, but please, please, please make your own artwork and sounds.
-
 
 MORE
 =========
