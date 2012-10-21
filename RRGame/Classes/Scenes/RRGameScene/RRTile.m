@@ -55,12 +55,23 @@
 }
 
 
+- (void)setRotationX:(float)rotationX {
+    [self setRotation:rotationX];
+}
+
+
+- (void)setRotationY:(float)rotationY {
+    [self setRotation:rotationY];
+}
+
+
 - (void)setRotation:(float)rotation {
     if( rotation >= 360.0f ) rotation -= 360.0f;
     if( rotation <= -360.0f) rotation += 360.0f;
-
-    [_debugLabel setRotation: -rotation];
     
+    [super setRotation:rotation];
+    
+    // updatePerspective
     if( (rotation >= 0.0f && rotation <= 45.0f) || (rotation >= -45.0f && rotation <= 0.0f) || (rotation >= 315.0f && rotation <= 360.0f) || (rotation <= -315.0f && rotation >= -360.0f) ){
         [_look3DSprite setRotation:0];
     }else if( (rotation >= 45.0f && rotation <= 135.0f) || (rotation <= -225.0f && rotation >= -315.0f) ){
@@ -70,10 +81,9 @@
     }else if( (rotation >= 225.0f && rotation <= 315.0f) || (rotation <= -45 && rotation >= -90.0f) ){
         [_look3DSprite setRotation:-270];
     }
-
-    [super setRotation:rotation];
     
 #if TARGET_IPHONE_SIMULATOR
+    [_debugLabel setRotation: -rotation];
     [_debugLabel setString: [NSString stringWithFormat:@"%.f/%.f/%.f", self.positionInGrid.x, self.positionInGrid.y, self.rotation]];
 #endif
 }
@@ -178,10 +188,12 @@
         [self addChild:_look3DSprite z:-1];
         
 #if TARGET_IPHONE_SIMULATOR
+        /*
         _debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Courier-Bold" fontSize: (isDeviceIPad()?26:13)];
         [_debugLabel setColor: ccGREEN];
         [_debugLabel setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2)];
         [self addChild:_debugLabel];
+        */
 #endif
     }
     return self;
@@ -340,6 +352,7 @@
 - (BOOL)isPlaced {
     return ( self.scale == 1.0f );
 }
+
 
 - (RRTileMove)tileMove {
     CGPoint positionInGrid = self.positionInGrid;
