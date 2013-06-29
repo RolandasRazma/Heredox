@@ -31,7 +31,7 @@
 
 
 - (void)setScoreBlack:(uint)scoreBlack {
-    NSInteger pointsToAdd = scoreBlack -_scoreBlack;
+    NSInteger pointsToAdd = (NSInteger)scoreBlack -(NSInteger)_scoreBlack;
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     if( scoreBlack == 0 ){
@@ -57,7 +57,7 @@
 
 
 - (void)setScoreWhite:(uint)scoreWhite {
-    NSInteger pointsToAdd = scoreWhite -_scoreWhite;
+    NSInteger pointsToAdd = (NSInteger)scoreWhite -(NSInteger)_scoreWhite;
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     if( scoreWhite == 0 ){

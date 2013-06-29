@@ -36,7 +36,7 @@
     
     NSUInteger elementsCount = [self count];
     for (NSUInteger x = 0; x<elementsCount; x++) {
-        NSInteger randInt = (random() %(elementsCount -x)) +x;
+        NSUInteger randInt = (NSUInteger)roundf((random() %((long)elementsCount -(long)x)) +(long)x);
         [self exchangeObjectAtIndex:x withObjectAtIndex:randInt];
     }
 }

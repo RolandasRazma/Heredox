@@ -44,7 +44,7 @@
     if( !(fadeToSprite= (CCSprite *)[self getChildByTag:tag]) ) return NO;
 
     
-    [self reorderChild:fadeToSprite z:NSUIntegerMax];
+    [self reorderChild:fadeToSprite z:NSIntegerMax];
     
     [fadeToSprite setVisible:YES];
     

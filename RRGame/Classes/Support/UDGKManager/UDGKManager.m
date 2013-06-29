@@ -438,7 +438,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 
 - (void)removePacketObserver:(id <UDGKManagerPacketObserving>)observer {
     for ( id packetType in [[_packetObservers allKeys] reverseObjectEnumerator] ) {
-        [self removePacketObserver:observer forType: [packetType intValue]];
+        [self removePacketObserver:observer forType: (UDGKPacketType)[packetType intValue]];
     }
 }
 

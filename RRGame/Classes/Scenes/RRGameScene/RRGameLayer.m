@@ -497,14 +497,14 @@
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
         if( _gameBoardLayer.symbolsBlack ){
-            int pointsGained = MIN((uint)2, _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack);
+            uint pointsGained = MIN((uint)2, _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack);
             soundEffext = [NSString stringWithFormat: @"RRPlayerColor1-points%i-s%i.mp3", pointsGained, (UDTrueWithPossibility(0.5f)?1:2)];
         }
         
         [_scoreLayer setScoreBlack: _gameBoardLayer.symbolsBlack];
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
         if( _gameBoardLayer.symbolsWhite ){
-            int pointsGained = MIN((uint)2, _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite);
+            uint pointsGained = MIN((uint)2, _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite);
             soundEffext = [NSString stringWithFormat: @"RRPlayerColor2-points%i-s%i.mp3", pointsGained, (UDTrueWithPossibility(0.5f)?1:2)];
         }
         
