@@ -31,7 +31,7 @@
 
 
 @interface RRBoardLayer : UDLayer {
-    id<RRBoardLayerDelegate>_delegate;
+    __weak id<RRBoardLayerDelegate>_delegate;
     
     RRGameMode          _gameMode;
     
@@ -52,7 +52,7 @@
 @property (nonatomic, readonly) uint symbolsBlack;
 @property (nonatomic, readonly) uint symbolsWhite;
 @property (nonatomic, readonly) CGRect gridBounds;
-@property (nonatomic, assign)   id <RRBoardLayerDelegate>delegate;
+@property (nonatomic, weak)   id <RRBoardLayerDelegate>delegate;
 
 - (id)initWithGameMode:(RRGameMode)gameMode;
 

@@ -31,21 +31,11 @@
 
 
 #pragma mark -
-#pragma mark NSObject
-
-
-- (void)dealloc {
-    [_playerID release];
-    [super dealloc];
-}
-
-
-#pragma mark -
 #pragma mark RRPlayer
 
 
 + (id)playerWithPlayerColor:(RRPlayerColor)playerColor {
-    return [[[self alloc] initWithPlayerColor:playerColor] autorelease];
+    return [[self alloc] initWithPlayerColor:playerColor];
 }
 
 

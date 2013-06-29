@@ -43,7 +43,7 @@ typedef enum RRAILevel : int {
 }
 
 @property (nonatomic, assign) RRAILevel dificultyLevel;
-@property (nonatomic, assign) NSSet     *tilesInDeck;
+@property (nonatomic, retain) NSSet     *tilesInDeck;
 @property (nonatomic, readonly) RRPlayerColor oponentColor;
 
 - (RRTileMove)bestMoveOnBoard:(RRBoardLayer *)gameBoard;

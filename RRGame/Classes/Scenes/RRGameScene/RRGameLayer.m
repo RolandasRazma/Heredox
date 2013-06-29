@@ -40,16 +40,6 @@
 #pragma mark NSObject
 
 
-- (void)dealloc {
-    [_deck release];
-    
-    [_player1 release];
-    [_player2 release];
-
-    [super dealloc];
-}
-
-
 - (id)init {
     if( (self = [self initWithGameMode:RRGameModeClosed firstPlayerColor:RRPlayerColorWhite]) ){
         
@@ -105,7 +95,7 @@
 
 
 + (id)layerWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor {
-    return [[[self alloc] initWithGameMode:gameMode firstPlayerColor:playerColor] autorelease];
+    return [[self alloc] initWithGameMode:gameMode firstPlayerColor:playerColor];
 }
 
 
@@ -156,7 +146,6 @@
         _gameBoardLayer = [[RRBoardLayer alloc] initWithGameMode: _gameMode];
         [_gameBoardLayer setDelegate:self];
         [self addChild:_gameBoardLayer z:1];
-        [_gameBoardLayer release];
         
         // Device layout
         if( isDeviceIPad() || isDeviceMac() ){
@@ -221,7 +210,6 @@
             [self removeChild:tile cleanup:YES];
         }
         
-        [_deck release];
         _deck = [[NSMutableArray alloc] initWithCapacity:16];
         
         // 2x RRTileEdgeWhite RRTileEdgeNone RRTileEdgeBlack RRTileEdgeNone
@@ -455,7 +443,7 @@
 - (RRTile *)flipTopTileFromDeck {
     if( _deck.count == 0 ) return nil;
     
-    RRTile *tile = [[_deck objectAtIndex:0] retain];
+    RRTile *tile = [_deck objectAtIndex:0];
     [tile stopAllActions];
     [tile setOpacity:255];
     [tile setRotation:0.0f];
@@ -467,8 +455,7 @@
     [tile setPosition:CGPointMake(tile.position.x -_gameBoardLayer.position.x, tile.position.y -_gameBoardLayer.position.y)];
     
     [_gameBoardLayer addTile:tile animated:YES];
-    [tile release];
-    
+
     if( _deck.count ){
         [(RRTile *)[_deck objectAtIndex:0] showEndTurnTextAnimated:YES];
     }else{

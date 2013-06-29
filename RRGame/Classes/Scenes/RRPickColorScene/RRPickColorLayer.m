@@ -39,7 +39,7 @@
 
 
 + (id)layerWithNumberOfPlayers:(uint)numberOfPlayers {
-    return [[[self alloc] initWithNumberOfPlayers:numberOfPlayers] autorelease];
+    return [[self alloc] initWithNumberOfPlayers:numberOfPlayers];
 }
 
 
@@ -134,16 +134,13 @@
         
         RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:playerColor];
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
-        [gameScene release];
     }else{
         if( _numberOfPlayers == 1 ){
             RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
             [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:difficultyScene]];
-            [difficultyScene release];
         }else{
             RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:playerColor];
             [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
-            [gameScene release];
         }
     }
 }
@@ -252,7 +249,6 @@
         // Push game scene
         RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:((newPacket.color==RRPlayerColorWhite)?RRPlayerColorBlack:RRPlayerColorWhite)];
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
-        [gameScene release];
     } else if( packetType == UDGKPacketTypeEnterScene && !_allPlayersInScene ){
         UDGKPacketEnterScene newPacket = *(UDGKPacketEnterScene *)packet;
         

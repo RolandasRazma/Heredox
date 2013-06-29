@@ -36,7 +36,7 @@
 
 
 + (id)sceneWithGameMode:(RRGameMode)gameMode playerColor:(RRPlayerColor)firstPlayerColor {
-    return [[[self alloc] initWithGameMode:gameMode playerColor:firstPlayerColor] autorelease];
+    return [[self alloc] initWithGameMode:gameMode playerColor:firstPlayerColor];
 }
 
 

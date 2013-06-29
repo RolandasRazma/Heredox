@@ -38,7 +38,7 @@
 
 
 + (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(uint)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
-    return [[[self alloc] initWithGameMode:gameMode numberOfPlayers:numberOfPlayers playerColor:playerColor] autorelease];
+    return [[self alloc] initWithGameMode:gameMode numberOfPlayers:numberOfPlayers playerColor:playerColor];
 }
 
 

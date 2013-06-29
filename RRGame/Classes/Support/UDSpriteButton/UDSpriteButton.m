@@ -38,30 +38,17 @@
 @implementation UDSpriteButton
 
 
-#pragma mark NSObject
-
-
-- (void)dealloc {
-    [_allBlocks release];
-    
-    [_spriteFrameName release];
-    [_highliteSpriteFrameName release];
-    
-    [super dealloc];
-}
-
-
 #pragma mark -
 #pragma mark UDSpriteButton
 
 
 + (id)buttonWithSpriteFile:(NSString *)fileName {
-    return [[[self alloc] initWithSpriteFile:fileName] autorelease];
+    return [[self alloc] initWithSpriteFile:fileName];
 }
 
 
 + (id)buttonWithSpriteFrameName:(NSString *)spriteFrameName highliteSpriteFrameName:(NSString *)highliteSpriteFrameName {
-    return [[[self alloc] initWithSpriteFrameName:spriteFrameName highliteSpriteFrameName:highliteSpriteFrameName] autorelease];
+    return [[self alloc] initWithSpriteFrameName:spriteFrameName highliteSpriteFrameName:highliteSpriteFrameName];
 }
 
 
@@ -75,8 +62,8 @@
 
 - (id)initWithSpriteFrameName:(NSString *)spriteFrameName highliteSpriteFrameName:(NSString *)highliteSpriteFrameName {
     if( (self = [super initWithSpriteFrameName:spriteFrameName]) ){
-        _spriteFrameName         = [spriteFrameName retain];
-        _highliteSpriteFrameName = [highliteSpriteFrameName retain];
+        _spriteFrameName         = spriteFrameName;
+        _highliteSpriteFrameName = highliteSpriteFrameName;
     }
     return self;
 }
@@ -102,7 +89,7 @@
                 blocks = [NSMutableArray arrayWithCapacity:2];
                 [_allBlocks setObject:blocks forKey: @(bit)];
             }
-            [blocks addObject: [[block copy] autorelease]];
+            [blocks addObject: block];
         }
     }
 

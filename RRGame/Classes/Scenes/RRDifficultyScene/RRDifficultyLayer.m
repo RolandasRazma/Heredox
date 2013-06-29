@@ -38,7 +38,7 @@
 
 
 + (id)layerWithGameMode:(RRGameMode)gameMode playerColor:(RRPlayerColor)playerColor {
-    return [[[self alloc] initWithGameMode:gameMode playerColor:playerColor] autorelease];
+    return [[self alloc] initWithGameMode:gameMode playerColor:playerColor];
 }
 
 
@@ -115,7 +115,6 @@
 
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:1];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene backwards:YES]];
-    [pickColorScene release];
 
 }
 
@@ -140,7 +139,6 @@
 
     RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:1 playerColor:_playerColor];
     [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
-    [gameScene release];
     
 }
 

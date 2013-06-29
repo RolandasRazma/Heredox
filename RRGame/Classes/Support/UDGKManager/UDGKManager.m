@@ -188,16 +188,16 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
         }
         
         // Remove host
-        [_hostPlayerID release], _hostPlayerID = nil;
+        _hostPlayerID = nil;
         
         // Destroy match
         [_match setDelegate:nil];
         [_match disconnect];
-        [_match release], _match = nil;
+        _match = nil;
 
         // Set new match
         if( match ){
-            _match = [match retain];
+            _match = match;
             
             // If match already have connected players
             [self playerID:[self playerID] didChangeState:GKPlayerStateConnected];
@@ -224,17 +224,17 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
         }
         
         // Remove host
-        [_hostPlayerID release], _hostPlayerID = nil;
+        _hostPlayerID = nil;
         
         // Destroy session
         [_session setDelegate:nil];
         [_session disconnectFromAllPeers];
         [_session setAvailable:NO];
         [_session setDataReceiveHandler:nil withContext:NULL];
-        [_session release], _session = nil;
+        _session = nil;
 
         if( session ){
-            _session = [session retain];
+            _session = session;
 
             // Session already have connected players
             [self playerID:[self playerID] didChangeState:GKPlayerStateConnected];
@@ -289,7 +289,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
     if ( [playerIDs containsObject: self.playerID] ) {
         [self packet:packet fromPlayerID: self.playerID];
         
-        playerIDs = [[playerIDs mutableCopy] autorelease];
+        playerIDs = [playerIDs mutableCopy];
         [(NSMutableArray *)playerIDs removeObject:self.playerID];
     }
     
@@ -332,13 +332,16 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
 #endif
                     }
 
-                    [_players setObject:player forKey:playerID];
+                    NSAssert(player, @"No player?");
+                    
+                    if( player ){
+                        [_players setObject:player forKey:playerID];
+                    }
                 }
                 break;
             }
             case GKPlayerStateDisconnected: {
                 if( (player = [_players objectForKey:playerID]) ){
-                    [[player retain] autorelease];
                     [_players removeObjectForKey:playerID];
                 }
                 break;
@@ -492,7 +495,6 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
         NSArray *allPlayers = [[_players allKeys] sortedArrayUsingSelector:@selector(compare:)];
 
         @synchronized( _hostPlayerID ){
-            [_hostPlayerID release];
             _hostPlayerID = [[allPlayers objectAtIndex:newPacket.hostIndex] copy];
         }
         

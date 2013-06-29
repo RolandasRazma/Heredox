@@ -30,7 +30,7 @@
 
 
 + (id)actionWithSelector:(SEL)selector {
-	return [[[self alloc] initWithSelector: selector] autorelease];
+	return [[self alloc] initWithSelector: selector];
 }
 
 

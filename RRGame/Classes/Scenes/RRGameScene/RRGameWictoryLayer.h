@@ -39,13 +39,13 @@ typedef enum RRPlayerColorWictorious : unsigned int {
 
 
 @interface RRGameWictoryLayer : UDLayer {
-    id <RRPlayerColorWictoriousDelegate>_delegate;
+    __weak id <RRPlayerColorWictoriousDelegate>_delegate;
     CCLayerColor            *_colorBackground;
     CCSprite                *_menu;
     RRPlayerColorWictorious _playerColorWictorious;
 }
 
-@property (nonatomic, assign) id <RRPlayerColorWictoriousDelegate>delegate;
+@property (nonatomic, weak) id <RRPlayerColorWictoriousDelegate>delegate;
 
 + (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(uint)blackWins whiteWins:(uint)whiteWins draws:(uint)draws;
 - (id)initWithColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(uint)blackWins whiteWins:(uint)whiteWins draws:(uint)draws;

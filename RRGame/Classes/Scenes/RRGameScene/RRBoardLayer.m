@@ -32,17 +32,6 @@
 
 
 #pragma mark -
-#pragma mark NSObject
-
-
-- (void)dealloc {
-    [_emptyTile release];
-    
-    [super dealloc];
-}
-
-
-#pragma mark -
 #pragma mark CCNode
 
 
@@ -72,7 +61,7 @@
         [self setUserInteractionEnabled:YES];
                                       
         _gameMode   = gameMode;
-        _emptyTile  = [[RRTile tileWithType:RRTileTypeNNNN] retain];
+        _emptyTile  = [RRTile tileWithType:RRTileTypeNNNN];
         
         // Reset board
         [self resetBoardForGameMode:gameMode];

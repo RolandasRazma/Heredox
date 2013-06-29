@@ -31,13 +31,13 @@
 
 
 @interface RRMenuMultiplayerLayer : UDLayer {
-    id <RRMenuMultiplayerLayerDelegate> _delegate;
+    __weak id <RRMenuMultiplayerLayerDelegate> _delegate;
     
     CCLayerColor            *_colorBackground;
     CCSprite                *_menu;
 }
 
-@property (nonatomic, assign) id <RRMenuMultiplayerLayerDelegate>delegate;
+@property (nonatomic, weak) id <RRMenuMultiplayerLayerDelegate>delegate;
 
 - (void)dismiss;
 

@@ -136,7 +136,6 @@
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
-    [pickColorScene release];
     
 }
 
@@ -146,7 +145,6 @@
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:2];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
-    [pickColorScene release];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED
     if( _peerPickerController ){
@@ -164,8 +162,6 @@
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithInvite: [notification.userInfo objectForKey:@"acceptedInvite"]];
         [matchmakerViewController setMatchmakerDelegate:self];
         [self presentMatchmakerViewController:matchmakerViewController];
-        [matchmakerViewController release];
-        
     } else if ( [notification.userInfo objectForKey:@"playersToInvite"] ) {
         GKMatchRequest *request = [[GKMatchRequest alloc] init];
         [request setMinPlayers: 2];
@@ -175,9 +171,6 @@
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
         [matchmakerViewController setMatchmakerDelegate:self];
         [self presentMatchmakerViewController:matchmakerViewController];
-        [matchmakerViewController release];
-        
-        [request release];
     }
     
 }
@@ -208,7 +201,6 @@
     [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
 #elif defined(__CC_PLATFORM_MAC)
     [_dialogController dismiss:_matchmakerViewController];
-    [_dialogController release];
     _dialogController = nil;
 #endif
     
@@ -240,9 +232,7 @@
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
         [matchmakerViewController setMatchmakerDelegate:self];
         [self presentMatchmakerViewController:matchmakerViewController];
-        [matchmakerViewController release];
-        
-        [request release];
+
     }
     
     [menuMultiplayerLayer dismiss];
@@ -283,7 +273,7 @@
 	GKSession *session = [[GKSession alloc] initWithSessionID: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
                                                   displayName: [[UIDevice currentDevice] name]
                                                   sessionMode: GKSessionModePeer];
-	return [session autorelease];
+	return session;
 }
 
 
@@ -294,7 +284,7 @@
 
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
     [_peerPickerController setDelegate:nil];
-    [_peerPickerController release];
+    _peerPickerController = nil;
     
     [[UDGKManager sharedManager] setSessionProvider: nil];
 }

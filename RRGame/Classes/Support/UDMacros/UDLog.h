@@ -24,26 +24,21 @@
 //
 
 #ifndef __OPTIMIZE__
-#import <mach/mach.h>
-#import <mach/mach_time.h>
 
-uint64_t gbLastCall;
-inline static double UDTimeSinceLasstCall(){
-	if( !gbLastCall ){
-		gbLastCall = mach_absolute_time();
+CFTimeInterval udLastCall;
+NS_INLINE CFTimeInterval UDTimeSinceLasstCall(){
+	if( !udLastCall ){
+		udLastCall = CACurrentMediaTime();
 		return 0;
 	}else{
-		uint64_t duration = mach_absolute_time() -gbLastCall;
-		gbLastCall = mach_absolute_time();
-		
-		mach_timebase_info_data_t info;
-		mach_timebase_info(&info);
-		
-		return duration * ((double)info.numer / ((double)info.denom *1000000.0));
+		CFTimeInterval duration = CACurrentMediaTime() -udLastCall;
+		udLastCall = CACurrentMediaTime();
+        
+		return duration;
 	}
 }
 
-#define UDLog(format, ...) CFShow( [NSString stringWithFormat:@"^%7.1f | %@", UDTimeSinceLasstCall(), [NSString stringWithFormat:format, ##__VA_ARGS__], __PRETTY_FUNCTION__, __LINE__]);
+#define UDLog(format, ...) CFShow( (__bridge void *)[NSString stringWithFormat:@"^%.4f | %@", UDTimeSinceLasstCall(), [NSString stringWithFormat:format, ##__VA_ARGS__]]);
 
 #else
 #define UDLog(format, ...)

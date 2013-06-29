@@ -37,18 +37,6 @@
 
 
 #pragma mark -
-#pragma mark NSObject
-
-
-- (void)dealloc {
-	[_window release];
-	[_navigationController release];
-    
-	[super dealloc];
-}
-
-
-#pragma mark -
 #pragma mark UIApplicationDelegate
 
 

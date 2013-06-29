@@ -107,7 +107,7 @@
 
 
 + (id)tileWithType:(RRTileType)tileType {
-    return [[[self alloc] initWithType:tileType] autorelease];
+    return [[self alloc] initWithType:tileType];
 }
 
 

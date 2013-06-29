@@ -79,12 +79,12 @@
 
 
 + (id)layerWithMessage:(NSString *)message {
-    return [[[self alloc] initWithMessage:message cancelButtonName:nil cancelButtonAction:nil] autorelease];
+    return [[self alloc] initWithMessage:message cancelButtonName:nil cancelButtonAction:nil];
 }
 
 
 + (id)layerWithMessage:(NSString *)message cancelButtonName:(NSString *)cancelButtonName cancelButtonAction:(void (^)(void))block {
-    return [[[self alloc] initWithMessage:message cancelButtonName:cancelButtonName cancelButtonAction:block] autorelease];
+    return [[self alloc] initWithMessage:message cancelButtonName:cancelButtonName cancelButtonAction:block];
 }
 
 

@@ -34,12 +34,12 @@
 
 
 + (id)action {
-	return [[[self alloc] initWithDuration:0.0f] autorelease];
+	return [[self alloc] initWithDuration:0.0f];
 }
 
 
 + (id)actionWithTarget:(CCNode *)target {
-	return [[[self alloc] initWithTarget:target] autorelease];
+	return [[self alloc] initWithTarget:target];
 }
 
 

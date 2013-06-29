@@ -36,7 +36,7 @@
 
 
 + (id)sceneWithNumberOfPlayers:(uint)numberOfPlayers {
-    return [[[self alloc] initWithNumberOfPlayers:numberOfPlayers] autorelease];
+    return [[self alloc] initWithNumberOfPlayers:numberOfPlayers];
 }
 
 

@@ -36,13 +36,13 @@
     CGFloat     _sliderEdgeLeft;
     CGFloat     _sliderWidth;
     
-    id <RRGameMenuDelegate> _delegate;
+    __weak id <RRGameMenuDelegate> _delegate;
     CCLayerColor            *_colorBackground;
     CCSprite                *_menu;
     BOOL                    _sliderActive;
 }
 
-@property (nonatomic, assign) id <RRGameMenuDelegate>delegate;
+@property (nonatomic, weak) id <RRGameMenuDelegate>delegate;
 
 - (void)dismiss;
 

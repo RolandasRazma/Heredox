@@ -35,12 +35,12 @@
 
 
 + (id)transitionToScene:(CCScene *)scene {
-    return [[[self alloc] initWithDuration:0.7f scene:scene backwards:NO] autorelease];
+    return [[self alloc] initWithDuration:0.7f scene:scene backwards:NO];
 }
 
 
 + (id)transitionToScene:(CCScene *)scene backwards:(BOOL)backwards {
-    return [[[self alloc] initWithDuration:0.7f scene:scene backwards:backwards] autorelease];
+    return [[self alloc] initWithDuration:0.7f scene:scene backwards:backwards];
 }
 
 

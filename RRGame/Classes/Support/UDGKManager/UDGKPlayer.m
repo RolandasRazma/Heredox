@@ -30,23 +30,11 @@
 
 
 #pragma mark -
-#pragma mark NSObject
-
-
-- (void)dealloc {
-    [_playerID release];
-    [_alias release];
-    
-    [super dealloc];
-}
-
-
-#pragma mark -
 #pragma mark UDGKPlayer
 
 
 + (id)playerWithPlayerID:(NSString *)playerID alias:(NSString *)alias {
-    return [[[self alloc] initWithPlayerID:playerID alias:alias] autorelease];
+    return [[self alloc] initWithPlayerID:playerID alias:alias];
 }
 
 
@@ -54,8 +42,8 @@
     if( (self = [super init]) ){
         NSAssert(playerID, @"No playerID");
         
-        _playerID = [playerID retain];
-        _alias    = [alias copy];
+        _playerID = playerID;
+        _alias    = alias;
     }
     return self;
 }

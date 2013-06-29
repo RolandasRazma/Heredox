@@ -84,7 +84,7 @@ static BOOL RRGameWictoryLayerVisible = NO;
 
 
 + (id)layerForColor:(RRPlayerColorWictorious)playerColorWictorious blackWins:(uint)blackWins whiteWins:(uint)whiteWins draws:(uint)draws {
-    return [[(RRGameWictoryLayer *)[self alloc] initWithColor: playerColorWictorious blackWins:blackWins whiteWins:whiteWins draws:draws] autorelease];
+    return [(RRGameWictoryLayer *)[self alloc] initWithColor: playerColorWictorious blackWins:blackWins whiteWins:whiteWins draws:draws];
 }
 
 
