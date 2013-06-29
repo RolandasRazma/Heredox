@@ -232,7 +232,7 @@
     [_endTurnSprite stopAllActions];
     if( !_endTurnSprite ){
         _endTurnSprite = [CCSprite spriteWithSpriteFrameName:@"RRTextEndTurn.png"];
-        [_endTurnSprite setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2 +7)];
+        [_endTurnSprite setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2 +3)];
         [self addChild:_endTurnSprite];
     }
     
