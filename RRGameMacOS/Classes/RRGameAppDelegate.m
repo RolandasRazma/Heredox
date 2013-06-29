@@ -79,8 +79,7 @@
 	CCFileUtils *fileUtils = [CCFileUtils sharedFileUtils];
     [[fileUtils suffixesDict] setObject:@"-hd" forKey:kCCFileUtilsMac];
     [[fileUtils suffixesDict] setObject:@"-hd" forKey:kCCFileUtilsMacHD];
-    
-    
+
     // Init RRHeredox
     [RRHeredox sharedInstance];
 
