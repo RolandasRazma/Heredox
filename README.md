@@ -27,4 +27,4 @@ git submodule init<br />
 git submodule update<br />
 <br />
 <br />
-Into Cocos2D and game development? Checkout out another my open sourced game <a href="https://github.com/ud7/iLabyrinth">iLabyrinth</a>
+Into Cocos2D and game development? Checkout another my open sourced game <a href="https://github.com/ud7/iLabyrinth">iLabyrinth</a>
