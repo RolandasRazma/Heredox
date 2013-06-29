@@ -1695,8 +1695,16 @@
 		F06582B214CA7BE20033B4F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = UD7;
+				TargetAttributes = {
+					F06582BA14CA7BE20033B4F5 = {
+						DevelopmentTeam = XKQF9X968B;
+					};
+					F0CD5FCB14CA92F000665366 = {
+						DevelopmentTeam = XKQF9X968B;
+					};
+				};
 			};
 			buildConfigurationList = F06582B514CA7BE20033B4F5 /* Build configuration list for PBXProject "RRHeredox" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2131,7 +2139,6 @@
 		F065844814CA7BE60033B4F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2164,7 +2171,6 @@
 		F065844914CA7BE60033B4F5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -2224,9 +2230,9 @@
 		F0CD615114CA92F400665366 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = RRGameMacOS/Resources/Heredox.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2247,9 +2253,9 @@
 		F0CD615214CA92F400665366 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = RRGameMacOS/Resources/Heredox.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
