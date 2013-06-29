@@ -84,8 +84,8 @@
     CGFloat kVGridSpacing = tileSize;
     
     CGPoint snapedPosition;
-    snapedPosition.x = floorf((point.x -kHGridOffset) /kHGridSpacing +0.5f) *kHGridSpacing +kHGridOffset;
-    snapedPosition.y = floorf((point.y -kVGridOffset) /kVGridSpacing +0.5f) *kVGridSpacing +kVGridOffset;
+    snapedPosition.x = (float)floor((point.x -kHGridOffset) /kHGridSpacing +0.5f) *kHGridSpacing +kHGridOffset;
+    snapedPosition.y = (float)floor((point.y -kVGridOffset) /kVGridSpacing +0.5f) *kVGridSpacing +kVGridOffset;
     
     if( fabs(snapedPosition.x -point.x) <= tolerance ){
         point.x = snapedPosition.x;
