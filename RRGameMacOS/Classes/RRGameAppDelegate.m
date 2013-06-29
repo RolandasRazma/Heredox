@@ -47,6 +47,10 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    // Setup Crashlytics
+    [Crashlytics startWithAPIKey:@"a7cd0848a5a73e1d7c546e794480fdade0024696"];
+    
     _director = (CCDirectorMac *)[CCDirector sharedDirector];
 
 	// enable FPS and SPF
