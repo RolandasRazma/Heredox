@@ -27,8 +27,8 @@
 
 
 static inline CGPoint CGPointRound(CGPoint point){
-    point.x = roundf(point.x);
-    point.y = roundf(point.y);
+    point.x = round(point.x);
+    point.y = round(point.y);
     return point;
 }
 
@@ -45,7 +45,7 @@ static inline UDTriangle UDTriangleMake(CGPoint a, CGPoint b, CGPoint c) {
 }
 
 
-static inline float sign(CGPoint p1, CGPoint p2, CGPoint p3) { return (p1.x -p3.x) *(p2.y -p3.y) -(p2.x - p3.x) *(p1.y -p3.y); }
+static inline float sign(CGPoint p1, CGPoint p2, CGPoint p3) { return (float)((p1.x -p3.x) *(p2.y -p3.y) -(p2.x - p3.x) *(p1.y -p3.y)); }
 
 
 static inline bool UDTriangleContainsPoint(UDTriangle triangle, CGPoint point){

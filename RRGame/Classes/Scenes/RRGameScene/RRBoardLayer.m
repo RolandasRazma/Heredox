@@ -77,21 +77,21 @@
     const CGFloat tileSize = [RRTile tileSize];
     
     // Snaping
-    CGFloat kHGridOffset = tileSize /2;
-    CGFloat kVGridOffset = tileSize /2;
+    CGFloat kHGridOffset = tileSize /2.0f;
+    CGFloat kVGridOffset = tileSize /2.0f;
     
     CGFloat kHGridSpacing = tileSize;
     CGFloat kVGridSpacing = tileSize;
     
     CGPoint snapedPosition;
-    snapedPosition.x = floor((point.x -kHGridOffset) /kHGridSpacing +0.5f) *kHGridSpacing +kHGridOffset;
-    snapedPosition.y = floor((point.y -kVGridOffset) /kVGridSpacing +0.5f) *kVGridSpacing +kVGridOffset;
+    snapedPosition.x = floorf((point.x -kHGridOffset) /kHGridSpacing +0.5f) *kHGridSpacing +kHGridOffset;
+    snapedPosition.y = floorf((point.y -kVGridOffset) /kVGridSpacing +0.5f) *kVGridSpacing +kVGridOffset;
     
-    if( abs(snapedPosition.x -point.x) <= tolerance ){
+    if( fabs(snapedPosition.x -point.x) <= tolerance ){
         point.x = snapedPosition.x;
     }
     
-    if( abs(snapedPosition.y -point.y) <= tolerance ){
+    if( fabs(snapedPosition.y -point.y) <= tolerance ){
         point.y = snapedPosition.y;
     }
     
@@ -105,10 +105,10 @@
 
 
 - (BOOL)canPlaceTileAtGridLocation:(CGPoint)gridLocation gridBounds:(CGRect *)gridBounds{
-    NSInteger minX = gridLocation.x;
-    NSInteger minY = gridLocation.y;
-    NSInteger maxX = gridLocation.x;
-    NSInteger maxY = gridLocation.y;
+    CGFloat minX = gridLocation.x;
+    CGFloat minY = gridLocation.y;
+    CGFloat maxX = gridLocation.x;
+    CGFloat maxY = gridLocation.y;
     BOOL foundTouchPoint = NO;
     
     for( RRTile *tile in self.children ){

@@ -118,13 +118,13 @@ static BOOL RRGameWictoryLayerVisible = NO;
         [_menu addChild:winningBanner];
 
         
-        CCSprite *scoreBlack = [self spriteForConsecutivelyWin:blackWins ofColor:RRPlayerColorBlack textColor:RRPlayerColorWictoriousBlack];
+        CCSprite *scoreBlack = [self spriteForConsecutivelyWin:blackWins ofColor:RRPlayerColorWictoriousBlack textColor:RRPlayerColorWictoriousBlack];
         [_menu addChild:scoreBlack];
 
-        CCSprite *scoreDraw = [self spriteForConsecutivelyWin:draws ofColor:RRPlayerColorUndefined textColor:((playerColorWictorious==RRPlayerColorWictoriousNo)?((whiteWins>blackWins)?RRPlayerColorWictoriousWhite:RRPlayerColorWictoriousBlack):playerColorWictorious)];
+        CCSprite *scoreDraw = [self spriteForConsecutivelyWin:draws ofColor:RRPlayerColorWictoriousNo textColor:((playerColorWictorious==RRPlayerColorWictoriousNo)?((whiteWins>blackWins)?RRPlayerColorWictoriousWhite:RRPlayerColorWictoriousBlack):playerColorWictorious)];
         [_menu addChild:scoreDraw];
         
-        CCSprite *scoreWhite = [self spriteForConsecutivelyWin:whiteWins ofColor:RRPlayerColorWhite textColor:RRPlayerColorWictoriousWhite];
+        CCSprite *scoreWhite = [self spriteForConsecutivelyWin:whiteWins ofColor:RRPlayerColorWictoriousWhite textColor:RRPlayerColorWictoriousWhite];
         [_menu addChild:scoreWhite];
         
         

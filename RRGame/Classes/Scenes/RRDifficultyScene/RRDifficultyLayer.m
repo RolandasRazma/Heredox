@@ -68,19 +68,20 @@
      
         
         // Dificulty buttons
+        __weak RRDifficultyLayer *weakSelf = self;
         _buttonNovice = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonAILevelNovice.png" highliteSpriteFrameName:@"RRButtonAILevelNoviceSelected.png"];
-        [_buttonNovice addBlock: ^{ [self setDificultyLevel:RRAILevelNovice]; } forControlEvents: UDButtonEventTouchUpInsideD];
+        [_buttonNovice addBlock: ^{ [weakSelf setDificultyLevel:RRAILevelNovice]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [self addChild:_buttonNovice];
         
         _buttonDeacon = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonAILevelDeacon.png" highliteSpriteFrameName:@"RRButtonAILevelDeaconSelected.png"];
-        [_buttonDeacon addBlock: ^{ [self setDificultyLevel:RRAILevelDeacon]; } forControlEvents: UDButtonEventTouchUpInsideD];
+        [_buttonDeacon addBlock: ^{ [weakSelf setDificultyLevel:RRAILevelDeacon]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [self addChild:_buttonDeacon];
         
         _buttonAbbot = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonAILevelAbbot.png" highliteSpriteFrameName:@"RRButtonAILevelAbbotSelected.png"];
-        [_buttonAbbot addBlock: ^{ [self setDificultyLevel:RRAILevelAbbot]; } forControlEvents: UDButtonEventTouchUpInsideD];
+        [_buttonAbbot addBlock: ^{ [weakSelf setDificultyLevel:RRAILevelAbbot]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [self addChild:_buttonAbbot];
         
-        [self setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
+        [self setDificultyLevel: (RRAILevel)[[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
 
         
         // Device layout
@@ -120,7 +121,7 @@
 
 
 - (void)setDificultyLevel:(RRAILevel)dificultyLevel {
-    int oldDificultyLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"];
+    int oldDificultyLevel = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"];
 
     if( oldDificultyLevel != dificultyLevel ){
         [[RRAudioEngine sharedEngine] stopEffect:[NSString stringWithFormat:@"RRAILevel%i.mp3", oldDificultyLevel]];

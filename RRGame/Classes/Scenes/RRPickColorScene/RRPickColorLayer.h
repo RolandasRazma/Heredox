@@ -29,7 +29,7 @@
 
 
 @interface RRPickColorLayer : UDLayer <UDGKManagerPacketObserving, UDGKManagerPlayerObserving> {
-    uint        _numberOfPlayers;
+    NSUInteger  _numberOfPlayers;
 
     CGRect      _upperRect;
     UDTriangle  _upperTriangle;
@@ -43,7 +43,7 @@
     CCSprite    *_bannerWaitingForPlayer;
 }
 
-+ (id)layerWithNumberOfPlayers:(uint)numberOfPlayers;
-- (id)initWithNumberOfPlayers:(uint)numberOfPlayers;
++ (id)layerWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
+- (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
 
 @end

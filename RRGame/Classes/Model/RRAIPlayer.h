@@ -33,7 +33,7 @@
 typedef enum RRAILevel : int {
     RRAILevelNovice = -1,
     RRAILevelDeacon = 0,
-    RRAILevelAbbot  = 1,
+    RRAILevelAbbot  = 1
 } RRAILevel;
 
 

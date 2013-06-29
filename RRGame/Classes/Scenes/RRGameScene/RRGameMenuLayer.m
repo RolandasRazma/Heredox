@@ -211,7 +211,7 @@ static BOOL RRGameMenuLayerVisible = NO;
     location.x = MIN(MAX(_sliderEdgeLeft, location.x), _sliderWidth +_sliderEdgeLeft);
     [_sliderSound setPosition:CGPointMake(location.x, _sliderSound.position.y)];
     
-    CGFloat sliderValue = (_sliderSound.position.x -_sliderEdgeLeft) /_sliderWidth;
+    float sliderValue = (float)((_sliderSound.position.x -_sliderEdgeLeft) /_sliderWidth);
     [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSFXLevel"];
     [[NSUserDefaults standardUserDefaults] setFloat:sliderValue forKey: @"RRHeredoxSoundLevel"];
     

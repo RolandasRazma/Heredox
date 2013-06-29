@@ -35,7 +35,7 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@ = %08X | rotation = %.f | positionInGrid = {%.f, %.f}>",
+    return [NSString stringWithFormat:@"<%@ = %p | rotation = %.f | positionInGrid = {%.f, %.f}>",
             [self class],
             self,
             self.rotation,
@@ -343,7 +343,7 @@
     if( self.isPlaced ) return;
     
     [self setScale:1.0f];
-    [self setZOrder: 1000 +(int)roundf(-self.position.y)];
+    [self setZOrder: 1000 +(int)round(-self.position.y)];
     
     [[RRAudioEngine sharedEngine] replayEffect:@"RRPlaceTile.mp3"];
 }
@@ -356,7 +356,7 @@
 
 - (RRTileMove)tileMove {
     CGPoint positionInGrid = self.positionInGrid;
-    return RRTileMoveMake(roundf(positionInGrid.x), roundf(positionInGrid.y), roundf(self.rotation), 0.0f);
+    return RRTileMoveMake((int)round(positionInGrid.x), (int)round(positionInGrid.y), (int)round(self.rotation), 0.0f);
 }
 
 

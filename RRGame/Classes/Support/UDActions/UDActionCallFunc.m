@@ -43,11 +43,16 @@
 
 
 - (void)execute {
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if( _targetCallback ){
         [_targetCallback performSelector:_selector];
     }else{
         [_target performSelector:_selector];
     }
+#pragma clang diagnostic pop
+    
 }
 
 

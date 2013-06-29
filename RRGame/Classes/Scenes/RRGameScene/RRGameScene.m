@@ -37,12 +37,12 @@
 #pragma mark UDGameScene
 
 
-+ (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(uint)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
++ (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
     return [[self alloc] initWithGameMode:gameMode numberOfPlayers:numberOfPlayers playerColor:playerColor];
 }
 
 
-- (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(uint)numberOfPlayers playerColor:(RRPlayerColor)playerColor {
+- (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers playerColor:(RRPlayerColor)playerColor {
     if( (self = [self init]) ){
         _numberOfPlayers = numberOfPlayers;
         RRGameLayer *gameLayer;
@@ -94,7 +94,7 @@
             
             if( numberOfPlayers == 1 ){
                 RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
-                [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
+                [player setDificultyLevel: (RRAILevel)[[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
                 [gameLayer setPlayer2: player];
             }
         }
@@ -111,13 +111,13 @@
 
 - (void)onExitTransitionDidStart {
     [super onExitTransitionDidStart];
-    [[RRAudioEngine sharedEngine] stopEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
+    [[RRAudioEngine sharedEngine] stopEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", (uint)_numberOfPlayers]];
 }
 
 
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
-    [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", _numberOfPlayers]];
+    [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRGameSceneNumberOfPlayers%u.mp3", (uint)_numberOfPlayers]];
 }
 
 

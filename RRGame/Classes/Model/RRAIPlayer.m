@@ -140,7 +140,7 @@
         [gameBoard countSymbolsAtTile:activeTile white:&white black:&black];
 
         // Count how much points you gain
-        CGFloat moveValue = 0.0f;
+        float moveValue = 0.0f;
         if( self.playerColor == RRPlayerColorBlack ){
             moveValue = (float)black -(float)white;
         }else if( self.playerColor == RRPlayerColorWhite ){
@@ -254,8 +254,8 @@
         }
         
         if( moveValue >= tileMove.score ){
-            tileMove = RRTileMoveMake(activeTile.positionInGrid.x,
-                                      activeTile.positionInGrid.y,
+            tileMove = RRTileMoveMake((int)round(activeTile.positionInGrid.x),
+                                      (int)round(activeTile.positionInGrid.y),
                                       angle,
                                       moveValue);
         }
@@ -270,12 +270,12 @@
 
     if( gameBoard.gridBounds.size.height == 3 ){
         
-        NSInteger upperGridBoundY = gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1;
-        NSInteger lowerGridBoundY = gameBoard.gridBounds.origin.y;
+        NSInteger upperGridBoundY = (int)round(gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1);
+        NSInteger lowerGridBoundY = (int)round(gameBoard.gridBounds.origin.y);
         
         if( positionInGrid.y > upperGridBoundY ){
 
-            for( NSInteger x=gameBoard.gridBounds.origin.x; x<gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width; x++ ){
+            for( NSInteger x=(int)round(gameBoard.gridBounds.origin.x); x<(int)round(gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width); x++ ){
                 RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(x, lowerGridBoundY)];
                 
                 if( edgeTile.edgeBottom == (RRTileEdge)self.playerColor ){
@@ -287,7 +287,7 @@
             
         }else if( positionInGrid.y < lowerGridBoundY ){
 
-            for( NSInteger x=gameBoard.gridBounds.origin.x; x<gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width; x++ ){
+            for( NSInteger x=(int)round(gameBoard.gridBounds.origin.x); x<(int)round(gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width); x++ ){
                 RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(x, upperGridBoundY)];
                 
                 if( edgeTile.edgeTop == (RRTileEdge)self.playerColor ){
@@ -302,12 +302,12 @@
     
     if( gameBoard.gridBounds.size.width == 3 ){
         
-        NSInteger leftGridBoundX = gameBoard.gridBounds.origin.x;
-        NSInteger rightGridBoundX = gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1;
+        NSInteger leftGridBoundX  = (int)round(gameBoard.gridBounds.origin.x);
+        NSInteger rightGridBoundX = (int)round(gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1);
         
         if( positionInGrid.x < leftGridBoundX ){
 
-            for( NSInteger y=gameBoard.gridBounds.origin.y; y<gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height; y++ ){
+            for( NSInteger y=(int)round(gameBoard.gridBounds.origin.y); y<(int)round(gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height); y++ ){
                 RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(rightGridBoundX, y)];
                 
                 if( edgeTile.edgeRight == (RRTileEdge)self.playerColor ){
@@ -319,7 +319,7 @@
             
         }else if( positionInGrid.x > rightGridBoundX ){
 
-            for( NSInteger y=gameBoard.gridBounds.origin.y; y<gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height; y++ ){
+            for( NSInteger y=(int)round(gameBoard.gridBounds.origin.y); y<(int)round(gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height); y++ ){
                 RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(leftGridBoundX, y)];
                 
                 if( edgeTile.edgeLeft == (RRTileEdge)self.playerColor ){
@@ -344,8 +344,8 @@
     // Active tile blocking after move
     if( gameBoard.gridBounds.size.height == 3 ){
         
-        NSInteger upperGridBoundY = gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1;
-        NSInteger lowerGridBoundY = gameBoard.gridBounds.origin.y;
+        NSInteger upperGridBoundY = (int)round(gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1);
+        NSInteger lowerGridBoundY = (int)round(gameBoard.gridBounds.origin.y);
         
         if( positionInGrid.y > upperGridBoundY ){
 
@@ -369,8 +369,8 @@
     
     if( gameBoard.gridBounds.size.width == 3 ){
         
-        NSInteger leftGridBoundX = gameBoard.gridBounds.origin.x;
-        NSInteger rightGridBoundX = gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1;
+        NSInteger leftGridBoundX  = (int)round(gameBoard.gridBounds.origin.x);
+        NSInteger rightGridBoundX = (int)round(gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1);
         
         if( positionInGrid.x < leftGridBoundX ){
 
@@ -401,14 +401,14 @@
 
     if( gameBoard.gridBounds.size.height == 3 ){
         
-        NSInteger upperGridBoundY = gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1;
-        NSInteger lowerGridBoundY = gameBoard.gridBounds.origin.y;
+        NSInteger upperGridBoundY = (int)round(gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height -1);
+        NSInteger lowerGridBoundY = (int)round(gameBoard.gridBounds.origin.y);
 
         // If I leave width == 3 this turn, how much damage can other player make on his turn?
         if( (positionInGrid.y <= upperGridBoundY) && (positionInGrid.y >= lowerGridBoundY) ){
 
             // If other player will block bottom
-            for( NSInteger x=gameBoard.gridBounds.origin.x; x<gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width; x++ ){
+            for( NSInteger x=(int)round(gameBoard.gridBounds.origin.x); x<(int)round(gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width); x++ ){
                 RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(x, lowerGridBoundY)];
                 
                 if( edgeTile.edgeBottom == (RRTileEdge)self.playerColor ){
@@ -421,7 +421,7 @@
             }
 
             // If other player will block top
-            for( NSInteger x=gameBoard.gridBounds.origin.x; x<gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width; x++ ){
+            for( NSInteger x=(int)round(gameBoard.gridBounds.origin.x); x<(int)round(gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width); x++ ){
                 RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(x, upperGridBoundY)];
                 
                 if( edgeTile.edgeTop == (RRTileEdge)self.playerColor ){
@@ -437,14 +437,14 @@
     
     if( gameBoard.gridBounds.size.width == 3 ){
         
-        NSInteger leftGridBoundX = gameBoard.gridBounds.origin.x;
-        NSInteger rightGridBoundX = gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1;
+        NSInteger leftGridBoundX  = (int)round(gameBoard.gridBounds.origin.x);
+        NSInteger rightGridBoundX = (int)round(gameBoard.gridBounds.origin.x +gameBoard.gridBounds.size.width -1);
         
         // If I leave height == 3 this turn, how much damage can other player make on his turn?
         if( (positionInGrid.x >= leftGridBoundX) && (positionInGrid.x <= rightGridBoundX) ){
 
             // If other player will block right
-            for( NSInteger y=gameBoard.gridBounds.origin.y; y<gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height; y++ ){
+            for( NSInteger y=(int)round(gameBoard.gridBounds.origin.y); y<(int)round(gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height); y++ ){
                 RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(rightGridBoundX, y)];
 
                 if( edgeTile.edgeRight == (RRTileEdge)self.playerColor ){
@@ -457,7 +457,7 @@
             }
 
             // If other player will block left
-            for( NSInteger y=gameBoard.gridBounds.origin.y; y<gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height; y++ ){
+            for( NSInteger y=(int)round(gameBoard.gridBounds.origin.y); y<(int)round(gameBoard.gridBounds.origin.y +gameBoard.gridBounds.size.height); y++ ){
                 RRTile *edgeTile = [gameBoard tileAtGridPosition:CGPointMake(leftGridBoundX, y)];
              
                 if( edgeTile.edgeLeft == (RRTileEdge)self.playerColor ){

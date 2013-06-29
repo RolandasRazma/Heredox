@@ -35,7 +35,7 @@
     srandom(seed);
     
     NSUInteger elementsCount = [self count];
-    for (NSInteger x = 0; x <elementsCount; x++) {
+    for (NSUInteger x = 0; x<elementsCount; x++) {
         NSInteger randInt = (random() %(elementsCount -x)) +x;
         [self exchangeObjectAtIndex:x withObjectAtIndex:randInt];
     }

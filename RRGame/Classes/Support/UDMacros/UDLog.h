@@ -27,7 +27,7 @@
 
 CFTimeInterval udLastCall;
 NS_INLINE CFTimeInterval UDTimeSinceLasstCall(){
-	if( !udLastCall ){
+	if( udLastCall == 0.0f ){
 		udLastCall = CACurrentMediaTime();
 		return 0;
 	}else{

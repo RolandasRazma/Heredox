@@ -31,7 +31,7 @@ typedef enum UDGKPacketType : unsigned int {
     UDGKPacketTypeEnterScene= 2,
     UDGKPacketTypePickColor = 3,
     UDGKPacketTypeTileMove  = 4,
-    UDGKPacketTypeResetGame = 5,
+    UDGKPacketTypeResetGame = 5
 } UDGKPacketType;
 
 

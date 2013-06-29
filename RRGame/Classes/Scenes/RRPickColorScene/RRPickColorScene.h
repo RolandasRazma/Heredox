@@ -29,7 +29,7 @@
 
 @interface RRPickColorScene : CCScene
 
-+ (id)sceneWithNumberOfPlayers:(uint)numberOfPlayers;
-- (id)initWithNumberOfPlayers:(uint)numberOfPlayers;
++ (id)sceneWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
+- (id)initWithNumberOfPlayers:(NSUInteger)numberOfPlayers;
     
 @end

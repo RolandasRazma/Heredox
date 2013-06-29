@@ -195,7 +195,7 @@
 	if ( CGRectContainsPoint(self.boundingBox, location) ) {
         [self invokeControlEvent: UDButtonEventTouchUpInside];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.001f *NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (long long)0.001f *NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
             [self invokeControlEvent: UDButtonEventTouchUpInsideD];
         });
     }else{

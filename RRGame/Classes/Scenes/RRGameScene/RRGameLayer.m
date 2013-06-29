@@ -134,8 +134,9 @@
         // Add End Turn
         _buttonEndTurn = [UDSpriteButton spriteWithSpriteFrameName:@"RRButtonDone.png"];
         [_buttonEndTurn setOpacity:0];
-        [_buttonEndTurn addBlock: ^{ [self endTurn]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [_buttonEndTurn setPosition:CGPointMake(winSize.width -[RRTile tileSize] /1.5f, [RRTile tileSize] /1.5f)];
+        __weak RRGameLayer *_weakSelf = self;
+        [_buttonEndTurn addBlock: ^{ [_weakSelf endTurn]; } forControlEvents: UDButtonEventTouchUpInsideD];
         [self addChild:_buttonEndTurn z:-2];
         
         // Add scores
@@ -241,7 +242,7 @@
         [_deck shuffleWithSeed:_gameSeed];
 
         // Place tiles on game board
-        CGFloat angle   = 0;
+        float angle     = 0.0f;
         CGFloat offsetY = 0;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         for( RRTile *tile in [_deck reverseObjectEnumerator] ){
@@ -393,7 +394,7 @@
     NSMutableArray *actions = [NSMutableArray array];
     
     // Do we need to move tile?
-    if( roundf(_gameBoardLayer.activeTile.positionInGrid.x) != tileMove.gridX || roundf(_gameBoardLayer.activeTile.positionInGrid.y) != tileMove.gridY ){
+    if( (int)round(_gameBoardLayer.activeTile.positionInGrid.x) != tileMove.gridX || (int)round(_gameBoardLayer.activeTile.positionInGrid.y) != tileMove.gridY ){
         [actions addObject: [UDActionCallFunc actionWithSelector:@selector(liftTile)]];
         [actions addObject: [CCDelayTime actionWithDuration:0.3f]];
         [actions addObject: [CCMoveTo actionWithDuration:0.4f position:CGPointMake(tileMove.gridX *[RRTile tileSize] +[RRTile tileSize] /2,
@@ -404,7 +405,7 @@
 
     // Do we need to rotate tile?
     if( _gameBoardLayer.activeTile.rotation != tileMove.rotation ) {
-        NSUInteger nextRotationAngle = _gameBoardLayer.activeTile.rotation -((int)_gameBoardLayer.activeTile.rotation %90);
+        NSInteger nextRotationAngle = (int)round(_gameBoardLayer.activeTile.rotation) -((int)_gameBoardLayer.activeTile.rotation %90);
 
         do{
             nextRotationAngle += 90;
@@ -416,7 +417,7 @@
             [actions addObject: [CCDelayTime actionWithDuration:0.2f]];
             
             if( nextRotationAngle >= 360 ) nextRotationAngle -= 360;
-        } while ( nextRotationAngle != (int)tileMove.rotation );
+        } while ( nextRotationAngle != (NSInteger)tileMove.rotation );
     }
     
     // Is this the end of turn?
@@ -496,14 +497,14 @@
     
     if( [keyPath isEqualToString:@"symbolsBlack"] ){
         if( _gameBoardLayer.symbolsBlack ){
-            int pointsGained = MIN(2, _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack);
+            int pointsGained = MIN((uint)2, _gameBoardLayer.symbolsBlack -_scoreLayer.scoreBlack);
             soundEffext = [NSString stringWithFormat: @"RRPlayerColor1-points%i-s%i.mp3", pointsGained, (UDTrueWithPossibility(0.5f)?1:2)];
         }
         
         [_scoreLayer setScoreBlack: _gameBoardLayer.symbolsBlack];
     }else if( [keyPath isEqualToString:@"symbolsWhite"] ){
         if( _gameBoardLayer.symbolsWhite ){
-            int pointsGained = MIN(2, _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite);
+            int pointsGained = MIN((uint)2, _gameBoardLayer.symbolsWhite -_scoreLayer.scoreWhite);
             soundEffext = [NSString stringWithFormat: @"RRPlayerColor2-points%i-s%i.mp3", pointsGained, (UDTrueWithPossibility(0.5f)?1:2)];
         }
         
@@ -555,11 +556,12 @@
             
             _resetGameButton = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonReplay.png" highliteSpriteFrameName:@"RRButtonReplaySelected.png"];
             [_resetGameButton setPosition:_buttonEndTurn.position];
+            __weak RRGameLayer *weakSeld = self;
             [_resetGameButton addBlock: ^{
                 [[RRAudioEngine sharedEngine] stopAllEffects];
                 [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
 
-                [self resetGame];
+                [weakSeld resetGame];
             } forControlEvents: UDButtonEventTouchUpInsideD];
             [self addChild:_resetGameButton z:-2];
         }

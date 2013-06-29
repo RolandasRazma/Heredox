@@ -29,14 +29,14 @@
 
 typedef enum RRGameMode : unsigned int {
     RRGameModeClosed    = 0,
-    RRGameModeOpen      = 1,
+    RRGameModeOpen      = 1
 } RRGameMode;
 
 
 typedef enum RRPlayerColor : unsigned int {
     RRPlayerColorUndefined  = 0,
     RRPlayerColorBlack      = 1,
-    RRPlayerColorWhite      = 2,
+    RRPlayerColorWhite      = 2
 } RRPlayerColor;
 
 

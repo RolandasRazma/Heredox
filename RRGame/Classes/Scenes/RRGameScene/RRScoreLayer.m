@@ -40,7 +40,7 @@
             [self removeChild:sprite cleanup:YES];
         }
     }else if( pointsToAdd > 0 ){
-        for( NSUInteger i=0; i<pointsToAdd; i++ ){
+        for( NSUInteger i=0; i<(NSUInteger)pointsToAdd; i++ ){
             CCSprite *pointSprite = [CCSprite spriteWithSpriteFrameName:@"RRPointBlack.png"];
             [pointSprite setScale:0.5f];
             [pointSprite setPosition:CGPointMake((pointSprite.boundingBox.size.width +5) *(_scoreBlack +i +1), winSize.height -pointSprite.boundingBox.size.height *2)];
@@ -66,7 +66,7 @@
             [self removeChild:sprite cleanup:YES];
         }
     }else if( pointsToAdd > 0 ){
-        for( NSUInteger i=0; i<pointsToAdd; i++ ){
+        for( NSUInteger i=0; i<(NSUInteger)pointsToAdd; i++ ){
             CCSprite *pointSprite = [CCSprite spriteWithSpriteFrameName:@"RRPointWhite.png"];
             [pointSprite setScale:0.5f];
             [pointSprite setPosition:CGPointMake((pointSprite.boundingBox.size.width +5) *(_scoreWhite +i +1), winSize.height -pointSprite.boundingBox.size.height)];
