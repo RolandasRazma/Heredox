@@ -43,10 +43,10 @@
 
 
 - (void)execute {
-    if( targetCallback_ ){
-        [targetCallback_ performSelector:selector_];
+    if( _targetCallback ){
+        [_targetCallback performSelector:_selector];
     }else{
-        [target_ performSelector:selector_];
+        [_target performSelector:_selector];
     }
 }
 

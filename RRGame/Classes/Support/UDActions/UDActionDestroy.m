@@ -64,7 +64,7 @@
     if( otherTarget_ ){
         [otherTarget_ removeFromParentAndCleanup:YES];
     }else{
-        [target_ removeFromParentAndCleanup:YES];
+        [self.target removeFromParentAndCleanup:YES];
     }
     [super stop];
 }

@@ -49,7 +49,7 @@
 
 
 - (void)onEnter {
-	if( back_ ){
+	if( _inSceneOnTop ){
         [[RRAudioEngine sharedEngine] replayEffect:@"RRSceneTransitionBack.mp3"];
     }else{
         [[RRAudioEngine sharedEngine] replayEffect:@"RRSceneTransition.mp3"];

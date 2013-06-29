@@ -47,10 +47,7 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    
-    // Setup Crashlytics
-    [Crashlytics startWithAPIKey:@"a7cd0848a5a73e1d7c546e794480fdade0024696"];
-    
+
     _director = (CCDirectorMac *)[CCDirector sharedDirector];
 
 	// enable FPS and SPF
@@ -77,13 +74,12 @@
 	// Center main window
 	[_window center];
 
-    /*
-     fix me
-	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
-	[sharedFileUtils setEnableFallbackSuffixes:NO];     // Default: NO. No fallback suffixes are going to be used
-	[sharedFileUtils setMacSuffix:@"-hd"];              // Default on iMac is ""
-    [sharedFileUtils setMacRetinaDisplaySuffix:@"-hd"];
-     */
+
+    // Suffixes
+	CCFileUtils *fileUtils = [CCFileUtils sharedFileUtils];
+    [[fileUtils suffixesDict] setObject:@"-hd" forKey:kCCFileUtilsMac];
+    [[fileUtils suffixesDict] setObject:@"-hd" forKey:kCCFileUtilsMacHD];
+    
     
     // Init RRHeredox
     [RRHeredox sharedInstance];

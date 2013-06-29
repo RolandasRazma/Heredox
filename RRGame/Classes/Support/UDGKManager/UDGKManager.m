@@ -316,6 +316,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
     id <UDGKPlayerProtocol>player = nil;
     
     @synchronized( _players ){
+        UDLog(@"playerID: %@ didChangeState: %i", playerID, state);
         
         switch ( state ) {
             case GKPlayerStateConnected: {
@@ -602,6 +603,7 @@ NSString * const UDGKManagerAllPlayersConnectedNotification = @"UDGKManagerAllPl
                                       message: nil
                             completionHandler: NULL];
 }
+
 #endif
 
 

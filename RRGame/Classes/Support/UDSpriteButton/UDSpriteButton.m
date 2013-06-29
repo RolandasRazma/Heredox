@@ -115,9 +115,9 @@
     _userInteractionEnabled = enabled;
     
 #ifdef __CC_PLATFORM_IOS
-    if( isRunning_ ){
+    if( self.isRunning ){
         if( enabled ){
-            [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: (id <CCTargetedTouchDelegate>)self 
+            [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: (id <CCTouchOneByOneDelegate>)self
                                                                     priority: self.mouseDelegatePriority
                                                              swallowsTouches: YES];
         }else{
@@ -125,7 +125,7 @@
         }
     }
 #elif defined(__CC_PLATFORM_MAC)
-    if( isRunning_ ) {
+    if( self.isRunning ) {
         if( enabled ) {
             [[CCDirector sharedDirector].eventDispatcher addMouseDelegate: (id <CCMouseEventDelegate>)self
                                                                  priority: self.mouseDelegatePriority];
@@ -241,7 +241,7 @@
 
 - (void)onEnter {
     if( [self isUserInteractionEnabled] ){
-        [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: (id <CCTargetedTouchDelegate>)self
+        [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: (id <CCTouchOneByOneDelegate>)self
                                                                 priority: self.mouseDelegatePriority
                                                          swallowsTouches: YES];
     }
@@ -260,10 +260,14 @@
 
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-	if( !visible_ || opacity_ == 0.0f ) return NO;
+	if( !self.visible || self.opacity == 0.0f ) return NO;
 	
 	for( CCNode *c = self.parent; c != nil; c = c.parent ){
-		if( c.visible == NO || opacity_ == 0.0f ) return NO;
+        if( [c isKindOfClass: [CCSprite class]] ){
+            if( c.visible == NO || [(CCSprite *)c opacity] == 0.0f ) return NO;
+        }else{
+            if( c.visible == NO ) return NO;
+        }
     }
 
     _touchActive = [self touchBeganAtLocation: [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]]];
@@ -304,7 +308,7 @@
 
 
 - (BOOL)ccMouseDown:(NSEvent *)event {
-    if( !visible_ || opacity_ == 0.0f ) return NO;
+    if( !self.visible || self.opacity == 0.0f ) return NO;
 
     _touchActive = [self touchBeganAtLocation: [(CCDirectorMac *)[CCDirector sharedDirector] convertEventToGL:event]];
     return _touchActive;
@@ -312,7 +316,7 @@
 
 
 - (BOOL)ccMouseDragged:(NSEvent *)event {
-    if( !visible_ || !_touchActive || opacity_ == 0.0f ) return NO;
+    if( !self.visible || !_touchActive || self.opacity == 0.0f ) return NO;
     
     [self touchMovedToLocation: [(CCDirectorMac *)[CCDirector sharedDirector] convertEventToGL:event]];
     return YES;
@@ -320,7 +324,7 @@
 
 
 - (BOOL)ccMouseUp:(NSEvent *)event {
-    if( !visible_ || !_touchActive || opacity_ == 0.0f ) return NO;
+    if( !self.visible || !_touchActive || self.opacity == 0.0f ) return NO;
     
     [self touchEndedAtLocation: [(CCDirectorMac *)[CCDirector sharedDirector] convertEventToGL:event]];
     _touchActive = NO;

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F00A6ABB177F116600438220 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00A6ABA177F116600438220 /* Crashlytics.framework */; };
-		F00A6ABC177F116600438220 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00A6ABA177F116600438220 /* Crashlytics.framework */; };
 		F01063CE15C707D0003BB881 /* ambience.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063CD15C707D0003BB881 /* ambience.mp3 */; };
 		F01063CF15C707D0003BB881 /* ambience.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063CD15C707D0003BB881 /* ambience.mp3 */; };
 		F01063D115C70885003BB881 /* RRDefaultScene.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D015C70885003BB881 /* RRDefaultScene.mp3 */; };
@@ -261,17 +260,6 @@
 		F0674132177EDB25006095D8 /* TransformUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F067408A177EDB25006095D8 /* TransformUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0674133177EDB25006095D8 /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F067408E177EDB25006095D8 /* ZipUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0674134177EDB25006095D8 /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F067408E177EDB25006095D8 /* ZipUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521116007F0A0073EABA /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724ABF16007F070073EABA /* CDAudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521216007F0A0073EABA /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724ABF16007F070073EABA /* CDAudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521316007F0A0073EABA /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724AC216007F070073EABA /* CDOpenALSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521416007F0A0073EABA /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724AC216007F070073EABA /* CDOpenALSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521516007F0A0073EABA /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724AC416007F070073EABA /* CocosDenshion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521616007F0A0073EABA /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724AC416007F070073EABA /* CocosDenshion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521716007F0A0073EABA /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724AC616007F070073EABA /* SimpleAudioEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521816007F0A0073EABA /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724AC616007F070073EABA /* SimpleAudioEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521A16007F0A0073EABA /* CDXMacOSXSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724AC916007F070073EABA /* CDXMacOSXSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521B16007F0A0073EABA /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724ACB16007F070073EABA /* CDXPropertyModifierAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F072521C16007F0A0073EABA /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0724ACB16007F070073EABA /* CDXPropertyModifierAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F072535716007F0A0073EABA /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = F0724C2E16007F070073EABA /* aabb.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F072535816007F0A0073EABA /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = F0724C2E16007F070073EABA /* aabb.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F072535D16007F0A0073EABA /* mat4stack.c in Sources */ = {isa = PBXBuildFile; fileRef = F0724C3216007F070073EABA /* mat4stack.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -312,6 +300,22 @@
 		F0849BEC15CE58B4008AC65F /* RRBackgroundDifficulty~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF7B15C06FDD008085F1 /* RRBackgroundDifficulty~ipad.png */; };
 		F0849BEE15CE58B4008AC65F /* RRBackgroundBlack~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8215C07951008085F1 /* RRBackgroundBlack~ipad.png */; };
 		F0849BEF15CE58B4008AC65F /* RRBackgroundWhite~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF8315C07951008085F1 /* RRBackgroundWhite~ipad.png */; };
+		F088C6DF177F5D580017FEBA /* ccFPSImages.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6DD177F5D570017FEBA /* ccFPSImages.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6E0177F5D580017FEBA /* ccFPSImages.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6DD177F5D570017FEBA /* ccFPSImages.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F0177F5D950017FEBA /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6E3177F5D950017FEBA /* CDAudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F1177F5D950017FEBA /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6E3177F5D950017FEBA /* CDAudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F2177F5D950017FEBA /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6E6177F5D950017FEBA /* CDOpenALSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F3177F5D950017FEBA /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6E6177F5D950017FEBA /* CDOpenALSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F4177F5D950017FEBA /* CDXMacOSXSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6E8177F5D950017FEBA /* CDXMacOSXSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F5177F5D950017FEBA /* CDXMacOSXSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6E8177F5D950017FEBA /* CDXMacOSXSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F6177F5D950017FEBA /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6EA177F5D950017FEBA /* CDXPropertyModifierAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F7177F5D950017FEBA /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6EA177F5D950017FEBA /* CDXPropertyModifierAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F8177F5D950017FEBA /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6EC177F5D950017FEBA /* CocosDenshion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6F9177F5D950017FEBA /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6EC177F5D950017FEBA /* CocosDenshion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6FA177F5D950017FEBA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F088C6ED177F5D950017FEBA /* README.md */; };
+		F088C6FB177F5D950017FEBA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F088C6ED177F5D950017FEBA /* README.md */; };
+		F088C6FC177F5D950017FEBA /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6EF177F5D950017FEBA /* SimpleAudioEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F088C6FD177F5D950017FEBA /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F088C6EF177F5D950017FEBA /* SimpleAudioEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F08FBF6915C05E83008085F1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */; };
 		F08FBF6A15C05E83008085F1 /* Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6715C05E83008085F1 /* Icon@2x~ipad.png */; };
 		F08FBF6B15C05E83008085F1 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6815C05E83008085F1 /* Icon~ipad.png */; };
@@ -660,19 +664,6 @@
 		F067408D177EDB25006095D8 /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		F067408E177EDB25006095D8 /* ZipUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtils.m; sourceTree = "<group>"; };
 		F06F0D6815B5B19D00526BDB /* CGGeometry+UDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+UDAdditions.h"; sourceTree = "<group>"; };
-		F0724ABE16007F070073EABA /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
-		F0724ABF16007F070073EABA /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
-		F0724AC016007F070073EABA /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
-		F0724AC116007F070073EABA /* CDOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDOpenALSupport.h; sourceTree = "<group>"; };
-		F0724AC216007F070073EABA /* CDOpenALSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOpenALSupport.m; sourceTree = "<group>"; };
-		F0724AC316007F070073EABA /* CocosDenshion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDenshion.h; sourceTree = "<group>"; };
-		F0724AC416007F070073EABA /* CocosDenshion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocosDenshion.m; sourceTree = "<group>"; };
-		F0724AC516007F070073EABA /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
-		F0724AC616007F070073EABA /* SimpleAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioEngine.m; sourceTree = "<group>"; };
-		F0724AC816007F070073EABA /* CDXMacOSXSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDXMacOSXSupport.h; sourceTree = "<group>"; };
-		F0724AC916007F070073EABA /* CDXMacOSXSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDXMacOSXSupport.m; sourceTree = "<group>"; };
-		F0724ACA16007F070073EABA /* CDXPropertyModifierAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDXPropertyModifierAction.h; sourceTree = "<group>"; };
-		F0724ACB16007F070073EABA /* CDXPropertyModifierAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDXPropertyModifierAction.m; sourceTree = "<group>"; };
 		F0724C1E16007F070073EABA /* aabb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aabb.h; sourceTree = "<group>"; };
 		F0724C2016007F070073EABA /* mat4stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat4stack.h; sourceTree = "<group>"; };
 		F0724C2116007F070073EABA /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
@@ -705,6 +696,22 @@
 		F07E8BBA15C33F1E0074F4E0 /* RRGameMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameMenuLayer.h; sourceTree = "<group>"; };
 		F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameMenuLayer.m; sourceTree = "<group>"; };
 		F0824AF0177F49EA00C65F11 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F088C6DD177F5D570017FEBA /* ccFPSImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ccFPSImages.m; sourceTree = "<group>"; };
+		F088C6DE177F5D570017FEBA /* ccFPSImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccFPSImages.h; sourceTree = "<group>"; };
+		F088C6E2177F5D950017FEBA /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
+		F088C6E3177F5D950017FEBA /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
+		F088C6E4177F5D950017FEBA /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
+		F088C6E5177F5D950017FEBA /* CDOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDOpenALSupport.h; sourceTree = "<group>"; };
+		F088C6E6177F5D950017FEBA /* CDOpenALSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOpenALSupport.m; sourceTree = "<group>"; };
+		F088C6E7177F5D950017FEBA /* CDXMacOSXSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDXMacOSXSupport.h; sourceTree = "<group>"; };
+		F088C6E8177F5D950017FEBA /* CDXMacOSXSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDXMacOSXSupport.m; sourceTree = "<group>"; };
+		F088C6E9177F5D950017FEBA /* CDXPropertyModifierAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDXPropertyModifierAction.h; sourceTree = "<group>"; };
+		F088C6EA177F5D950017FEBA /* CDXPropertyModifierAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDXPropertyModifierAction.m; sourceTree = "<group>"; };
+		F088C6EB177F5D950017FEBA /* CocosDenshion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDenshion.h; sourceTree = "<group>"; };
+		F088C6EC177F5D950017FEBA /* CocosDenshion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocosDenshion.m; sourceTree = "<group>"; };
+		F088C6ED177F5D950017FEBA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F088C6EE177F5D950017FEBA /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
+		F088C6EF177F5D950017FEBA /* SimpleAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioEngine.m; sourceTree = "<group>"; };
 		F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		F08FBF6715C05E83008085F1 /* Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x~ipad.png"; sourceTree = "<group>"; };
 		F08FBF6815C05E83008085F1 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
@@ -802,7 +809,6 @@
 			files = (
 				F09EAD0B15EC07E000BA6F33 /* GameKit.framework in Frameworks */,
 				F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */,
-				F00A6ABC177F116600438220 /* Crashlytics.framework in Frameworks */,
 				F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */,
 				F0CD646714CA991E00665366 /* QuartzCore.framework in Frameworks */,
 				F0CD646814CA994500665366 /* OpenAL.framework in Frameworks */,
@@ -1181,6 +1187,8 @@
 				F0674050177EDB25006095D8 /* CCTMXXMLParser.m */,
 				F0674051177EDB25006095D8 /* CCTransition.h */,
 				F0674052177EDB25006095D8 /* CCTransition.m */,
+				F088C6DD177F5D570017FEBA /* ccFPSImages.m */,
+				F088C6DE177F5D570017FEBA /* ccFPSImages.h */,
 				F0674053177EDB25006095D8 /* CCTransitionPageTurn.h */,
 				F0674054177EDB25006095D8 /* CCTransitionPageTurn.m */,
 				F0674055177EDB25006095D8 /* CCTransitionProgress.h */,
@@ -1284,49 +1292,13 @@
 		F07249D516007F070073EABA /* Cocos2D */ = {
 			isa = PBXGroup;
 			children = (
+				F088C6E1177F5D950017FEBA /* CocosDenshion */,
 				F0673FCC177EDB24006095D8 /* cocos2d */,
-				F0724ABC16007F070073EABA /* CocosDenshion */,
 				F0724C1B16007F070073EABA /* kazmath */,
 			);
 			name = Cocos2D;
 			path = RRGame/Library/Cocos2D;
 			sourceTree = SOURCE_ROOT;
-		};
-		F0724ABC16007F070073EABA /* CocosDenshion */ = {
-			isa = PBXGroup;
-			children = (
-				F0724ABD16007F070073EABA /* CocosDenshion */,
-				F0724AC716007F070073EABA /* CocosDenshionExtras */,
-			);
-			path = CocosDenshion;
-			sourceTree = "<group>";
-		};
-		F0724ABD16007F070073EABA /* CocosDenshion */ = {
-			isa = PBXGroup;
-			children = (
-				F0724ABE16007F070073EABA /* CDAudioManager.h */,
-				F0724ABF16007F070073EABA /* CDAudioManager.m */,
-				F0724AC016007F070073EABA /* CDConfig.h */,
-				F0724AC116007F070073EABA /* CDOpenALSupport.h */,
-				F0724AC216007F070073EABA /* CDOpenALSupport.m */,
-				F0724AC316007F070073EABA /* CocosDenshion.h */,
-				F0724AC416007F070073EABA /* CocosDenshion.m */,
-				F0724AC516007F070073EABA /* SimpleAudioEngine.h */,
-				F0724AC616007F070073EABA /* SimpleAudioEngine.m */,
-			);
-			path = CocosDenshion;
-			sourceTree = "<group>";
-		};
-		F0724AC716007F070073EABA /* CocosDenshionExtras */ = {
-			isa = PBXGroup;
-			children = (
-				F0724AC816007F070073EABA /* CDXMacOSXSupport.h */,
-				F0724AC916007F070073EABA /* CDXMacOSXSupport.m */,
-				F0724ACA16007F070073EABA /* CDXPropertyModifierAction.h */,
-				F0724ACB16007F070073EABA /* CDXPropertyModifierAction.m */,
-			);
-			path = CocosDenshionExtras;
-			sourceTree = "<group>";
 		};
 		F0724C1B16007F070073EABA /* kazmath */ = {
 			isa = PBXGroup;
@@ -1431,6 +1403,28 @@
 			);
 			path = iPad;
 			sourceTree = "<group>";
+		};
+		F088C6E1177F5D950017FEBA /* CocosDenshion */ = {
+			isa = PBXGroup;
+			children = (
+				F088C6E2177F5D950017FEBA /* CDAudioManager.h */,
+				F088C6E3177F5D950017FEBA /* CDAudioManager.m */,
+				F088C6E4177F5D950017FEBA /* CDConfig.h */,
+				F088C6E5177F5D950017FEBA /* CDOpenALSupport.h */,
+				F088C6E6177F5D950017FEBA /* CDOpenALSupport.m */,
+				F088C6E7177F5D950017FEBA /* CDXMacOSXSupport.h */,
+				F088C6E8177F5D950017FEBA /* CDXMacOSXSupport.m */,
+				F088C6E9177F5D950017FEBA /* CDXPropertyModifierAction.h */,
+				F088C6EA177F5D950017FEBA /* CDXPropertyModifierAction.m */,
+				F088C6EB177F5D950017FEBA /* CocosDenshion.h */,
+				F088C6EC177F5D950017FEBA /* CocosDenshion.m */,
+				F088C6ED177F5D950017FEBA /* README.md */,
+				F088C6EE177F5D950017FEBA /* SimpleAudioEngine.h */,
+				F088C6EF177F5D950017FEBA /* SimpleAudioEngine.m */,
+			);
+			name = CocosDenshion;
+			path = RRGame/Library/Cocos2D/CocosDenshion;
+			sourceTree = SOURCE_ROOT;
 		};
 		F08FBF7215C06CE9008085F1 /* RRDifficultyScene */ = {
 			isa = PBXGroup;
@@ -1677,14 +1671,6 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = UD7;
-				TargetAttributes = {
-					F06582BA14CA7BE20033B4F5 = {
-						DevelopmentTeam = XKQF9X968B;
-					};
-					F0CD5FCB14CA92F000665366 = {
-						DevelopmentTeam = XKQF9X968B;
-					};
-				};
 			};
 			buildConfigurationList = F06582B514CA7BE20033B4F5 /* Build configuration list for PBXProject "RRHeredox" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1768,6 +1754,7 @@
 				F09843E615D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */,
 				F01AC58C15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 in Resources */,
 				F0A35DD315D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
+				F088C6FA177F5D950017FEBA /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1815,6 +1802,7 @@
 				F0A35DD415D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
 				F015A0F415F5FBC600A3B62B /* icon.iconset in Resources */,
 				F09B451915FCEC5300A8EC9D /* Heredox.entitlements in Resources */,
+				F088C6FB177F5D950017FEBA /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1931,15 +1919,10 @@
 				F06740E9177EDB25006095D8 /* CCSprite.m in Sources */,
 				F0B155A115D6D138001E089B /* UDGKPlayer.m in Sources */,
 				F0C8176A15D98F880001C375 /* RRPopupLayer.m in Sources */,
-				F072521116007F0A0073EABA /* CDAudioManager.m in Sources */,
 				F06740BD177EDB25006095D8 /* CCGrabber.m in Sources */,
 				F06740CB177EDB25006095D8 /* CCMenuItem.m in Sources */,
-				F072521316007F0A0073EABA /* CDOpenALSupport.m in Sources */,
 				F06740C5177EDB25006095D8 /* CCLabelTTF.m in Sources */,
-				F072521516007F0A0073EABA /* CocosDenshion.m in Sources */,
-				F072521716007F0A0073EABA /* SimpleAudioEngine.m in Sources */,
 				F0674125177EDB25006095D8 /* CCProfiling.m in Sources */,
-				F072521B16007F0A0073EABA /* CDXPropertyModifierAction.m in Sources */,
 				F072535716007F0A0073EABA /* aabb.c in Sources */,
 				F06740B5177EDB25006095D8 /* CCDirector.m in Sources */,
 				F06740A3177EDB25006095D8 /* CCActionProgressTimer.m in Sources */,
@@ -1986,6 +1969,13 @@
 				F06740C9177EDB25006095D8 /* CCMenu.m in Sources */,
 				F06740A1177EDB25006095D8 /* CCActionPageTurn3D.m in Sources */,
 				F03555101633F28D003E39EF /* NSMutableArray+UDAdditions.m in Sources */,
+				F088C6DF177F5D580017FEBA /* ccFPSImages.m in Sources */,
+				F088C6F0177F5D950017FEBA /* CDAudioManager.m in Sources */,
+				F088C6F2177F5D950017FEBA /* CDOpenALSupport.m in Sources */,
+				F088C6F4177F5D950017FEBA /* CDXMacOSXSupport.m in Sources */,
+				F088C6F6177F5D950017FEBA /* CDXPropertyModifierAction.m in Sources */,
+				F088C6F8177F5D950017FEBA /* CocosDenshion.m in Sources */,
+				F088C6FC177F5D950017FEBA /* SimpleAudioEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2077,20 +2067,14 @@
 				F0B155A215D6D138001E089B /* UDGKPlayer.m in Sources */,
 				F0674116177EDB25006095D8 /* CCDirectorMac.m in Sources */,
 				F0C8176B15D98F880001C375 /* RRPopupLayer.m in Sources */,
-				F072521216007F0A0073EABA /* CDAudioManager.m in Sources */,
 				F06740D2177EDB25006095D8 /* CCNode.m in Sources */,
 				F06740B0177EDB25006095D8 /* CCCamera.m in Sources */,
 				F06740BA177EDB25006095D8 /* CCGLProgram.m in Sources */,
 				F06740D8177EDB25006095D8 /* CCParticleExamples.m in Sources */,
 				F067409C177EDB25006095D8 /* CCActionInstant.m in Sources */,
-				F072521416007F0A0073EABA /* CDOpenALSupport.m in Sources */,
 				F0674120177EDB25006095D8 /* CCArray.m in Sources */,
-				F072521616007F0A0073EABA /* CocosDenshion.m in Sources */,
-				F072521816007F0A0073EABA /* SimpleAudioEngine.m in Sources */,
 				F06740A6177EDB25006095D8 /* CCActionTiledGrid.m in Sources */,
 				F06740CE177EDB25006095D8 /* CCMotionStreak.m in Sources */,
-				F072521A16007F0A0073EABA /* CDXMacOSXSupport.m in Sources */,
-				F072521C16007F0A0073EABA /* CDXPropertyModifierAction.m in Sources */,
 				F072535816007F0A0073EABA /* aabb.c in Sources */,
 				F06740F8177EDB25006095D8 /* CCTexturePVR.m in Sources */,
 				F0674104177EDB25006095D8 /* CCTransition.m in Sources */,
@@ -2125,6 +2109,13 @@
 				F06740FC177EDB25006095D8 /* CCTMXLayer.m in Sources */,
 				F03555001633F1FA003E39EF /* UDMath.m in Sources */,
 				F03555111633F28D003E39EF /* NSMutableArray+UDAdditions.m in Sources */,
+				F088C6E0177F5D580017FEBA /* ccFPSImages.m in Sources */,
+				F088C6F1177F5D950017FEBA /* CDAudioManager.m in Sources */,
+				F088C6F3177F5D950017FEBA /* CDOpenALSupport.m in Sources */,
+				F088C6F5177F5D950017FEBA /* CDXMacOSXSupport.m in Sources */,
+				F088C6F7177F5D950017FEBA /* CDXPropertyModifierAction.m in Sources */,
+				F088C6F9177F5D950017FEBA /* CocosDenshion.m in Sources */,
+				F088C6FD177F5D950017FEBA /* SimpleAudioEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2239,7 +2230,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kevin McLaughlin (4QKSZZK67J)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2250,7 +2241,6 @@
 				GCC_PREFIX_HEADER = RRGame/Prefix.pch;
 				INFOPLIST_FILE = RRGame/Resources/Info.plist;
 				OTHER_LDFLAGS = "-lz";
-				PROVISIONING_PROFILE = "EF274529-2BA0-478B-AD2F-FF54D9AEE6CB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2259,7 +2249,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Clockwork Quartet Limited";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2269,7 +2259,7 @@
 				GCC_PREFIX_HEADER = RRGame/Prefix.pch;
 				INFOPLIST_FILE = RRGame/Resources/Info.plist;
 				OTHER_LDFLAGS = "-lz";
-				PROVISIONING_PROFILE = "799D292B-B93A-4C93-B5F3-0B5E159CB248";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2294,7 +2284,6 @@
 				INFOPLIST_FILE = RRGameMacOS/Resources/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lz";
-				PROVISIONING_PROFILE = "D3DF1689-D048-41D1-979D-A49A49858729";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2320,7 +2309,7 @@
 				INFOPLIST_FILE = RRGameMacOS/Resources/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lz";
-				PROVISIONING_PROFILE = "EAC5F37E-3ED7-4EFA-9096-E13F1D078225";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
