@@ -98,13 +98,12 @@ static BOOL RRGameMenuLayerVisible = NO;
         [self addChild:_menu];
         
         __weak RRGameMenuLayer *weakSelf = self;
-        __weak id <RRGameMenuDelegate> weakWeakDelegate = _delegate;
         
         // RRButtonResume
         UDSpriteButton *buttonResume = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonResume.png" highliteSpriteFrameName:@"RRButtonResumeSelected.png"];
         [buttonResume addBlock: ^{
             [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-            [weakWeakDelegate gameMenuLayer:weakSelf didSelectButtonAtIndex:0];
+            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:0];
         } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonResume];
         
@@ -112,7 +111,7 @@ static BOOL RRGameMenuLayerVisible = NO;
         _buttonRestart = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonRestart.png" highliteSpriteFrameName:@"RRButtonRestartSelected.png"];
         [_buttonRestart addBlock: ^{
             [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-            [weakWeakDelegate gameMenuLayer:weakSelf didSelectButtonAtIndex:1];
+            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:1];
         } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:_buttonRestart];
         
@@ -120,7 +119,7 @@ static BOOL RRGameMenuLayerVisible = NO;
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];
         [buttonQuit addBlock: ^{
             [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-            [weakWeakDelegate gameMenuLayer:weakSelf didSelectButtonAtIndex:2];
+            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:2];
         } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonQuit];
         
