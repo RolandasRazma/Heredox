@@ -107,7 +107,6 @@
 		F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
 		F07E8BBC15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */; };
 		F07E8BBD15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */; };
-		F0824AF1177F49EA00C65F11 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0824AF0177F49EA00C65F11 /* Default-568h@2x.png */; };
 		F0849BDE15CE5897008AC65F /* textures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74015B042E80085E637 /* textures-hd.plist */; };
 		F0849BDF15CE5897008AC65F /* textures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74115B042E80085E637 /* textures-hd.png */; };
 		F0849BE715CE58B4008AC65F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */; };
@@ -492,7 +491,6 @@
 		F07476F515B1DEA500B69890 /* RRHeredox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRHeredox.m; sourceTree = "<group>"; };
 		F07E8BBA15C33F1E0074F4E0 /* RRGameMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameMenuLayer.h; sourceTree = "<group>"; };
 		F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameMenuLayer.m; sourceTree = "<group>"; };
-		F0824AF0177F49EA00C65F11 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F088C9B5177F62FF0017FEBA /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		F088C9B6177F62FF0017FEBA /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		F088C9B7177F62FF0017FEBA /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -1547,7 +1545,6 @@
 				F0602A3F15AFA16600B60FB1 /* Icon@2x.png */,
 				F0602A3B15AFA16600B60FB1 /* Default.png */,
 				F0602A3C15AFA16600B60FB1 /* Default@2x.png */,
-				F0824AF0177F49EA00C65F11 /* Default-568h@2x.png */,
 				F09E95F515CA5EDD00293ED4 /* RRBackgroundMenu.png */,
 				F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */,
 				F0C1ECFB15CBB14300BB265F /* RRBackgroundRules.png */,
@@ -1787,7 +1784,6 @@
 				F0C1ECFF15CBB14400BB265F /* RRBackgroundRules-hd.png in Resources */,
 				F0C1ED0315CBB38700BB265F /* RRBackgroundPlayerColor.png in Resources */,
 				F0C1ED0515CBB38700BB265F /* RRBackgroundPlayerColor-hd.png in Resources */,
-				F0824AF1177F49EA00C65F11 /* Default-568h@2x.png in Resources */,
 				F012ACF115CDBD130095190C /* RRBackgroundDifficulty.png in Resources */,
 				F012ACF315CDBD130095190C /* RRBackgroundDifficulty-hd.png in Resources */,
 				F012ACF815CDBF810095190C /* RRBackgroundBlack.png in Resources */,
