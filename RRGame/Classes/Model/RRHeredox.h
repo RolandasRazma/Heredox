@@ -28,8 +28,7 @@
 
 
 typedef enum RRGameMode : unsigned int {
-    RRGameModeClosed    = 0,
-    RRGameModeOpen      = 1
+    RRGameModeClosed = 0
 } RRGameMode;
 
 
@@ -51,7 +50,12 @@ typedef struct RRTileMove {
 extern const RRTileMove RRTileMoveZero;
 
 CG_INLINE RRTileMove RRTileMoveMake(int x, int y, int rotation, float score) {
-    return (RRTileMove){ x, y, rotation, score };
+    return (RRTileMove){
+        .gridX      = x,
+        .gridY      = y,
+        .rotation   = rotation,
+        .score      = score
+    };
 }
 
 CG_INLINE RRPlayerColor RRPlayerColorInverse( RRPlayerColor playerColor ){
