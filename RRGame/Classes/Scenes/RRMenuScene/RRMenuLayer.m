@@ -230,9 +230,7 @@
 
     // Dismiss GKTurnBasedMatchmakerViewController
     [self dismissMatchmakerViewController];
-    
-    NSLog(@"participants: %@", match.participants);
-    
+
     GKTurnBasedParticipant *firstParticipant = [match.participants objectAtIndex:0];
     if ( !firstParticipant.lastTurnDate ) {
         
