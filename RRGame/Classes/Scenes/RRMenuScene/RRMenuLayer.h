@@ -28,7 +28,7 @@
 #import "RRMenuMultiplayerLayer.h"
 
 
-@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, GKTurnBasedMatchmakerViewControllerDelegate> {
+@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, GKLocalPlayerListener, GKTurnBasedMatchmakerViewControllerDelegate> {
     GKTurnBasedMatchmakerViewController *_matchmakerViewController;
     
 #if defined(__CC_PLATFORM_MAC)

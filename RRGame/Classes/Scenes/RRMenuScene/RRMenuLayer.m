@@ -89,20 +89,19 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
 
-    [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:NULL];
+    __weak RRMenuLayer *weakSelf = self;
+    [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:^(NSError *error) {
+        if( weakSelf ){
+            [[GKLocalPlayer localPlayer] registerListener:weakSelf];
+        }
+    }];
 }
 
 
-- (void)onEnter {
-    [super onEnter];
-
-
-}
-
-
-- (void)onExit {
-    [super onExit];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)onExitTransitionDidStart {
+    [[GKLocalPlayer localPlayer] unregisterListener:self];
+    
+    [super onExitTransitionDidStart];
 }
 
 
@@ -330,6 +329,15 @@
     
     [[UDGKManager sharedManager] removeMatch:match];
     
+}
+
+
+#pragma mark -
+#pragma mark GKLocalPlayerListener
+
+
+- (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite {
+    NSLog(@"didRequestMatchWithPlayers: %@", playerIDsToInvite);
 }
 
 
