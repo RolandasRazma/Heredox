@@ -47,5 +47,7 @@
     #import "RRAudioEngine.h"
     #import "RRHeredox.h"
     #import "UDGKManager.h"
+    #import "GKTurnBasedMatch+RRHeredox.h"
 
+    #import "GKLocalPlayer.h"
 #endif
