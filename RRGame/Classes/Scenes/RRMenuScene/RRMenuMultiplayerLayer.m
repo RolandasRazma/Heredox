@@ -67,13 +67,13 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
         
         // Device layout
         if( isDeviceIPad() || isDeviceMac() ){
-            [buttonLocal setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 570)];
-            [buttonGameCenter setPosition:CGPointMake(_menu.boundingBox.size.width /2, 330)];
+            [buttonLocal setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 540)];
+            [buttonGameCenter setPosition:CGPointMake(_menu.boundingBox.size.width /2, 380)];
             
             [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 100)];            
         } else {
-            [buttonLocal setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 260)];
-            [buttonGameCenter setPosition:CGPointMake(_menu.boundingBox.size.width /2, 150)];
+            [buttonLocal setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 250)];
+            [buttonGameCenter setPosition:CGPointMake(_menu.boundingBox.size.width /2, 180)];
             
             [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 55)];
         }
