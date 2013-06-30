@@ -28,20 +28,8 @@
 #import "RRMenuMultiplayerLayer.h"
 
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED
-    #define RRMenuLayerGKDelegates GKMatchmakerViewControllerDelegate, GKPeerPickerControllerDelegate
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
-    #define RRMenuLayerGKDelegates GKMatchmakerViewControllerDelegate
-#endif
-
-
-@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, RRMenuLayerGKDelegates> {
-    GKMatchmakerViewController  *_matchmakerViewController;
-#ifdef __CC_PLATFORM_IOS
-    GKPeerPickerController      *_peerPickerController;
-#elif defined(__CC_PLATFORM_MAC)
-    GKDialogController          *_dialogController;
-#endif
+@interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, GKTurnBasedMatchmakerViewControllerDelegate> {
+    GKTurnBasedMatchmakerViewController *_matchmakerViewController;
 }
 
 @end

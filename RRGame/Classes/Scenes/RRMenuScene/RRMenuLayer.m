@@ -128,9 +128,7 @@
 
 
 - (void)startGameWithNumberOfPlayers:(NSUInteger)numberOfPlayers {
-    
-    [[UDGKManager sharedManager] setSessionProvider:nil];
-    
+
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:numberOfPlayers];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
     
@@ -142,32 +140,36 @@
     
     RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:2];
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
-    
-#if __IPHONE_OS_VERSION_MAX_ALLOWED
-    if( _peerPickerController ){
-        [_peerPickerController setDelegate:nil];
-        [_peerPickerController dismiss];
-    }
-#endif
+
 }
 
 
 - (void)playerGotInviteNotification:(NSNotification *)notification {
-    NSLog(@"playerGotInviteNotification");
     
+    NSLog(@"playerGotInviteNotification");
+
     if ( [notification.userInfo objectForKey:@"acceptedInvite"] ) {
+
+        #warning FIX ME
+        NSAssert(NO, @"Invites not implemented");
+        
+        /*
         GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithInvite: [notification.userInfo objectForKey:@"acceptedInvite"]];
         [matchmakerViewController setMatchmakerDelegate:self];
         [self presentMatchmakerViewController:matchmakerViewController];
+        */
+
     } else if ( [notification.userInfo objectForKey:@"playersToInvite"] ) {
+        
         GKMatchRequest *request = [[GKMatchRequest alloc] init];
         [request setMinPlayers: 2];
         [request setMaxPlayers: 2];
         [request setPlayersToInvite: [notification.userInfo objectForKey:@"playersToInvite"]];
         
-        GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
-        [matchmakerViewController setMatchmakerDelegate:self];
+        GKTurnBasedMatchmakerViewController *matchmakerViewController = [[GKTurnBasedMatchmakerViewController alloc] initWithMatchRequest:request];
+        [matchmakerViewController setTurnBasedMatchmakerDelegate:self];
         [self presentMatchmakerViewController:matchmakerViewController];
+        
     }
     
 }
@@ -180,7 +182,8 @@
 }
 
 
-- (void)presentMatchmakerViewController:(GKMatchmakerViewController *)matchmakerViewController {
+- (void)presentMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)matchmakerViewController {
+    
 #if __CC_PLATFORM_IOS
     [[CCDirector sharedDirector].parentViewController presentModalViewController:matchmakerViewController animated:YES];
 #elif defined(__CC_PLATFORM_MAC)
@@ -214,20 +217,15 @@
     if( buttonIndex == 0 ){
         [self startGameWithNumberOfPlayers:2];
         return;
-    }else if( buttonIndex == 1 ){
-#if __IPHONE_OS_VERSION_MAX_ALLOWED
-        _peerPickerController = [[GKPeerPickerController alloc] init];
-        [_peerPickerController setDelegate:self];
-        [_peerPickerController setConnectionTypesMask:GKPeerPickerConnectionTypeNearby];
-        [_peerPickerController show];
-#endif
     }else if( buttonIndex == 2 ){
+        
         GKMatchRequest *request = [[GKMatchRequest alloc] init];
         [request setMinPlayers: 2];
         [request setMaxPlayers: 2];
         
-        GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
-        [matchmakerViewController setMatchmakerDelegate:self];
+
+        GKTurnBasedMatchmakerViewController *matchmakerViewController = [[GKTurnBasedMatchmakerViewController alloc] initWithMatchRequest:request];
+        [matchmakerViewController setTurnBasedMatchmakerDelegate:self];
         [self presentMatchmakerViewController:matchmakerViewController];
 
     }
@@ -237,15 +235,16 @@
 
 
 #pragma mark -
-#pragma mark GKMatchmakerViewControllerDelegate
+#pragma mark GKTurnBasedMatchmakerViewControllerDelegate
 
 
-- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
+- (void)turnBasedMatchmakerViewControllerWasCancelled:(GKTurnBasedMatchmakerViewController *)viewController {
     [self dismissMatchmakerViewController];
 }
 
 
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
+    
     [self dismissMatchmakerViewController];
     
     RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
@@ -256,36 +255,17 @@
 }
 
 
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match {
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match {
     [[UDGKManager sharedManager] setSessionProvider:match];
 }
 
 
-#pragma mark -
-#pragma mark GKPeerPickerControllerDelegate
-
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED
-- (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
-	GKSession *session = [[GKSession alloc] initWithSessionID: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
-                                                  displayName: [[UIDevice currentDevice] name]
-                                                  sessionMode: GKSessionModePeer];
-	return session;
+// Called when a users chooses to quit a match and that player has the current turn.
+// The developer should call playerQuitInTurnWithOutcome:nextPlayer:matchData:completionHandler: on the match passing in appropriate values.
+// They can also update matchOutcome for other players as appropriate.
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match {
+    #warning TODO
 }
-
-
-- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
-    [[UDGKManager sharedManager] setSessionProvider: session];
-}
-
-
-- (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
-    [_peerPickerController setDelegate:nil];
-    _peerPickerController = nil;
-    
-    [[UDGKManager sharedManager] setSessionProvider: nil];
-}
-#endif
 
 
 @end
