@@ -100,7 +100,7 @@
 		F06582CA14CA7BE20033B4F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582C914CA7BE20033B4F5 /* UIKit.framework */; };
 		F06582CC14CA7BE20033B4F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582CB14CA7BE20033B4F5 /* Foundation.framework */; };
 		F06582CE14CA7BE20033B4F5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582CD14CA7BE20033B4F5 /* CoreGraphics.framework */; };
-		F06582D014CA7BE20033B4F5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582CF14CA7BE20033B4F5 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F06582D014CA7BE20033B4F5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06582CF14CA7BE20033B4F5 /* GameKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		F065844114CA7BE60033B4F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F065844014CA7BE60033B4F5 /* main.m */; };
 		F065870214CA7ED40033B4F5 /* RRGameDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F06586FF14CA7ED40033B4F5 /* RRGameDelegate.m */; };
 		F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
@@ -354,7 +354,7 @@
 		F09843E715D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F09843E515D2E4550096F468 /* RRGameMenuIn.mp3 */; };
 		F09B451915FCEC5300A8EC9D /* Heredox.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = F09B451815FCEC5300A8EC9D /* Heredox.entitlements */; };
 		F09E95F915CA5EDD00293ED4 /* RRBackgroundMenu-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F09E95F615CA5EDD00293ED4 /* RRBackgroundMenu-hd.png */; };
-		F09EAD0B15EC07E000BA6F33 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A35DC615D6654800B2BDCF /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F09EAD0B15EC07E000BA6F33 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A35DC615D6654800B2BDCF /* GameKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		F0A18E6815C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
 		F0A18E6915C353DA00E09D46 /* RRGameWictoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A18E6715C353DA00E09D46 /* RRGameWictoryLayer.m */; };
 		F0A35DCA15D6691F00B2BDCF /* RRMenuMultiplayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A35DC915D6691F00B2BDCF /* RRMenuMultiplayerLayer.m */; };
