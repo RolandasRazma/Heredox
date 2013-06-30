@@ -90,9 +90,6 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
             [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 55)];
         }
         
-        if( ![UDGKManager isGameCenterAvailable] ){
-            [buttonGameCenter setVisible:NO];
-        }
     }
     
     return self;

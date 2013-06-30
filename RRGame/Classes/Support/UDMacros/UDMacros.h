@@ -41,16 +41,3 @@ static BOOL isDeviceMac(){
 #endif
     return NO;
 }
-
-
-static BOOL isGameCenterAvailable() {
-    Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
-#if __IPHONE_OS_VERSION_MAX_ALLOWED
-    NSString *reqSysVer = @"4.1";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    BOOL osVersionSupported = ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending);
-    return (gcClass && osVersionSupported);
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
-    return gcClass != nil;
-#endif
-}
