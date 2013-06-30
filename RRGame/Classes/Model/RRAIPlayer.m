@@ -562,7 +562,7 @@
 
 
 - (RRPlayerColor)oponentColor {
-    return ((self.playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack);
+    return RRPlayerColorInverse(self.playerColor);
 }
 
 
