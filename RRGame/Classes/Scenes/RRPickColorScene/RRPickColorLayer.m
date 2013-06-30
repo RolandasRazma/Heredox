@@ -56,7 +56,7 @@
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite];
 
-        CCSprite *titleTextSprite = [CCSprite spriteWithSpriteFrameName:((numberOfPlayers==1 || [[UDGKManager sharedManager] isNetworkPlayActive])?@"RRTextChooseYourAllegiance.png":@"RRTextWhoMakesTheFirstMove.png")];
+        CCSprite *titleTextSprite = [CCSprite spriteWithSpriteFrameName:((numberOfPlayers==1)?@"RRTextChooseYourAllegiance.png":@"RRTextWhoMakesTheFirstMove.png")];
         [self addChild:titleTextSprite];
         
         // Add menu button
@@ -109,14 +109,7 @@
         
         _lowerRect     = CGRectMake(0, 0, winSize.width, leftBottomY);
         _lowerTriangle = UDTriangleMake( CGPointMake(0, leftBottomY), CGPointMake(winSize.width, leftBottomY), CGPointMake(winSize.width, winSize.height -rightTopY) );
-        
-        
-        if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
-            [self setUserInteractionEnabled:NO];
 
-            _bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"RRTextWaitingForOtherPlayer"];
-            [self addChild:_bannerWaitingForPlayer z:1000];
-        }
     }
     return self;
 }
@@ -125,24 +118,15 @@
 - (void)startGameWithFirstPlayerColor:(RRPlayerColor)playerColor {
 
     [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", playerColor]];
-    
-    if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
-        
-        UDGKPacketPickColor packet = UDGKPacketPickColorMake( playerColor );
-        [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
-                                                     length: sizeof(UDGKPacketPickColor)];
-        
+
+    if( _numberOfPlayers == 1 ){
+        RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
+        [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:difficultyScene]];
+    }else{
         RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:playerColor];
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
-    }else{
-        if( _numberOfPlayers == 1 ){
-            RRDifficultyScene *difficultyScene = [[RRDifficultyScene alloc] initWithGameMode:RRGameModeClosed playerColor:playerColor];
-            [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:difficultyScene]];
-        }else{
-            RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:playerColor];
-            [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
-        }
     }
+    
 }
 
 
@@ -150,37 +134,6 @@
     
 	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:[RRMenuScene node] backwards:YES]];
     
-}
-
-
-- (void)onEnter {
-    [super onEnter];
-    
-    if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
-        [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypePickColor];
-        [[UDGKManager sharedManager] addPacketObserver:self forType:UDGKPacketTypeEnterScene];
-    
-        [[UDGKManager sharedManager] addPlayerObserver:self forConnectionState:GKPlayerStateDisconnected];
-    }
-}
-
-
-- (void)onEnterTransitionDidFinish {
-    [super onEnterTransitionDidFinish];
-    
-    if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
-        UDGKPacketEnterScene packet = UDGKPacketEnterSceneMake( 2 );
-        [[UDGKManager sharedManager] sendPacketToAllPlayers: &packet
-                                                     length: sizeof(UDGKPacketEnterScene)];
-    }
-}
-
-
-- (void)onExitTransitionDidStart {
-    [super onExitTransitionDidStart];
-    
-    [[UDGKManager sharedManager] removePacketObserver:self];
-    [[UDGKManager sharedManager] removePlayerObserver:self];
 }
 
 
@@ -227,66 +180,6 @@
 
     [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
     [_backgroundPlayerBlackSelectedSprite setVisible:NO];
-}
-
-
-#pragma mark -
-#pragma mark UDGKManagerPacketObserving
-
-
-- (void)observePacket:(const void *)packet fromPlayer:(id <UDGKPlayerProtocol>)player {
-    if( [player.playerID isEqualToString: [[UDGKManager sharedManager] playerID]] ) return;
-
-    UDGKPacketType packetType = (*(UDGKPacket *)packet).type;
-    
-    if ( packetType == UDGKPacketTypePickColor ) {
-        UDGKPacketPickColor newPacket = *(UDGKPacketPickColor *)packet;
-
-        // Show what color player selected
-        [_backgroundPlayerWhiteSelectedSprite setVisible:(newPacket.color == RRPlayerColorWhite)];
-        [_backgroundPlayerBlackSelectedSprite setVisible:(newPacket.color == RRPlayerColorBlack)];
-        
-        // Push game scene
-        RRGameScene *gameScene = [[RRGameScene alloc] initWithGameMode:RRGameModeClosed numberOfPlayers:_numberOfPlayers playerColor:((newPacket.color==RRPlayerColorWhite)?RRPlayerColorBlack:RRPlayerColorWhite)];
-        [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
-    } else if( packetType == UDGKPacketTypeEnterScene && !_allPlayersInScene ){
-        UDGKPacketEnterScene newPacket = *(UDGKPacketEnterScene *)packet;
-        
-        if( newPacket.sceneID == 2 ){
-            _allPlayersInScene = YES;
-
-            [[UDGKManager sharedManager] sendPacketToAllPlayers: &newPacket
-                                                         length: sizeof(UDGKPacketEnterScene)];
-
-            if( [[UDGKManager sharedManager] isHost] ){
-                [_bannerWaitingForPlayer removeFromParentAndCleanup:YES];
-                _bannerWaitingForPlayer = nil;
-                
-                [self setUserInteractionEnabled:YES];
-            }
-        }
-    }
-}
-
-
-#pragma mark -
-#pragma mark UDGKManagerPlayerObserving
-
-
-- (void)observePlayer:(id <UDGKPlayerProtocol>)player state:(GKPlayerConnectionState)state {
-
-    if( state == GKPlayerStateDisconnected ){
-        [_bannerWaitingForPlayer removeFromParentAndCleanup:YES];
-        _bannerWaitingForPlayer = nil;
-        
-        RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextPlayerDisconnected"
-                                                 cancelButtonName: @"RRButtonEndGame"
-                                               cancelButtonAction: ^{
-                                                   [self showMenu];
-                                               }];
-        [self addChild:popupLayer z:1000];
-    }
-    
 }
 
 
