@@ -328,24 +328,38 @@
 
 
 - (void)liftTile {
+    [self liftTileWithSound:YES];
+}
+
+
+- (void)liftTileWithSound:(BOOL)withSound {
     if( !self.isPlaced ) return;
 
     [self setScale:1.1f];
     [self setZOrder:NSIntegerMax];
     
-    [[RRAudioEngine sharedEngine] replayEffect:@"RRLiftTile.mp3"];
+    if( withSound ){
+        [[RRAudioEngine sharedEngine] replayEffect:@"RRLiftTile.mp3"];
+    }
     
     _wasLifted = YES;
 }
 
 
 - (void)placeTile {
+    [self placeTileWithSound:YES];
+}
+
+
+- (void)placeTileWithSound:(BOOL)withSound {
     if( self.isPlaced ) return;
     
     [self setScale:1.0f];
     [self setZOrder: 1000 +(int)round(-self.position.y)];
     
-    [[RRAudioEngine sharedEngine] replayEffect:@"RRPlaceTile.mp3"];
+    if( withSound ){
+        [[RRAudioEngine sharedEngine] replayEffect:@"RRPlaceTile.mp3"];
+    }
 }
 
 

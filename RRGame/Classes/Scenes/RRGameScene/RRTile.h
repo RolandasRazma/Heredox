@@ -78,7 +78,9 @@ typedef enum RRTileType : NSUInteger {
 - (id)initWithType:(RRTileType)tileType;
 
 - (void)liftTile;
+- (void)liftTileWithSound:(BOOL)withSound;
 - (void)placeTile;
+- (void)placeTileWithSound:(BOOL)withSound;
 
 - (void)showEndTurnTextAnimated:(BOOL)animated;
 
