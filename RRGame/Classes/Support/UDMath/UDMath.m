@@ -30,3 +30,8 @@ BOOL UDTrueWithPossibility( float possibility ){
 	if( possibility < 0 ) return false;
 	return ((random() /(float)0x7fffffff ) <= possibility);
 }
+
+
+int UDRand(int min, int max) {
+	return min +random() %(max -min +1);
+}

@@ -28,3 +28,7 @@
 
 /** returns true with possibility */
 BOOL UDTrueWithPossibility( float possibility );
+
+
+/** generates random number between min and max (including min and max) */
+int UDRand(int min, int max);
