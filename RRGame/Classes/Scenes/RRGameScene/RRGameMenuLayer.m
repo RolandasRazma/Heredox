@@ -97,27 +97,30 @@ static BOOL RRGameMenuLayerVisible = NO;
         [_menu setPosition:CGPointMake(winSize.width /2, winSize.height /2)];
         [self addChild:_menu];
         
+        __weak RRGameMenuLayer *weakSelf = self;
         
         // RRButtonResume
         UDSpriteButton *buttonResume = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonResume.png" highliteSpriteFrameName:@"RRButtonResumeSelected.png"];
-        [buttonResume addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:0]; } forControlEvents: UDButtonEventTouchUpInsideD];
+        [buttonResume addBlock: ^{
+            [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
+            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:0];
+        } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonResume];
         
-        
         // RRButtonRestart
-        UDSpriteButton *buttonRestart = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonRestart.png" highliteSpriteFrameName:@"RRButtonRestartSelected.png"];
-        [buttonRestart addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:1]; } forControlEvents: UDButtonEventTouchUpInsideD];
-        [_menu addChild:buttonRestart];
-        
-        if( ![[UDGKManager sharedManager] isHost] ){
-            [buttonRestart setUserInteractionEnabled:NO];
-            [buttonRestart setOpacity:100];
-        }
-        
+        _buttonRestart = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonRestart.png" highliteSpriteFrameName:@"RRButtonRestartSelected.png"];
+        [_buttonRestart addBlock: ^{
+            [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
+            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:1];
+        } forControlEvents: UDButtonEventTouchUpInsideD];
+        [_menu addChild:_buttonRestart];
         
         // RRButtonQuit
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];
-        [buttonQuit addBlock: ^{ [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"]; [_delegate gameMenuLayer:self didSelectButtonAtIndex:2]; } forControlEvents: UDButtonEventTouchUpInsideD];
+        [buttonQuit addBlock: ^{
+            [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
+            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:2];
+        } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonQuit];
         
         CCSprite *textVolume = [CCSprite spriteWithSpriteFrameName:@"RRTextVolume.png"];
@@ -133,7 +136,7 @@ static BOOL RRGameMenuLayerVisible = NO;
         // Device layout
         if( isDeviceIPad() || isDeviceMac() ){
             [buttonResume setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 570)];
-            [buttonRestart setPosition:CGPointMake(_menu.boundingBox.size.width /2, 450)];
+            [_buttonRestart setPosition:CGPointMake(_menu.boundingBox.size.width /2, 450)];
             [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width /2, 330)];
             [textVolume setPosition:CGPointMake(_menu.boundingBox.size.width /2, 185)];
 
@@ -144,7 +147,7 @@ static BOOL RRGameMenuLayerVisible = NO;
             _sliderWidth    = 335.0f;
         } else {
             [buttonResume setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 260)];
-            [buttonRestart setPosition:CGPointMake(_menu.boundingBox.size.width /2, 205)];
+            [_buttonRestart setPosition:CGPointMake(_menu.boundingBox.size.width /2, 205)];
             [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width /2, 150)];
             [textVolume setPosition:CGPointMake(_menu.boundingBox.size.width /2, 85)];
             
@@ -165,6 +168,12 @@ static BOOL RRGameMenuLayerVisible = NO;
 
 #pragma mark -
 #pragma mark RRGameMenuLayer
+
+
+- (void)disableRestartButton {
+    [_buttonRestart setUserInteractionEnabled:NO];
+    [_buttonRestart setOpacity:100];
+}
 
 
 - (void)dismiss {

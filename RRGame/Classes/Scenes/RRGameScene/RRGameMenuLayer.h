@@ -32,19 +32,22 @@
 
 
 @interface RRGameMenuLayer : UDLayer {
-    CCSprite    *_sliderSound;
-    CGFloat     _sliderEdgeLeft;
-    CGFloat     _sliderWidth;
+    CCSprite        *_sliderSound;
+    CGFloat         _sliderEdgeLeft;
+    CGFloat         _sliderWidth;
+    
+    UDSpriteButton  *_buttonRestart;
     
     __weak id <RRGameMenuDelegate> _delegate;
-    CCLayerColor            *_colorBackground;
-    CCSprite                *_menu;
-    BOOL                    _sliderActive;
+    CCLayerColor    *_colorBackground;
+    CCSprite        *_menu;
+    BOOL            _sliderActive;
 }
 
 @property (nonatomic, weak) id <RRGameMenuDelegate>delegate;
 
 - (void)dismiss;
+- (void)disableRestartButton;
 
 @end
 
