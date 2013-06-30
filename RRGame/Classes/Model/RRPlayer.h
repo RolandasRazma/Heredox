@@ -32,8 +32,9 @@
     NSString        *_playerID;
 }
 
-@property (nonatomic, readonly) RRPlayerColor playerColor;
-@property (nonatomic, retain) NSString *playerID;
+@property (nonatomic, readonly) RRPlayerColor   playerColor;
+@property (nonatomic, copy)     NSString        *playerID;
+@property (nonatomic, copy)     NSString        *alias;
 
 + (id)playerWithPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithPlayerColor:(RRPlayerColor)playerColor;

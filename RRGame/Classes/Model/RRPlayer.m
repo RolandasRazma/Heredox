@@ -47,5 +47,20 @@
 }
 
 
-@synthesize playerColor=_playerColor, playerID=_playerID;
+- (void)setPlayerID:(NSString *)playerID {
+    _playerID = playerID;
+    
+    if( _playerID && !_alias ){
+        [GKPlayer loadPlayersForIdentifiers: @[playerID]
+                      withCompletionHandler: ^(NSArray *players, NSError *error) {
+                          if( !error ){
+                              GKPlayer *player = [players objectAtIndex:0];
+                              [self setAlias: player.alias];
+                          }
+                      }];
+    }
+    
+}
+
+
 @end
