@@ -55,7 +55,7 @@ CG_INLINE RRTileMove RRTileMoveMake(int x, int y, int rotation, float score) {
 }
 
 CG_INLINE RRPlayerColor RRPlayerColorInverse( RRPlayerColor playerColor ){
-    return ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack);
+    return ((playerColor == RRPlayerColorUndefined)?RRPlayerColorUndefined:((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack));
 }
 
 @interface RRHeredox : NSObject
