@@ -30,6 +30,10 @@
 
 @interface RRMenuLayer : CCLayer <RRMenuMultiplayerLayerDelegate, GKTurnBasedMatchmakerViewControllerDelegate> {
     GKTurnBasedMatchmakerViewController *_matchmakerViewController;
+    
+#if defined(__CC_PLATFORM_MAC)
+    GKDialogController                  *_dialogController;
+#endif
 }
 
 @end

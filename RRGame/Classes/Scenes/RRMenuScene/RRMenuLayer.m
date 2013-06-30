@@ -28,6 +28,7 @@
 #import "RRPickColorScene.h"
 #import "RRRulesScene.h"
 #import "RRPopupLayer.h"
+#import "RRGameScene.h"
 
 
 @implementation RRMenuLayer
@@ -88,7 +89,6 @@
 - (void)onEnterTransitionDidFinish {
     [super onEnterTransitionDidFinish];
 
-    [[UDGKManager sharedManager] setSessionProvider:nil];
     [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:NULL];
 }
 
@@ -96,15 +96,7 @@
 - (void)onEnter {
     [super onEnter];
 
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(allPlayersConnectedNotification)
-                                                 name: UDGKManagerAllPlayersConnectedNotification
-                                               object: nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(playerGotInviteNotification:)
-                                                 name: UDGKManagerPlayerGotInviteNotification
-                                               object: nil];
+
 }
 
 
@@ -135,31 +127,9 @@
 }
 
 
-- (void)allPlayersConnectedNotification {
-    [self dismissMatchmakerViewController];
-    
-    RRPickColorScene *pickColorScene = [[RRPickColorScene alloc] initWithNumberOfPlayers:2];
-	[[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:pickColorScene]];
-
-}
-
-
 - (void)playerGotInviteNotification:(NSNotification *)notification {
     
-    NSLog(@"playerGotInviteNotification");
-
-    if ( [notification.userInfo objectForKey:@"acceptedInvite"] ) {
-
-        #warning FIX ME
-        NSAssert(NO, @"Invites not implemented");
-        
-        /*
-        GKMatchmakerViewController *matchmakerViewController = [[GKMatchmakerViewController alloc] initWithInvite: [notification.userInfo objectForKey:@"acceptedInvite"]];
-        [matchmakerViewController setMatchmakerDelegate:self];
-        [self presentMatchmakerViewController:matchmakerViewController];
-        */
-
-    } else if ( [notification.userInfo objectForKey:@"playersToInvite"] ) {
+    if ( [notification.userInfo objectForKey:@"playersToInvite"] ) {
         
         GKMatchRequest *request = [[GKMatchRequest alloc] init];
         [request setMinPlayers: 2];
@@ -197,6 +167,7 @@
 
 
 - (void)dismissMatchmakerViewController {
+    
 #if __CC_PLATFORM_IOS
     [[CCDirector sharedDirector].parentViewController dismissModalViewControllerAnimated:YES];
 #elif defined(__CC_PLATFORM_MAC)
@@ -256,15 +227,109 @@
 
 
 - (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match {
-    [[UDGKManager sharedManager] setSessionProvider:match];
+    [[UDGKManager sharedManager] addMatch:match];
+
+    // Dismiss GKTurnBasedMatchmakerViewController
+    [self dismissMatchmakerViewController];
+    
+    NSLog(@"participants: %@", match.participants);
+    
+    GKTurnBasedParticipant *firstParticipant = [match.participants objectAtIndex:0];
+    if ( !firstParticipant.lastTurnDate ) {
+        
+        // Pick color
+        RRMatchData matchRepresentation = match.matchRepresentation;
+        matchRepresentation.firstParticipantColor = (RRPlayerColor)UDRand(RRPlayerColorBlack, RRPlayerColorWhite);
+        [match setMatchRepresentation:matchRepresentation];
+
+        [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", matchRepresentation.firstParticipantColor]];
+        
+        // Start game
+        RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];
+        [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
+    }else{
+    
+        // need spinner here
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+        
+        // Load data first
+        [match loadMatchDataWithCompletionHandler: ^(NSData *matchData, NSError *error) {
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+            
+            if( error ){
+                
+                RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                         cancelButtonName: @"RRButtonContinue"
+                                                       cancelButtonAction: nil];
+                [self addChild:popupLayer z:1000];
+                
+            }else{
+                [match invalidateMatchRepresentation];
+                
+                // Start game
+                RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];
+                [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
+            }
+            
+        }];
+        
+    }
+    
 }
 
 
-// Called when a users chooses to quit a match and that player has the current turn.
-// The developer should call playerQuitInTurnWithOutcome:nextPlayer:matchData:completionHandler: on the match passing in appropriate values.
-// They can also update matchOutcome for other players as appropriate.
 - (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match {
-    #warning TODO
+
+    if( [match isMyTurn] ){
+
+        if( match.nextParticipant.status == GKTurnBasedParticipantStatusActive ){
+            
+            [match participantQuitInTurnWithOutcome: GKTurnBasedMatchOutcomeQuit
+                                    nextParticipant: match.nextParticipant
+                                          matchData: match.transitMatchData
+                                  completionHandler: ^(NSError *error) {
+                                      NSLog(@"endMatchInTurnWithMatchData: %@", error);
+                                      
+                                      RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                                               cancelButtonName: @"RRButtonContinue"
+                                                                             cancelButtonAction: nil];
+                                      [self addChild:popupLayer z:1000];
+                                  }];
+            
+        }else{
+            if( match.currentParticipant.matchOutcome == GKTurnBasedMatchOutcomeNone ){
+                [match.currentParticipant setMatchOutcome:GKTurnBasedMatchOutcomeLost];
+            }
+            if( match.nextParticipant.matchOutcome == GKTurnBasedMatchOutcomeNone ){
+                [match.nextParticipant setMatchOutcome:GKTurnBasedMatchOutcomeWon];
+            }
+            
+            [match endMatchInTurnWithMatchData: match.transitMatchData
+                             completionHandler: ^(NSError *error) {
+                                 NSLog(@"endMatchInTurnWithMatchData: %@", error);
+                                 
+                                 RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                                          cancelButtonName: @"RRButtonContinue"
+                                                                        cancelButtonAction: nil];
+                                 [self addChild:popupLayer z:1000];
+                             }];
+            
+        }
+
+    }else{
+        [match participantQuitOutOfTurnWithOutcome: GKTurnBasedMatchOutcomeLost
+                             withCompletionHandler: ^(NSError *error) {
+                                  NSLog(@"participantQuitOutOfTurnWithOutcome: %@", error);
+                                 
+                                 RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                                          cancelButtonName: @"RRButtonContinue"
+                                                                        cancelButtonAction: nil];
+                                 [self addChild:popupLayer z:1000];
+                             }];
+    }
+    
+    [[UDGKManager sharedManager] removeMatch:match];
+    
 }
 
 
