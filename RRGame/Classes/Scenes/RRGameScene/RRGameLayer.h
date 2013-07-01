@@ -33,33 +33,32 @@
 @class RRPlayer, RRBoardLayer, UDSpriteButton, RRCrossfadeLayer, RRScoreLayer;
 
 
-@interface RRGameLayer : UDLayer <RRBoardLayerDelegate, RRGameMenuDelegate, RRPlayerColorWictoriousDelegate, UDGKManagerPacketObserving, UDGKManagerPlayerObserving> {
-    RRGameMode          _gameMode;
+@interface RRGameLayer : UDLayer <RRBoardLayerDelegate, RRGameMenuDelegate, RRPlayerColorWictoriousDelegate, GKLocalPlayerListener> {
+    RRGameMode              _gameMode;
+    GKTurnBasedMatch        *_match;
     
-    NSMutableArray      *_deck;
-    RRBoardLayer    *_gameBoardLayer;
+    NSMutableArray          *_deck;
+    RRBoardLayer            *_gameBoardLayer;
     
-    RRPlayerColor       _playerColor;
-    RRPlayerColor       _firstPlayerColor;
+    RRPlayerColor           _playerColor;
+    RRPlayerColor           _firstPlayerColor;
+        
+    UDSpriteButton          *_buttonEndTurn;
     
-    UDSpriteButton      *_buttonEndTurn;
+    RRPlayer                *_player1;
+    RRPlayer                *_player2;
     
-    RRPlayer            *_player1;
-    RRPlayer            *_player2;
+    RRCrossfadeLayer        *_backgroundLayer;
+    RRScoreLayer            *_scoreLayer;
+    UDSpriteButton          *_resetGameButton;
     
-    RRCrossfadeLayer    *_backgroundLayer;
-    RRScoreLayer        *_scoreLayer;
-    UDSpriteButton      *_resetGameButton;
+    unsigned int            _gameSeed;
     
-    unsigned int        _gameSeed;
+    CCLabelTTF              *_playerNameLabel;
     
-    BOOL                _allPlayersInScene;
-    CCLabelTTF          *_playerNameLabel;
-    CCSprite            *_bannerWaitingForPlayer;
-    
-    uint                _winsBlack;
-    uint                _winsWhite;
-    uint                _winsDraw;
+    uint                    _winsBlack;
+    uint                    _winsWhite;
+    uint                    _winsDraw;
 }
 
 @property (nonatomic, retain) RRPlayer *player1;
@@ -67,5 +66,6 @@
 
 + (id)layerWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor;
+- (id)initWithMatch:(GKTurnBasedMatch *)match;
 
 @end

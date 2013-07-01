@@ -37,8 +37,14 @@
 #pragma mark UDGameScene
 
 
-+ (id)sceneWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers firstPlayerColor:(RRPlayerColor)playerColor {
-    return [[self alloc] initWithGameMode:gameMode numberOfPlayers:numberOfPlayers playerColor:playerColor];
+- (id)initWithMatch:(GKTurnBasedMatch *)match {
+    
+    if( (self = [self init]) ){
+        _numberOfPlayers = 2;
+        [self addChild: [[RRGameLayer alloc] initWithMatch:match]];
+    }
+    return self;
+    
 }
 
 
@@ -47,33 +53,7 @@
         _numberOfPlayers = numberOfPlayers;
         RRGameLayer *gameLayer;
         
-        if( [[UDGKManager sharedManager] isNetworkPlayActive] ){
-            gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:RRPlayerColorWhite];
-            
-            // Host is player1
-            if( [[UDGKManager sharedManager] isHost] ){
-                RRPlayer *player1 = [RRPlayer playerWithPlayerColor: playerColor];
-                [gameLayer setPlayer1:player1];
-                
-                RRPlayer *player2 = [RRPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
-                [gameLayer setPlayer2:player2];
-            }else{
-                RRPlayer *player1 = [RRPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
-                [gameLayer setPlayer1:player1];
-                
-                RRPlayer *player2 = [RRPlayer playerWithPlayerColor: playerColor];
-                [gameLayer setPlayer2:player2];
-            }
-            
-            // Update ID's for player
-            for( GKPlayer *player in [[[UDGKManager sharedManager] players] allValues] ){
-                if( [player.playerID isEqualToString:[[UDGKManager sharedManager] hostPlayerID]] ){
-                    [gameLayer.player1 setPlayerID: player.playerID];
-                }else{
-                    [gameLayer.player2 setPlayerID: player.playerID];
-                }
-            }
-        }else if( NO ){ // AI vs AI
+        if( NO ){ // AI vs AI
             gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor: RRPlayerColorWhite];
             [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
             
