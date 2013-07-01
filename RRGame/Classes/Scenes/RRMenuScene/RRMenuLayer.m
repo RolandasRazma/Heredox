@@ -97,11 +97,19 @@
     [super onEnterTransitionDidFinish];
 
     __weak RRMenuLayer *weakSelf = self;
-    [[UDGKManager sharedManager] authenticateInGameCenterWithCompletionHandler:^(NSError *error) {
-        if( weakSelf ){
-            [[GKLocalPlayer localPlayer] registerListener:weakSelf];
-        }
-    }];
+    
+    if ( ![[GKLocalPlayer localPlayer] isAuthenticated] ) {
+        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+            if( error ){
+                [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
+                                                  message: nil
+                                        completionHandler: NULL];
+            }else if( weakSelf ){
+                [[GKLocalPlayer localPlayer] registerListener:weakSelf];
+            }
+        }];
+    }
+    
 }
 
 
@@ -233,7 +241,6 @@
 
 
 - (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match {
-    [[UDGKManager sharedManager] addMatch:match];
 
     // Dismiss GKTurnBasedMatchmakerViewController
     [self dismissMatchmakerViewController];
@@ -331,9 +338,7 @@
                                  [self addChild:popupLayer z:1000];
                              }];
     }
-    
-    [[UDGKManager sharedManager] removeMatch:match];
-    
+   
 }
 
 
