@@ -34,7 +34,8 @@ typedef struct RRMatchData {
 
 @interface GKTurnBasedMatch (RRMatchData)
 
-@property(nonatomic, assign) NSUInteger gameSeed;
+@property(nonatomic, assign)    NSUInteger     gameSeed;
+@property(nonatomic, assign)    RRPlayerColor  firstParticipantColor;
 
 - (void)addTileMove:(RRTileMove)tileMove;
 - (GKTurnBasedParticipant *)participantForColor:(RRPlayerColor)playerColor;

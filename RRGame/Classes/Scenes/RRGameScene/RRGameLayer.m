@@ -130,18 +130,17 @@
 
 
 - (id)initWithMatch:(GKTurnBasedMatch *)match {
-    RRMatchData matchRepresentation = match.matchRepresentation;
     
-    if( (self = [self initWithGameMode:RRGameModeClosed firstPlayerColor:matchRepresentation.firstParticipantColor] ) ){
+    if( (self = [self initWithGameMode:RRGameModeClosed firstPlayerColor:match.firstParticipantColor] ) ){
         _match = match;
 
         // First player
-        RRPlayer *player1 = [RRPlayer playerWithPlayerColor: matchRepresentation.firstParticipantColor];
+        RRPlayer *player1 = [RRPlayer playerWithPlayerColor: match.firstParticipantColor];
         [player1 setPlayerID: [[_match.participants objectAtIndex:0] playerID]];
         [self setPlayer1: player1];
         
         // Second player
-        RRPlayer *player2 = [RRPlayer playerWithPlayerColor: RRPlayerColorInverse(matchRepresentation.firstParticipantColor)];
+        RRPlayer *player2 = [RRPlayer playerWithPlayerColor: RRPlayerColorInverse(match.firstParticipantColor)];
         [player2 setPlayerID: [[_match.participants objectAtIndex:1] playerID]];
         [self setPlayer2: player2];
     }

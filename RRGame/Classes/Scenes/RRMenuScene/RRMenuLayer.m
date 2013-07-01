@@ -217,12 +217,10 @@
     GKTurnBasedParticipant *firstParticipant = [match.participants objectAtIndex:0];
     if ( !firstParticipant.lastTurnDate ) {
         
-        // Pick color
-        RRMatchData matchRepresentation = match.matchRepresentation;
-        matchRepresentation.firstParticipantColor = (RRPlayerColor)UDRand(RRPlayerColorBlack, RRPlayerColorWhite);
-        [match setMatchRepresentation:matchRepresentation];
+        // Pick random color for first player
+        [match setFirstParticipantColor: (RRPlayerColor)UDRand(RRPlayerColorBlack, RRPlayerColorWhite)];
 
-        [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", matchRepresentation.firstParticipantColor]];
+        [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", match.firstParticipantColor]];
         
         // Start game
         RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];

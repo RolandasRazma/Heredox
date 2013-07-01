@@ -71,18 +71,31 @@
 @implementation GKTurnBasedMatch (RRMatchData)
 
 
-- (void)setGameSeed:(NSUInteger)gameSeed {
+- (RRPlayerColor)firstParticipantColor {
     RRMatchData matchRepresentation = self.matchRepresentation;
-    matchRepresentation.seed = gameSeed;
+    return matchRepresentation.firstParticipantColor;
+}
+
+
+- (void)setFirstParticipantColor:(RRPlayerColor)firstParticipantColor {
+    RRMatchData matchRepresentation = self.matchRepresentation;
+    matchRepresentation.firstParticipantColor = firstParticipantColor;
     
     [self setMatchRepresentation:matchRepresentation];
-
 }
 
 
 - (NSUInteger)gameSeed {
     RRMatchData matchRepresentation = self.matchRepresentation;
     return matchRepresentation.seed;
+}
+
+
+- (void)setGameSeed:(NSUInteger)gameSeed {
+    RRMatchData matchRepresentation = self.matchRepresentation;
+    matchRepresentation.seed = gameSeed;
+    
+    [self setMatchRepresentation:matchRepresentation];
 }
 
 
@@ -97,9 +110,8 @@
 
 
 - (GKTurnBasedParticipant *)participantForColor:(RRPlayerColor)playerColor {
-    RRMatchData matchRepresentation = self.matchRepresentation;
     
-    if( playerColor == matchRepresentation.firstParticipantColor ){
+    if( playerColor == self.firstParticipantColor ){
         return [self.participants objectAtIndex:0];
     }else{
         return [self.participants objectAtIndex:1];
