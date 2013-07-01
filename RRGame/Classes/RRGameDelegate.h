@@ -28,6 +28,6 @@
 #import "cocos2d.h"
 
 
-@interface RRGameDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
+@interface RRGameDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate, GKLocalPlayerListener>
 
 @end

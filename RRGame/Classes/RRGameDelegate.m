@@ -130,6 +130,18 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	if( [_navigationController visibleViewController] == _director )
 		[_director resume];
+    
+    [[GKLocalPlayer localPlayer] registerListener:self];
+    
+    if ( ![[GKLocalPlayer localPlayer] isAuthenticated] ) {
+        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+            if( error ){
+                [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
+                                                  message: nil
+                                        completionHandler: NULL];
+            }
+        }];
+    }
 }
 
 
@@ -170,6 +182,15 @@
 // Supported orientations: Landscape. Customize it for your own needs
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
+
+
+#pragma mark -
+#pragma mark GKLocalPlayerListener
+
+
+- (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite {
+    NSLog(@"didRequestMatchWithPlayers: %@", playerIDsToInvite);
 }
 
 

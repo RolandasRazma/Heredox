@@ -90,37 +90,6 @@
 
 
 #pragma mark -
-#pragma mark CCNode
-
-
-- (void)onEnterTransitionDidFinish {
-    [super onEnterTransitionDidFinish];
-
-    __weak RRMenuLayer *weakSelf = self;
-    
-    if ( ![[GKLocalPlayer localPlayer] isAuthenticated] ) {
-        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
-            if( error ){
-                [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
-                                                  message: nil
-                                        completionHandler: NULL];
-            }else if( weakSelf ){
-                [[GKLocalPlayer localPlayer] registerListener:weakSelf];
-            }
-        }];
-    }
-    
-}
-
-
-- (void)onExitTransitionDidStart {
-    [[GKLocalPlayer localPlayer] unregisterListener:self];
-    
-    [super onExitTransitionDidStart];
-}
-
-
-#pragma mark -
 #pragma mark UDMenuLayer
 
 
@@ -335,15 +304,6 @@
                              }];
     }
    
-}
-
-
-#pragma mark -
-#pragma mark GKLocalPlayerListener
-
-
-- (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite {
-    NSLog(@"didRequestMatchWithPlayers: %@", playerIDsToInvite);
 }
 
 

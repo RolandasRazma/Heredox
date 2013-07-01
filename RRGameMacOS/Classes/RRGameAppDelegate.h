@@ -25,7 +25,7 @@
 //
 
 
-@interface RRGameAppDelegate : NSObject <NSApplicationDelegate> {
+@interface RRGameAppDelegate : NSObject <NSApplicationDelegate, GKLocalPlayerListener> {
 	IBOutlet NSWindow	*_window;
 	IBOutlet CCGLView	*_glView;
     CCDirectorMac       *_director;

@@ -94,6 +94,23 @@
 }
 
 
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+
+    [[GKLocalPlayer localPlayer] registerListener:self];
+    
+    if ( ![[GKLocalPlayer localPlayer] isAuthenticated] ) {
+        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+            if( error ){
+                [GKNotificationBanner showBannerWithTitle: [error localizedDescription]
+                                                  message: nil
+                                        completionHandler: NULL];
+            }
+        }];
+    }
+    
+}
+
+
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
 	return YES;
 }
@@ -105,6 +122,15 @@
 
 - (IBAction)toggleFullScreen:(id)sender {
 	[_director setFullScreen: ![_director isFullScreen]];
+}
+
+
+#pragma mark -
+#pragma mark GKLocalPlayerListener
+
+
+- (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite {
+    NSLog(@"didRequestMatchWithPlayers: %@", playerIDsToInvite);
 }
 
 
