@@ -257,19 +257,21 @@
 - (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match {
 
     if( [match isMyTurn] ){
-
+        
         if( match.nextParticipant.status == GKTurnBasedParticipantStatusActive ){
             
             [match participantQuitInTurnWithOutcome: GKTurnBasedMatchOutcomeQuit
                                     nextParticipant: match.nextParticipant
                                           matchData: match.transitMatchData
                                   completionHandler: ^(NSError *error) {
-                                      NSLog(@"endMatchInTurnWithMatchData: %@", error);
-                                      
-                                      RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
-                                                                               cancelButtonName: @"RRButtonContinue"
-                                                                             cancelButtonAction: nil];
-                                      [self addChild:popupLayer z:1000];
+                                      if( error ){
+                                          NSLog(@"endMatchInTurnWithMatchData: %@", error);
+                                          
+                                          RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                                                   cancelButtonName: @"RRButtonContinue"
+                                                                                 cancelButtonAction: nil];
+                                          [self addChild:popupLayer z:1000];
+                                      }
                                   }];
             
         }else{
@@ -282,25 +284,29 @@
             
             [match endMatchInTurnWithMatchData: match.transitMatchData
                              completionHandler: ^(NSError *error) {
-                                 NSLog(@"endMatchInTurnWithMatchData: %@", error);
-                                 
-                                 RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
-                                                                          cancelButtonName: @"RRButtonContinue"
-                                                                        cancelButtonAction: nil];
-                                 [self addChild:popupLayer z:1000];
+                                 if( error ){
+                                     NSLog(@"endMatchInTurnWithMatchData: %@", error);
+                                     
+                                     RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                                              cancelButtonName: @"RRButtonContinue"
+                                                                            cancelButtonAction: nil];
+                                     [self addChild:popupLayer z:1000];
+                                 }
                              }];
             
         }
-
+        
     }else{
         [match participantQuitOutOfTurnWithOutcome: GKTurnBasedMatchOutcomeLost
                              withCompletionHandler: ^(NSError *error) {
-                                  NSLog(@"participantQuitOutOfTurnWithOutcome: %@", error);
-                                 
-                                 RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
-                                                                          cancelButtonName: @"RRButtonContinue"
-                                                                        cancelButtonAction: nil];
-                                 [self addChild:popupLayer z:1000];
+                                 if( error ){
+                                     NSLog(@"participantQuitOutOfTurnWithOutcome: %@", error);
+                                     
+                                     RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                                              cancelButtonName: @"RRButtonContinue"
+                                                                            cancelButtonAction: nil];
+                                     [self addChild:popupLayer z:1000];
+                                 }
                              }];
     }
    
