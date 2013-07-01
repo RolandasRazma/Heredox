@@ -86,8 +86,6 @@
 		F03EF74A15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
 		F03EF75E15B059F30085E637 /* UDSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDSpriteButton.m */; };
 		F03EF75F15B059F30085E637 /* UDSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDSpriteButton.m */; };
-		F05102811780AEC8008921A5 /* libRRiOS7Backport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F05102801780AEC8008921A5 /* libRRiOS7Backport.a */; };
-		F05102821780AEC8008921A5 /* libRRiOS7Backport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F05102801780AEC8008921A5 /* libRRiOS7Backport.a */; };
 		F0602A4215AFA16600B60FB1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
 		F0602A4315AFA16600B60FB1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3C15AFA16600B60FB1 /* Default@2x.png */; };
 		F0602A4515AFA16600B60FB1 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3E15AFA16600B60FB1 /* Icon.png */; };
@@ -107,18 +105,6 @@
 		F065870214CA7ED40033B4F5 /* RRGameDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F06586FF14CA7ED40033B4F5 /* RRGameDelegate.m */; };
 		F07476F615B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
 		F07476F715B1DEA500B69890 /* RRHeredox.m in Sources */ = {isa = PBXBuildFile; fileRef = F07476F515B1DEA500B69890 /* RRHeredox.m */; };
-		F0764B9D1780A7C000D8C164 /* libRRiOS7Backport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0764B981780A7A900D8C164 /* libRRiOS7Backport.a */; };
-		F0764BAA1780A8DC00D8C164 /* NSArray.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA51780A8DC00D8C164 /* NSArray.h */; };
-		F0764BAB1780A8DC00D8C164 /* NSArray.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA51780A8DC00D8C164 /* NSArray.h */; };
-		F0764BAC1780A8DC00D8C164 /* NSTimer.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA61780A8DC00D8C164 /* NSTimer.h */; };
-		F0764BAD1780A8DC00D8C164 /* NSTimer.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA61780A8DC00D8C164 /* NSTimer.h */; };
-		F0764BAE1780A8DC00D8C164 /* NSData.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA71780A8DC00D8C164 /* NSData.h */; };
-		F0764BAF1780A8DC00D8C164 /* NSData.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA71780A8DC00D8C164 /* NSData.h */; };
-		F0764BB01780A8DC00D8C164 /* GKLocalPlayer.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA81780A8DC00D8C164 /* GKLocalPlayer.h */; };
-		F0764BB11780A8DC00D8C164 /* GKLocalPlayer.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA81780A8DC00D8C164 /* GKLocalPlayer.h */; };
-		F0764BB21780A8DC00D8C164 /* UIView.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA91780A8DC00D8C164 /* UIView.h */; };
-		F0764BB31780A8DC00D8C164 /* UIView.h in Resources */ = {isa = PBXBuildFile; fileRef = F0764BA91780A8DC00D8C164 /* UIView.h */; };
-		F0764BBE1780AD6400D8C164 /* libRRiOS7Backport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0764B981780A7A900D8C164 /* libRRiOS7Backport.a */; };
 		F07E8BBC15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */; };
 		F07E8BBD15C33F1E0074F4E0 /* RRGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */; };
 		F0849BDE15CE5897008AC65F /* textures@2x.plist in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74015B042E80085E637 /* textures@2x.plist */; };
@@ -343,6 +329,12 @@
 		F088CB96177F64040017FEBA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F088CB95177F64030017FEBA /* CoreText.framework */; };
 		F088CB9A177F64530017FEBA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F088CB99177F64530017FEBA /* CoreText.framework */; };
 		F088CB9C177F651F0017FEBA /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F088CB9B177F651F0017FEBA /* ApplicationServices.framework */; };
+		F08D19B41781E73E00C5F599 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F08D199E1781E73E00C5F599 /* LICENSE */; };
+		F08D19B51781E73E00C5F599 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F08D199E1781E73E00C5F599 /* LICENSE */; };
+		F08D19B61781E73E00C5F599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F08D199F1781E73E00C5F599 /* README.md */; };
+		F08D19B71781E73E00C5F599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F08D199F1781E73E00C5F599 /* README.md */; };
+		F08D19BE1781E73E00C5F599 /* GKLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F08D19AA1781E73E00C5F599 /* GKLocalPlayer.m */; };
+		F08D19BF1781E73E00C5F599 /* GKLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F08D19AA1781E73E00C5F599 /* GKLocalPlayer.m */; };
 		F08FBF6915C05E83008085F1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */; };
 		F08FBF6A15C05E83008085F1 /* Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6715C05E83008085F1 /* Icon@2x~ipad.png */; };
 		F08FBF6B15C05E83008085F1 /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6815C05E83008085F1 /* Icon~ipad.png */; };
@@ -422,37 +414,6 @@
 		F0FDBCB114CB01B300CD1FE6 /* UDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FDBCAF14CB01B300CD1FE6 /* UDLayer.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F0764B971780A7A900D8C164 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F0764B921780A7A900D8C164 /* RRiOS7Backport.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F0ADD3C2176A03EF003C4A9A;
-			remoteInfo = RRiOS7Backport;
-		};
-		F0764B991780A7A900D8C164 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F0764B921780A7A900D8C164 /* RRiOS7Backport.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F0E612CE1771F1A40089DD9D;
-			remoteInfo = Tests;
-		};
-		F0764B9B1780A7BA00D8C164 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F0764B921780A7A900D8C164 /* RRiOS7Backport.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F0ADD3C1176A03EF003C4A9A;
-			remoteInfo = RRiOS7Backport;
-		};
-		F0764BBC1780AD6000D8C164 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F0764B921780A7A900D8C164 /* RRiOS7Backport.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F0ADD3C1176A03EF003C4A9A;
-			remoteInfo = RRiOS7Backport;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		F00A6ABA177F116600438220 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F01063CD15C707D0003BB881 /* ambience.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ambience.mp3; sourceTree = "<group>"; };
@@ -512,7 +473,6 @@
 		F03EF74315B042E80085E637 /* textures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textures.png; sourceTree = "<group>"; };
 		F03EF75C15B059F30085E637 /* UDSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDSpriteButton.h; sourceTree = "<group>"; };
 		F03EF75D15B059F30085E637 /* UDSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDSpriteButton.m; sourceTree = "<group>"; };
-		F05102801780AEC8008921A5 /* libRRiOS7Backport.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRRiOS7Backport.a; path = "../../../../../Library/Developer/Xcode/DerivedData/RRHeredox-aknwdxlrqproekdngevjtsujcjnz/Build/Products/Debug-iphoneos/libRRiOS7Backport.a"; sourceTree = "<group>"; };
 		F0602A3B15AFA16600B60FB1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F0602A3C15AFA16600B60FB1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F0602A3E15AFA16600B60FB1 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -537,12 +497,6 @@
 		F06F0D6815B5B19D00526BDB /* CGGeometry+UDAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+UDAdditions.h"; sourceTree = "<group>"; };
 		F07476F415B1DEA500B69890 /* RRHeredox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRHeredox.h; sourceTree = "<group>"; };
 		F07476F515B1DEA500B69890 /* RRHeredox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRHeredox.m; sourceTree = "<group>"; };
-		F0764B921780A7A900D8C164 /* RRiOS7Backport.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RRiOS7Backport.xcodeproj; path = RRiOS7Backport/RRiOS7Backport.xcodeproj; sourceTree = "<group>"; };
-		F0764BA51780A8DC00D8C164 /* NSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSArray.h; path = RRiOS7Backport/RRiOS7Backport/Foundation/NSArray.h; sourceTree = "<group>"; };
-		F0764BA61780A8DC00D8C164 /* NSTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTimer.h; path = RRiOS7Backport/RRiOS7Backport/Foundation/NSTimer.h; sourceTree = "<group>"; };
-		F0764BA71780A8DC00D8C164 /* NSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSData.h; path = RRiOS7Backport/RRiOS7Backport/Foundation/NSData.h; sourceTree = "<group>"; };
-		F0764BA81780A8DC00D8C164 /* GKLocalPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKLocalPlayer.h; path = RRiOS7Backport/RRiOS7Backport/GameKit/GKLocalPlayer.h; sourceTree = "<group>"; };
-		F0764BA91780A8DC00D8C164 /* UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIView.h; path = RRiOS7Backport/RRiOS7Backport/UIKit/UIView.h; sourceTree = "<group>"; };
 		F07E8BBA15C33F1E0074F4E0 /* RRGameMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRGameMenuLayer.h; sourceTree = "<group>"; };
 		F07E8BBB15C33F1E0074F4E0 /* RRGameMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRGameMenuLayer.m; sourceTree = "<group>"; };
 		F088C9B5177F62FF0017FEBA /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
@@ -794,6 +748,10 @@
 		F088CB95177F64030017FEBA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F088CB99177F64530017FEBA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		F088CB9B177F651F0017FEBA /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
+		F08D199E1781E73E00C5F599 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F08D199F1781E73E00C5F599 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F08D19A91781E73E00C5F599 /* GKLocalPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKLocalPlayer.h; sourceTree = "<group>"; };
+		F08D19AA1781E73E00C5F599 /* GKLocalPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKLocalPlayer.m; sourceTree = "<group>"; };
 		F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		F08FBF6715C05E83008085F1 /* Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x~ipad.png"; sourceTree = "<group>"; };
 		F08FBF6815C05E83008085F1 /* Icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~ipad.png"; sourceTree = "<group>"; };
@@ -878,14 +836,12 @@
 				F06582C014CA7BE20033B4F5 /* QuartzCore.framework in Frameworks */,
 				F06582C214CA7BE20033B4F5 /* OpenGLES.framework in Frameworks */,
 				F06582C414CA7BE20033B4F5 /* OpenAL.framework in Frameworks */,
-				F05102811780AEC8008921A5 /* libRRiOS7Backport.a in Frameworks */,
 				F06582C614CA7BE20033B4F5 /* AudioToolbox.framework in Frameworks */,
 				F06582C814CA7BE20033B4F5 /* AVFoundation.framework in Frameworks */,
 				F00A6ABB177F116600438220 /* Crashlytics.framework in Frameworks */,
 				F06582CA14CA7BE20033B4F5 /* UIKit.framework in Frameworks */,
 				F06582CC14CA7BE20033B4F5 /* Foundation.framework in Frameworks */,
 				F06582CE14CA7BE20033B4F5 /* CoreGraphics.framework in Frameworks */,
-				F0764B9D1780A7C000D8C164 /* libRRiOS7Backport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,13 +853,11 @@
 				F088CB9A177F64530017FEBA /* CoreText.framework in Frameworks */,
 				F09EAD0B15EC07E000BA6F33 /* GameKit.framework in Frameworks */,
 				F0CD5FD214CA92F000665366 /* OpenGL.framework in Frameworks */,
-				F05102821780AEC8008921A5 /* libRRiOS7Backport.a in Frameworks */,
 				F0CD5FD814CA92F000665366 /* AppKit.framework in Frameworks */,
 				F0CD646714CA991E00665366 /* QuartzCore.framework in Frameworks */,
 				F0CD646814CA994500665366 /* OpenAL.framework in Frameworks */,
 				F0CD646914CA995100665366 /* AudioToolbox.framework in Frameworks */,
 				F0CD646A14CA995B00665366 /* Foundation.framework in Frameworks */,
-				F0764BBE1780AD6400D8C164 /* libRRiOS7Backport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,7 +1058,7 @@
 			children = (
 				F0A2CAAB1600825F007CFDE3 /* Frameworks */,
 				F07249D516007F070073EABA /* Cocos2D */,
-				F0764BA11780A86E00D8C164 /* RRiOS7Backport */,
+				F08D199D1781E73E00C5F599 /* RRiOS7Backport */,
 				F06582BF14CA7BE20033B4F5 /* QuartzCore.framework */,
 				F06582C314CA7BE20033B4F5 /* OpenAL.framework */,
 				F06582C514CA7BE20033B4F5 /* AudioToolbox.framework */,
@@ -1171,37 +1125,6 @@
 				F0E3F67815B40FA800599E95 /* RRAIPlayer.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F0764B931780A7A900D8C164 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F0764B981780A7A900D8C164 /* libRRiOS7Backport.a */,
-				F0764B9A1780A7A900D8C164 /* Tests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F0764BA11780A86E00D8C164 /* RRiOS7Backport */ = {
-			isa = PBXGroup;
-			children = (
-				F0764BB41780A8E400D8C164 /* Headers */,
-				F0764B921780A7A900D8C164 /* RRiOS7Backport.xcodeproj */,
-			);
-			name = RRiOS7Backport;
-			sourceTree = "<group>";
-		};
-		F0764BB41780A8E400D8C164 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				F0764BA51780A8DC00D8C164 /* NSArray.h */,
-				F0764BA61780A8DC00D8C164 /* NSTimer.h */,
-				F0764BA71780A8DC00D8C164 /* NSData.h */,
-				F0764BA81780A8DC00D8C164 /* GKLocalPlayer.h */,
-				F0764BA91780A8DC00D8C164 /* UIView.h */,
-				F05102801780AEC8008921A5 /* libRRiOS7Backport.a */,
-			);
-			name = Headers;
 			sourceTree = "<group>";
 		};
 		F078FF1A15B9D2E200813DDD /* iPad */ = {
@@ -1560,6 +1483,33 @@
 			path = GL;
 			sourceTree = "<group>";
 		};
+		F08D199D1781E73E00C5F599 /* RRiOS7Backport */ = {
+			isa = PBXGroup;
+			children = (
+				F08D199E1781E73E00C5F599 /* LICENSE */,
+				F08D199F1781E73E00C5F599 /* README.md */,
+				F08D19A01781E73E00C5F599 /* RRiOS7Backport */,
+			);
+			path = RRiOS7Backport;
+			sourceTree = "<group>";
+		};
+		F08D19A01781E73E00C5F599 /* RRiOS7Backport */ = {
+			isa = PBXGroup;
+			children = (
+				F08D19A81781E73E00C5F599 /* GameKit */,
+			);
+			path = RRiOS7Backport;
+			sourceTree = "<group>";
+		};
+		F08D19A81781E73E00C5F599 /* GameKit */ = {
+			isa = PBXGroup;
+			children = (
+				F08D19A91781E73E00C5F599 /* GKLocalPlayer.h */,
+				F08D19AA1781E73E00C5F599 /* GKLocalPlayer.m */,
+			);
+			path = GameKit;
+			sourceTree = "<group>";
+		};
 		F08FBF7215C06CE9008085F1 /* RRDifficultyScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1776,7 +1726,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F0764B9C1780A7BA00D8C164 /* PBXTargetDependency */,
 			);
 			name = iOS;
 			productName = RRGame;
@@ -1795,7 +1744,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F0764BBD1780AD6000D8C164 /* PBXTargetDependency */,
 			);
 			name = MacOS;
 			productName = RRGameMacOS;
@@ -1822,12 +1770,6 @@
 			mainGroup = F06582B014CA7BE20033B4F5;
 			productRefGroup = F06582BC14CA7BE20033B4F5 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F0764B931780A7A900D8C164 /* Products */;
-					ProjectRef = F0764B921780A7A900D8C164 /* RRiOS7Backport.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F06582BA14CA7BE20033B4F5 /* iOS */,
@@ -1835,23 +1777,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F0764B981780A7A900D8C164 /* libRRiOS7Backport.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRRiOS7Backport.a;
-			remoteRef = F0764B971780A7A900D8C164 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F0764B9A1780A7A900D8C164 /* Tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Tests.octest;
-			remoteRef = F0764B991780A7A900D8C164 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F06582B914CA7BE20033B4F5 /* Resources */ = {
@@ -1921,11 +1846,8 @@
 				F0A35DD315D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
 				F088CB79177F63120017FEBA /* ChangeLog in Resources */,
 				F088CB7B177F63120017FEBA /* CMakeLists.txt in Resources */,
-				F0764BAA1780A8DC00D8C164 /* NSArray.h in Resources */,
-				F0764BAC1780A8DC00D8C164 /* NSTimer.h in Resources */,
-				F0764BAE1780A8DC00D8C164 /* NSData.h in Resources */,
-				F0764BB01780A8DC00D8C164 /* GKLocalPlayer.h in Resources */,
-				F0764BB21780A8DC00D8C164 /* UIView.h in Resources */,
+				F08D19B41781E73E00C5F599 /* LICENSE in Resources */,
+				F08D19B61781E73E00C5F599 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,11 +1897,8 @@
 				F09B451915FCEC5300A8EC9D /* Heredox.entitlements in Resources */,
 				F088CB7A177F63120017FEBA /* ChangeLog in Resources */,
 				F088CB7C177F63120017FEBA /* CMakeLists.txt in Resources */,
-				F0764BAB1780A8DC00D8C164 /* NSArray.h in Resources */,
-				F0764BAD1780A8DC00D8C164 /* NSTimer.h in Resources */,
-				F0764BAF1780A8DC00D8C164 /* NSData.h in Resources */,
-				F0764BB11780A8DC00D8C164 /* GKLocalPlayer.h in Resources */,
-				F0764BB31780A8DC00D8C164 /* UIView.h in Resources */,
+				F08D19B51781E73E00C5F599 /* LICENSE in Resources */,
+				F08D19B71781E73E00C5F599 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2156,6 +2075,7 @@
 				F088CB8F177F63120017FEBA /* vec2.c in Sources */,
 				F088CB91177F63120017FEBA /* vec3.c in Sources */,
 				F088CB93177F63120017FEBA /* vec4.c in Sources */,
+				F08D19BE1781E73E00C5F599 /* GKLocalPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2300,23 +2220,11 @@
 				F088CB90177F63120017FEBA /* vec2.c in Sources */,
 				F088CB92177F63120017FEBA /* vec3.c in Sources */,
 				F088CB94177F63120017FEBA /* vec4.c in Sources */,
+				F08D19BF1781E73E00C5F599 /* GKLocalPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F0764B9C1780A7BA00D8C164 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RRiOS7Backport;
-			targetProxy = F0764B9B1780A7BA00D8C164 /* PBXContainerItemProxy */;
-		};
-		F0764BBD1780AD6000D8C164 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RRiOS7Backport;
-			targetProxy = F0764BBC1780AD6000D8C164 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F065844814CA7BE60033B4F5 /* Debug */ = {
