@@ -25,19 +25,11 @@
 //
 
 
-static BOOL isDeviceIPad(){
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ) {
-        return YES;
-    }
-#endif
-    return NO;
-}
+#define IS_IPHONE_5 ([[UIScreen mainScreen]bounds].size.height == 568.0f)
+#define IS_IPAD ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
 
-
-static BOOL isDeviceMac(){
 #if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
-    return YES;
+    #define IS_MAC YES
+#else
+    #define IS_MAC NO
 #endif
-    return NO;
-}
