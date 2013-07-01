@@ -24,12 +24,12 @@
 //  SOFTWARE.
 //
 
-
-#define IS_IPHONE_5 ([[UIScreen mainScreen]bounds].size.height == 568.0f)
-#define IS_IPAD ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-
 #if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+    #define IS_IPHONE_5 NO
+    #define IS_IPAD NO
     #define IS_MAC YES
 #else
+    #define IS_IPHONE_5 ([[UIScreen mainScreen]bounds].size.height == 568.0f)
+    #define IS_IPAD ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
     #define IS_MAC NO
 #endif

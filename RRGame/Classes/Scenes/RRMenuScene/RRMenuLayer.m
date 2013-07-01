@@ -259,14 +259,10 @@
         RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
     }else{
-    
-        // need spinner here
-        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-        
+
         // Load data first
         [match loadMatchDataWithCompletionHandler: ^(NSData *matchData, NSError *error) {
-            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-            
+
             if( error ){
                 
                 RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
