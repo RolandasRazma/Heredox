@@ -76,7 +76,7 @@
                 [buttonPlayers1 setPosition:CGPointMake(170, 300)];
                 [buttonPlayers2 setPosition:CGPointMake(170, 245)];
                 
-                [buttonRules setPosition:CGPointMake(195, 155)];
+                [buttonRules setPosition:CGPointMake(195, 180)];
             }else{
                 [buttonPlayers1 setPosition:CGPointMake(195, 240)];
                 [buttonPlayers2 setPosition:CGPointMake(195, 185)];
