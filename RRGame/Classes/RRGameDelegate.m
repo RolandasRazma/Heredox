@@ -98,14 +98,13 @@
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 
 	// If the 1st suffix is not found and if fallback is enabled then fallback suffixes are going to searched. If none is found, it will try with the name without suffix.
-	// On iPad HD  : "-ipadhd", "-ipad",  "-hd"
-	// On iPad     : "-ipad", "-hd"
-	// On iPhone HD: "-hd"
 	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
-	[sharedFileUtils setEnableFallbackSuffixes:NO];             // Default: NO. No fallback suffixes are going to be used
-	[sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
-	[sharedFileUtils setiPadSuffix:@"-hd"];                     // Default on iPad is "ipad"
-	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-hd"];        // Default on iPad RetinaDisplay is "-ipadhd"
+	[sharedFileUtils setEnableFallbackSuffixes:NO];     // Default: NO. No fallback suffixes are going to be used
+	[sharedFileUtils.suffixesDict setObject:@"-hd"      forKey:kCCFileUtilsiPhoneHD];
+    [sharedFileUtils.suffixesDict setObject:@"-hd"      forKey:kCCFileUtilsiPad];
+    [sharedFileUtils.suffixesDict setObject:@"-hd"      forKey:kCCFileUtilsiPadHD];
+    [sharedFileUtils.suffixesDict setObject:@"-568h"    forKey:kCCFileUtilsiPhone5];
+    [sharedFileUtils.suffixesDict setObject:@"-568h@2x" forKey:kCCFileUtilsiPhone5HD];
     
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
