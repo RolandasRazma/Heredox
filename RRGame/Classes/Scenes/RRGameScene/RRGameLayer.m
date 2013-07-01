@@ -98,8 +98,9 @@
     if( _match ){
         [self setUserInteractionEnabled: [_match isMyTurn]];
         
-        if (_match.status == GKTurnBasedMatchStatusEnded) {
+        if ( _match.status == GKTurnBasedMatchStatusEnded ) {
             // Match Ended
+            [self setUserInteractionEnabled:NO];
         } else {
             // x players turn
         }
@@ -639,8 +640,6 @@
 - (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
     [super setUserInteractionEnabled:userInteractionEnabled];
 
-    NSLog(@"setUserInteractionEnabled: %i", userInteractionEnabled);
-    
     [_buttonEndTurn setUserInteractionEnabled:userInteractionEnabled];
     [_gameBoardLayer setUserInteractionEnabled:userInteractionEnabled];
 }
