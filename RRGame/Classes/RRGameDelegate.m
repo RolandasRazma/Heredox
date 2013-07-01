@@ -78,7 +78,7 @@
 	[_director setProjection:kCCDirectorProjection2D];
 
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ![_director enableRetinaDisplay:!isDeviceIPad()] )
+	if( ![_director enableRetinaDisplay:!IS_IPAD] )
 		CCLOG(@"Retina Display Not supported");
 
 	// Create a Navigation Controller with the Director
@@ -100,9 +100,9 @@
 	// If the 1st suffix is not found and if fallback is enabled then fallback suffixes are going to searched. If none is found, it will try with the name without suffix.
 	CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
 	[sharedFileUtils setEnableFallbackSuffixes:NO];     // Default: NO. No fallback suffixes are going to be used
-	[sharedFileUtils.suffixesDict setObject:@"-hd"      forKey:kCCFileUtilsiPhoneHD];
-    [sharedFileUtils.suffixesDict setObject:@"-hd"      forKey:kCCFileUtilsiPad];
-    [sharedFileUtils.suffixesDict setObject:@"-hd"      forKey:kCCFileUtilsiPadHD];
+	[sharedFileUtils.suffixesDict setObject:@"@2x"      forKey:kCCFileUtilsiPhoneHD];
+    [sharedFileUtils.suffixesDict setObject:@"@2x"      forKey:kCCFileUtilsiPad];
+    [sharedFileUtils.suffixesDict setObject:@"@2x"      forKey:kCCFileUtilsiPadHD];
     [sharedFileUtils.suffixesDict setObject:@"-568h"    forKey:kCCFileUtilsiPhone5];
     [sharedFileUtils.suffixesDict setObject:@"-568h@2x" forKey:kCCFileUtilsiPhone5HD];
     

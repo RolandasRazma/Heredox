@@ -66,7 +66,7 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
         [_menu addChild:buttonQuit];
         
         // Device layout
-        if( isDeviceIPad() || isDeviceMac() ){
+        if( IS_IPAD || IS_MAC ){
             [buttonLocal setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 540)];
             [buttonGameCenter setPosition:CGPointMake(_menu.boundingBox.size.width /2, 380)];
             

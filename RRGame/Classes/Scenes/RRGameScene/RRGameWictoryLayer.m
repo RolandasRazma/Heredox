@@ -129,7 +129,7 @@ static BOOL RRGameWictoryLayerVisible = NO;
         
         
         // Device layout
-        if( isDeviceIPad() || isDeviceMac() ){
+        if( IS_IPAD || IS_MAC ){
             [winningBanner setPosition:CGPointMake(_menu.boundingBox.size.width /2, _menu.boundingBox.size.height /2 +80)];
             
             [scoreBlack setPosition:CGPointMake(100, 180)];

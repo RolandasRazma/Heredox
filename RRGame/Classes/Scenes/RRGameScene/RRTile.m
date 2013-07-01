@@ -102,7 +102,7 @@
 
 
 + (const CGFloat)tileSize {
-    return ((isDeviceIPad()||isDeviceMac())?76.0f *2.0f:76.0f);
+    return ((IS_IPAD||IS_MAC)?76.0f *2.0f:76.0f);
 }
 
 
@@ -189,7 +189,7 @@
         
 #if TARGET_IPHONE_SIMULATOR
         /*
-        _debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Courier-Bold" fontSize: (isDeviceIPad()?26:13)];
+        _debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Courier-Bold" fontSize: (IS_IPAD?26:13)];
         [_debugLabel setColor: ccGREEN];
         [_debugLabel setPosition:CGPointMake(self.textureRect.size.width /2, self.textureRect.size.height /2)];
         [self addChild:_debugLabel];

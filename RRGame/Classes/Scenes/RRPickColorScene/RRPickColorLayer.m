@@ -52,7 +52,7 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
 
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((isDeviceIPad()||isDeviceMac())?@"RRBackgroundPlayerColor~ipad.png":@"RRBackgroundPlayerColor.png")];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((IS_IPAD||IS_MAC)?@"RRBackgroundPlayerColor~ipad.png":@"RRBackgroundPlayerColor.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite];
 
@@ -80,7 +80,7 @@
         CGFloat topTopY;        // Offset from top of upper rect
         
         // Device layout
-        if( isDeviceIPad() || isDeviceMac() ){
+        if( IS_IPAD || IS_MAC ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
             [titleTextSprite setPosition:CGPointMake(315, 920)];
 

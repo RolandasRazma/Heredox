@@ -50,7 +50,7 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((isDeviceIPad()||isDeviceMac())?@"RRBackgroundDifficulty~ipad.png":@"RRBackgroundDifficulty.png")];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((IS_IPAD||IS_MAC)?@"RRBackgroundDifficulty~ipad.png":@"RRBackgroundDifficulty.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
@@ -85,7 +85,7 @@
 
         
         // Device layout
-        if( isDeviceIPad() || isDeviceMac() ){
+        if( IS_IPAD || IS_MAC ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
             [buttonStartGame setPosition:CGPointMake(winSize.width /2, 100)];
             

@@ -77,8 +77,8 @@
 
     // Suffixes
 	CCFileUtils *fileUtils = [CCFileUtils sharedFileUtils];
-    [[fileUtils suffixesDict] setObject:@"-hd" forKey:kCCFileUtilsMac];
-    [[fileUtils suffixesDict] setObject:@"-hd" forKey:kCCFileUtilsMacHD];
+    [[fileUtils suffixesDict] setObject:@"@2x" forKey:kCCFileUtilsMac];
+    [[fileUtils suffixesDict] setObject:@"@2x" forKey:kCCFileUtilsMacHD];
 
     // Init RRHeredox
     [RRHeredox sharedInstance];

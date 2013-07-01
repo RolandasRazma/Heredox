@@ -42,7 +42,7 @@
     if( (self = [super init]) ){
 
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((isDeviceIPad()||isDeviceMac())?@"RRBackgroundMenu~ipad.png":@"RRBackgroundMenu.png")];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((IS_IPAD||IS_MAC)?@"RRBackgroundMenu~ipad.png":@"RRBackgroundMenu.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
@@ -62,7 +62,7 @@
         
         
         // Device layout
-        if( isDeviceIPad() || isDeviceMac() ){
+        if( IS_IPAD || IS_MAC ){
             [buttonPlayers1 setPosition:CGPointMake(460, 505)];
             [buttonPlayers2 setPosition:CGPointMake(460, 400)];
             

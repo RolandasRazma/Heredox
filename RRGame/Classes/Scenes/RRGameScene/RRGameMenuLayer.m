@@ -134,7 +134,7 @@ static BOOL RRGameMenuLayerVisible = NO;
         [_menu addChild:_sliderSound];
         
         // Device layout
-        if( isDeviceIPad() || isDeviceMac() ){
+        if( IS_IPAD || IS_MAC ){
             [buttonResume setPosition:CGPointMake(_menu.boundingBox.size.width  /2, 570)];
             [_buttonRestart setPosition:CGPointMake(_menu.boundingBox.size.width /2, 450)];
             [buttonQuit setPosition:CGPointMake(_menu.boundingBox.size.width /2, 330)];

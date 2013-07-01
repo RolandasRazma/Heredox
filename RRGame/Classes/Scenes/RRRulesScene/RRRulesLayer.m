@@ -41,7 +41,7 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Add background
-        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((isDeviceIPad()||isDeviceMac())?@"RRBackgroundRules~ipad.png":@"RRBackgroundRules.png")];
+        CCSprite *backgroundSprite = [CCSprite spriteWithFile:((IS_IPAD||IS_MAC)?@"RRBackgroundRules~ipad.png":@"RRBackgroundRules.png")];
         [backgroundSprite setAnchorPoint:CGPointZero];
         [self addChild:backgroundSprite z:-1];
         
@@ -59,7 +59,7 @@
         
         
         // Device layout
-        if( isDeviceIPad() || isDeviceMac() ){
+        if( IS_IPAD || IS_MAC ){
             [buttonHome setPosition:CGPointMake(winSize.width -15, winSize.height -15)];
             [buttonWWW setPosition:CGPointMake(winSize.width /2, 155)];
         }else{
