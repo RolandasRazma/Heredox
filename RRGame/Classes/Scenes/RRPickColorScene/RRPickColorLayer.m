@@ -90,6 +90,19 @@
             leftBottomY = 210;
             rightTopY   = 400;
             topTopY     = 170;
+        }else if( IS_IPHONE_5 ){
+            [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
+            [buttonHome setScale:0.9f];
+            
+            [titleTextSprite setPosition:CGPointMake(130, 520)];
+            [titleTextSprite setScale:0.9f];
+            
+            [_backgroundPlayerWhiteSelectedSprite setPosition:CGPointMake( 63, 370)];
+            [_backgroundPlayerBlackSelectedSprite setPosition:CGPointMake(242, 137)];
+            
+            leftBottomY = 144;
+            rightTopY   = 244;
+            topTopY     = 80 ;
         }else{
             [buttonHome setPosition:CGPointMake(winSize.width -5, winSize.height -5)];
             [buttonHome setScale:0.9f];
@@ -155,6 +168,7 @@
 
 
 - (void)touchMovedToLocation:(CGPoint)location {
+
     [_backgroundPlayerWhiteSelectedSprite setVisible:NO];
     [_backgroundPlayerBlackSelectedSprite setVisible:NO];
 
