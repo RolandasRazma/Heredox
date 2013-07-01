@@ -68,14 +68,21 @@
             
             [buttonRules setPosition:CGPointMake(460, 240)];
         }else{
-            [buttonPlayers1 setPosition:CGPointMake(195, 240)];
             [buttonPlayers1 setScale:0.8f];
-            
-            [buttonPlayers2 setPosition:CGPointMake(195, 185)];
             [buttonPlayers2 setScale:0.8f];
+            [buttonRules    setScale:0.8f];
             
-            [buttonRules setPosition:CGPointMake(195, 115)];
-            [buttonRules setScale:0.8f];
+            if( IS_IPHONE_5 ){
+                [buttonPlayers1 setPosition:CGPointMake(170, 300)];
+                [buttonPlayers2 setPosition:CGPointMake(170, 245)];
+                
+                [buttonRules setPosition:CGPointMake(195, 155)];
+            }else{
+                [buttonPlayers1 setPosition:CGPointMake(195, 240)];
+                [buttonPlayers2 setPosition:CGPointMake(195, 185)];
+                
+                [buttonRules setPosition:CGPointMake(195, 115)];
+            }
         }
     }
     return self;
