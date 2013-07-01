@@ -98,14 +98,20 @@
             
             [buttonStartGame setPosition:CGPointMake(winSize.width /2, 45)];
             
-            [_buttonNovice setPosition:CGPointMake(75, 210)];
             [_buttonNovice setScale:0.9f];
-            
-            [_buttonDeacon setPosition:CGPointMake(winSize.width /2, 205)];
             [_buttonDeacon setScale:0.9f];
+            [_buttonAbbot  setScale:0.9f];
             
-            [_buttonAbbot setPosition:CGPointMake(265, 205)];
-            [_buttonAbbot setScale:0.9f];
+            if( IS_IPHONE_5 ){
+                [_buttonNovice setPosition:CGPointMake(75, 260)];
+                [_buttonDeacon setPosition:CGPointMake(winSize.width /2, 255)];
+                [_buttonAbbot setPosition:CGPointMake(265, 255)];
+            }else{
+                [_buttonNovice setPosition:CGPointMake(75, 210)];
+                [_buttonDeacon setPosition:CGPointMake(winSize.width /2, 205)];
+                [_buttonAbbot setPosition:CGPointMake(265, 205)];
+            }
+            
         }
     }
     return self;
