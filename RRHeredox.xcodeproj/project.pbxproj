@@ -86,6 +86,8 @@
 		F03EF74A15B042E80085E637 /* textures.png in Resources */ = {isa = PBXBuildFile; fileRef = F03EF74315B042E80085E637 /* textures.png */; };
 		F03EF75E15B059F30085E637 /* UDSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDSpriteButton.m */; };
 		F03EF75F15B059F30085E637 /* UDSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EF75D15B059F30085E637 /* UDSpriteButton.m */; };
+		F04C849F1781F14B00512994 /* RRBackgroundWhite-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F04C849E1781F14B00512994 /* RRBackgroundWhite-568h@2x.png */; };
+		F04C84A11781F15400512994 /* RRBackgroundBlack-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F04C84A01781F15400512994 /* RRBackgroundBlack-568h@2x.png */; };
 		F0602A4215AFA16600B60FB1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3B15AFA16600B60FB1 /* Default.png */; };
 		F0602A4315AFA16600B60FB1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3C15AFA16600B60FB1 /* Default@2x.png */; };
 		F0602A4515AFA16600B60FB1 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0602A3E15AFA16600B60FB1 /* Icon.png */; };
@@ -473,6 +475,8 @@
 		F03EF74315B042E80085E637 /* textures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textures.png; sourceTree = "<group>"; };
 		F03EF75C15B059F30085E637 /* UDSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDSpriteButton.h; sourceTree = "<group>"; };
 		F03EF75D15B059F30085E637 /* UDSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDSpriteButton.m; sourceTree = "<group>"; };
+		F04C849E1781F14B00512994 /* RRBackgroundWhite-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite-568h@2x.png"; sourceTree = "<group>"; };
+		F04C84A01781F15400512994 /* RRBackgroundBlack-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack-568h@2x.png"; sourceTree = "<group>"; };
 		F0602A3B15AFA16600B60FB1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F0602A3C15AFA16600B60FB1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F0602A3E15AFA16600B60FB1 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -1597,8 +1601,10 @@
 				F0C569791781E2130099C7E5 /* RRBackgroundDifficulty-568h@2x.png */,
 				F012ACF615CDBF810095190C /* RRBackgroundBlack.png */,
 				F012ACF715CDBF810095190C /* RRBackgroundBlack@2x.png */,
+				F04C84A01781F15400512994 /* RRBackgroundBlack-568h@2x.png */,
 				F012ACFC15CDBFF10095190C /* RRBackgroundWhite.png */,
 				F012ACFD15CDBFF10095190C /* RRBackgroundWhite@2x.png */,
+				F04C849E1781F14B00512994 /* RRBackgroundWhite-568h@2x.png */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1848,6 +1854,8 @@
 				F088CB7B177F63120017FEBA /* CMakeLists.txt in Resources */,
 				F08D19B41781E73E00C5F599 /* LICENSE in Resources */,
 				F08D19B61781E73E00C5F599 /* README.md in Resources */,
+				F04C849F1781F14B00512994 /* RRBackgroundWhite-568h@2x.png in Resources */,
+				F04C84A11781F15400512994 /* RRBackgroundBlack-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

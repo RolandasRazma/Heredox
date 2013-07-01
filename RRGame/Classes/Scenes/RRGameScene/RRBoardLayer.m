@@ -306,7 +306,7 @@
                               (winSize.height -tileBounds.size.height) /2 -tileBounds.origin.y);
 
     // Offset
-    newPosition.y += ((IS_IPAD||IS_MAC)?60:30);
+    newPosition.y += ((IS_IPAD||IS_MAC)?60:((IS_IPHONE_5)?45:30));
     
     [self stopAllActions];
     if( animated ){
