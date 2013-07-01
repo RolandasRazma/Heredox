@@ -60,7 +60,7 @@
         RRMatchData matchRepresentation = _match.matchRepresentation;
         
         if( matchRepresentation.seed ){
-            [self resetGameWithSeed:matchRepresentation.seed];
+            [self resetGameWithSeed:_match.gameSeed];
 
             for( int turnNo=0; turnNo < matchRepresentation.totalTileMoves; turnNo++ ){
                 RRTileMove tileMove = matchRepresentation.tileMoves[turnNo];
@@ -300,12 +300,7 @@
         [_buttonEndTurn setOpacity:0];
         
         if( _match ){
-            RRMatchData matchRepresentation = _match.matchRepresentation;
-            matchRepresentation.seed = _gameSeed;
-            
-            [_match setMatchRepresentation:matchRepresentation];
-            
-            NSLog(@"set seed: %i", matchRepresentation.seed);
+            [_match setGameSeed: _gameSeed];
         }
     }
 }
@@ -336,25 +331,47 @@
         RRTileMove tileMove = _gameBoardLayer.activeTile.tileMove;
         
         if( [_gameBoardLayer haltTilePlaces] ){
+
             if( _match && [_match isMyTurn] && endMatchTurn ){
-                // Update data
-                [_match addTileMove:tileMove byParticipant:_match.currentParticipant];
-                
-                // There is mathc
-                [_match endTurnWithNextParticipant: _match.nextParticipant
-                                         matchData: _match.transitMatchData
-                                 completionHandler: ^(NSError *error) {
-                                     NSLog(@"endTurnError: %@", error);
-                                 }];
+                [_match addTileMove:tileMove];
             }
             
             if( _deck.count > 0 ){
+                
+                // Give turn to another player
+                if( _match && [_match isMyTurn] && endMatchTurn ){
+                    [_match endTurnWithNextParticipant: _match.nextParticipant
+                                             matchData: _match.transitMatchData
+                                     completionHandler: ^(NSError *error) {
+                                         NSLog(@"endTurnError: %@", error);
+                                     }];
+                }
                 
                 _playerColor = RRPlayerColorInverse(_playerColor);
                 [_backgroundLayer fadeToSpriteWithTag:_playerColor duration:(animated?0.7f:0.0f)];
                 
                 [self newTurn];
             }else{
+                
+                // match ended
+                if( _match && [_match isMyTurn] && endMatchTurn ){
+                    if( _scoreLayer.scoreBlack == _scoreLayer.scoreWhite ){
+                        [[_match participantForColor:RRPlayerColorBlack] setMatchOutcome:GKTurnBasedMatchOutcomeTied];
+                        [[_match participantForColor:RRPlayerColorWhite] setMatchOutcome:GKTurnBasedMatchOutcomeTied];
+                    }else if( _scoreLayer.scoreBlack > _scoreLayer.scoreWhite ){
+                        [[_match participantForColor:RRPlayerColorBlack] setMatchOutcome:GKTurnBasedMatchOutcomeWon];
+                        [[_match participantForColor:RRPlayerColorWhite] setMatchOutcome:GKTurnBasedMatchOutcomeLost];
+                    }else{
+                        [[_match participantForColor:RRPlayerColorBlack] setMatchOutcome:GKTurnBasedMatchOutcomeLost];
+                        [[_match participantForColor:RRPlayerColorWhite] setMatchOutcome:GKTurnBasedMatchOutcomeWon];
+                    }
+
+                    [_match endMatchInTurnWithMatchData: _match.transitMatchData
+                                      completionHandler: ^(NSError *error) {
+                                          NSLog(@"endMatchInTurnWithMatchData: %@", error);
+                                      }];
+                }
+                
                 [_buttonEndTurn   runAction: [CCFadeOut actionWithDuration:(animated?0.3f:0.0f)]];
                 [_playerNameLabel runAction: [CCFadeOut actionWithDuration:(animated?0.3f:0.0f)]];
                 
@@ -380,6 +397,7 @@
                     }
                 }
             }
+
         }
         
     }

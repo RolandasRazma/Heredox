@@ -20,15 +20,23 @@ typedef struct RRMatchData {
 
 @interface GKTurnBasedMatch (RRHeredox)
 
-- (GKTurnBasedParticipant *)nextParticipant;
 - (BOOL)isMyTurn;
-
-- (BOOL)addTileMove:(RRTileMove)tileMove byParticipant:(GKTurnBasedParticipant *)participant;
+- (GKTurnBasedParticipant *)nextParticipant;
 
 - (RRMatchData)matchRepresentation;
 - (void)setMatchRepresentation:(RRMatchData)matchRepresentation;
 
 - (NSData *)transitMatchData;
 - (void)invalidateMatchRepresentation;
+
+@end
+
+
+@interface GKTurnBasedMatch (RRMatchData)
+
+@property(nonatomic, assign) NSUInteger gameSeed;
+
+- (void)addTileMove:(RRTileMove)tileMove;
+- (GKTurnBasedParticipant *)participantForColor:(RRPlayerColor)playerColor;
 
 @end
