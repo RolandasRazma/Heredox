@@ -221,30 +221,31 @@
         [match setFirstParticipantColor: (RRPlayerColor)UDRand(RRPlayerColorBlack, RRPlayerColorWhite)];
 
         [[RRAudioEngine sharedEngine] replayEffect: [NSString stringWithFormat:@"RRPlayerColor%u.mp3", match.firstParticipantColor]];
-        
+
         // Start game
         RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];
         [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
     }else{
 
         // Load data first
+        __weak GKTurnBasedMatch *weakMatch = match;
         [match loadMatchDataWithCompletionHandler: ^(NSData *matchData, NSError *error) {
-
-            if( error ){
-                
-                RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
-                                                         cancelButtonName: @"RRButtonContinue"
-                                                       cancelButtonAction: nil];
-                [self addChild:popupLayer z:1000];
-                
-            }else{
-                [match invalidateMatchRepresentation];
-                
-                // Start game
-                RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];
-                [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
-            }
-            
+            RunOnMainThreadAsync(^{
+                if( error ){
+                    
+                    RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                             cancelButtonName: @"RRButtonContinue"
+                                                           cancelButtonAction: nil];
+                    [self addChild:popupLayer z:1000];
+                    
+                }else{
+                    [weakMatch invalidateMatchRepresentation];
+                    
+                    // Start game
+                    RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:weakMatch];
+                    [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
+                } 
+            });
         }];
         
     }
