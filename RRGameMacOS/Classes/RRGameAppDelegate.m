@@ -157,6 +157,12 @@
             return;
         }
         
+        // If we in same game as updated
+        if ( [_director.runningScene isKindOfClass: [RRGameScene class]] ) {
+            RRGameScene *gameScene = (RRGameScene *)_director.runningScene;
+            if( [gameScene.match isEqual:match] ) return;
+        }
+        
         // Load data first
         RRPopupLayer *bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"RRTextWaitingForOtherPlayer"];
         [_director.runningScene addChild:bannerWaitingForPlayer z:1000];
@@ -172,6 +178,7 @@
                 [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
             });
         }];
+        
     }
     
 }
