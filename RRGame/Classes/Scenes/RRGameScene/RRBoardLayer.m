@@ -47,7 +47,7 @@
 }
 
 
-- (NSInteger)mouseDelegatePriority {
+- (NSInteger)mousePriority {
 	return -1;
 }
 

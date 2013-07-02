@@ -58,7 +58,7 @@
 #pragma mark CCNode
 
 
-- (NSInteger)mouseDelegatePriority {
+- (NSInteger)mousePriority {
 	return -99;
 }
 

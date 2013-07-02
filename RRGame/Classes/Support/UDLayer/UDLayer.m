@@ -41,7 +41,7 @@
     [self setTouchEnabled: enabled];
     if( self.isRunning ){
         if( enabled ){
-            [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate:self priority:[self mouseDelegatePriority] swallowsTouches:YES];
+            [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate:self priority:[self mousePriority] swallowsTouches:YES];
         }else{
             [[CCDirector sharedDirector].touchDispatcher removeDelegate:self];
         }
@@ -97,13 +97,18 @@
 #ifdef __CC_PLATFORM_IOS
 
 
+#pragma mark -
+#pragma mark CCNode
+
+
 - (void)onEnter {
+    [super onEnter];
+    
     if( [self isUserInteractionEnabled] ){
         [[CCDirector sharedDirector].touchDispatcher addTargetedDelegate: self
-                                                                priority: [self mouseDelegatePriority]
+                                                                priority: [self mousePriority]
                                                          swallowsTouches: YES];
     }
-    [super onEnter];
 }
 
 
@@ -140,6 +145,19 @@
 
 
 #elif defined(__CC_PLATFORM_MAC)
+
+
+#pragma mark -
+#pragma mark CCNode
+
+
+- (void)onEnter {
+    [super onEnter];
+    
+    if( self.isMouseEnabled ){
+        [self setMousePriority: [self mousePriority]];
+    }
+}
 
 
 #pragma mark -

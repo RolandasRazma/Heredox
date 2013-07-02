@@ -88,7 +88,7 @@ static BOOL RRMenuMultiplayerLayerVisible = NO;
 #pragma mark CCNode
 
 
-- (NSInteger)mouseDelegatePriority {
+- (NSInteger)mousePriority {
 	return -99;
 }
 

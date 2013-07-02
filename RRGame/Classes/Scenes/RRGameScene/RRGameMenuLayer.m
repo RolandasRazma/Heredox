@@ -39,7 +39,7 @@ static BOOL RRGameMenuLayerVisible = NO;
 #pragma mark CCNode
 
 
-- (NSInteger)mouseDelegatePriority {
+- (NSInteger)mousePriority {
 	return -99;
 }
 

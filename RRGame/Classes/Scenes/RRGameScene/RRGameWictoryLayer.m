@@ -38,7 +38,7 @@ static BOOL RRGameWictoryLayerVisible = NO;
 #pragma mark CCNode
 
 
-- (NSInteger)mouseDelegatePriority {
+- (NSInteger)mousePriority {
 	return -99;
 }
 
