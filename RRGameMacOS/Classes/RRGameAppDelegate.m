@@ -150,23 +150,19 @@
         
         // If we still loading give it some time to finish.
         if( [_director.runningScene isKindOfClass: [RRDefaultScene class]] ){
-            __weak RRGameDelegate *weakSelf = self;
             RunAfterDelay(1.0f, ^{
-                [weakSelf player:player receivedTurnEventForMatch:match didBecomeActive:didBecomeActive];
+                [self player:player receivedTurnEventForMatch:match didBecomeActive:didBecomeActive];
             });
             return;
         }
         
         // Load data first
-        __weak GKTurnBasedMatch *weakMatch = match;
         [match loadMatchDataWithCompletionHandler: ^(NSData *matchData, NSError *error) {
             if( error ) return;
-            
+
             RunOnMainThreadAsync(^{
-                [weakMatch invalidateMatchRepresentation];
-                
                 // Start game
-                RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:weakMatch];
+                RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];
                 [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
             });
         }];

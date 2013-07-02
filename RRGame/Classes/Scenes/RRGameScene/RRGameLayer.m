@@ -341,7 +341,6 @@
                 // Give turn to another player
                 if( _match && [_match isMyTurn] && endMatchTurn ){
                     [_match endTurnWithNextParticipant: _match.nextParticipant
-                                             matchData: _match.transitMatchData
                                      completionHandler: ^(NSError *error) {
                                          NSLog(@"endTurnError: %@", error);
                                      }];

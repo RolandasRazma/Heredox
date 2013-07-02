@@ -228,7 +228,6 @@
     }else{
 
         // Load data first
-        __weak GKTurnBasedMatch *weakMatch = match;
         [match loadMatchDataWithCompletionHandler: ^(NSData *matchData, NSError *error) {
             RunOnMainThreadAsync(^{
                 if( error ){
@@ -239,10 +238,8 @@
                     [self addChild:popupLayer z:1000];
                     
                 }else{
-                    [weakMatch invalidateMatchRepresentation];
-                    
                     // Start game
-                    RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:weakMatch];
+                    RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];
                     [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
                 } 
             });
