@@ -130,6 +130,7 @@
 
 
 - (id)initWithMatch:(GKTurnBasedMatch *)match {
+    NSAssert(match, @"No match specifyed");
     
     if( (self = [self initWithGameMode:RRGameModeClosed firstPlayerColor:match.firstParticipantColor] ) ){
         _match = match;
