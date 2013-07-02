@@ -29,6 +29,7 @@
 #import "RRDefaultScene.h"
 #import "RRMenuScene.h"
 #import "RRGameScene.h"
+#import "RRPopupLayer.h"
 
 
 @implementation RRGameAppDelegate
@@ -150,16 +151,21 @@
         
         // If we still loading give it some time to finish.
         if( [_director.runningScene isKindOfClass: [RRDefaultScene class]] ){
-            RunAfterDelay(1.0f, ^{
+            RunAfterDelay(0.3f, ^{
                 [self player:player receivedTurnEventForMatch:match didBecomeActive:didBecomeActive];
             });
             return;
         }
         
         // Load data first
+        RRPopupLayer *bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"RRTextWaitingForOtherPlayer"];
+        [_director.runningScene addChild:bannerWaitingForPlayer z:1000];
+        
         [match loadMatchDataWithCompletionHandler: ^(NSData *matchData, NSError *error) {
+            [bannerWaitingForPlayer removeFromParentAndCleanup:YES];
+            
             if( error ) return;
-
+            
             RunOnMainThreadAsync(^{
                 // Start game
                 RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];

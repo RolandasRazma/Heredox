@@ -228,15 +228,18 @@
     }else{
 
         // Load data first
+        RRPopupLayer *bannerWaitingForPlayer = [RRPopupLayer layerWithMessage: @"RRTextWaitingForOtherPlayer"];
+        [self addChild:bannerWaitingForPlayer z:1000];
+        
         [match loadMatchDataWithCompletionHandler: ^(NSData *matchData, NSError *error) {
             RunOnMainThreadAsync(^{
+                [bannerWaitingForPlayer removeFromParentAndCleanup:YES];
+                
                 if( error ){
-                    
                     RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
                                                              cancelButtonName: @"RRButtonContinue"
                                                            cancelButtonAction: nil];
                     [self addChild:popupLayer z:1000];
-                    
                 }else{
                     // Start game
                     RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:match];
