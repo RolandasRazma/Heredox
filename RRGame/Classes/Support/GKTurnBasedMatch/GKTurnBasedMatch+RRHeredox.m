@@ -130,14 +130,14 @@
 }
 
 
-- (NSUInteger)gameSeed {
+- (unsigned int)gameSeed {
     RRMatchData matchRepresentation = self.matchRepresentation;
     
     return matchRepresentation.seed;
 }
 
 
-- (void)setGameSeed:(NSUInteger)gameSeed {
+- (void)setGameSeed:(unsigned int)gameSeed {
     RRMatchData matchRepresentation = self.matchRepresentation;
     
     matchRepresentation.seed = gameSeed;
