@@ -30,7 +30,10 @@
 #import "RRPlayer.h"
 
 
-@implementation RRGameScene
+@implementation RRGameScene {
+    NSUInteger  _numberOfPlayers;
+    RRGameLayer *_gameLayer;
+}
 
 
 #pragma mark -
@@ -40,8 +43,10 @@
 - (id)initWithMatch:(GKTurnBasedMatch *)match {
     
     if( (self = [self init]) ){
-        _numberOfPlayers = 2;
-        [self addChild: [[RRGameLayer alloc] initWithMatch:match]];
+        _numberOfPlayers    = 2;
+        _gameLayer          = [[RRGameLayer alloc] initWithMatch:match];
+        
+        [self addChild: _gameLayer];
     }
     return self;
     
@@ -51,37 +56,41 @@
 - (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers playerColor:(RRPlayerColor)playerColor {
     if( (self = [self init]) ){
         _numberOfPlayers = numberOfPlayers;
-        RRGameLayer *gameLayer;
-        
+
         if( NO ){ // AI vs AI
-            gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor: RRPlayerColorWhite];
-            [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
+            _gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor: RRPlayerColorWhite];
+            [_gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
             
             {
                 RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: RRPlayerColorWhite];
                 [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
-                [gameLayer setPlayer1: player];
+                [_gameLayer setPlayer1: player];
             }
             
             {
                 RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: RRPlayerColorBlack];
                 [player setDificultyLevel: [[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
-                [gameLayer setPlayer2: player];
+                [_gameLayer setPlayer2: player];
             }
         }else{
-            gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:(( _numberOfPlayers == 1 )?RRPlayerColorWhite:playerColor)];
-            [gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
+            _gameLayer = [RRGameLayer layerWithGameMode:gameMode firstPlayerColor:(( _numberOfPlayers == 1 )?RRPlayerColorWhite:playerColor)];
+            [_gameLayer setPlayer1: [RRPlayer playerWithPlayerColor:playerColor]];
             
             if( numberOfPlayers == 1 ){
                 RRAIPlayer *player = [RRAIPlayer playerWithPlayerColor: ((playerColor == RRPlayerColorBlack)?RRPlayerColorWhite:RRPlayerColorBlack)];
                 [player setDificultyLevel: (RRAILevel)[[NSUserDefaults standardUserDefaults] integerForKey:@"RRHeredoxAILevel"]];
-                [gameLayer setPlayer2: player];
+                [_gameLayer setPlayer2: player];
             }
         }
         
-        [self addChild: gameLayer];
+        [self addChild: _gameLayer];
     }
     return self;
+}
+
+
+- (GKTurnBasedMatch *)match {
+    return _gameLayer.match;
 }
 
 

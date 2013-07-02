@@ -27,9 +27,9 @@
 #import "CCScene.h"
 
 
-@interface RRGameScene : CCScene {
-    NSUInteger  _numberOfPlayers;
-}
+@interface RRGameScene : CCScene
+
+@property (nonatomic, readonly) GKTurnBasedMatch *match;
 
 - (id)initWithGameMode:(RRGameMode)gameMode numberOfPlayers:(NSUInteger)numberOfPlayers playerColor:(RRPlayerColor)playerColor;
 - (id)initWithMatch:(GKTurnBasedMatch *)match;

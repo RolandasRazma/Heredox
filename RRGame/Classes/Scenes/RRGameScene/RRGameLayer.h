@@ -63,6 +63,7 @@
 
 @property (nonatomic, retain) RRPlayer *player1;
 @property (nonatomic, retain) RRPlayer *player2;
+@property (nonatomic, readonly) GKTurnBasedMatch *match;
 
 + (id)layerWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor;
 - (id)initWithGameMode:(RRGameMode)gameMode firstPlayerColor:(RRPlayerColor)playerColor;
