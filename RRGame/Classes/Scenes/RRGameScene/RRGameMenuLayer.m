@@ -103,7 +103,7 @@ static BOOL RRGameMenuLayerVisible = NO;
         UDSpriteButton *buttonResume = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonResume.png" highliteSpriteFrameName:@"RRButtonResumeSelected.png"];
         [buttonResume addBlock: ^{
             [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:0];
+            [weakSelf didSelectButtonAtIndex:0];
         } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonResume];
         
@@ -111,7 +111,7 @@ static BOOL RRGameMenuLayerVisible = NO;
         _buttonRestart = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonRestart.png" highliteSpriteFrameName:@"RRButtonRestartSelected.png"];
         [_buttonRestart addBlock: ^{
             [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:1];
+            [weakSelf didSelectButtonAtIndex:1];
         } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:_buttonRestart];
         
@@ -119,7 +119,7 @@ static BOOL RRGameMenuLayerVisible = NO;
         UDSpriteButton *buttonQuit = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonQuit.png" highliteSpriteFrameName:@"RRButtonQuitSelected.png"];
         [buttonQuit addBlock: ^{
             [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-            [_delegate gameMenuLayer:weakSelf didSelectButtonAtIndex:2];
+            [weakSelf didSelectButtonAtIndex:2];
         } forControlEvents: UDButtonEventTouchUpInsideD];
         [_menu addChild:buttonQuit];
         
@@ -189,6 +189,11 @@ static BOOL RRGameMenuLayerVisible = NO;
                       [CCMoveTo actionWithDuration:0.2f position:CGPointMake(winSize.width /2, winSize.height +_menu.boundingBox.size.height)],
                       [UDActionDestroy actionWithTarget:self],
                       nil]];
+}
+
+
+- (void)didSelectButtonAtIndex:(NSUInteger)buttonIndex {
+    [_delegate gameMenuLayer:self didSelectButtonAtIndex:buttonIndex];
 }
 
 
