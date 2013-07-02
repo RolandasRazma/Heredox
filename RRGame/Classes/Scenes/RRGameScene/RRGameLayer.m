@@ -50,7 +50,7 @@
 
 - (void)onEnter {
     [super onEnter];
-    
+
     [_gameBoardLayer addObserver:self forKeyPath:@"symbolsBlack" options:NSKeyValueObservingOptionNew context:NULL];
     [_gameBoardLayer addObserver:self forKeyPath:@"symbolsWhite" options:NSKeyValueObservingOptionNew context:NULL];
     
@@ -62,7 +62,7 @@
         if( matchRepresentation.seed ){
             [self resetGameWithSeed:_match.gameSeed];
 
-            for( int turnNo=0; turnNo < matchRepresentation.totalTileMoves; turnNo++ ){
+            for( int turnNo=0; turnNo < matchRepresentation.totalTileMoves -1; turnNo++ ){
                 RRTileMove tileMove = matchRepresentation.tileMoves[turnNo];
                 
                 [self makeMove:tileMove animated:NO completionHandler:NULL];
@@ -96,7 +96,16 @@
     [super onEnterTransitionDidFinish];
     
     if( _match ){
-        [self setUserInteractionEnabled: [_match isMyTurn]];
+        RRMatchData matchRepresentation = _match.matchRepresentation;
+        
+        if( matchRepresentation.totalTileMoves ){
+            RRTileMove tileMove = matchRepresentation.tileMoves[matchRepresentation.totalTileMoves -1];
+            [self makeMove:tileMove animated:YES completionHandler:^{
+                [self endTurnAnimated:YES endMatchTurn:NO];
+            }];
+        }else{
+            [self setUserInteractionEnabled: [_match isMyTurn]];
+        }
         
         if ( _match.status == GKTurnBasedMatchStatusEnded ) {
             // Match Ended
@@ -342,7 +351,14 @@
                 if( _match && [_match isMyTurn] && endMatchTurn ){
                     [_match endTurnWithNextParticipant: _match.nextParticipant
                                      completionHandler: ^(NSError *error) {
-                                         NSLog(@"endTurnError: %@", error);
+                                         if( error ){
+                                             NSLog(@"endTurnWithNextParticipant error: %@", error);
+                                             
+                                             RRPopupLayer *popupLayer = [RRPopupLayer layerWithMessage: @"RRTextGameCenterError"
+                                                                                      cancelButtonName: @"RRButtonContinue"
+                                                                                    cancelButtonAction: nil];
+                                             [self addChild:popupLayer z:1000];
+                                         }
                                      }];
                 }
                 
