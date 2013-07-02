@@ -483,6 +483,7 @@
 		F0493EC8178207D100EC7EF6 /* RRBackgroundPlayerColor-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundPlayerColor-568h@2x.png"; sourceTree = "<group>"; };
 		F04C849E1781F14B00512994 /* RRBackgroundWhite-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundWhite-568h@2x.png"; sourceTree = "<group>"; };
 		F04C84A01781F15400512994 /* RRBackgroundBlack-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RRBackgroundBlack-568h@2x.png"; sourceTree = "<group>"; };
+		F057CFEA17837A2400B67B93 /* GKLocalPlayerListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKLocalPlayerListener.h; sourceTree = "<group>"; };
 		F0602A3B15AFA16600B60FB1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F0602A3C15AFA16600B60FB1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F0602A3E15AFA16600B60FB1 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -1672,6 +1673,7 @@
 		F0CD647E14CA9ACB00665366 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F057CFEA17837A2400B67B93 /* GKLocalPlayerListener.h */,
 				F0CD647F14CA9ACB00665366 /* RRGameAppDelegate.h */,
 				F0CD648014CA9ACB00665366 /* RRGameAppDelegate.m */,
 			);
