@@ -718,8 +718,12 @@
     
     if( [match isEqual:_match] ){
         _match = match;
+        [_match invalidateMatchRepresentation];
         
-        NSLog(@"player: %@ matchEnded: %@", player, match);
+        RRMatchData matchRepresentation = match.matchRepresentation;
+        RRTileMove tileMove = matchRepresentation.tileMoves[matchRepresentation.totalTileMoves -1];
+        
+        [self makeMove:tileMove animated:YES completionHandler: ^{ [self endTurnAnimated:YES endMatchTurn:NO]; }];
     }else{
         // notify user about other math
     }
