@@ -32,7 +32,12 @@
 #import "RRPopupLayer.h"
 
 
-@implementation RRGameAppDelegate
+@implementation RRGameAppDelegate {
+	IBOutlet NSWindow	*_window;
+	IBOutlet CCGLView	*_glView;
+    CCDirectorMac       *_director;
+    BOOL                _tryedToAuth;
+}
 
 
 #pragma mark -
@@ -98,7 +103,10 @@
 
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification {
-
+    if( _tryedToAuth ) return;
+    
+    _tryedToAuth = YES;
+    
     [[GKLocalPlayer localPlayer] registerListener:self];
     
     if ( ![[GKLocalPlayer localPlayer] isAuthenticated] ) {
