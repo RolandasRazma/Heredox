@@ -27,6 +27,8 @@
 #import "RRGameAppDelegate.h"
 #import "cocos2d.h"
 #import "RRDefaultScene.h"
+#import "RRMenuScene.h"
+#import "RRGameScene.h"
 
 
 @implementation RRGameAppDelegate
@@ -131,6 +133,45 @@
 
 - (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite {
     NSLog(@"didRequestMatchWithPlayers: %@", playerIDsToInvite);
+}
+
+
+#pragma mark -
+#pragma mark GKTurnBasedEventListener
+
+
+- (void)player:(GKPlayer *)player receivedTurnEventForMatch:(GKTurnBasedMatch *)match didBecomeActive:(BOOL)didBecomeActive {
+    
+    if( !didBecomeActive ){
+        didBecomeActive = ([_director.runningScene isKindOfClass: [RRDefaultScene class]] || [_director.runningScene isKindOfClass: [RRMenuScene class]]);
+    }
+    
+    if( didBecomeActive ){
+        
+        // If we still loading give it some time to finish.
+        if( [_director.runningScene isKindOfClass: [RRDefaultScene class]] ){
+            __weak RRGameDelegate *weakSelf = self;
+            RunAfterDelay(1.0f, ^{
+                [weakSelf player:player receivedTurnEventForMatch:match didBecomeActive:didBecomeActive];
+            });
+            return;
+        }
+        
+        // Load data first
+        __weak GKTurnBasedMatch *weakMatch = match;
+        [match loadMatchDataWithCompletionHandler: ^(NSData *matchData, NSError *error) {
+            if( error ) return;
+            
+            RunOnMainThreadAsync(^{
+                [weakMatch invalidateMatchRepresentation];
+                
+                // Start game
+                RRGameScene *gameScene = [[RRGameScene alloc] initWithMatch:weakMatch];
+                [[CCDirector sharedDirector] replaceScene: [RRTransitionGame transitionToScene:gameScene]];
+            });
+        }];
+    }
+    
 }
 
 
