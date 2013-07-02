@@ -43,6 +43,7 @@
     #import "UDActionDestroy.h"
     #import "UDSpriteButton.h"
     #import "RRTransitionGame.h"
+    #import "NSBlock+Additions.h"
 
     #import "RRAudioEngine.h"
     #import "RRHeredox.h"

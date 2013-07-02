@@ -64,6 +64,8 @@
 		F01AC59215D2EEC500541D96 /* RRTransitionGame.m in Sources */ = {isa = PBXBuildFile; fileRef = F01AC59015D2EEC500541D96 /* RRTransitionGame.m */; };
 		F01CD2C51530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
 		F01CD2C61530241F000149C4 /* UDActionDestroy.m in Sources */ = {isa = PBXBuildFile; fileRef = F01CD2C41530241F000149C4 /* UDActionDestroy.m */; };
+		F01D8915178328770083BE96 /* NSBlock+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F01D8914178328770083BE96 /* NSBlock+Additions.m */; };
+		F01D8916178328770083BE96 /* NSBlock+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F01D8914178328770083BE96 /* NSBlock+Additions.m */; };
 		F03554FF1633F1FA003E39EF /* UDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F03554FC1633F1FA003E39EF /* UDMath.m */; };
 		F03555001633F1FA003E39EF /* UDMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F03554FC1633F1FA003E39EF /* UDMath.m */; };
 		F03555101633F28D003E39EF /* NSMutableArray+UDAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F035550F1633F28D003E39EF /* NSMutableArray+UDAdditions.m */; };
@@ -452,6 +454,8 @@
 		F01AC59015D2EEC500541D96 /* RRTransitionGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRTransitionGame.m; sourceTree = "<group>"; };
 		F01CD2C31530241F000149C4 /* UDActionDestroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDActionDestroy.h; sourceTree = "<group>"; };
 		F01CD2C41530241F000149C4 /* UDActionDestroy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDActionDestroy.m; sourceTree = "<group>"; };
+		F01D8913178328770083BE96 /* NSBlock+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBlock+Additions.h"; sourceTree = "<group>"; };
+		F01D8914178328770083BE96 /* NSBlock+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBlock+Additions.m"; sourceTree = "<group>"; };
 		F03554FB1633F1FA003E39EF /* UDMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDMath.h; sourceTree = "<group>"; };
 		F03554FC1633F1FA003E39EF /* UDMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDMath.m; sourceTree = "<group>"; };
 		F035550B1633F24C003E39EF /* UDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDLog.h; sourceTree = "<group>"; };
@@ -917,6 +921,15 @@
 			path = UDActions;
 			sourceTree = "<group>";
 		};
+		F01D8912178328770083BE96 /* NSBlockAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				F01D8913178328770083BE96 /* NSBlock+Additions.h */,
+				F01D8914178328770083BE96 /* NSBlock+Additions.m */,
+			);
+			path = NSBlockAdditions;
+			sourceTree = "<group>";
+		};
 		F03554F81633F1F9003E39EF /* UDMath */ = {
 			isa = PBXGroup;
 			children = (
@@ -987,6 +1000,7 @@
 		F043C4EF14CAF07300BF47DE /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				F01D8912178328770083BE96 /* NSBlockAdditions */,
 				F035550D1633F28D003E39EF /* NSMutableArrayAdditions */,
 				F0A7BD28178229550003BEB2 /* GKTurnBasedMatch */,
 				F03EF75B15B059F30085E637 /* UDSpriteButton */,
@@ -1998,6 +2012,7 @@
 				F088CA9D177F62FF0017FEBA /* CCActionTween.m in Sources */,
 				F088CA9F177F62FF0017FEBA /* CCAnimation.m in Sources */,
 				F088CAA1177F62FF0017FEBA /* CCAnimationCache.m in Sources */,
+				F01D8915178328770083BE96 /* NSBlock+Additions.m in Sources */,
 				F088CAA3177F62FF0017FEBA /* CCAtlasNode.m in Sources */,
 				F088CAA5177F62FF0017FEBA /* CCCamera.m in Sources */,
 				F088CAA7177F62FF0017FEBA /* CCClippingNode.m in Sources */,
@@ -2143,6 +2158,7 @@
 				F088CA9E177F62FF0017FEBA /* CCActionTween.m in Sources */,
 				F088CAA0177F62FF0017FEBA /* CCAnimation.m in Sources */,
 				F088CAA2177F62FF0017FEBA /* CCAnimationCache.m in Sources */,
+				F01D8916178328770083BE96 /* NSBlock+Additions.m in Sources */,
 				F088CAA4177F62FF0017FEBA /* CCAtlasNode.m in Sources */,
 				F088CAA6177F62FF0017FEBA /* CCCamera.m in Sources */,
 				F088CAA8177F62FF0017FEBA /* CCClippingNode.m in Sources */,

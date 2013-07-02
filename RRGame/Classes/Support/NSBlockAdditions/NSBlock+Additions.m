@@ -1,0 +1,54 @@
+//
+//  NSBlock+Additions.m
+//
+//  Created by Rolandas Razma.
+//
+//  Copyright (c) 2012 Rolandas Razma <rolandas@razma.lt>
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
+
+#import "NSBlock+Additions.h"
+
+
+void RunInBackground(BasicBlock block) {
+
+    dispatch_queue_t dispatchQueue = dispatch_queue_create("RunInBackground", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(dispatchQueue, block);
+    dispatch_release(dispatchQueue);
+    
+}
+
+
+void RunOnMainThreadAsync(BasicBlock block) {
+    dispatch_async(dispatch_get_main_queue(), block);
+}
+
+
+void RunOnMainThreadSync(BasicBlock block) {
+    if ( [NSThread isMainThread] ) {
+        block();
+    }else{
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
+
+
+void RunAfterDelay(NSTimeInterval delay, BasicBlock block) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay *NSEC_PER_SEC)), dispatch_get_main_queue(), block);
+}
