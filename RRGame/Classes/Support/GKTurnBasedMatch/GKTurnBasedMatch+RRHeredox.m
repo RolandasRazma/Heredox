@@ -13,6 +13,37 @@
 @implementation GKTurnBasedMatch (RRHeredox)
 
 
++ (void)load {
+    #define REPLACE_METHOD(__CLASS__, __ORIG_SELECTOR__, __NEW_SELECTOR__) {                                                                            \
+        Method origInstanceMethod = class_getInstanceMethod(__CLASS__, __ORIG_SELECTOR__);                                                              \
+        Method newInstanceMethod  = class_getInstanceMethod(__CLASS__, __NEW_SELECTOR__);                                                               \
+        if( class_addMethod(__CLASS__, __ORIG_SELECTOR__, method_getImplementation(newInstanceMethod), method_getTypeEncoding(newInstanceMethod)) ){    \
+            class_replaceMethod(__CLASS__, __NEW_SELECTOR__, method_getImplementation(origInstanceMethod), method_getTypeEncoding(origInstanceMethod)); \
+        }else{                                                                                                                                          \
+            method_exchangeImplementations(origInstanceMethod, newInstanceMethod);                                                                      \
+        }                                                                                                                                               \
+    }
+    
+    REPLACE_METHOD([GKTurnBasedMatch class], @selector(loadMatchDataWithCompletionHandler:), @selector(rr_loadMatchDataWithCompletionHandler:))
+}
+
+
+#pragma mark -
+#pragma mark GKTurnBasedMatch
+
+
+- (void)rr_loadMatchDataWithCompletionHandler:(void(^)(NSData *matchData, NSError *error))completionHandler {
+    [self rr_loadMatchDataWithCompletionHandler:^(NSData *matchData, NSError *error) {
+        [self invalidateMatchRepresentation];
+        completionHandler(matchData, error);
+    }];
+}
+
+
+#pragma mark -
+#pragma mark GKTurnBasedMatch (RRHeredox)
+
+
 - (BOOL)isMyTurn {
     
     if( [[GKLocalPlayer localPlayer] isAuthenticated] ){
@@ -65,6 +96,19 @@
 }
 
 
+- (void)endTurnWithNextParticipant:(GKTurnBasedParticipant *)nextParticipant completionHandler:(void(^)(NSError *error))completionHandler {
+    
+    [self endTurnWithNextParticipant: nextParticipant
+                           matchData: self.transitMatchData
+                   completionHandler: ^(NSError *error) {
+                       [self invalidateMatchRepresentation];
+                       
+                       completionHandler( error );
+                   }];
+    
+}
+
+
 @end
 
 
@@ -73,6 +117,7 @@
 
 - (RRPlayerColor)firstParticipantColor {
     RRMatchData matchRepresentation = self.matchRepresentation;
+    
     return matchRepresentation.firstParticipantColor;
 }
 
@@ -87,12 +132,14 @@
 
 - (NSUInteger)gameSeed {
     RRMatchData matchRepresentation = self.matchRepresentation;
+    
     return matchRepresentation.seed;
 }
 
 
 - (void)setGameSeed:(NSUInteger)gameSeed {
     RRMatchData matchRepresentation = self.matchRepresentation;
+    
     matchRepresentation.seed = gameSeed;
     
     [self setMatchRepresentation:matchRepresentation];

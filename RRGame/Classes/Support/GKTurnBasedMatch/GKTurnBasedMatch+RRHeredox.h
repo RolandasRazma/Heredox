@@ -29,6 +29,8 @@ typedef struct RRMatchData {
 - (NSData *)transitMatchData;
 - (void)invalidateMatchRepresentation;
 
+- (void)endTurnWithNextParticipant:(GKTurnBasedParticipant *)nextParticipant completionHandler:(void(^)(NSError *error))completionHandler;
+
 @end
 
 
