@@ -49,6 +49,7 @@
     #import "RRHeredox.h"
     #import "GKTurnBasedMatch+RRHeredox.h"
 
+    #import "GKLocalPlayerListener.h"
     #import "GKLocalPlayer.h"
 #endif
 
