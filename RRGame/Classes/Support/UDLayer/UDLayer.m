@@ -47,6 +47,7 @@
         }
     }
 #elif defined(__CC_PLATFORM_MAC)
+    [self setMousePriority: [self mousePriority]];
     [self setMouseEnabled: enabled];
 #endif
 }
@@ -82,7 +83,7 @@
 #pragma mark CCNode
 
 
-- (NSInteger)mouseDelegatePriority {
+- (NSInteger)mousePriority {
     NSInteger priority = self.zOrder;
     CCNode *parent = self;
     while ( (parent = parent.parent) ) {
