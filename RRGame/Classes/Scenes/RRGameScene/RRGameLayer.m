@@ -290,7 +290,7 @@
 
         // Place tiles on game board
         float angle     = 0.0f;
-        CGFloat offsetY = 0;
+        CGFloat offsetY = -6.0f;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         for( RRTile *tile in [_deck reverseObjectEnumerator] ){
             [tile setRotation:0];
