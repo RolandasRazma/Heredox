@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F00A6ABB177F116600438220 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00A6ABA177F116600438220 /* Crashlytics.framework */; };
 		F01063CE15C707D0003BB881 /* ambience.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063CD15C707D0003BB881 /* ambience.mp3 */; };
 		F01063CF15C707D0003BB881 /* ambience.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063CD15C707D0003BB881 /* ambience.mp3 */; };
 		F01063D115C70885003BB881 /* RRDefaultScene.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D015C70885003BB881 /* RRDefaultScene.mp3 */; };
@@ -303,10 +302,6 @@
 		F088CB53177F63080017FEBA /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F088CB45177F63080017FEBA /* SimpleAudioEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker"; }; };
 		F088CB77177F63120017FEBA /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = F088CB67177F63120017FEBA /* aabb.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker"; }; };
 		F088CB78177F63120017FEBA /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = F088CB67177F63120017FEBA /* aabb.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker"; }; };
-		F088CB79177F63120017FEBA /* ChangeLog in Resources */ = {isa = PBXBuildFile; fileRef = F088CB68177F63120017FEBA /* ChangeLog */; };
-		F088CB7A177F63120017FEBA /* ChangeLog in Resources */ = {isa = PBXBuildFile; fileRef = F088CB68177F63120017FEBA /* ChangeLog */; };
-		F088CB7B177F63120017FEBA /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = F088CB69177F63120017FEBA /* CMakeLists.txt */; };
-		F088CB7C177F63120017FEBA /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = F088CB69177F63120017FEBA /* CMakeLists.txt */; };
 		F088CB7D177F63120017FEBA /* mat4stack.c in Sources */ = {isa = PBXBuildFile; fileRef = F088CB6B177F63120017FEBA /* mat4stack.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker"; }; };
 		F088CB7E177F63120017FEBA /* mat4stack.c in Sources */ = {isa = PBXBuildFile; fileRef = F088CB6B177F63120017FEBA /* mat4stack.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker"; }; };
 		F088CB7F177F63120017FEBA /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = F088CB6C177F63120017FEBA /* matrix.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker"; }; };
@@ -334,10 +329,6 @@
 		F088CB96177F64040017FEBA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F088CB95177F64030017FEBA /* CoreText.framework */; };
 		F088CB9A177F64530017FEBA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F088CB99177F64530017FEBA /* CoreText.framework */; };
 		F088CB9C177F651F0017FEBA /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F088CB9B177F651F0017FEBA /* ApplicationServices.framework */; };
-		F08D19B41781E73E00C5F599 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F08D199E1781E73E00C5F599 /* LICENSE */; };
-		F08D19B51781E73E00C5F599 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F08D199E1781E73E00C5F599 /* LICENSE */; };
-		F08D19B61781E73E00C5F599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F08D199F1781E73E00C5F599 /* README.md */; };
-		F08D19B71781E73E00C5F599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F08D199F1781E73E00C5F599 /* README.md */; };
 		F08D19BE1781E73E00C5F599 /* GKLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F08D19AA1781E73E00C5F599 /* GKLocalPlayer.m */; };
 		F08D19BF1781E73E00C5F599 /* GKLocalPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F08D19AA1781E73E00C5F599 /* GKLocalPlayer.m */; };
 		F08FBF6915C05E83008085F1 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */; };
@@ -420,7 +411,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F00A6ABA177F116600438220 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F01063CD15C707D0003BB881 /* ambience.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ambience.mp3; sourceTree = "<group>"; };
 		F01063D015C70885003BB881 /* RRDefaultScene.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRDefaultScene.mp3; sourceTree = "<group>"; };
 		F01063D315C709C8003BB881 /* RRSceneTransition.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRSceneTransition.mp3; sourceTree = "<group>"; };
@@ -742,8 +732,6 @@
 		F088CB64177F63120017FEBA /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec3.h; sourceTree = "<group>"; };
 		F088CB65177F63120017FEBA /* vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec4.h; sourceTree = "<group>"; };
 		F088CB67177F63120017FEBA /* aabb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aabb.c; sourceTree = "<group>"; };
-		F088CB68177F63120017FEBA /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
-		F088CB69177F63120017FEBA /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		F088CB6B177F63120017FEBA /* mat4stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mat4stack.c; sourceTree = "<group>"; };
 		F088CB6C177F63120017FEBA /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
 		F088CB6D177F63120017FEBA /* mat3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mat3.c; sourceTree = "<group>"; };
@@ -759,8 +747,6 @@
 		F088CB95177F64030017FEBA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F088CB99177F64530017FEBA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		F088CB9B177F651F0017FEBA /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
-		F08D199E1781E73E00C5F599 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		F08D199F1781E73E00C5F599 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F08D19A91781E73E00C5F599 /* GKLocalPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKLocalPlayer.h; sourceTree = "<group>"; };
 		F08D19AA1781E73E00C5F599 /* GKLocalPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKLocalPlayer.m; sourceTree = "<group>"; };
 		F08FBF6615C05E83008085F1 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -849,7 +835,6 @@
 				F06582C414CA7BE20033B4F5 /* OpenAL.framework in Frameworks */,
 				F06582C614CA7BE20033B4F5 /* AudioToolbox.framework in Frameworks */,
 				F06582C814CA7BE20033B4F5 /* AVFoundation.framework in Frameworks */,
-				F00A6ABB177F116600438220 /* Crashlytics.framework in Frameworks */,
 				F06582CA14CA7BE20033B4F5 /* UIKit.framework in Frameworks */,
 				F06582CC14CA7BE20033B4F5 /* Foundation.framework in Frameworks */,
 				F06582CE14CA7BE20033B4F5 /* CoreGraphics.framework in Frameworks */,
@@ -1084,7 +1069,6 @@
 				F06582C314CA7BE20033B4F5 /* OpenAL.framework */,
 				F06582C514CA7BE20033B4F5 /* AudioToolbox.framework */,
 				F06582CB14CA7BE20033B4F5 /* Foundation.framework */,
-				F00A6ABA177F116600438220 /* Crashlytics.framework */,
 			);
 			name = "Frameworks & Librarys";
 			path = RRGame/Library;
@@ -1478,8 +1462,6 @@
 			isa = PBXGroup;
 			children = (
 				F088CB67177F63120017FEBA /* aabb.c */,
-				F088CB68177F63120017FEBA /* ChangeLog */,
-				F088CB69177F63120017FEBA /* CMakeLists.txt */,
 				F088CB6A177F63120017FEBA /* GL */,
 				F088CB6D177F63120017FEBA /* mat3.c */,
 				F088CB6E177F63120017FEBA /* mat4.c */,
@@ -1507,8 +1489,6 @@
 		F08D199D1781E73E00C5F599 /* RRiOS7Backport */ = {
 			isa = PBXGroup;
 			children = (
-				F08D199E1781E73E00C5F599 /* LICENSE */,
-				F08D199F1781E73E00C5F599 /* README.md */,
 				F08D19A01781E73E00C5F599 /* RRiOS7Backport */,
 			);
 			path = RRiOS7Backport;
@@ -1746,7 +1726,6 @@
 				F06582B714CA7BE20033B4F5 /* Sources */,
 				F06582B814CA7BE20033B4F5 /* Frameworks */,
 				F06582B914CA7BE20033B4F5 /* Resources */,
-				F00A6AB8177F10F300438220 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1764,7 +1743,6 @@
 				F0CD5FC814CA92F000665366 /* Sources */,
 				F0CD5FC914CA92F000665366 /* Frameworks */,
 				F0CD5FCA14CA92F000665366 /* Resources */,
-				F00A6AB9177F110E00438220 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1870,10 +1848,6 @@
 				F09843E615D2E4550096F468 /* RRGameMenuIn.mp3 in Resources */,
 				F01AC58C15D2EE2A00541D96 /* RRSceneTransitionBack.mp3 in Resources */,
 				F0A35DD315D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
-				F088CB79177F63120017FEBA /* ChangeLog in Resources */,
-				F088CB7B177F63120017FEBA /* CMakeLists.txt in Resources */,
-				F08D19B41781E73E00C5F599 /* LICENSE in Resources */,
-				F08D19B61781E73E00C5F599 /* README.md in Resources */,
 				F04C849F1781F14B00512994 /* RRBackgroundWhite-568h@2x.png in Resources */,
 				F04C84A11781F15400512994 /* RRBackgroundBlack-568h@2x.png in Resources */,
 			);
@@ -1923,43 +1897,10 @@
 				F0A35DD415D681AF00B2BDCF /* RRPlaceTileError.mp3 in Resources */,
 				F015A0F415F5FBC600A3B62B /* icon.iconset in Resources */,
 				F09B451915FCEC5300A8EC9D /* Heredox.entitlements in Resources */,
-				F088CB7A177F63120017FEBA /* ChangeLog in Resources */,
-				F088CB7C177F63120017FEBA /* CMakeLists.txt in Resources */,
-				F08D19B51781E73E00C5F599 /* LICENSE in Resources */,
-				F08D19B71781E73E00C5F599 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F00A6AB8177F10F300438220 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ \"${CONFIGURATION}\" == \"Release\" && \"${BUILD_ROOT}\" == *Archive* ]]; then\n    ./RRGame/Library/Crashlytics.framework/run a7cd0848a5a73e1d7c546e794480fdade0024696\nfi";
-		};
-		F00A6AB9177F110E00438220 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ \"${CONFIGURATION}\" == \"Release\" && \"${BUILD_ROOT}\" == *Archive* ]]; then\n    ./RRGame/Library/Crashlytics.framework/run a7cd0848a5a73e1d7c546e794480fdade0024696\nfi";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F06582B714CA7BE20033B4F5 /* Sources */ = {
@@ -2275,6 +2216,7 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/RRGame/Library/";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_PASCAL_STRINGS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2298,7 +2240,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = RRGame/Library/Cocos2D/external/kazmath/include;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/RRGame/Library/Cocos2D/external/kazmath/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LLVM_VECTORIZE_LOOPS = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2329,6 +2271,7 @@
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/RRGame/Library/";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_PASCAL_STRINGS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2350,7 +2293,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = RRGame/Library/Cocos2D/external/kazmath/include;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/RRGame/Library/Cocos2D/external/kazmath/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LLVM_LTO = YES;
 				LLVM_VECTORIZE_LOOPS = YES;
@@ -2365,21 +2308,12 @@
 		F065844B14CA7BE60033B4F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/RRGame/Library",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RRGame/Prefix.pch;
 				INFOPLIST_FILE = RRGame/Resources/Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RRHeredox-aknwdxlrqproekdngevjtsujcjnz/Build/Products/Debug-iphoneos",
-				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -2391,20 +2325,11 @@
 		F065844C14CA7BE60033B4F5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/RRGame/Library",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RRGame/Prefix.pch;
 				INFOPLIST_FILE = RRGame/Resources/Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RRHeredox-aknwdxlrqproekdngevjtsujcjnz/Build/Products/Debug-iphoneos",
-				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -2422,21 +2347,13 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(SRCROOT)/RRGame/Library",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/RRGame/Library";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RRGameMacOS/Prefix.pch;
 				INFOPLIST_FILE = RRGameMacOS/Resources/Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RRHeredox-aknwdxlrqproekdngevjtsujcjnz/Build/Products/Debug-iphoneos",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -2449,26 +2366,18 @@
 		F0CD615214CA92F400665366 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = RRGameMacOS/Resources/Heredox.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(SRCROOT)/RRGame/Library",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/RRGame/Library";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RRGameMacOS/Prefix.pch;
 				INFOPLIST_FILE = RRGameMacOS/Resources/Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/RRHeredox-aknwdxlrqproekdngevjtsujcjnz/Build/Products/Debug-iphoneos",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
