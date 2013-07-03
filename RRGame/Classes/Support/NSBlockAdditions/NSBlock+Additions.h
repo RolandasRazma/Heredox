@@ -28,7 +28,5 @@
 
 typedef void (^BasicBlock)(void);
 
-void RunInBackground(BasicBlock block);
 void RunOnMainThreadAsync(BasicBlock block);
-void RunOnMainThreadSync(BasicBlock block);
 void RunAfterDelay(NSTimeInterval delay, BasicBlock block);

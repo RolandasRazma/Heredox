@@ -26,26 +26,8 @@
 #import "NSBlock+Additions.h"
 
 
-void RunInBackground(BasicBlock block) {
-
-    dispatch_queue_t dispatchQueue = dispatch_queue_create("RunInBackground", DISPATCH_QUEUE_CONCURRENT);
-    dispatch_async(dispatchQueue, block);
-    dispatch_release(dispatchQueue);
-    
-}
-
-
 void RunOnMainThreadAsync(BasicBlock block) {
     dispatch_async(dispatch_get_main_queue(), block);
-}
-
-
-void RunOnMainThreadSync(BasicBlock block) {
-    if ( [NSThread isMainThread] ) {
-        block();
-    }else{
-        dispatch_sync(dispatch_get_main_queue(), block);
-    }
 }
 
 
