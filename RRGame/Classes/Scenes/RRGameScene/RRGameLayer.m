@@ -647,22 +647,20 @@
 - (void)gameWictoryLayer:(RRGameWictoryLayer *)gameMenuLayer didSelectButtonAtIndex:(NSUInteger)buttonIndex {
     [gameMenuLayer dismiss];
     
-//    if( [[UDGKManager sharedManager] isHost] ){
-//        if( !_resetGameButton ){
-//            [self setUserInteractionEnabled:NO];
-//            
-//            _resetGameButton = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonReplay.png" highliteSpriteFrameName:@"RRButtonReplaySelected.png"];
-//            [_resetGameButton setPosition:_buttonEndTurn.position];
-//            __weak RRGameLayer *weakSeld = self;
-//            [_resetGameButton addBlock: ^{
-//                [[RRAudioEngine sharedEngine] stopAllEffects];
-//                [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
-//
-//                [weakSeld resetGame];
-//            } forControlEvents: UDButtonEventTouchUpInsideD];
-//            [self addChild:_resetGameButton z:-2];
-//        }
-//    }
+    if( !_match && !_resetGameButton ){
+        [self setUserInteractionEnabled:NO];
+        
+        _resetGameButton = [UDSpriteButton buttonWithSpriteFrameName:@"RRButtonReplay.png" highliteSpriteFrameName:@"RRButtonReplaySelected.png"];
+        [_resetGameButton setPosition:_buttonEndTurn.position];
+        __weak RRGameLayer *weakSeld = self;
+        [_resetGameButton addBlock: ^{
+            [[RRAudioEngine sharedEngine] stopAllEffects];
+            [[RRAudioEngine sharedEngine] replayEffect:@"RRButtonClick.mp3"];
+            
+            [weakSeld resetGame];
+        } forControlEvents: UDButtonEventTouchUpInsideD];
+        [self addChild:_resetGameButton z:-2];
+    }
 }
 
 
