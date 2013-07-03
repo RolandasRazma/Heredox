@@ -30,6 +30,7 @@
 @interface RRPlayer : NSObject {
     RRPlayerColor   _playerColor;
     NSString        *_playerID;
+    NSString        *_alias;
 }
 
 @property (nonatomic, readonly) RRPlayerColor   playerColor;
