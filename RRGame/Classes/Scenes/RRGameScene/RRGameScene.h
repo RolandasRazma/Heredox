@@ -26,8 +26,13 @@
 
 #import "CCScene.h"
 
+@class RRGameLayer;
 
-@interface RRGameScene : CCScene
+
+@interface RRGameScene : CCScene {
+    NSUInteger  _numberOfPlayers;
+    RRGameLayer *_gameLayer;
+}
 
 @property (nonatomic, readonly) GKTurnBasedMatch *match;
 

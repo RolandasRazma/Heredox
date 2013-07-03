@@ -30,10 +30,7 @@
 #import "RRPlayer.h"
 
 
-@implementation RRGameScene {
-    NSUInteger  _numberOfPlayers;
-    RRGameLayer *_gameLayer;
-}
+@implementation RRGameScene
 
 
 #pragma mark -
