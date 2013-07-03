@@ -25,7 +25,12 @@
 //
 
 
-@interface RRGameAppDelegate : NSObject <NSApplicationDelegate, GKLocalPlayerListener>
+@interface RRGameAppDelegate : NSObject <NSApplicationDelegate, GKLocalPlayerListener> {
+	IBOutlet NSWindow	*_window;
+	IBOutlet CCGLView	*_glView;
+    CCDirectorMac       *_director;
+    BOOL                _tryedToAuth;
+}
 
 - (IBAction)toggleFullScreen:(id)sender;
 

@@ -32,12 +32,7 @@
 #import "RRPopupLayer.h"
 
 
-@implementation RRGameAppDelegate {
-	IBOutlet NSWindow	*_window;
-	IBOutlet CCGLView	*_glView;
-    CCDirectorMac       *_director;
-    BOOL                _tryedToAuth;
-}
+@implementation RRGameAppDelegate
 
 
 #pragma mark -
