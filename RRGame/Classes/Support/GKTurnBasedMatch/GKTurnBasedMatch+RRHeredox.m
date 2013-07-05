@@ -98,6 +98,8 @@
 
 - (void)endTurnWithNextParticipant:(GKTurnBasedParticipant *)nextParticipant completionHandler:(void(^)(NSError *error))completionHandler {
     
+    UDLog(@"Ending turn with by sending %i bytes (%.2f%% allowed)...", self.transitMatchData.length, (float)self.transitMatchData.length /(1024.0f *4.0f));
+    
     [self endTurnWithNextParticipant: nextParticipant
                            matchData: self.transitMatchData
                    completionHandler: ^(NSError *error) {
