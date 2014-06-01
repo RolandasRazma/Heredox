@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F00A6ABB177F116600438220 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00A6ABA177F116600438220 /* Crashlytics.framework */; };
 		F01063CE15C707D0003BB881 /* ambience.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063CD15C707D0003BB881 /* ambience.mp3 */; };
 		F01063CF15C707D0003BB881 /* ambience.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063CD15C707D0003BB881 /* ambience.mp3 */; };
 		F01063D115C70885003BB881 /* RRDefaultScene.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F01063D015C70885003BB881 /* RRDefaultScene.mp3 */; };
@@ -407,7 +406,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F00A6ABA177F116600438220 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F01063CD15C707D0003BB881 /* ambience.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ambience.mp3; sourceTree = "<group>"; };
 		F01063D015C70885003BB881 /* RRDefaultScene.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRDefaultScene.mp3; sourceTree = "<group>"; };
 		F01063D315C709C8003BB881 /* RRSceneTransition.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RRSceneTransition.mp3; sourceTree = "<group>"; };
@@ -825,7 +823,6 @@
 				F06582C414CA7BE20033B4F5 /* OpenAL.framework in Frameworks */,
 				F06582C614CA7BE20033B4F5 /* AudioToolbox.framework in Frameworks */,
 				F06582C814CA7BE20033B4F5 /* AVFoundation.framework in Frameworks */,
-				F00A6ABB177F116600438220 /* Crashlytics.framework in Frameworks */,
 				F06582CA14CA7BE20033B4F5 /* UIKit.framework in Frameworks */,
 				F06582CC14CA7BE20033B4F5 /* Foundation.framework in Frameworks */,
 				F06582CE14CA7BE20033B4F5 /* CoreGraphics.framework in Frameworks */,
@@ -1049,7 +1046,6 @@
 				F06582C314CA7BE20033B4F5 /* OpenAL.framework */,
 				F06582C514CA7BE20033B4F5 /* AudioToolbox.framework */,
 				F06582CB14CA7BE20033B4F5 /* Foundation.framework */,
-				F00A6ABA177F116600438220 /* Crashlytics.framework */,
 			);
 			name = "Frameworks & Librarys";
 			path = RRGame/Library;
@@ -1679,7 +1675,6 @@
 				F06582B714CA7BE20033B4F5 /* Sources */,
 				F06582B814CA7BE20033B4F5 /* Frameworks */,
 				F06582B914CA7BE20033B4F5 /* Resources */,
-				F00A6AB8177F10F300438220 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1855,19 +1850,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F00A6AB8177F10F300438220 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ \"${CONFIGURATION}\" == \"Release\" && \"${BUILD_ROOT}\" == *Archive* ]]; then\n    ./RRGame/Library/Crashlytics.framework/run a7cd0848a5a73e1d7c546e794480fdade0024696\nfi";
-		};
 		F00A6AB9177F110E00438220 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

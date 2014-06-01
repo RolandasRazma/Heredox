@@ -27,7 +27,6 @@
 #import "cocos2d.h"
 #import "RRGameDelegate.h"
 #import "RRDefaultScene.h"
-#import <Crashlytics/Crashlytics.h>
 
 
 @implementation RRGameDelegate {
@@ -42,10 +41,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    // Setup Crashlytics
-    [Crashlytics startWithAPIKey:@"a7cd0848a5a73e1d7c546e794480fdade0024696"];
-    
+
 	// Create the main window
 	_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
