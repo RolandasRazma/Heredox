@@ -1,3 +1,3 @@
 [submodule "RRGame/Library/Cocos2D"]
 	path = RRGame/Library/Cocos2D
-	url = git://github.com/cocos2d/cocos2d-iphone.git
+	url = git://github.com/cocos2d/cocos2d-iphone-classic.git
